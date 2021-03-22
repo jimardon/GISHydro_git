@@ -155,6 +155,19 @@ call (410) 767-4500.)")
     });
     var gpTask = gpService.createTask();
 
+    alert(new_extents.getWest())
+    alert(new_extents.getSouth())
+    alert(new_extents.getEast())
+    alert(new_extents.getNorth())
+    alert(proj_folder)
+    alert(dem_layer)
+    alert(soil_layer)
+    alert(land_layer)
+    alert(hyd_cond)
+    alert(acc_thr)
+    alert(burnopt)
+
+
     gpTask.setParam("Coord_X1", new_extents.getWest());
     gpTask.setParam("Coord_Y1", new_extents.getSouth());
     gpTask.setParam("Coord_X2", new_extents.getEast());
