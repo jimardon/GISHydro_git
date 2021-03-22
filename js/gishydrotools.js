@@ -150,7 +150,7 @@ call (410) 767-4500.)")
     LC.removeLayer(roadsf);
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/GISHydroWeb1/GPServer/DataSelection",
+        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/DataSelection",
         useCors:false,
     });
     var gpTask = gpService.createTask();
@@ -162,7 +162,7 @@ call (410) 767-4500.)")
     gpTask.setParam("Project_Name", proj_folder);
     gpTask.setParam("DEM_Layer", dem_layer);
     gpTask.setParam("Soil_Layer", soil_layer);
-    gpTask.setParam("Land_LAyer", land_layer);
+    gpTask.setParam("Land_Layer", land_layer);
     gpTask.setParam("Hydrologic_Condition", hyd_cond);
     gpTask.setParam("Accumulation_Threshold", acc_thr);
     gpTask.setParam("Burn", burnopt);
@@ -269,7 +269,7 @@ function delineate(){
     $('#cleardel-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/GISHydroWeb1/GPServer/Delineation",
+        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Delineation",
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -286,9 +286,9 @@ function delineate(){
     map.panTo(new L.LatLng(mark_lat, mark_lon));
 
     gpTask.setParam("optfolder", main_path);
-    gpTask.setParam("lat", mark_lat);
-    gpTask.setParam("lon", mark_lon);
-    gpTask.setParam("delineation_check", delcheckin);
+    gpTask.setParam("mouse_lat_proj", mark_lat);
+    gpTask.setParam("mouse_lon_proj", mark_lon);
+    gpTask.setParam("validate_outlet", delcheckin);
 
     gpTask.run(delineationCallback);
 
@@ -361,15 +361,13 @@ function basin_properties(){
     $('#basin_properties-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/GISHydroWeb1/GPServer/BasinOutput",
+        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/BasinOutput",
         useCors:false
       });
     var gpTask = gpService.createTask();
 
     gpTask.setParam("optfolder", main_path);
-    gpTask.setParam("dem_layer", dem_layer);
     gpTask.setParam("landuse", land_layer);
-    gpTask.setParam("soil_layer", soil_layer);
     gpTask.setParam("hyd", hyd_cond);
     gpTask.setParam("gageid", document.getElementById("gagelist").value);
 
@@ -803,7 +801,7 @@ function flowpaths_polyline(){
     }
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/GISHydroWeb1/GPServer/FlowPaths",
+        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/FlowPaths",
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -872,7 +870,7 @@ function outlets_marker(){
     }
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/GISHydroWeb1/GPServer/Outlets",
+        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Outlets",
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -922,7 +920,7 @@ function subsheds(){
     $('#subsheds-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/GISHydroWeb1/GPServer/Subsheds",
+        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Subsheds",
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -992,7 +990,7 @@ function settoc(){
     $('#tcapply-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/GISHydroWeb1/GPServer/SetTOC",
+        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/SetTOC",
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -1003,18 +1001,18 @@ function settoc(){
     gpTask.setParam("landuse", land_layer)
     gpTask.setParam("Tc_method", tc_method)
     gpTask.setParam("Tc_ns", document.getElementById("sheet_manning").value)
-    gpTask.setParam("Tc_P", document.getElementById("sheet_precipitation").value)
-    gpTask.setParam("Tc_L", document.getElementById("sheet_length").value)
+    gpTask.setParam("Tc_p", document.getElementById("sheet_precipitation").value)
+    gpTask.setParam("Tc_l", document.getElementById("sheet_length").value)
     gpTask.setParam("Tc_paved", document.getElementById("pavedopt").checked)
-    gpTask.setParam("Tc_NHD", document.getElementById("nhdopt").checked)
+    gpTask.setParam("Tc_nhd", document.getElementById("nhdopt").checked)
     gpTask.setParam("Tc_sa", document.getElementById("channel_area").value)
     gpTask.setParam("Tc_nc", document.getElementById("channel_manning").value)
-    gpTask.setParam("Tc_cwCoef", document.getElementById("channel_width_coef").value)
-    gpTask.setParam("Tc_cwExp", document.getElementById("channel_width_exp").value)
-    gpTask.setParam("Tc_cdCoef", document.getElementById("channel_depth_coef").value)
-    gpTask.setParam("Tc_cdExp", document.getElementById("channel_depth_exp").value)
-    gpTask.setParam("Tc_caCoef", document.getElementById("channel_area_coef").value)
-    gpTask.setParam("Tc_caExp", document.getElementById("channel_area_exp").value)
+    gpTask.setParam("Tc_cwcoef", document.getElementById("channel_width_coef").value)
+    gpTask.setParam("Tc_cwexp", document.getElementById("channel_width_exp").value)
+    gpTask.setParam("Tc_cdcoef", document.getElementById("channel_depth_coef").value)
+    gpTask.setParam("Tc_cdexp", document.getElementById("channel_depth_exp").value)
+    gpTask.setParam("Tc_cacoef", document.getElementById("channel_area_coef").value)
+    gpTask.setParam("Tc_caexp", document.getElementById("channel_area_exp").value)
 
     gpTask.run(settocCallback);
 
@@ -1273,7 +1271,7 @@ function transect() {
     $('#addreservoir-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/GISHydroWeb1/GPServer/Transect",
+        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Transect",
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -1286,9 +1284,9 @@ function transect() {
     gpTask.setParam("optfolder",  main_path)
     gpTask.setParam("getlon",  JSON.stringify(polylon))
     gpTask.setParam("getlat",  JSON.stringify(polylat))
-    gpTask.setParam("nMain_val", document.getElementById('xsmain_manning').value)
-    gpTask.setParam("nLeft_val", document.getElementById('xsleft_manning').value)
-    gpTask.setParam("nRight_val", document.getElementById('xsright_manning').value)
+    gpTask.setParam("nmain_val", document.getElementById('xsmain_manning').value)
+    gpTask.setParam("nleft_val", document.getElementById('xsleft_manning').value)
+    gpTask.setParam("n_right_val", document.getElementById('xsright_manning').value)
     if(isNaN(user_rs)===false && user_rs){gpTask.setParam("user_rs", user_rs)}
     if(isNaN(user_be)===false && user_be){gpTask.setParam("user_be", user_be)}
     if(isNaN(user_cw)===false && user_cw){gpTask.setParam("user_cw", user_cw)}
@@ -1413,7 +1411,7 @@ function reservoir(){
     $('#addreservoir-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/GISHydroWeb1/GPServer/Reservoir",
+        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Reservoir",
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -1421,7 +1419,6 @@ function reservoir(){
     gpTask.setParam("optfolder",  main_path)
     gpTask.setParam("getlon",  mark_lon)
     gpTask.setParam("getlat",  mark_lat)
-
 
     gpTask.run(transectCallback);
 
@@ -1438,7 +1435,7 @@ function reservoir(){
         reachno = response.rating
         minstage = response.reservoir_elev
 
-        if(response.reservoir_check){
+        if(response.validate_reservoir){
             $("#reservoir_modal").modal()
             $("#structreachno").html(reachno);
             $("#structelev").html(minstage);
@@ -1595,13 +1592,14 @@ function precipitationdepth() {
     }};
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/GISHydroWeb1/GPServer/PrecipitationDepths",
+        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/PrecipitationDepths",
         useCors:false
       });
     var gpTask = gpService.createTask();
 
     gpTask.setParam("optfolder",  main_path)
     gpTask.setParam("cb_list",  JSON.stringify(preciplist))
+    gpTask.setParam("upper90",  upper90)
 
     gpTask.run(precipitationdepthCallback);
 
@@ -1648,19 +1646,19 @@ function tr20controlpanel() {
     areami2 = 12.4
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/GISHydroWeb1/GPServer/TR20ControlPanel",
+        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/TR20Control",
         useCors:true,
       });
     var gpTask = gpService.createTask();
 
     gpTask.setParam("optfolder", main_path)
-    gpTask.setParam("Main_increment", document.getElementById("dt_inc").value)
+    gpTask.setParam("main_increment", document.getElementById("dt_inc").value)
     gpTask.setParam("detail", document.getElementById("detailopt").checked)
-    gpTask.setParam("ARC", document.getElementById("arc").value)
-    gpTask.setParam("ARF", document.getElementById("arealreduction").checked)
-    gpTask.setParam("DelMarVa", document.getElementById("peakrate").value)
+    gpTask.setParam("arc", document.getElementById("arc").value)
+    gpTask.setParam("arf", document.getElementById("arealreduction").checked)
+    gpTask.setParam("delmarva", document.getElementById("peakrate").value)
     gpTask.setParam("cb_list", JSON.stringify(preciplist))
-    gpTask.setParam("prec_uSpecified", JSON.stringify(thecritavg))
+    gpTask.setParam("prec_user", JSON.stringify(thecritavg))
     gpTask.setParam("areami2",  areami2)
     gpTask.setParam("ratingtype", JSON.stringify(totaltype))
     gpTask.setParam("minstage", JSON.stringify(totalstage))
