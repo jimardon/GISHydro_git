@@ -88,7 +88,7 @@
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
                 <p></p>
-                <p align="justify" style="font-size:16px;"><b>GISHydroWEB</b> is a GIS-based software program for performing hydrologic analysis developed by 
+                <p align="justify" style="font-size:16px;"><b>GISHydroWEB</b> is a GIS-based web application for performing hydrologic analysis developed by 
                     The University of Maryland in conjunction with Maryland State Highway Administration.
                     It consists of a database of hydrologic layers and customized modeling tools.</p>
                 <p align="justify" style="font-size:16px;"><b>Some Features Include:</b></p>
@@ -284,7 +284,7 @@
                 </h1>
                 <p></p>
                 <p align="justify" style="font-size:14px;">If available, select a stream gauge for calibration. Then click on Calculate, this could take some minutes depending on the watershed size. 
-                    After the process has finished some basin properties will become available. You can also download the current watershed in GeoJSON format or proceed to the Download Layers tab 
+                    After the process has finished some basin properties will become available. You can also download the current watershed in GeoJSON format or proceed to the <a href="javascript:sidebar.open('download');">Download</a> tab 
                     to e-mail it as a package.</p>
                 <p></p>
                 <!-- Gage List -->
@@ -329,7 +329,9 @@
 
                     <p></p>
                     <p align="justify" style="font-size:14px;">Subdivide the watershed into subwatersheds to create stream reaches that will define the stream network topology for WinTR-20 modeling (optional). 
-                        After this process has finished you can download the subwatersheds in GeoJSON format or proceed to the Download Layers tab to e-mail it as a package.</p>
+                        After clicking Yes the option to add flow paths or outlets will become available. Otherwise, the Time of Concentration tab will be enabled, 
+                        this could take a couple of seconds while GISHydroWEB gathers all the required information to continue the analysis.
+                        </p>
                     <p></p>
                     <!-- Select Pour Point -->
                     <div class="hr-text-bar">
@@ -349,7 +351,8 @@
                 <div id="subshedyes" style="display:none;">
 
                     <p></p>
-                    <p align="justify" style="font-size:14px;">Flow paths and outlets will divide the watershed in subwatersheds. At least one flow path must be selected. Outlets must be placed on valid streams.</p>
+                    <p align="justify" style="font-size:14px;">Flow paths and outlets will divide the watershed in subwatersheds. At least one flow path must be selected. Outlets must be placed on valid streams. 
+                        After this process has finished you can download the subwatersheds in GeoJSON format or proceed to the <a href="javascript:sidebar.open('download');">Download</a> tab to e-mail it as a package.</p>
                     <p></p>
                     <!-- Select Pour Point -->
                     <div class="hr-text-bar">
@@ -725,6 +728,80 @@
                 </div>
             </div>
 
+            <div class="leaflet-sidebar-pane" id="download">
+                <h1 class="leaflet-sidebar-header">
+                    Download Layers
+                    <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+                </h1>
+                <p></p>
+                <p align="justify" style="font-size:14px;">The Download tool allow you to download some or all of the layers (shapefiles and rasters) in your project. 
+                    The layers will be packaged (.zip) and sent to the below e-mail. Rasters will be in GeoTIFF format.</p>
+                <p></p>
+                <p align="justify" style="font-size:14px;">Layers will become available as you proceed through the GISHydroWEB analysis.</p>
+                <p></p>
+                <!-- Gage List -->
+                <div class="hr-text-bar">
+                    <span class="hr-text">Select Layers</span>
+                </div>
+                <p></p>
+                <div class="inline">
+                    <div class="checkbox-form" id="layer1" style="display:block;">
+                        <strong>Layer 1:</strong>
+                        <input type="checkbox" class="checkbox-box" id="layer1" unchecked>
+                    </div>
+                    <div class="checkbox-form" id="layer2" style="display:block;">
+                        <strong>Layer 2:</strong>
+                        <input type="checkbox" class="checkbox-box" id="layer2" unchecked>
+                    </div>
+                    <div class="checkbox-form" id="layer2" style="display:block;">
+                        <strong>Layer 2:</strong>
+                        <input type="checkbox" class="checkbox-box" id="layer2" unchecked>
+                    </div>
+                    <div class="checkbox-form" id="layer2" style="display:block;">
+                        <strong>Layer 2:</strong>
+                        <input type="checkbox" class="checkbox-box" id="layer2" unchecked>
+                    </div>
+                    <div class="checkbox-form" id="layer2" style="display:block;">
+                        <strong>Layer 2:</strong>
+                        <input type="checkbox" class="checkbox-box" id="layer2" unchecked>
+                    </div>
+                    <div class="checkbox-form" id="layer2" style="display:block;">
+                        <strong>Layer 2:</strong>
+                        <input type="checkbox" class="checkbox-box" id="layer2" unchecked>
+                    </div>
+                    <div class="checkbox-form" id="layer2" style="display:block;">
+                        <strong>Layer 2:</strong>
+                        <input type="checkbox" class="checkbox-box" id="layer2" unchecked>
+                    </div>
+                    <div class="checkbox-form" id="layer2" style="display:block;">
+                        <strong>Layer 2:</strong>
+                        <input type="checkbox" class="checkbox-box" id="layer2" unchecked>
+                    </div>
+                    <div class="checkbox-form" id="layer2" style="display:block;">
+                        <strong>Layer 2:</strong>
+                        <input type="checkbox" class="checkbox-box" id="layer2" unchecked>
+                    </div>
+                    <div class="checkbox-form" id="layer2" style="display:block;">
+                        <strong>Layer 2:</strong>
+                        <input type="checkbox" class="checkbox-box" id="layer2" unchecked>
+                    </div>
+                </div>
+                <p></p>
+                <div class="hr-text-bar">
+                    <span class="hr-text">Export Layers</span>
+                </div>
+                <p></p>
+                <div class="inline">
+                    <strong>Project Name:</strong>
+                    <div class="complete-form">
+                        <input size ="30" maxlength="30" type="text" class="complete-input" id="proj_name" value="My Project">
+                    </div>
+                </div>
+                <button id="downloademail-button" class="generic-grey-button" onclick=SendLayers()>E-mail Layers</button>
+                <p></p>
+
+            </div>
+
             <!-- Tools -->
             <div class="leaflet-sidebar-pane" id="tools">
                 <h1 class="leaflet-sidebar-header">
@@ -768,8 +845,15 @@
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
                 <p></p>
-                <p align="center" style="font-size:16px;"><strong>GISHydroWEB Documentation</strong></p>
-                <p align="center" style="color:red">(Outdated)</p>
+                <p align="justify" style="font-size:14px;">Users are encouraged to visit the GISHydro@Maryland website (www.gishydro.eng.umd.edu) periodically for updates on the main GISHydro software and database. 
+                    The GISHydro initiative has been and continues to be a cooperation among academia, federal, state, and local government, and private consultants. 
+                    This cooperation continues to produce powerful tools to support engineering, conservation, and planning efforts within the State.</p>
+                <p></p>
+                <div class="hr-text-bar">
+                    <span class="hr-text">Documentation</span>
+                </div>
+                <p></p>
+                <p align="center" style="color:red">Last update: July, 2020</p>
                 <p></p>
                 <button id="help-button" class="generic-grey-button" onclick="window.open('http://www.gishydro.eng.umd.edu/gishydronxtdocs/GISHydroNXT_TechnicalReference.pdf', '_blank' );">Technical Reference</button>
                 <p></p>
@@ -782,11 +866,9 @@
                 <p align="center" style="font-size:14px;">Glitches and bugs can occasionally happen. If you encounter one of these bugs, please report it to us.</p>
                 <p></p>
                 <p align="center">
-                <a href="http://www.gishydro.eng.umd.edu/" target="_blank">GISHydro Website</a>
+                <a href="http://www.gishydro.eng.umd.edu/" target="_blank" style="font-size:18px;"><b>GISHydro Website</b></a>
                 </p>
                 <p></p>
-                <p align="center"><b>version: 07/2020</b></p>
-
             </div>
         </div>
     </div>

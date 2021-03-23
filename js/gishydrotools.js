@@ -8,7 +8,7 @@ var thomas = '2020 Maryland Fixed Region Equations';
 var errormsg = "ERROR: The application has encountered an unknown error, please try again. If you think it's a bug, please report it :)";
 var type = '';
 var layer = '';
-var main_path = '';
+var full_project_name = '';
 var proj_name = '';
 var proj_folder = '';
 var dem_layer = '';
@@ -207,7 +207,7 @@ call (410) 767-4500.)")
             weight: 1,
         }));
 
-        main_path = response.workpath;
+        full_project_name = response.full_name;
 
         map.removeLayer(nhdf);
         map.removeLayer(roadsf);
@@ -285,7 +285,7 @@ function delineate(){
     }
     map.panTo(new L.LatLng(mark_lat, mark_lon));
 
-    gpTask.setParam("optfolder", main_path);
+    gpTask.setParam("projectname", full_project_name);
     gpTask.setParam("mouse_lat_proj", mark_lat);
     gpTask.setParam("mouse_lon_proj", mark_lon);
     gpTask.setParam("validate_outlet", delcheckin);
@@ -366,7 +366,7 @@ function basin_properties(){
       });
     var gpTask = gpService.createTask();
 
-    gpTask.setParam("optfolder", main_path);
+    gpTask.setParam("projectname", full_project_name);
     gpTask.setParam("landuse", land_layer);
     gpTask.setParam("hyd", hyd_cond);
     gpTask.setParam("gageid", document.getElementById("gagelist").value);
@@ -806,7 +806,7 @@ function flowpaths_polyline(){
       });
     var gpTask = gpService.createTask();
 
-    gpTask.setParam("optfolder", main_path)
+    gpTask.setParam("projectname", full_project_name)
     gpTask.setParam("x", mark_lon)
     gpTask.setParam("y", mark_lat)
     gpTask.setParam("clear_flowpaths", clear_flowpaths)
@@ -875,7 +875,7 @@ function outlets_marker(){
       });
     var gpTask = gpService.createTask();
 
-    gpTask.setParam("optfolder", main_path)
+    gpTask.setParam("projectname", full_project_name)
     gpTask.setParam("x", mark_lon)
     gpTask.setParam("y", mark_lat)
     gpTask.setParam("clear_outlets", clear_outlets)
@@ -915,14 +915,7 @@ function subdivide_yes(){
 
 }
 
-function subdivide_no(){
-
-    subsheds()
-    sidebar.enablePanel('toc');
-    sidebar.open('toc');
-    sidebar.disablePanel('subshed');
-
-}
+function subdivide_no(){subsheds()}
 
 function exportsubwshed(){saveToFile(subshed_export, 'subwatershed','subsheddownload-button');}
 
@@ -941,7 +934,7 @@ function subsheds(){
       });
     var gpTask = gpService.createTask();
 
-    gpTask.setParam("optfolder", main_path)
+    gpTask.setParam("projectname", full_project_name)
 
     gpTask.run(subshedCallback);
 
@@ -1013,7 +1006,7 @@ function settoc(){
 
     var tc_method = document.getElementById("tc_method").value;
 
-    gpTask.setParam("optfolder", main_path)
+    gpTask.setParam("projectname", full_project_name)
     gpTask.setParam("landuse", land_layer)
     gpTask.setParam("Tc_method", tc_method)
     gpTask.setParam("Tc_ns", document.getElementById("sheet_manning").value)
@@ -1297,7 +1290,7 @@ function transect() {
     var user_cw = document.getElementById('bf_width').value
     var user_cd = document.getElementById('bf_depth').value
 
-    gpTask.setParam("optfolder",  main_path)
+    gpTask.setParam("projectname",  full_project_name)
     gpTask.setParam("getlon",  JSON.stringify(polylon))
     gpTask.setParam("getlat",  JSON.stringify(polylat))
     gpTask.setParam("nmain_val", document.getElementById('xsmain_manning').value)
@@ -1432,7 +1425,7 @@ function reservoir(){
       });
     var gpTask = gpService.createTask();
 
-    gpTask.setParam("optfolder",  main_path)
+    gpTask.setParam("projectname",  full_project_name)
     gpTask.setParam("getlon",  mark_lon)
     gpTask.setParam("getlat",  mark_lat)
 
@@ -1613,7 +1606,7 @@ function precipitationdepth() {
       });
     var gpTask = gpService.createTask();
 
-    gpTask.setParam("optfolder",  main_path)
+    gpTask.setParam("projectname",  full_project_name)
     gpTask.setParam("cb_list",  JSON.stringify(preciplist))
     gpTask.setParam("upper90",  upper90)
 
@@ -1667,7 +1660,7 @@ function tr20controlpanel() {
       });
     var gpTask = gpService.createTask();
 
-    gpTask.setParam("optfolder", main_path)
+    gpTask.setParam("projectname", full_project_name)
     gpTask.setParam("main_increment", document.getElementById("dt_inc").value)
     gpTask.setParam("detail", document.getElementById("detailopt").checked)
     gpTask.setParam("arc", document.getElementById("arc").value)
@@ -1733,7 +1726,7 @@ function contours(){
       });
     var gpTask = gpService.createTask();
 
-    gpTask.setParam("optfolder",  main_path)
+    gpTask.setParam("projectname",  full_project_name)
     gpTask.setParam("interval", document.getElementById("contourint").value)
     gpTask.setParam("base", document.getElementById("contourbase").value)
     
@@ -1767,7 +1760,7 @@ function infproj(){
       });
     var gpTask = gpService.createTask();
 
-    gpTask.setParam("optfolder",  main_path)
+    gpTask.setParam("projectname",  full_project_name)
     
     gpTask.run(infprojCallback);
 

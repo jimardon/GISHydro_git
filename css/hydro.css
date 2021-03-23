@@ -229,6 +229,13 @@ button:focus{
     height: 50px;
 }
 
+#downloademail-button{
+    width: 100%;
+    float: center;
+    display: none;
+    height: 50px;
+}
+
 #contours-button{
     width: 100%;
     float: center;
