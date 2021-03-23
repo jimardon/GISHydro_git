@@ -290,10 +290,7 @@ function delineate(){
         document.getElementById('pp_lat').value = mark_lat
     }
     map.panTo(new L.LatLng(mark_lat, mark_lon));
-    alert(full_project_name)
-    alert(mark_lat)
-    alert(mark_lon)
-    alert(delcheckin)
+
     gpTask.setParam("projectname", full_project_name);
     gpTask.setParam("mouse_lat_proj", mark_lat);
     gpTask.setParam("mouse_lon_proj", mark_lon);
@@ -329,8 +326,8 @@ function delineate(){
 
         }else{
 
-            wshed_export = response.watershed
-            gagelist = response.gagefound;
+            wshed_export = response.pour_point
+            gagelist = response.gagelist;
             wshed.addLayer(L.geoJson(wshed_export,{
                 crossOrigin: null,
                 fillColor: '#FA6FFA',
