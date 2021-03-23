@@ -82,12 +82,12 @@ var sidebar = L.control.sidebar({
     container: 'sidebar',
     autopan: true,
 }).addTo(map).open('home');
-sidebar.disablePanel('shed_del');
-sidebar.disablePanel('basin_properties');
-sidebar.disablePanel('subshed');
-sidebar.disablePanel('toc');
-sidebar.disablePanel('reachselect');
-sidebar.disablePanel('wintr20');
+//sidebar.disablePanel('shed_del');
+//sidebar.disablePanel('basin_properties');
+//sidebar.disablePanel('subshed');
+//sidebar.disablePanel('toc');
+//sidebar.disablePanel('reachselect');
+//sidebar.disablePanel('wintr20');
 
 var userid = 0
 function addUser() {
