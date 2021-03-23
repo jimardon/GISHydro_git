@@ -1716,6 +1716,16 @@ let saveFile = () => {
     newLink.click();
 }
 
+var checkBoxes = $('tbody .checkbox-layers');
+checkBoxes.change(function () {
+    $('#email-button').prop('disabled', checkBoxes.filter(':checked').length < 1);
+});
+$('tbody .checkbox-layers').change();
+
+function SendLayers(){
+
+}
+
 function contours(){
     map.spin(true);
     //contourlines.clearLayers();
