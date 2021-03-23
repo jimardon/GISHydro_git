@@ -87,6 +87,7 @@ var reachcount = '';
 var reachcount_ = '';
 var subid = '';
 var occcounts = {};
+var singleshed = false;
 
 
 function aoi_selec(){
@@ -794,7 +795,15 @@ function clearflowpaths(){
 function flowpaths_polyline(){
     map.spin(true);
     $('#flowpath-button').attr('disabled','true');
-    if(clear_flowpaths === false){
+    if(singleshed == true){
+
+        centerwshed = wshed.getBounds().getCenter();
+        mark_lat = layer.getLatLng().centerwshed;
+        mark_lon = layer.getLatLng().centerwshed;
+        alert(mark_lat)
+        alert(mark_lon)
+
+    }else if(clear_flowpaths === false){
         mark_lat = layer.getLatLng().lat;
         mark_lon = layer.getLatLng().lng;
     }else{
@@ -917,7 +926,10 @@ function subdivide_yes(){
 
 }
 
-function subdivide_no(){subsheds()}
+function subdivide_no(){
+    singleshed = true;
+    flowpaths_polyline()
+}
 
 function exportsubwshed(){saveToFile(subshed_export, 'subwatershed','subsheddownload-button');}
 
@@ -1722,7 +1734,7 @@ function SendLayers(){
 
 function contours(){
     map.spin(true);
-    //contourlines.clearLayers();
+    contourlines.clearLayers();
     LC.removeLayer(contourlines);
     $('#contours-button').attr('disabled','true');
 
