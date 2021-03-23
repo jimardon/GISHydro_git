@@ -767,6 +767,8 @@ function basin_properties(){
         drawLayers.clearLayers();
         alert("Basin Properties Calculations Finished")
         $('#contours-button').removeAttr('disabled');
+        $('#contourbase').removeAttr('disabled');
+        $('#contourint').removeAttr('disabled');
         map.spin(false);
 
         if(parseFloat(IA) > 10){

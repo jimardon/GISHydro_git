@@ -87,25 +87,27 @@
                     GISHydroWEB
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
-                <p></p>
-                <p align="justify" style="font-size:16px;"><b>GISHydroWEB</b> is a GIS-based web application for performing hydrologic analysis developed by 
-                    The University of Maryland in conjunction with Maryland State Highway Administration.
-                    It consists of a database of hydrologic layers and customized modeling tools.</p>
-                <p align="justify" style="font-size:16px;"><b>Some Features Include:</b></p>
-                <ul align="justify" style="font-size:16px;">
-                    <li>Complete database of DEM, Land use, and Soils data for Maryland drainage areas (includes parts of DE, PA, VA, and WV).</li>
-                    <li>Watershed delineation.</li>
-                    <li>Watershed statistics (drainage area, CN, Tc, and more).</li>
-                    <li>Peak discharge estimates from USGS regional regression equations (with confidence intervals and gauge calibration).</li>
-                    <li>Built-in WinTR-20 model.</li>
-                </ul>
-                <p align="center" style="font-size:16px;"><b>To start go to the "Area of Interest" tab</b></p>
-                <p align="justify" style="font-size:16px;">GISHydroWEB is under continuous revision. Although we are not a web application development company and do not charge for the use of our website,
-                    we do try to support it to the best of our ability. The application has a <a href="javascript:sidebar.open('help');">Help</a> tab that contains some useful documentation.</p>
-                <p align="center" style="font-size:16px;"><b>Check more on the <a href="http://www.gishydro.eng.umd.edu/" rel="noopener noreferrer" target="_blank">GISHydro</a> website.</b></p>
-                <div class="inline">
-                    <img src='https://jimardon.github.io/GISHydroWEB/image/UMD.png' alt="UMD" width="100" height="100" style="float:left">
-                    <img src='https://jimardon.github.io/GISHydroWEB/image/SHA.png' alt="SHA" width="100" height="100" style="float:right">
+                <div style="width:95%;">
+                    <p></p>
+                    <p align="justify" style="font-size:16px;"><b>GISHydroWEB</b> is a GIS-based web application for performing hydrologic analysis developed by 
+                        The University of Maryland in conjunction with Maryland State Highway Administration.
+                        It consists of a database of hydrologic layers and customized modeling tools.</p>
+                    <p align="justify" style="font-size:16px;"><b>Some Features Include:</b></p>
+                    <ul align="justify" style="font-size:16px;">
+                        <li>Complete database of DEM, Land use, and Soils data for Maryland drainage areas (includes parts of DE, PA, VA, and WV).</li>
+                        <li>Watershed delineation.</li>
+                        <li>Watershed statistics (drainage area, CN, Tc, and more).</li>
+                        <li>Peak discharge estimates from USGS regional regression equations (with confidence intervals and gauge calibration).</li>
+                        <li>Built-in WinTR-20 model.</li>
+                    </ul>
+                    <p align="center" style="font-size:16px;"><b>To start go to the "Area of Interest" tab</b></p>
+                    <p align="justify" style="font-size:16px;">GISHydroWEB is under continuous revision. Although we are not a web application development company and do not charge for the use of our website,
+                        we do try to support it to the best of our ability. The application has a <a href="javascript:sidebar.open('help');">Help</a> tab that contains some useful documentation.</p>
+                    <p align="center" style="font-size:16px;"><b>Check more on the <a href="http://www.gishydro.eng.umd.edu/" rel="noopener noreferrer" target="_blank">GISHydro</a> website.</b></p>
+                    <div class="inline">
+                        <img src='https://jimardon.github.io/GISHydroWEB/image/UMD.png' alt="UMD" width="100" height="100" style="float:left">
+                        <img src='https://jimardon.github.io/GISHydroWEB/image/SHA.png' alt="SHA" width="100" height="100" style="float:right">
+                    </div>
                 </div>
             </div>
 
@@ -114,106 +116,108 @@
                     Area of Interest
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
-                <p></p>
-                <p align="justify" style="font-size:14px;">To start the application draw the extent of the area of interest containing the potential watershed.
-                    Select the available options and then click Apply. It could take a couple of minutes to process depending on the size of the AOI. 
-                    Zoom in to enable stream and road layers</p>
-                <p></p>
-                <!-- Project Properties -->
-                <div class="hr-text-bar">
-                    <span class="hr-text">Project Properties</span>
-                </div>
-                <p></p>
-                <div class="inline">
-                    <strong>Project Name:</strong>
-                    <div class="complete-form">
-                        <input size ="30" maxlength="30" type="text" class="complete-input" id="proj_name" value="My Project">
+                <div style="width:95%;">
+                    <p></p>
+                    <p align="justify" style="font-size:14px;">To start the application draw the extent of the area of interest containing the potential watershed.
+                        Select the available options and then click Apply. It could take a couple of minutes to process depending on the size of the AOI. 
+                        Zoom in to enable stream and road layers.</p>
+                    <p></p>
+                    <!-- Project Properties -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Project Properties</span>
                     </div>
-                </div>
-                <p></p>
-                <!--Data Selection -->
-                <div class="hr-text-bar">
-                    <span class="hr-text">Data Selection</span>
-                </div>
-                <p></p>
-                <div class="inline">
-                    <strong>DEM:</strong>
-                    <select class="generic-dropdown" id="demselect">
-                        <option value="neddem" id="ned_2018">NED 201805</option>
-                    </select>
-                </div>
-                <p></p>
-                <div class="inline">
-                    <strong>Soil Data:</strong>
-                    <select class="generic-dropdown" id="soilselect" >
-                        <option value="ssurgo_2018" id="ssurgo_2018">SSURGO 2018-05</option>
-                        <option value="ssurgo_old" id="ssurgo_2000">SSURGO 2000's</option>
-                        <option value="ragan" id="ragan">Ragan</option>
-                    </select>
-                </div>
-                <p></p>
-                <div class="inline">
-                    <strong>Land Use Data:</strong>
-                    <select class="generic-dropdown" id="landselect">
-                        <optgroup label="NLCD" id="nlcd-group">
-                            <option value="nlcd2011" id="nlcd_2011">NLCD 2011</option>
-                            <option value="nlcd2006" id="nlcd_2006">NLCD 2006</option>
-                            <option value="nlcd2001" id="nlcd_2001">NLCD 2001</option>
-                            <option value="mrlc" id="mrlc">MRLC</option>
-                        </optgroup>
-                        <optgroup label="MOP" id="mop-group">
-                            <option value="lu2010" id="mop_2010" selected>MOP 2010</option>
-                            <option value="mdplu2002" id="mop_2002">MOP 2002</option>
-                            <option value="lu97m" id="mop_1997">MOP 1997</option>
-                        </optgroup>
-                        <optgroup label="MD/DE" id="mdde-group">
-                            <option value="luult" id="ultimate">ULTIMATE</option>
-                            <option value="mdde2002" id="md_de_2002">MD/DE 2002</option>
-                        </optgroup>
-                        <optgroup label="USGS" id="usgs-group">
-                            <option value="lu70" id="usgs_1970">USGS 1970's</option>
-                        </optgroup>
-                    </select>
-                </div>
-                <p></p>
-                <div class="inline">
-                    <strong>Hydrologic Condition:</strong>
-                    <select class="generic-dropdown" id="hyddata" >
-                        <option value="Good" id="hydgood">Good</option>
-                        <option value="Fair" id="hydfair">Fair</option>
-                        <option value="Poor" id="hydpoor">Poor</option>
-                    </select>
-                </div>
-                <p></p>
-                <!-- Flow Properties -->
-                <div class="hr-text-bar">
-                    <span class="hr-text">Flow Properties</span>
-                </div>
-                <p></p>
-                <div class="inline">
-                    <strong>Accumulation Threshold:</strong>
-                    <div class="complete-form">
-                        <input type="number" style="width:60%;" min="50" step="1" class="complete-input" id="acc_thres" value="250">
+                    <p></p>
+                    <div class="inline">
+                        <strong>Project Name:</strong>
+                        <div class="complete-form">
+                            <input size ="30" maxlength="30" type="text" class="complete-input" id="proj_name" value="My Project">
+                        </div>
                     </div>
-                </div>
-                <p></p>
-                <div class="inline">
-                    <div class="checkbox-form">
-                        <strong>Burn NHD Streams:</strong>
-                        <input type="checkbox" class="checkbox-box" id="burn" checked>
+                    <p></p>
+                    <!--Data Selection -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Data Selection</span>
                     </div>
+                    <p></p>
+                    <div class="inline">
+                        <strong>DEM:</strong>
+                        <select class="generic-dropdown" id="demselect">
+                            <option value="neddem" id="ned_2018">NED 201805</option>
+                        </select>
+                    </div>
+                    <p></p>
+                    <div class="inline">
+                        <strong>Soil Data:</strong>
+                        <select class="generic-dropdown" id="soilselect" >
+                            <option value="ssurgo_2018" id="ssurgo_2018">SSURGO 2018-05</option>
+                            <option value="ssurgo_old" id="ssurgo_2000">SSURGO 2000's</option>
+                            <option value="ragan" id="ragan">Ragan</option>
+                        </select>
+                    </div>
+                    <p></p>
+                    <div class="inline">
+                        <strong>Land Use Data:</strong>
+                        <select class="generic-dropdown" id="landselect">
+                            <optgroup label="NLCD" id="nlcd-group">
+                                <option value="nlcd2011" id="nlcd_2011">NLCD 2011</option>
+                                <option value="nlcd2006" id="nlcd_2006">NLCD 2006</option>
+                                <option value="nlcd2001" id="nlcd_2001">NLCD 2001</option>
+                                <option value="mrlc" id="mrlc">MRLC</option>
+                            </optgroup>
+                            <optgroup label="MOP" id="mop-group">
+                                <option value="lu2010" id="mop_2010" selected>MOP 2010</option>
+                                <option value="mdplu2002" id="mop_2002">MOP 2002</option>
+                                <option value="lu97m" id="mop_1997">MOP 1997</option>
+                            </optgroup>
+                            <optgroup label="MD/DE" id="mdde-group">
+                                <option value="luult" id="ultimate">ULTIMATE</option>
+                                <option value="mdde2002" id="md_de_2002">MD/DE 2002</option>
+                            </optgroup>
+                            <optgroup label="USGS" id="usgs-group">
+                                <option value="lu70" id="usgs_1970">USGS 1970's</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <p></p>
+                    <div class="inline">
+                        <strong>Hydrologic Condition:</strong>
+                        <select class="generic-dropdown" id="hyddata" >
+                            <option value="Good" id="hydgood">Good</option>
+                            <option value="Fair" id="hydfair">Fair</option>
+                            <option value="Poor" id="hydpoor">Poor</option>
+                        </select>
+                    </div>
+                    <p></p>
+                    <!-- Flow Properties -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Flow Properties</span>
+                    </div>
+                    <p></p>
+                    <div class="inline">
+                        <strong>Accumulation Threshold:</strong>
+                        <div class="complete-form">
+                            <input type="number" style="width:60%;" min="50" step="1" class="complete-input" id="acc_thres" value="250">
+                        </div>
+                    </div>
+                    <p></p>
+                    <div class="inline">
+                        <div class="checkbox-form">
+                            <strong>Burn NHD Streams:</strong>
+                            <input type="checkbox" class="checkbox-box" id="burn" checked>
+                        </div>
+                    </div>
+                    <p></p>
+                    <!-- Draw Area of Interest -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Select Area of Interest</span>
+                    </div>
+                    <p></p>
+                    <button id="aoi-button" class="generic-grey-button" onclick=aoi_selec()>Draw Extent Box</button>
+                    <!-- Re-do Area of Interest -->
+                    <button id="clearaoi-button" class="generic-grey-button" onclick=clear_aoi()>Clear</button>
+                    <p></p>
+                    <button id="apply-button" class="generic-grey-button" disabled="disabled" onclick=apply()>Apply</button>
                 </div>
-                <p></p>
-                <!-- Draw Area of Interest -->
-                <div class="hr-text-bar">
-                    <span class="hr-text">Select Area of Interest</span>
-                </div>
-                <p></p>
-                <button id="aoi-button" class="generic-grey-button" onclick=aoi_selec()>Draw Extent Box</button>
-                <!-- Re-do Area of Interest -->
-                <button id="clearaoi-button" class="generic-grey-button" onclick=clear_aoi()>Clear</button>
-                <p></p>
-                <button id="apply-button" class="generic-grey-button" disabled="disabled" onclick=apply()>Apply</button>
             </div>
 
             <div class="leaflet-sidebar-pane" id="shed_del">
@@ -221,59 +225,61 @@
                     Delineate
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
-                <p></p>
-                <p align="justify" style="font-size:14px;">Tap on a watershed outlet (pour point) for delineation. It must be placed on a valid stream. 
-                    Before using this tool, it is helpful to add the Inferred Streams layer; this step reveals the natural drainage network of the watershed.
-                    Check on the <a href="javascript:sidebar.open('tools');">Tools</a> tab for showing Inferred Streams. </p>
-                <p></p>
-                <!-- Select Pour Point -->
-                <div class="hr-text-bar">
-                    <span class="hr-text">Select Pour Point</span>
-                </div>
-                <p></p>
-                <!-- Check Pour Point -->
-                <div class="inline">
-                    <strong>Pour Point Check:</strong>
-                    <strong id = "validpp" style="color:green;display: none;float:right;">Valid</strong>
-                    <strong id = "novalidpp" style="color:red;display: none;float:right;">Not Valid</strong>
-                    <strong id = "selecpp" style="color:purple;float:right;">Waiting for user input</strong>
-                </div>
-                <p></p>
-                <p align="center" style="font-size:14px;"><b>Select Pour Point from map:</b></p>
-                <button id="pourpoint-button" class="generic-grey-button" onclick=drawpoint()>Draw Point</button>
-                <p></p>
-                <p align="center" style="font-size:14px;"><b>Add Pour Point from coordinates:</b></p>
-                <div class="inline">
-                    <strong>Latitude:</strong>
-                    <div class="complete-form">
-                        <input type="number" style="width:70%;text-align:left;padding-left: 5px;" max="40" min="-37.5" step="0.0001" class="complete-input" id="pp_lat">
-                    </div>
-                </div>
-                <div class="inline">
-                    <strong>Longitude:</strong>
-                    <div class="complete-form">
-                        <input type="number" style="width:70%;text-align:left;padding-left: 5px;" max="-74" min="-80" step="0.0001" class="complete-input" id="pp_lng">
-                    </div>
-                </div>
-                <p></p>
-                <button id="pourpoint2-button" class="generic-grey-button" onclick=addpoint()>Add Point</button>
-                <p></p>
-                <button id="cleardel-button" class="generic-grey-button" disabled="disabled" onclick=clearpoint()>Clear</button>
-                <p></p>
-                <!-- Delineate Button -->
-                <div class="hr-text-bar">
-                    <span class="hr-text">Delineation</span>
-                </div>
-                <p></p>
-                <button id="delineate-button" class="generic-grey-button" disabled="disabled" onclick=change_delcheck()>Delineate Watershed</button>
-                <p></p>
-                <div style="display:none" id="sheddownload-div"> 
-                    <!-- Export Watershed Button -->
+                <div style="width:95%;">
+                    <p></p>
+                    <p align="justify" style="font-size:14px;">Tap on a watershed outlet (pour point) for delineation. It must be placed on a valid stream. 
+                        Before using this tool, it is helpful to add the Inferred Streams layer; this step reveals the natural drainage network of the watershed.
+                        Check on the <a href="javascript:sidebar.open('tools');">Tools</a> tab for showing Inferred Streams. </p>
+                    <p></p>
+                    <!-- Select Pour Point -->
                     <div class="hr-text-bar">
-                        <span class="hr-text">Export Watershed (.geojson)</span>
+                        <span class="hr-text">Select Pour Point</span>
                     </div>
                     <p></p>
-                    <a id="sheddownload-button" href='#' class="generic-grey-button" onclick=exportwshed()>Download</a>
+                    <!-- Check Pour Point -->
+                    <div class="inline">
+                        <strong>Pour Point Check:</strong>
+                        <strong id = "validpp" style="color:green;display: none;float:right;">Valid</strong>
+                        <strong id = "novalidpp" style="color:red;display: none;float:right;">Not Valid</strong>
+                        <strong id = "selecpp" style="color:purple;float:right;">Waiting for user input</strong>
+                    </div>
+                    <p></p>
+                    <p align="center" style="font-size:14px;"><b>Select Pour Point from map:</b></p>
+                    <button id="pourpoint-button" class="generic-grey-button" onclick=drawpoint()>Draw Point</button>
+                    <p></p>
+                    <p align="center" style="font-size:14px;"><b>Add Pour Point from coordinates:</b></p>
+                    <div class="inline">
+                        <strong>Latitude:</strong>
+                        <div class="complete-form">
+                            <input type="number" style="width:70%;text-align:left;padding-left: 5px;" max="40" min="-37.5" step="0.0001" class="complete-input" id="pp_lat">
+                        </div>
+                    </div>
+                    <div class="inline">
+                        <strong>Longitude:</strong>
+                        <div class="complete-form">
+                            <input type="number" style="width:70%;text-align:left;padding-left: 5px;" max="-74" min="-80" step="0.0001" class="complete-input" id="pp_lng">
+                        </div>
+                    </div>
+                    <p></p>
+                    <button id="pourpoint2-button" class="generic-grey-button" onclick=addpoint()>Add Point</button>
+                    <p></p>
+                    <button id="cleardel-button" class="generic-grey-button" disabled="disabled" onclick=clearpoint()>Clear</button>
+                    <p></p>
+                    <!-- Delineate Button -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Delineation</span>
+                    </div>
+                    <p></p>
+                    <button id="delineate-button" class="generic-grey-button" disabled="disabled" onclick=change_delcheck()>Delineate Watershed</button>
+                    <p></p>
+                    <div style="display:none" id="sheddownload-div"> 
+                        <!-- Export Watershed Button -->
+                        <div class="hr-text-bar">
+                            <span class="hr-text">Export Watershed (.geojson)</span>
+                        </div>
+                        <p></p>
+                        <a id="sheddownload-button" href='#' class="generic-grey-button" onclick=exportwshed()>Download</a>
+                    </div>
                 </div>
             </div>
 
@@ -282,41 +288,43 @@
                     Basin Properties
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
-                <p></p>
-                <p align="justify" style="font-size:14px;">If available, select a stream gauge for calibration. Then click on Calculate, this could take some minutes depending on the watershed size. 
-                    After the process has finished some basin properties will become available. You can also download the current watershed in GeoJSON format or proceed to the <a href="javascript:sidebar.open('download');">Download</a> tab 
-                    to e-mail it as a package.</p>
-                <p></p>
-                <!-- Gage List -->
-                <div class="hr-text-bar">
-                    <span class="hr-text">Select Gauge for Calibration</span>
+                <div style="width:95%;">
+                    <p></p>
+                    <p align="justify" style="font-size:14px;">If available, select a stream gauge for calibration. Then click on Calculate, this could take some minutes depending on the watershed size. 
+                        After the process has finished some basin properties will become available. You can also download the current watershed in GeoJSON format or proceed to the <a href="javascript:sidebar.open('download');">Download</a> tab 
+                        to e-mail it as a package.</p>
+                    <p></p>
+                    <!-- Gage List -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Select Gauge for Calibration</span>
+                    </div>
+                    <p></p>
+                    <div class="inline">
+                        <strong>Gauge List:</strong>
+                        <select class="generic-dropdown" id="gagelist" >
+                            <option value="False" >No Adjustment</option>
+                        </select>
+                    </div>
+                    <p></p>
+                    <!-- Basin Properties Button -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Basin Properties</span>
+                    </div>
+                    <p></p>
+                    <button id="basin_properties-button" class="generic-grey-button" onclick=basin_properties()>Calculate</button>
+                    <p></p>
+                    <!-- Basin Composition Buttons -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Display properties</span>
+                    </div>
+                    <p></p>
+                    <button id="basincomp-button" class="generic-grey-button" disabled="disabled" data-toggle="modal" data-target="#basin_comp">Basin Composition</button>
+                    <p></p>
+                    <button id="basinstats-button" class="generic-grey-button" disabled="disabled" data-toggle="modal" data-target="#basin_stat">Basin Statistics</button>
+                    <p></p>
+                    <button id="tasker-button" class="generic-grey-button" disabled="disabled" data-toggle="modal" data-target="#tasker_mod">FRRE Discharges</button>
+                    <p></p>
                 </div>
-                <p></p>
-                <div class="inline">
-                    <strong>Gauge List:</strong>
-                    <select class="generic-dropdown" id="gagelist" >
-                        <option value="False" >No Adjustment</option>
-                    </select>
-                </div>
-                <p></p>
-                <!-- Basin Properties Button -->
-                <div class="hr-text-bar">
-                    <span class="hr-text">Basin Properties</span>
-                </div>
-                <p></p>
-                <button id="basin_properties-button" class="generic-grey-button" onclick=basin_properties()>Calculate</button>
-                <p></p>
-                <!-- Basin Composition Buttons -->
-                <div class="hr-text-bar">
-                    <span class="hr-text">Display properties</span>
-                </div>
-                <p></p>
-                <button id="basincomp-button" class="generic-grey-button" disabled="disabled" data-toggle="modal" data-target="#basin_comp">Basin Composition</button>
-                <p></p>
-                <button id="basinstats-button" class="generic-grey-button" disabled="disabled" data-toggle="modal" data-target="#basin_stat">Basin Statistics</button>
-                <p></p>
-                <button id="tasker-button" class="generic-grey-button" disabled="disabled" data-toggle="modal" data-target="#tasker_mod">FRRE Discharges</button>
-                <p></p>
             </div>
 
             <div class="leaflet-sidebar-pane" id="subshed">
@@ -324,73 +332,73 @@
                     Subwatershed
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
-
-                <div id="subshedoption" style="display:block;">
-
-                    <p></p>
-                    <p align="justify" style="font-size:14px;">Subdivide the watershed into subwatersheds to create stream reaches that will define the stream network topology for WinTR-20 modeling (optional). 
-                        After clicking Yes the option to add flow paths or outlets will become available. Otherwise, the Time of Concentration tab will be enabled, 
-                        this could take a couple of seconds while GISHydroWEB gathers all the required information to continue the analysis.
-                        </p>
-                    <p></p>
-                    <!-- Select Pour Point -->
-                    <div class="hr-text-bar">
-                        <span class="hr-text">Subdivide</span>
-                    </div>
-                    <p></p>
-                    <!-- Flow Paths -->
-                    <button id="subdivide-button" class="generic-grey-button" onclick=subdivide_yes()>Yes</button>
-                    <p></p>
-                    <!-- Re-do Flow Paths -->
-                    <button id="subdivide-button" class="generic-grey-button" onclick=subdivide_no()>No</button>
-                    <p></p>
-
-                </div>
-
-
-                <div id="subshedyes" style="display:none;">
-
-                    <p></p>
-                    <p align="justify" style="font-size:14px;">Flow paths and outlets will divide the watershed in subwatersheds. At least one flow path must be selected. Outlets must be placed on valid streams. 
-                        After this process has finished you can download the subwatersheds in GeoJSON format or proceed to the <a href="javascript:sidebar.open('download');">Download</a> tab to e-mail it as a package.</p>
-                    <p></p>
-                    <!-- Select Pour Point -->
-                    <div class="hr-text-bar">
-                        <span class="hr-text">Add Flow Paths</span>
-                    </div>
-                    <p></p>
-                    <!-- Flow Paths -->
-                    <button id="flowpath-button" class="generic-grey-button" onclick=flowpaths()>Select a Flow Path</button>
-                    <p></p>
-                    <!-- Re-do Flow Paths -->
-                    <button id="clearflowpath-button" class="generic-grey-button" disabled="disabled" onclick=clearflowpaths()>Reset Flow Paths</button>
-                    <p></p>
-                    <div class="hr-text-bar">
-                        <span class="hr-text">Add Outlets</span>
-                    </div>
-                    <p></p>
-                    <!-- Flow Paths -->
-                    <button id="outlet-button" class="generic-grey-button" disabled="disabled" onclick=outlets()>Select an Outlet Point</button>
-                    <p></p>
-                    <!-- Re-do Flow Paths -->
-                    <button id="clearoutlet-button" class="generic-grey-button" disabled="disabled" onclick=clearoutlets()>Reset Outlet Points</button>
-                    <p></p>
-                    <!-- Delineate Button -->
-                    <div class="hr-text-bar">
-                        <span class="hr-text">Delineate Subwatersheds</span>
-                    </div>
-                    <p></p>
-                    <button id="subsheds-button" class="generic-grey-button" disabled="disabled" onclick=subsheds()>Delineate Subwatersheds</button>
-                    <p></p>
-                    <div id="subsheddownload" style="display:none;">
-                        <!-- Download Button -->
+                <div style="width:95%;">
+                    <div id="subshedoption" style="display:block;">
+                        <p></p>
+                        <p align="justify" style="font-size:14px;">Subdivide the watershed into subwatersheds to create stream reaches that will define the stream network topology for WinTR-20 modeling (optional). 
+                            After clicking Yes the option to add flow paths or outlets will become available. Otherwise, the Time of Concentration tab will be enabled, 
+                            this could take a couple of seconds while GISHydroWEB gathers all the required information to continue the analysis.
+                            </p>
+                        <p></p>
+                        <!-- Select Pour Point -->
                         <div class="hr-text-bar">
-                            <span class="hr-text">Export Subwatersheds (.geojson)</span>
+                            <span class="hr-text">Subdivide</span>
                         </div>
                         <p></p>
-                        <a id="subsheddownload-button" href='#' class="generic-grey-button" onclick=exportsubwshed()>Donwload Subwatersheds</a>
+                        <!-- Flow Paths -->
+                        <button id="subdivide-button" class="generic-grey-button" onclick=subdivide_yes()>Yes</button>
+                        <p></p>
+                        <!-- Re-do Flow Paths -->
+                        <button id="subdivide-button" class="generic-grey-button" onclick=subdivide_no()>No</button>
+                        <p></p>
+
                     </div>
 
+
+                    <div id="subshedyes" style="display:none;">
+
+                        <p></p>
+                        <p align="justify" style="font-size:14px;">Flow paths and outlets will divide the watershed in subwatersheds. At least one flow path must be selected. Outlets must be placed on valid streams. 
+                            After this process has finished you can download the subwatersheds in GeoJSON format or proceed to the <a href="javascript:sidebar.open('download');">Download</a> tab to e-mail it as a package.</p>
+                        <p></p>
+                        <!-- Select Pour Point -->
+                        <div class="hr-text-bar">
+                            <span class="hr-text">Add Flow Paths</span>
+                        </div>
+                        <p></p>
+                        <!-- Flow Paths -->
+                        <button id="flowpath-button" class="generic-grey-button" onclick=flowpaths()>Select a Flow Path</button>
+                        <p></p>
+                        <!-- Re-do Flow Paths -->
+                        <button id="clearflowpath-button" class="generic-grey-button" disabled="disabled" onclick=clearflowpaths()>Reset Flow Paths</button>
+                        <p></p>
+                        <div class="hr-text-bar">
+                            <span class="hr-text">Add Outlets</span>
+                        </div>
+                        <p></p>
+                        <!-- Flow Paths -->
+                        <button id="outlet-button" class="generic-grey-button" disabled="disabled" onclick=outlets()>Select an Outlet Point</button>
+                        <p></p>
+                        <!-- Re-do Flow Paths -->
+                        <button id="clearoutlet-button" class="generic-grey-button" disabled="disabled" onclick=clearoutlets()>Reset Outlet Points</button>
+                        <p></p>
+                        <!-- Delineate Button -->
+                        <div class="hr-text-bar">
+                            <span class="hr-text">Delineate Subwatersheds</span>
+                        </div>
+                        <p></p>
+                        <button id="subsheds-button" class="generic-grey-button" disabled="disabled" onclick=subsheds()>Delineate Subwatersheds</button>
+                        <p></p>
+                        <div id="subsheddownload" style="display:none;">
+                            <!-- Download Button -->
+                            <div class="hr-text-bar">
+                                <span class="hr-text">Export Subwatersheds (.geojson)</span>
+                            </div>
+                            <p></p>
+                            <a id="subsheddownload-button" href='#' class="generic-grey-button" onclick=exportsubwshed()>Donwload Subwatersheds</a>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
@@ -399,132 +407,134 @@
                     Time of Concentration
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
-                <p></p>
-                <p align="justify" style="font-size:14px;">Select a time of concentration method and options, then click Apply. 
-                    This could take some minutes depending on the amount and size of the subwatersheds. 
-                    Tapping on a subwatershed will pop up the respective ID # (available after Tc estimate).</p>
-                <p></p>
-                <!-- TC Method -->
-                <div class="hr-text-bar">
-                    <span class="hr-text">Select Tc Method</span>
-                </div>
-                <p></p>
-                <div class="inline">
-                    <select class="generic-dropdown" id="tc_method" style="width: 100%;">
-                        <option value="Velocity Method">Velocity Method</option>
-                        <option value="SCS Lag Formula">SCS Lag Formula Method</option>
-                        <option value="Hydrology Panel">Hydrology Panel Method</option>
-                    </select>
-                </div>
-                <!--Sheet Properties -->
-                <div class="hr-text-bar">
-                    <span class="hr-text">Sheet Flow Properties</span>
-                </div>
-                <p></p>
-                <div class="inline">
-                    <strong>Manning:</strong>
-                    <div class="complete-form">
-                        <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="5" min="0" step="0.001" class="complete-input" id="sheet_manning" value="0.1">
+                <div style="width:95%;">
+                    <p></p>
+                    <p align="justify" style="font-size:14px;">Select a time of concentration method and options, then click Apply. 
+                        This could take some minutes depending on the amount and size of the subwatersheds. 
+                        Tapping on a subwatershed will pop up the respective ID # (available after Tc estimate).</p>
+                    <p></p>
+                    <!-- TC Method -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Select Tc Method</span>
                     </div>
-                </div>
-                <div class="inline">
-                    <strong>Precipitation T=2yr [in]:</strong>
-                    <div class="complete-form">
-                        <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="20" min="0" step="0.01" class="complete-input" id="sheet_precipitation">
+                    <p></p>
+                    <div class="inline">
+                        <select class="generic-dropdown" id="tc_method" style="width: 100%;">
+                            <option value="Velocity Method">Velocity Method</option>
+                            <option value="SCS Lag Formula">SCS Lag Formula Method</option>
+                            <option value="Hydrology Panel">Hydrology Panel Method</option>
+                        </select>
                     </div>
-                </div>
-                <div class="inline">
-                    <strong>Sheet Length [ft]:</strong>
-                    <div class="complete-form">
-                        <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="10000" min="0" step="1" class="complete-input" id="sheet_length" value="100">
+                    <!--Sheet Properties -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Sheet Flow Properties</span>
                     </div>
-                </div>
-                <!-- Shallow Flow Properties -->
-                <div class="hr-text-bar">
-                    <span class="hr-text">Shallow Flow Properties</span>
-                </div>
-                <p></p>
-                <div class="inline">
-                    <strong>Paved:</strong>
-                    <div class="radio-form">
-                        <input type='radio' style="width:20px;height:20px;" name='shallowflow' id='pavedopt' value='paved'>
+                    <p></p>
+                    <div class="inline">
+                        <strong>Manning:</strong>
+                        <div class="complete-form">
+                            <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="5" min="0" step="0.001" class="complete-input" id="sheet_manning" value="0.1">
+                        </div>
                     </div>
-                </div>
-                <div class="inline">
-                    <strong>Unpaved:</strong>
-                    <div class="radio-form">
-                        <input type='radio' style="width:20px;height:20px;" name='shallowflow' id='unpavedopt' value='unpaved' checked>
+                    <div class="inline">
+                        <strong>Precipitation T=2yr [in]:</strong>
+                        <div class="complete-form">
+                            <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="20" min="0" step="0.01" class="complete-input" id="sheet_precipitation">
+                        </div>
                     </div>
-                </div>
-                <!-- Channel Flow Properties -->
-                <div class="hr-text-bar">
-                    <span class="hr-text">Channel Flow Properties</span>
-                </div>
-                <p></p>
-                <div class="inline">
-                    <strong>Use NHD Streams:</strong>
-                    <div class="radio-form">
-                        <input type='radio' style="width:20px;height:20px;" name='channelflow' id='nhdopt' value='nhdstreams' checked>
+                    <div class="inline">
+                        <strong>Sheet Length [ft]:</strong>
+                        <div class="complete-form">
+                            <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="10000" min="0" step="1" class="complete-input" id="sheet_length" value="100">
+                        </div>
                     </div>
-                </div>
-                <div class="inline">
-                    <strong>Use Inferred Streams:</strong>
-                    <div class="radio-form">
-                        <input type='radio' style="width:20px;height:20px;" name='channelflow' id='infopt' value='inferredstreams'>
+                    <!-- Shallow Flow Properties -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Shallow Flow Properties</span>
                     </div>
-                </div>
-                <p></p>
-                <div class="inline">
-                    <strong>Manning:</strong>
-                    <div class="complete-form">
-                        <input type="number" style="width:60%;text-align:left;padding-left: 5px;" max="5" min="0" step="0.001" class="complete-input" id="channel_manning" value="0.05">
+                    <p></p>
+                    <div class="inline">
+                        <strong>Paved:</strong>
+                        <div class="radio-form">
+                            <input type='radio' style="width:20px;height:20px;" name='shallowflow' id='pavedopt' value='paved'>
+                        </div>
                     </div>
-                </div>
-                <div class="inline">
-                    <strong>Source Area [mi<sup>2</sup>]:</strong>
-                    <div class="complete-form">
-                        <input type="number" style="width:60%;text-align:left;padding-left: 5px;" max="20" min="0" step="0.001" class="complete-input" id="channel_area" value="0.0897">
+                    <div class="inline">
+                        <strong>Unpaved:</strong>
+                        <div class="radio-form">
+                            <input type='radio' style="width:20px;height:20px;" name='shallowflow' id='unpavedopt' value='unpaved' checked>
+                        </div>
                     </div>
-                </div>
-                <div class="inline">
-                    <strong>Channel Width:</strong>
-                    <div style="display:flex;float:right;">
-                        <label style="margin-right: 10px;margin-left: 10px;">Coef.</label>
-                        <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="500" min="0" step="0.01" class="complete-input" id="channel_width_coef">
-                        <label style="margin-right: 10px;margin-left: 10px;">Exp.</label>
-                        <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="5" min="0" step="0.01" class="complete-input" id="channel_width_exp">
+                    <!-- Channel Flow Properties -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Channel Flow Properties</span>
                     </div>
-                </div>
-                <div class="inline">
-                    <strong>Channel Depth:</strong>
-                    <div style="display:flex;float:right;">
-                        <label style="margin-right: 10px;margin-left: 10px;">Coef.</label>
-                        <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="500" min="0" step="0.01" class="complete-input" id="channel_depth_coef">
-                        <label style="margin-right: 10px;margin-left: 10px;">Exp.</label>
-                        <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="5" min="0" step="0.01" class="complete-input" id="channel_depth_exp">
+                    <p></p>
+                    <div class="inline">
+                        <strong>Use NHD Streams:</strong>
+                        <div class="radio-form">
+                            <input type='radio' style="width:20px;height:20px;" name='channelflow' id='nhdopt' value='nhdstreams' checked>
+                        </div>
                     </div>
-                </div>
-                <div class="inline">
-                    <strong>Channel Area:</strong>
-                    <div style="display:flex;float:right;">
-                        <label style="margin-right: 10px;margin-left: 10px;">Coef.</label>
-                        <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="500" min="0" step="0.01" class="complete-input" id="channel_area_coef">
-                        <label style="margin-right: 10px;margin-left: 10px;">Exp.</label>
-                        <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="5" min="0" step="0.01" class="complete-input" id="channel_area_exp">
+                    <div class="inline">
+                        <strong>Use Inferred Streams:</strong>
+                        <div class="radio-form">
+                            <input type='radio' style="width:20px;height:20px;" name='channelflow' id='infopt' value='inferredstreams'>
+                        </div>
                     </div>
+                    <p></p>
+                    <div class="inline">
+                        <strong>Manning:</strong>
+                        <div class="complete-form">
+                            <input type="number" style="width:60%;text-align:left;padding-left: 5px;" max="5" min="0" step="0.001" class="complete-input" id="channel_manning" value="0.05">
+                        </div>
+                    </div>
+                    <div class="inline">
+                        <strong>Source Area [mi<sup>2</sup>]:</strong>
+                        <div class="complete-form">
+                            <input type="number" style="width:60%;text-align:left;padding-left: 5px;" max="20" min="0" step="0.001" class="complete-input" id="channel_area" value="0.0897">
+                        </div>
+                    </div>
+                    <div class="inline">
+                        <strong>Channel Width:</strong>
+                        <div style="display:flex;float:right;">
+                            <label style="margin-right: 10px;margin-left: 10px;">Coef.</label>
+                            <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="500" min="0" step="0.01" class="complete-input" id="channel_width_coef">
+                            <label style="margin-right: 10px;margin-left: 10px;">Exp.</label>
+                            <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="5" min="0" step="0.01" class="complete-input" id="channel_width_exp">
+                        </div>
+                    </div>
+                    <div class="inline">
+                        <strong>Channel Depth:</strong>
+                        <div style="display:flex;float:right;">
+                            <label style="margin-right: 10px;margin-left: 10px;">Coef.</label>
+                            <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="500" min="0" step="0.01" class="complete-input" id="channel_depth_coef">
+                            <label style="margin-right: 10px;margin-left: 10px;">Exp.</label>
+                            <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="5" min="0" step="0.01" class="complete-input" id="channel_depth_exp">
+                        </div>
+                    </div>
+                    <div class="inline">
+                        <strong>Channel Area:</strong>
+                        <div style="display:flex;float:right;">
+                            <label style="margin-right: 10px;margin-left: 10px;">Coef.</label>
+                            <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="500" min="0" step="0.01" class="complete-input" id="channel_area_coef">
+                            <label style="margin-right: 10px;margin-left: 10px;">Exp.</label>
+                            <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="5" min="0" step="0.01" class="complete-input" id="channel_area_exp">
+                        </div>
+                    </div>
+                    <!-- Estimate TOC -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Estimate Tc</span>
+                    </div>
+                    <p></p>
+                    <button id="tcapply-button" class="generic-grey-button" onclick=settoc()>Apply</button>
+                    <div id="velmeth_tc" class="inline">
+                        <strong>Subwatershed:</strong>
+                        <select class="generic-dropdown" id="subtc" ></select>
+                    </div>
+                    <p></p>
+                    <button id="tcvalue-button" class="generic-grey-button" onclick=showtc()>Tc</button>
                 </div>
-                <!-- Estimate TOC -->
-                <div class="hr-text-bar">
-                    <span class="hr-text">Estimate Tc</span>
-                </div>
-                <p></p>
-                <button id="tcapply-button" class="generic-grey-button" onclick=settoc()>Apply</button>
-                <div id="velmeth_tc" class="inline">
-                    <strong>Subwatershed:</strong>
-                    <select class="generic-dropdown" id="subtc" ></select>
-                </div>
-                <p></p>
-                <button id="tcvalue-button" class="generic-grey-button" onclick=showtc()>Tc</button>
             </div>
 
             <div class="leaflet-sidebar-pane" id="reachselect">
@@ -532,102 +542,104 @@
                     Reach Control
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
-                <p></p>
-                <p align="justify" style="font-size:14px;">If this option becomes available then a reach control (rating table) must be applied to the routing reaches. 
-                    To help draw cross section profiles, a tool to show contour lines is available in the <a href="javascript:sidebar.open('tools');">Tools</a> tab.</p>
-                <p></p>
-                <div style="display:block;" id="rating_method">
-                    <div class="hr-text-bar">
-                        <span class="hr-text">Select Routing Method</span>
-                    </div>
+                <div style="width:95%;">
                     <p></p>
-                    <!-- Add transect -->
-                    <button id="addxs-button" class="generic-grey-button" onclick=xs_add()>Add Cross Section</button>
+                    <p align="justify" style="font-size:14px;">If this option becomes available then a reach control (rating table) must be applied to the routing reaches. 
+                        To help draw cross section profiles, a tool to show contour lines is available in the <a href="javascript:sidebar.open('tools');">Tools</a> tab.</p>
                     <p></p>
-                    <!-- Add Reservoir -->
-                    <button id="addreservoir-button" class="generic-grey-button" onclick=reservoir_add()>Add Reservoir</button>
-                </div>
-                <!-- Input Options -->
-                <div style="display:none;" id="xs_output">
-                    <p></p> 
-                    <p align="center" style="font-size:20px;"><b>Reach ID: <span id="xsinforeachno">0</span></b></p>
-                    <div class="hr-text-bar">
-                        <span class="hr-text">Transect Line Geometry</span>
-                    </div>
-                    <p></p>
-                    <div style="text-align:left;font-size:10pt;">
-                        <strong>Transect Line Width</strong>
-                        <span style="float:right;" id="tlw"> <strong>0.0 ft</strong></span>
+                    <div style="display:block;" id="rating_method">
+                        <div class="hr-text-bar">
+                            <span class="hr-text">Select Routing Method</span>
                         </div>
                         <p></p>
-                    <div style="text-align:left;font-size:10pt;">
-                        <strong>Maximum Elevation:</strong>
-                        <span style="float:right;" id="maxelev"> <strong>0.0 ft</strong></span>
+                        <!-- Add transect -->
+                        <button id="addxs-button" class="generic-grey-button" onclick=xs_add()>Add Cross Section</button>
+                        <p></p>
+                        <!-- Add Reservoir -->
+                        <button id="addreservoir-button" class="generic-grey-button" onclick=reservoir_add()>Add Reservoir</button>
+                    </div>
+                    <!-- Input Options -->
+                    <div style="display:none;" id="xs_output">
+                        <p></p> 
+                        <p align="center" style="font-size:20px;"><b>Reach ID: <span id="xsinforeachno">0</span></b></p>
+                        <div class="hr-text-bar">
+                            <span class="hr-text">Transect Line Geometry</span>
                         </div>
                         <p></p>
-                    <div style="text-align:left;font-size:10pt;">
-                        <strong>Minimum Elevation:</strong>
-                        <span style="float:right;" id="minelev"> <strong>0.0 ft</strong></span>
+                        <div style="text-align:left;font-size:10pt;">
+                            <strong>Transect Line Width</strong>
+                            <span style="float:right;" id="tlw"> <strong>0.0 ft</strong></span>
+                            </div>
+                            <p></p>
+                        <div style="text-align:left;font-size:10pt;">
+                            <strong>Maximum Elevation:</strong>
+                            <span style="float:right;" id="maxelev"> <strong>0.0 ft</strong></span>
+                            </div>
+                            <p></p>
+                        <div style="text-align:left;font-size:10pt;">
+                            <strong>Minimum Elevation:</strong>
+                            <span style="float:right;" id="minelev"> <strong>0.0 ft</strong></span>
+                            </div>
+                            <p></p>
+                        <div style="text-align:left;font-size:10pt;">
+                            <strong>Upstream Discharge Area:</strong>
+                            <span style="float:right;" id="uda"> <strong>0.0 mi<sup>2</sup></strong></span>
                         </div>
                         <p></p>
-                    <div style="text-align:left;font-size:10pt;">
-                        <strong>Upstream Discharge Area:</strong>
-                        <span style="float:right;" id="uda"> <strong>0.0 mi<sup>2</sup></strong></span>
+                        <div class="hr-text-bar">
+                            <span class="hr-text">Reach Characteristics</span>
+                        </div>
+                        <p></p>
+                        <div class="inline">
+                            <strong>Reach Slope:</strong>
+                            <span style="float:right;" id="rslp"> <strong>0.0 ft/ft</strong></span>
+                        </div>
+                        <div class="inline">
+                            <strong>Bankfull Elevation:</strong>
+                            <span style="float:right;" id="bfelev"> <strong>0.0 ft</strong></span>
+                        </div>
+                        <div class="hr-text-bar">
+                            <span class="hr-text">Channel Geometry</span>
+                        </div>
+                        <p></p>
+                        <div class="inline">
+                            <strong>Bankfull Channel Width:</strong>
+                            <span style="float:right;" id="bcw"> <strong>0.0 ft</strong></span>
+                        </div>
+                        <div class="inline">
+                            <strong>Bankfull Channel Depth:</strong>
+                            <span style="float:right;" id="bcd"> <strong>0.0 ft</strong></span>
+                        </div>
+                        
+                        <!-- Apply Button -->
+                        <div class="hr-text-bar">
+                            <span class="hr-text">Apply XS</span>
+                        </div>
+                        <p></p>
+                        <button id="plotxs-button" class="generic-grey-button" onclick=xsplot_modal()>Plot Cross Section</button>
+                        <p></p>
+                        <button id="redoxs-button" class="generic-grey-button" onclick=ratingtable()>Rating Table</button>
+                        <p></p>
+                        <button id="redoxs-button" class="generic-grey-button" onclick=redoreach()>Draw Again</button>
+                        <p></p>
+                        <button id="applyxs-button" class="generic-grey-button" onclick=applyxsreach()>Apply</button>
                     </div>
-                    <p></p>
-                    <div class="hr-text-bar">
-                        <span class="hr-text">Reach Characteristics</span>
+                    <div style="display:none;" id="reservoir_output">
+                        <p></p> 
+                        <p align="center" style="font-size:20px;"><b>Reach ID: <span id="resinforeachno">0</span></b></p>
+                        <!-- Apply Button -->
+                        <div class="hr-text-bar">
+                            <span class="hr-text">Apply Reservoir</span>
+                        </div>
+                        <p></p>
+                        <button id="plotxs-button" class="generic-grey-button" onclick=resplot_modal()>Plot Rating Curve</button>
+                        <p></p>
+                        <button id="redoxs-button" class="generic-grey-button" onclick=ratingtable()>Rating Table</button>
+                        <p></p>
+                        <button id="redoxs-button" class="generic-grey-button" onclick=redores()>Undo</button>
+                        <p></p>
+                        <button id="applyxs-button" class="generic-grey-button" onclick=applyresreach()>Apply Reservoir</button>
                     </div>
-                    <p></p>
-                    <div class="inline">
-                        <strong>Reach Slope:</strong>
-                        <span style="float:right;" id="rslp"> <strong>0.0 ft/ft</strong></span>
-                    </div>
-                    <div class="inline">
-                        <strong>Bankfull Elevation:</strong>
-                        <span style="float:right;" id="bfelev"> <strong>0.0 ft</strong></span>
-                    </div>
-                    <div class="hr-text-bar">
-                        <span class="hr-text">Channel Geometry</span>
-                    </div>
-                    <p></p>
-                    <div class="inline">
-                        <strong>Bankfull Channel Width:</strong>
-                        <span style="float:right;" id="bcw"> <strong>0.0 ft</strong></span>
-                    </div>
-                    <div class="inline">
-                        <strong>Bankfull Channel Depth:</strong>
-                        <span style="float:right;" id="bcd"> <strong>0.0 ft</strong></span>
-                    </div>
-                    
-                    <!-- Apply Button -->
-                    <div class="hr-text-bar">
-                        <span class="hr-text">Apply XS</span>
-                    </div>
-                    <p></p>
-                    <button id="plotxs-button" class="generic-grey-button" onclick=xsplot_modal()>Plot Cross Section</button>
-                    <p></p>
-                    <button id="redoxs-button" class="generic-grey-button" onclick=ratingtable()>Rating Table</button>
-                    <p></p>
-                    <button id="redoxs-button" class="generic-grey-button" onclick=redoreach()>Draw Again</button>
-                    <p></p>
-                    <button id="applyxs-button" class="generic-grey-button" onclick=applyxsreach()>Apply</button>
-                </div>
-                <div style="display:none;" id="reservoir_output">
-                    <p></p> 
-                    <p align="center" style="font-size:20px;"><b>Reach ID: <span id="resinforeachno">0</span></b></p>
-                    <!-- Apply Button -->
-                    <div class="hr-text-bar">
-                        <span class="hr-text">Apply Reservoir</span>
-                    </div>
-                    <p></p>
-                    <button id="plotxs-button" class="generic-grey-button" onclick=resplot_modal()>Plot Rating Curve</button>
-                    <p></p>
-                    <button id="redoxs-button" class="generic-grey-button" onclick=ratingtable()>Rating Table</button>
-                    <p></p>
-                    <button id="redoxs-button" class="generic-grey-button" onclick=redores()>Undo</button>
-                    <p></p>
-                    <button id="applyxs-button" class="generic-grey-button" onclick=applyresreach()>Apply Reservoir</button>
                 </div>
             </div>
 
@@ -636,95 +648,97 @@
                     WinTR-20
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
-                <p></p>
-                <p align="justify" style="font-size:14px;">To create a WinTR-20 input file first some events must be selected. This could take some minutes depending on how many events are selected. 
-                    After this process has finished some options will become available, then a WinTR-20 input file will be ready to download. 
-                    To import the input file please check WinTR-20's USDA <a href="https://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/null/?cid=stelprdb1042793" rel="noopener noreferrer" target="_blank">website</a> 
-                    for downloading options and documentation.</p>
-                <p></p>
-                <!-- Precipitation Button -->
-                <div class="hr-text-bar">
-                    <span class="hr-text">Precipitation Depths</span>
-                </div>
-                <p></p>
-                <button id="precipitation-button" class="generic-grey-button" data-toggle="modal" data-target="#precipitation_modal">Select Storm Event(s)</button>
-                <p></p>
-                <div style="display:none;" id="tr20input">
-                    <!-- Input Options -->
+                <div style="width:95%;">
+                    <p></p>
+                    <p align="justify" style="font-size:14px;">To create a WinTR-20 input file first some events must be selected. This could take some minutes depending on how many events are selected. 
+                        After this process has finished some options will become available, then a WinTR-20 input file will be ready to download. 
+                        To import the input file please check WinTR-20's USDA <a href="https://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/null/?cid=stelprdb1042793" rel="noopener noreferrer" target="_blank">website</a> 
+                        for downloading options and documentation.</p>
+                    <p></p>
+                    <!-- Precipitation Button -->
                     <div class="hr-text-bar">
-                        <span class="hr-text">Peak Rate Factor</span>
+                        <span class="hr-text">Precipitation Depths</span>
                     </div>
                     <p></p>
-                    <div class="inline">
-                        <strong>Hydrograph:</strong>
-                        <select class="generic-dropdown" id="peakrate" >
-                            <option value="Standard PRF 484 " id="standard484" selected>Standard PRF 484</option>
-                            <option value="DelMarVa PRF 484" id="delmarva484">DelMarVa PRF 484</option>
-                        </select>
-                    </div>
+                    <button id="precipitation-button" class="generic-grey-button" data-toggle="modal" data-target="#precipitation_modal">Select Storm Event(s)</button>
                     <p></p>
-                    <!-- Output options -->
-                    <div class="hr-text-bar">
-                        <span class="hr-text">Output Options</span>
-                    </div>
-                    <p></p>
-                    <div class="inline">
-                        <strong>Summarized Output:</strong>
-                        <div class="radio-form">
-                            <input type='radio' style="width:20px;height:20px;" name='outputopt' checked>
+                    <div style="display:none;" id="tr20input">
+                        <!-- Input Options -->
+                        <div class="hr-text-bar">
+                            <span class="hr-text">Peak Rate Factor</span>
                         </div>
-                    </div>
-                    <div class="inline">
-                        <strong>Detailed Ouput:</strong>
-                        <div class="radio-form">
-                            <input type='radio' style="width:20px;height:20px;" name='outputopt' id="detailopt">
-                        </div>
-                    </div>
-                    <p></p>
-                    <!--Control options -->
-                    <div class="hr-text-bar">
-                        <span class="hr-text">Control Options</span>
-                    </div>
-                    <p></p>
-                    <div class="inline">
-                        <strong>Main Time Increment [hr]:</strong>
-                        <div class="complete-form">
-                            <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="5" min="0" step="0.01" class="complete-input" id="dt_inc" value="0.1">
-                        </div>
-                    </div>
-                    <p></p>
-                    <!--Rainfall options -->
-                    <div class="hr-text-bar">
-                        <span class="hr-text">Rainfall Options</span>
-                    </div>
-                    <p></p>
-                    <div class="inline">
-                        <strong>ARC:</strong>
-                        <div class="complete-form">
-                            <select class="generic-dropdown" id="arc" >
-                                <option value="1" id="arc1">1</option>
-                                <option value="2" id="arc2" selected>2</option>
-                                <option value="3" id="arc3">1</option>
+                        <p></p>
+                        <div class="inline">
+                            <strong>Hydrograph:</strong>
+                            <select class="generic-dropdown" id="peakrate" >
+                                <option value="Standard PRF 484 " id="standard484" selected>Standard PRF 484</option>
+                                <option value="DelMarVa PRF 484" id="delmarva484">DelMarVa PRF 484</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="inline">
-                        <div class="checkbox-form">
-                            <strong>Perform Areal Reduction:</strong>
-                            <input type="checkbox" class="checkbox-box" id="arealreduction" checked>
+                        <p></p>
+                        <!-- Output options -->
+                        <div class="hr-text-bar">
+                            <span class="hr-text">Output Options</span>
                         </div>
+                        <p></p>
+                        <div class="inline">
+                            <strong>Summarized Output:</strong>
+                            <div class="radio-form">
+                                <input type='radio' style="width:20px;height:20px;" name='outputopt' checked>
+                            </div>
+                        </div>
+                        <div class="inline">
+                            <strong>Detailed Ouput:</strong>
+                            <div class="radio-form">
+                                <input type='radio' style="width:20px;height:20px;" name='outputopt' id="detailopt">
+                            </div>
+                        </div>
+                        <p></p>
+                        <!--Control options -->
+                        <div class="hr-text-bar">
+                            <span class="hr-text">Control Options</span>
+                        </div>
+                        <p></p>
+                        <div class="inline">
+                            <strong>Main Time Increment [hr]:</strong>
+                            <div class="complete-form">
+                                <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="5" min="0" step="0.01" class="complete-input" id="dt_inc" value="0.1">
+                            </div>
+                        </div>
+                        <p></p>
+                        <!--Rainfall options -->
+                        <div class="hr-text-bar">
+                            <span class="hr-text">Rainfall Options</span>
+                        </div>
+                        <p></p>
+                        <div class="inline">
+                            <strong>ARC:</strong>
+                            <div class="complete-form">
+                                <select class="generic-dropdown" id="arc" >
+                                    <option value="1" id="arc1">1</option>
+                                    <option value="2" id="arc2" selected>2</option>
+                                    <option value="3" id="arc3">1</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="inline">
+                            <div class="checkbox-form">
+                                <strong>Perform Areal Reduction:</strong>
+                                <input type="checkbox" class="checkbox-box" id="arealreduction" checked>
+                            </div>
+                        </div>
+                        <p></p>
+                        <button id="storm-button" class="generic-grey-button" data-toggle="modal" data-target="#storm_modal">Edit Storm Depth(s)</button>
+                        <p></p>
+                        <!-- Create Input Button -->
+                        <div class="hr-text-bar">
+                            <span class="hr-text">WinTR-20</span>
+                        </div>
+                        <p></p>
+                        <button id="createwintr20-button" class="generic-grey-button" value="Save data to file" onclick="tr20controlpanel()">Create Input File</button>
+                        <p></p>
+                        <button id="downloadwintr20-button" class="generic-grey-button" value="Save data to file" onclick="saveFile()">Download WinTR-20 File</button>
                     </div>
-                    <p></p>
-                    <button id="storm-button" class="generic-grey-button" data-toggle="modal" data-target="#storm_modal">Edit Storm Depth(s)</button>
-                    <p></p>
-                    <!-- Create Input Button -->
-                    <div class="hr-text-bar">
-                        <span class="hr-text">WinTR-20</span>
-                    </div>
-                    <p></p>
-                    <button id="createwintr20-button" class="generic-grey-button" value="Save data to file" onclick="tr20controlpanel()">Create Input File</button>
-                    <p></p>
-                    <button id="downloadwintr20-button" class="generic-grey-button" value="Save data to file" onclick="saveFile()">Download WinTR-20 File</button>
                 </div>
             </div>
 
@@ -733,73 +747,91 @@
                     Download Layers
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
-                <p></p>
-                <p align="justify" style="font-size:14px;">The Download tool allow you to download some or all of the layers (shapefiles and rasters) in your project. 
-                    The layers will be packaged (.zip) and sent to the below e-mail. Rasters will be in GeoTIFF format.</p>
-                <p></p>
-                <p align="justify" style="font-size:14px;">Layers will become available as you proceed through the GISHydroWEB analysis.</p>
-                <p></p>
-                <!-- Gage List -->
-                <div class="hr-text-bar">
-                    <span class="hr-text">Select Layers</span>
+                <div style="width:95%;">
+                    <p></p>
+                    <p align="justify" style="font-size:14px;">The Download tool allow you to download some or all of the layers (shapefiles and rasters) in your project. 
+                        The layers will be packaged (.zip) and sent to the below e-mail. Rasters will be in GeoTIFF format.</p>
+                    <p></p>
+                    <p align="justify" style="font-size:14px;">Layers will become available as you proceed through the GISHydroWEB analysis.</p>
+                    <p></p>
+                    <!-- Gage List -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Select Layers</span>
+                    </div>
+                    <p></p>
+                    <div class="inline">
+                        <div class="checkbox-form" id="Checkcontours" style="display:block;">
+                            <strong>Contours:</strong>
+                            <input type="checkbox" class="checkbox-box" id="LayerContours" unchecked>
+                        </div>
+                        <div class="checkbox-form" id="CheckCurvenumber" style="display:block;">
+                            <strong>Curve Number:</strong>
+                            <input type="checkbox" class="checkbox-box" id="Layercurvenumber" unchecked>
+                        </div>
+                        <div class="checkbox-form" id="Checkdem_clip" style="display:block;">
+                            <strong>DEM:</strong>
+                            <input type="checkbox" class="checkbox-box" id="Layerdem_clip" unchecked>
+                        </div>
+                        <div class="checkbox-form" id="Checkflowacc" style="display:block;">
+                            <strong>Flow Accumulation:</strong>
+                            <input type="checkbox" class="checkbox-box" id="Layerflowacc" unchecked>
+                        </div>
+                        <div class="checkbox-form" id="Checkflowdir" style="display:block;">
+                            <strong>Flow Direction:</strong>
+                            <input type="checkbox" class="checkbox-box" id="Layerflowdir" unchecked>
+                        </div>
+                        <div class="checkbox-form" id="Checklandslope" style="display:block;">
+                            <strong>Land Slope:</strong>
+                            <input type="checkbox" class="checkbox-box" id="Layerlandslope" unchecked>
+                        </div>
+                        <div class="checkbox-form" id="Checklanduse" style="display:block;">
+                            <strong>Land Use:</strong>
+                            <input type="checkbox" class="checkbox-box" id="Layerlanduse" unchecked>
+                        </div>
+                        <div class="checkbox-form" id="CheckLongest_Path_Sub" style="display:block;">
+                            <strong>Longest Path(s):</strong>
+                            <input type="checkbox" class="checkbox-box" id="LayerLongest_Path_Sub" unchecked>
+                        </div>
+                        <div class="checkbox-form" id="Checknhd" style="display:block;">
+                            <strong>NHD Streams:</strong>
+                            <input type="checkbox" class="checkbox-box" id="Layernhd" unchecked>
+                        </div>
+                        <div class="checkbox-form" id="Checkpour_point" style="display:block;">
+                            <strong>Outlet Point:</strong>
+                            <input type="checkbox" class="checkbox-box" id="Layerpout_point" unchecked>
+                        </div>
+                        <div class="checkbox-form" id="Checksoils" style="display:block;">
+                            <strong>Soils:</strong>
+                            <input type="checkbox" class="checkbox-box" id="Layersoils" unchecked>
+                        </div>
+                        <div class="checkbox-form" id="Checksubrivers" style="display:block;">
+                            <strong>Subrivers:</strong>
+                            <input type="checkbox" class="checkbox-box" id="Layersubrivers" unchecked>
+                        </div>
+                        <div class="checkbox-form" id="Checksubshed" style="display:block;">
+                            <strong>Subwatersheds:</strong>
+                            <input type="checkbox" class="checkbox-box" id="Layersubshed" unchecked>
+                        </div>
+                        <div class="checkbox-form" id="Checkwshed" style="display:block;">
+                            <strong>Watershed:</strong>
+                            <input type="checkbox" class="checkbox-box" id="Layerwshed" unchecked>
+                        </div>
+                    </div>
+                    <p></p>
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Export Layers</span>
+                    </div>
+                    <p></p>
+                    <div class="inline">
+                        <strong>E-mail:</strong>
+                        <div class="complete-form" style="width:70%;">
+                            <input size ="50" maxlength="50" type="text" style="text-align:center;" class="complete-input" id="proj_email" placeholder="your_email@here.com">
+                        </div>
+                    </div>
+                    <p></p>
+                    <button id="downloademail-button" class="generic-grey-button" onclick=SendLayers()>E-mail Layers</button>
+                    <p></p>
                 </div>
-                <p></p>
-                <div class="inline">
-                    <div class="checkbox-form" id="layer1" style="display:block;">
-                        <strong>Layer 1:</strong>
-                        <input type="checkbox" class="checkbox-box" id="layer1" unchecked>
-                    </div>
-                    <div class="checkbox-form" id="layer2" style="display:block;">
-                        <strong>Layer 2:</strong>
-                        <input type="checkbox" class="checkbox-box" id="layer2" unchecked>
-                    </div>
-                    <div class="checkbox-form" id="layer2" style="display:block;">
-                        <strong>Layer 2:</strong>
-                        <input type="checkbox" class="checkbox-box" id="layer2" unchecked>
-                    </div>
-                    <div class="checkbox-form" id="layer2" style="display:block;">
-                        <strong>Layer 2:</strong>
-                        <input type="checkbox" class="checkbox-box" id="layer2" unchecked>
-                    </div>
-                    <div class="checkbox-form" id="layer2" style="display:block;">
-                        <strong>Layer 2:</strong>
-                        <input type="checkbox" class="checkbox-box" id="layer2" unchecked>
-                    </div>
-                    <div class="checkbox-form" id="layer2" style="display:block;">
-                        <strong>Layer 2:</strong>
-                        <input type="checkbox" class="checkbox-box" id="layer2" unchecked>
-                    </div>
-                    <div class="checkbox-form" id="layer2" style="display:block;">
-                        <strong>Layer 2:</strong>
-                        <input type="checkbox" class="checkbox-box" id="layer2" unchecked>
-                    </div>
-                    <div class="checkbox-form" id="layer2" style="display:block;">
-                        <strong>Layer 2:</strong>
-                        <input type="checkbox" class="checkbox-box" id="layer2" unchecked>
-                    </div>
-                    <div class="checkbox-form" id="layer2" style="display:block;">
-                        <strong>Layer 2:</strong>
-                        <input type="checkbox" class="checkbox-box" id="layer2" unchecked>
-                    </div>
-                    <div class="checkbox-form" id="layer2" style="display:block;">
-                        <strong>Layer 2:</strong>
-                        <input type="checkbox" class="checkbox-box" id="layer2" unchecked>
-                    </div>
-                </div>
-                <p></p>
-                <div class="hr-text-bar">
-                    <span class="hr-text">Export Layers</span>
-                </div>
-                <p></p>
-                <div class="inline">
-                    <strong>E-mail:</strong>
-                    <div class="complete-form" style="width:70%;">
-                        <input size ="30" maxlength="30" type="text" class="complete-input" id="proj_name" value="My Project">
-                    </div>
-                </div>
-                <button id="downloademail-button" class="generic-grey-button" onclick=SendLayers()>E-mail Layers</button>
-                <p></p>
-
             </div>
 
             <!-- Tools -->
@@ -808,34 +840,36 @@
                     Tools
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
-                <p></p>
-                <!-- Create Contours Button -->
-                <div class="hr-text-bar">
-                    <span class="hr-text">Create Contours</span>
-                </div>
-                <p align="justify" style="font-size:14px;">If the watershed size is too big then the contours will not show up on the map. Trying a higher contour interval can help.</p>
-                <div class="inline">
-                    <strong>Contour Interval [ft]:</strong>
-                    <div class="complete-form">
-                        <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="5000" min="0" step="0.1" class="complete-input" id="contourint" value="10">
+                <div style="width:95%;">
+                    <p></p>
+                    <!-- Create Contours Button -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Create Contours</span>
                     </div>
-                </div>
-                <p></p>
-                <div class="inline">
-                    <strong>Base Contour [ft]</strong>
-                    <div class="complete-form">
-                        <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="5000" min="0" step="0.1" class="complete-input" id="contourbase" value="0">
+                    <p align="justify" style="font-size:14px;">If the watershed size is too big then the contours will not show up on the map. Trying a higher contour interval can help.</p>
+                    <div class="inline">
+                        <strong>Contour Interval [ft]:</strong>
+                        <div class="complete-form">
+                            <input type="number" disabled='disabled' style="width:60%;text-align:left;padding-left: 10px;" max="5000" min="0" step="0.1" class="complete-input" id="contourint" value="10">
+                        </div>
                     </div>
+                    <p></p>
+                    <div class="inline">
+                        <strong>Base Contour [ft]</strong>
+                        <div class="complete-form">
+                            <input type="number" disabled='disabled' style="width:60%;text-align:left;padding-left: 10px;" max="5000" min="0" step="0.1" class="complete-input" id="contourbase" value="0">
+                        </div>
+                    </div>
+                    <p></p>
+                    <button id="contours-button" class="generic-grey-button" disabled='disabled' onclick=contours()>Display Contours</button>
+                    <p></p>
+                    <!-- Show Streams -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Show Inferred Streams</span>
+                    </div>
+                    <p align="justify" style="font-size:14px;">If the AOI size is too big then the inferred streams will not show up on the map. Try reducing the AOI as much as possible.</p>
+                    <button id="infstr-button" class="generic-grey-button" disabled="disabled" onclick=infproj()>Show Streams</button>
                 </div>
-                <p></p>
-                <button id="contours-button" class="generic-grey-button" disabled='disabled' onclick=contours()>Display Contours</button>
-                <p></p>
-                <!-- Show Streams -->
-                <div class="hr-text-bar">
-                    <span class="hr-text">Show Inferred Streams</span>
-                </div>
-                <p align="justify" style="font-size:14px;">If the AOI size is too big then the inferred streams will not show up on the map. Try reducing the AOI as much as possible.</p>
-                <button id="infstr-button" class="generic-grey-button" disabled="disabled" onclick=infproj()>Show Streams</button>
             </div>
 
             <!-- Help -->
@@ -844,31 +878,33 @@
                     Help
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
-                <p></p>
-                <p align="justify" style="font-size:14px;">Users are encouraged to visit the GISHydro@Maryland website (www.gishydro.eng.umd.edu) periodically for updates on the main GISHydro software and database. 
-                    The GISHydro initiative has been and continues to be a cooperation among academia, federal, state, and local government, and private consultants. 
-                    This cooperation continues to produce powerful tools to support engineering, conservation, and planning efforts within the State.</p>
-                <p></p>
-                <div class="hr-text-bar">
-                    <span class="hr-text">Documentation</span>
+                <div style="width:95%;">
+                    <p></p>
+                    <p align="justify" style="font-size:14px;">Users are encouraged to visit the GISHydro@Maryland website (www.gishydro.eng.umd.edu) periodically for updates on the main GISHydro software and database. 
+                        The GISHydro initiative has been and continues to be a cooperation among academia, federal, state, and local government, and private consultants. 
+                        This cooperation continues to produce powerful tools to support engineering, conservation, and planning efforts within the State.</p>
+                    <p></p>
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Documentation</span>
+                    </div>
+                    <p></p>
+                    <p align="center" style="color:red">Last update: July, 2020</p>
+                    <p></p>
+                    <button id="help-button" class="generic-grey-button" onclick="window.open('http://www.gishydro.eng.umd.edu/gishydronxtdocs/GISHydroNXT_TechnicalReference.pdf', '_blank' );">Technical Reference</button>
+                    <p></p>
+                    <button id="help-button" class="generic-grey-button" onclick="window.open('http://www.gishydro.eng.umd.edu/gishydronxtdocs/TrainingManual_Aug2018.pdf', '_blank' );">Training Manual</button>
+                    <p></p>
+                    <button id="help-button" class="generic-grey-button" onclick="window.open('http://www.gishydro.eng.umd.edu/gishydronxtdocs/Users_Manual_Tool_Guide.pdf', '_blank' );">Manual Tool Guide</button>
+                    <p></p>
+                    <button id="help-button" class="generic-grey-button" onclick="window.open('http://www.gishydro.eng.umd.edu/gishydronxtdocs/CodeDocumentation_July2018/index.html', '_blank' );">System Documentation</button>
+                    <p></p>
+                    <p align="center" style="font-size:14px;">Glitches and bugs can occasionally happen. If you encounter one of these bugs, please report it to us.</p>
+                    <p></p>
+                    <p align="center">
+                    <a href="http://www.gishydro.eng.umd.edu/" target="_blank" style="font-size:18px;"><b>GISHydro Website</b></a>
+                    </p>
+                    <p></p>
                 </div>
-                <p></p>
-                <p align="center" style="color:red">Last update: July, 2020</p>
-                <p></p>
-                <button id="help-button" class="generic-grey-button" onclick="window.open('http://www.gishydro.eng.umd.edu/gishydronxtdocs/GISHydroNXT_TechnicalReference.pdf', '_blank' );">Technical Reference</button>
-                <p></p>
-                <button id="help-button" class="generic-grey-button" onclick="window.open('http://www.gishydro.eng.umd.edu/gishydronxtdocs/TrainingManual_Aug2018.pdf', '_blank' );">Training Manual</button>
-                <p></p>
-                <button id="help-button" class="generic-grey-button" onclick="window.open('http://www.gishydro.eng.umd.edu/gishydronxtdocs/Users_Manual_Tool_Guide.pdf', '_blank' );">Manual Tool Guide</button>
-                <p></p>
-                <button id="help-button" class="generic-grey-button" onclick="window.open('http://www.gishydro.eng.umd.edu/gishydronxtdocs/CodeDocumentation_July2018/index.html', '_blank' );">System Documentation</button>
-                <p></p>
-                <p align="center" style="font-size:14px;">Glitches and bugs can occasionally happen. If you encounter one of these bugs, please report it to us.</p>
-                <p></p>
-                <p align="center">
-                <a href="http://www.gishydro.eng.umd.edu/" target="_blank" style="font-size:18px;"><b>GISHydro Website</b></a>
-                </p>
-                <p></p>
             </div>
         </div>
     </div>
