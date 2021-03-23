@@ -209,7 +209,11 @@ call (410) 767-4500.)")
             weight: 1,
         }));
 
-        full_project_name = response.full_name;
+        var str = response.workpath;
+        var res = str.split("/");
+
+        full_project_name = res[res.length - 1];
+        ;
 
         map.removeLayer(nhdf);
         map.removeLayer(roadsf);
