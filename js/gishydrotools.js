@@ -1716,12 +1716,6 @@ let saveFile = () => {
     newLink.click();
 }
 
-var checkBoxlayer = $('.LayerCheck');
-checkBoxlayer.change(function () {
-    $('#email-button').prop('disabled', checkBoxlayer.filter(':checked').length < 1);
-});
-$('.LayerCheck').change();
-
 function SendLayers(){
 
 }
