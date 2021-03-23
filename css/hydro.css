@@ -232,7 +232,6 @@ button:focus{
 #downloademail-button{
     width: 100%;
     float: center;
-    display: none;
     height: 50px;
 }
 
