@@ -908,6 +908,22 @@ function outlets_marker(){
     }
 }
 
+function subdivide_yes(){
+
+    document.getElementById("subshedyes").style.display = "block";
+    document.getElementById("subshedoption").style.display = "none";
+
+}
+
+function subdivide_no(){
+
+    subsheds()
+    sidebar.enablePanel('toc');
+    sidebar.open('toc');
+    sidebar.disablePanel('subshed');
+
+}
+
 function exportsubwshed(){saveToFile(subshed_export, 'subwatershed','subsheddownload-button');}
 
 function subsheds(){
