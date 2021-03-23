@@ -210,7 +210,7 @@ call (410) 767-4500.)")
         }));
 
         var str = response.workpath;
-        var res = str.split("/");
+        var res = str.split("\\");
 
         full_project_name = res[res.length - 1];
         ;
