@@ -89,16 +89,6 @@ var sidebar = L.control.sidebar({
 //sidebar.disablePanel('reachselect');
 //sidebar.disablePanel('wintr20');
 
-var userid = 0
-function addUser() {
-    sidebar.addPanel({
-        id:   'user' + userid++,
-        tab:  '<i class="fa fa-user"></i>',
-        title: 'User Profile ' + userid,
-        pane: '<p>user ipsum dolor sit amet</p>',
-    });
-}
-
 //Base layers definition and addition
 var baseLayers = {
     "ESRI World Map": esristreet,

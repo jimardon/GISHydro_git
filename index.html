@@ -221,8 +221,9 @@
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
                 <p></p>
-                <p align="justify" style="font-size:14px;">Tap on a watershed outlet (pour point) for delineation. It must be placed in a valid stream. 
-                    Check on the <a href="javascript:sidebar.open('tools');">Tools</a> tab for showing inferred streams.</p>
+                <p align="justify" style="font-size:14px;">Tap on a watershed outlet (pour point) for delineation. It must be placed on a valid stream. 
+                    Before using this tool, it is helpful to add the Inferred Streams layer; this step reveals the natural drainage network of the watershed.
+                    Check on the <a href="javascript:sidebar.open('tools');">Tools</a> tab for showing Inferred Streams. </p>
                 <p></p>
                 <!-- Select Pour Point -->
                 <div class="hr-text-bar">
@@ -281,8 +282,9 @@
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
                 <p></p>
-                <p align="justify" style="font-size:14px;">If available, select a stream gauge for calibration. Then click on Calculate, this could take some minutes depending on the watershed size, 
-                    after the process has finished some basin properties will become available. You can also download the current watershed in GeoJSON format.</p>
+                <p align="justify" style="font-size:14px;">If available, select a stream gauge for calibration. Then click on Calculate, this could take some minutes depending on the watershed size. 
+                    After the process has finished some basin properties will become available. You can also download the current watershed in GeoJSON format or proceed to the Download Layers tab 
+                    to e-mail it as a package.</p>
                 <p></p>
                 <!-- Gage List -->
                 <div class="hr-text-bar">
@@ -321,44 +323,70 @@
                     Subwatershed
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
-                <p></p>
-                <p align="justify" style="font-size:14px;">Flow paths and outlets will divide the watershed in subwatersheds. At least one flow path must be selected. Outlets must be placed on valid streams.</p>
-                <p></p>
-                <!-- Select Pour Point -->
-                <div class="hr-text-bar">
-                    <span class="hr-text">Add Flow Paths</span>
-                </div>
-                <p></p>
-                <!-- Flow Paths -->
-                <button id="flowpath-button" class="generic-grey-button" onclick=flowpaths()>Select a Flow Path</button>
-                <p></p>
-                <!-- Re-do Flow Paths -->
-                <button id="clearflowpath-button" class="generic-grey-button" disabled="disabled" onclick=clearflowpaths()>Reset Flow Paths</button>
-                <p></p>
-                <div class="hr-text-bar">
-                    <span class="hr-text">Add Outlets</span>
-                </div>
-                <p></p>
-                <!-- Flow Paths -->
-                <button id="outlet-button" class="generic-grey-button" disabled="disabled" onclick=outlets()>Select an Outlet Point</button>
-                <p></p>
-                <!-- Re-do Flow Paths -->
-                <button id="clearoutlet-button" class="generic-grey-button" disabled="disabled" onclick=clearoutlets()>Reset Outlet Points</button>
-                <p></p>
-                <!-- Delineate Button -->
-                <div class="hr-text-bar">
-                    <span class="hr-text">Delineate Subwatersheds</span>
-                </div>
-                <p></p>
-                <button id="subsheds-button" class="generic-grey-button" disabled="disabled" onclick=subsheds()>Delineate Subwatersheds</button>
-                <p></p>
-                <div id="subsheddownload" style="display:none;">
-                    <!-- Download Button -->
+
+                <div id="subshedoption" style="display:block;">
+
+                    <p></p>
+                    <p align="justify" style="font-size:14px;">Subdivide the watershed into subwatersheds to create stream reaches that will define the stream network topology for WinTR-20 modeling (optional). 
+                        After this process has finished you can download the subwatersheds in GeoJSON format or proceed to the Download Layers tab to e-mail it as a package.</p>
+                    <p></p>
+                    <!-- Select Pour Point -->
                     <div class="hr-text-bar">
-                        <span class="hr-text">Export Subwatersheds (.geojson)</span>
+                        <span class="hr-text">Subdivide</span>
                     </div>
                     <p></p>
-                    <a id="subsheddownload-button" href='#' class="generic-grey-button" onclick=exportsubwshed()>Donwload Subwatersheds</a>
+                    <!-- Flow Paths -->
+                    <button id="subdivide-button" class="generic-grey-button" onclick=subdivide_yes()>Yes</button>
+                    <p></p>
+                    <!-- Re-do Flow Paths -->
+                    <button id="subdivide-button" class="generic-grey-button" onclick=subdivide_no()>No</button>
+                    <p></p>
+
+                </div>
+
+
+                <div id="subshedyes" style="display:none;">
+
+                    <p></p>
+                    <p align="justify" style="font-size:14px;">Flow paths and outlets will divide the watershed in subwatersheds. At least one flow path must be selected. Outlets must be placed on valid streams.</p>
+                    <p></p>
+                    <!-- Select Pour Point -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Add Flow Paths</span>
+                    </div>
+                    <p></p>
+                    <!-- Flow Paths -->
+                    <button id="flowpath-button" class="generic-grey-button" onclick=flowpaths()>Select a Flow Path</button>
+                    <p></p>
+                    <!-- Re-do Flow Paths -->
+                    <button id="clearflowpath-button" class="generic-grey-button" disabled="disabled" onclick=clearflowpaths()>Reset Flow Paths</button>
+                    <p></p>
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Add Outlets</span>
+                    </div>
+                    <p></p>
+                    <!-- Flow Paths -->
+                    <button id="outlet-button" class="generic-grey-button" disabled="disabled" onclick=outlets()>Select an Outlet Point</button>
+                    <p></p>
+                    <!-- Re-do Flow Paths -->
+                    <button id="clearoutlet-button" class="generic-grey-button" disabled="disabled" onclick=clearoutlets()>Reset Outlet Points</button>
+                    <p></p>
+                    <!-- Delineate Button -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Delineate Subwatersheds</span>
+                    </div>
+                    <p></p>
+                    <button id="subsheds-button" class="generic-grey-button" disabled="disabled" onclick=subsheds()>Delineate Subwatersheds</button>
+                    <p></p>
+                    <div id="subsheddownload" style="display:none;">
+                        <!-- Download Button -->
+                        <div class="hr-text-bar">
+                            <span class="hr-text">Export Subwatersheds (.geojson)</span>
+                        </div>
+                        <p></p>
+                        <a id="subsheddownload-button" href='#' class="generic-grey-button" onclick=exportsubwshed()>Donwload Subwatersheds</a>
+                    </div>
+
                 </div>
             </div>
 

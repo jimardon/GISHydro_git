@@ -177,6 +177,12 @@ button:focus{
     float: center;
 }
 
+#subdivide-button{
+    width: 100%;
+    float: center;
+    height: 50px;
+}
+
 #flowpath-button{
     width: 100%;
     float: center;
