@@ -266,6 +266,7 @@ map.addLayer(infstreams);
 
 var checkBoxlayer = $('.LayerCheck');
 checkBoxlayer.change(function () {
+    $('#email-input').prop('disabled', checkBoxlayer.filter(':checked').length < 1);
     $('#email-button').prop('disabled', checkBoxlayer.filter(':checked').length < 1);
 });
 $('.LayerCheck').change();
