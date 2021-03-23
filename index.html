@@ -730,6 +730,13 @@
                         <p></p>
                         <button id="storm-button" class="generic-grey-button" data-toggle="modal" data-target="#storm_modal">Edit Storm Depth(s)</button>
                         <p></p>
+                        <div class="inline">
+                            <strong>Override Tc Value (optional):</strong>
+                            <div class="complete-form">
+                                <input size ="10" maxlength="10" type="number" class="complete-input" id="usertcvalue">
+                            </div>
+                        </div>
+                        <p></p>
                         <!-- Create Input Button -->
                         <div class="hr-text-bar">
                             <span class="hr-text">WinTR-20</span>
@@ -995,6 +1002,11 @@
                         <td class="center"><input type="checkbox" name="precepcheck" value="p500-48"></td>
                     </tr>
                 </table>
+                <p></p>
+                <div style="margin: 0 auto;width:40%;">
+                    <strong>Use Upper 90% Confidence Limit:</strong>
+                    <input type="checkbox" class="checkbox-box" id="upper90check">
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" onclick=selectallprecip()>Select/Unselect All</button>

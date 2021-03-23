@@ -88,6 +88,7 @@ var reachcount_ = '';
 var subid = '';
 var occcounts = {};
 var singleshed = false;
+var upper90 = false;
 
 
 function aoi_selec(){
@@ -796,13 +797,11 @@ function flowpaths_polyline(){
     map.spin(true);
     $('#flowpath-button').attr('disabled','true');
     if(singleshed == true){
-
         centerwshed = wshed.getBounds().getCenter();
         mark_lat = layer.getLatLng().centerwshed;
         mark_lon = layer.getLatLng().centerwshed;
         alert(mark_lat)
         alert(mark_lon)
-
     }else if(clear_flowpaths === false){
         mark_lat = layer.getLatLng().lat;
         mark_lon = layer.getLatLng().lng;
@@ -851,6 +850,10 @@ function flowpaths_polyline(){
         drawLayers.clearLayers();
         $('#flowpath-button').removeAttr('disabled');
         map.spin(false);
+
+        if(singleshed == true){
+            subsheds()
+        }
     }
 };
 
@@ -1614,12 +1617,14 @@ function precipitationdepth() {
             preciplist.push(i)
     }};
 
+    upper90 = document.getElementById("upper90check").checked
+
     var gpService = L.esri.GP.service({
         url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/PrecipitationDepths",
         useCors:false
       });
     var gpTask = gpService.createTask();
-
+    
     gpTask.setParam("projectname",  full_project_name)
     gpTask.setParam("cb_list",  JSON.stringify(preciplist))
     gpTask.setParam("upper90",  upper90)
@@ -1666,6 +1671,8 @@ function tr20controlpanel() {
     totaltype = totaltype.filter(Boolean);
     totalstage = totalstage.filter(Boolean);
 
+    var usertc = document.getElementById("usertcvalue").value
+
     areami2 = 12.4
 
     var gpService = L.esri.GP.service({
@@ -1687,6 +1694,8 @@ function tr20controlpanel() {
     gpTask.setParam("minstage", JSON.stringify(totalstage))
     gpTask.setParam("reachno", JSON.stringify(totalreach))
     gpTask.setParam("rating", JSON.stringify(totalrating))
+    if(isNaN(usertc)===false && usertc){gpTask.setParam("usertc", usertc)}
+    gpTask.setParam("upper90", document.getElementById("upper90check").checked)
 
     gpTask.run(tr20controlpanelCallback);
 
@@ -1821,6 +1830,7 @@ function style(feature) {
         weight: 2,
     };
 }
+
 var highlight = {
     'fillColor': '#3AE5E5',
     'weight': 2,
@@ -1839,4 +1849,3 @@ function forEachFeature(feature, layer) {
         layer.setStyle(highlight);
     }); 
 }
-
