@@ -413,7 +413,7 @@ function basin_properties(){
         var lagtime = response.lagtime;
         var maxlength = response.maxlength;
         var basinrelief = response.basinrelief;
-        var avgCN = response.avgCN;
+        var avgCN = response.avgcn;
         var FC = response.fc;
         var ST = response.st;
         LI = response.li;
@@ -559,8 +559,8 @@ function basin_properties(){
         btable5_html += '<tr><td align="left">Forest Cover (percent):</td><td align="left">' + FC + '</td></tr>';
         btable5_html += '<tr><td align="left">Storage (percent):</td><td align="left">' + ST + '</td></tr>';
         btable5_html += '<tr><td align="left">Limestone (percent):</td><td align="left">' + LI + '</td></tr>';
-        btable5_html += '<tr><td align="left">2-Year,24-hour Prec.:</td><td align="left">' + p2yr + '</td></tr>';
-        btable5_html += '<tr><td align="left">Mean Annual Prec.:</td><td align="left">' + maprec + '</td></tr>';
+        btable5_html += '<tr><td align="left">2-Year,24-hour Prec. (in.):</td><td align="left">' + p2yr + '</td></tr>';
+        btable5_html += '<tr><td align="left">Mean Annual Prec. (in.):</td><td align="left">' + maprec + '</td></tr>';
         btable5_html += '</table><p></p>';
 
         var btable6_html = '<table border="0" align="center">';
@@ -840,8 +840,9 @@ function flowpaths_polyline(){
         mark_lat = "";
         mark_lon = "";
     }
-    
-    $('#subdivide-button').attr('disabled','true');
+
+    $('#subdivideyes-button').attr('disabled','true');
+    $('#subdivideno-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
         url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Flowpaths",
@@ -1687,7 +1688,9 @@ function precipitationdepth() {
         document.getElementById("tr20input").style.display = "block";
         $('#precipitation-button').removeAttr('disabled');
         document.getElementById("createwintr20-button").style.display = "block";
-        document.getElementById("downloadwintr20-button").style.display = "none";
+        document.getElementById("downloadwintr20error-button").style.display = "none";
+        document.getElementById("downloadwintr20input-button").style.display = "none";
+        document.getElementById("downloadwintr20output-button").style.display = "none";
         map.spin(false);
     }
 }
@@ -1744,11 +1747,17 @@ function tr20controlpanel() {
             map.spin(false);
         }
 
+        if (strValue) {
+            alert("Please check error file for possible errors.")
+        }
+
         inputstring = response.inputstring
         outputstring = response.outputstring
         errorstring = response.outputstring
         document.getElementById("createwintr20-button").style.display = "none";
-        document.getElementById("downloadwintr20-button").style.display = "block";
+        document.getElementById("downloadwintr20error-button").style.display = "block";
+        document.getElementById("downloadwintr20input-button").style.display = "block";
+        document.getElementById("downloadwintr20output-button").style.display = "block";
         map.spin(false);
     }
 }

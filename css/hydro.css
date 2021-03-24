@@ -177,7 +177,13 @@ button:focus{
     float: center;
 }
 
-#subdivide-button{
+#subdivideyes-button{
+    width: 100%;
+    float: center;
+    height: 50px;
+}
+
+#subdivideno-button{
     width: 100%;
     float: center;
     height: 50px;
@@ -310,7 +316,21 @@ margin: 0 }
     float: center;
 }
 
-#downloadwintr20-button{
+#downloadwintr20output-button{
+    width: 100%;
+    float: center;
+    display: none;
+    height: 50px;
+}
+
+#downloadwintr20input-button{
+    width: 100%;
+    float: center;
+    display: none;
+    height: 50px;
+}
+
+#downloadwintr20error-button{
     width: 100%;
     float: center;
     display: none;
