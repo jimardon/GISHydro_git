@@ -590,7 +590,7 @@ function basin_properties(){
         basin2_modal +=             btable0_html
         basin2_modal +=             '<p></p><p align="center"><b>Data Selected</b></p>';
         basin2_modal +=             btable3_html
-        basin2_modal +=             '<p align="center"><b>Geographic Province(s)</b></p>';
+        basin2_modal +=             '<p align="center"><b>Hydrologic Region Distribution</b></p>';
         for(var i=0; i < provstring.length; i++){
             basin2_modal += '<p align="center">' + provstring[i] + '<br/></p>';
         }
@@ -1181,7 +1181,7 @@ function settoc(){
             tc_modal +=         '<div class="modal-header">';
             tc_modal +=             '<h4 class="modal-title">' + tc_method + '</h4>';
             tc_modal +=         '</div>'
-            tc_modal +=         '<div class="modal-body">';
+            tc_modal +=         '<div class="modal-body" style="height:250px;">';
             tc_modal +=             tctable_html
             tc_modal +=         '</div>';
             tc_modal +=         '<div class="modal-footer">';
