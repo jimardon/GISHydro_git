@@ -369,7 +369,7 @@ function basin_properties(){
     tasker_modal = [];
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/BasinOutput",
+        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/BasinOutputs",
         useCors:false
       });
     var gpTask = gpService.createTask();
