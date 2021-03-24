@@ -799,7 +799,7 @@ function taskerregion(){
     $("#region_modal").modal()
 }
 
-function OpenTaskerMod(){$("#tasker_mod").modal()}
+//function OpenTaskerMod(){$("#tasker_mod").modal()}
 
 function flowpaths(){
     delcheck = false;
