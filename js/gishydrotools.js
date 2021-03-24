@@ -65,6 +65,8 @@ var I_Time_ = '';
 var Tot_Time_ = '';
 var thecritavg = '';
 var inputstring = '';
+var errorstring = '';
+var oututstring = '';
 var preciplist = [];
 var transect_bool = '';
 var plot_data = '';
@@ -1743,7 +1745,7 @@ function tr20controlpanel() {
         inputstring = response.inputstring
         outputstring = response.outputstring
         errorstring = response.outputstring
-        document.getElementById("createwintr20-button").style.display = "none";
+        var document.getElementById("createwintr20-button").style.display = "none";
         document.getElementById("downloadwintr20-button").style.display = "block";
         map.spin(false);
     }
@@ -1772,10 +1774,10 @@ let saveFileinput = () => {
     newLink.click();
 }
 
-let saveFileerror = () => {
+let saveFile = (stringtext) => {
 
     // This variable stores all the data.
-    let data = errorstring.replace(/\n/g,"\r\n")
+    let data = stringtext.replace(/\n/g,"\r\n")
     // Convert the text to BLOB.
     const textToBLOB = new Blob([data], { type: 'text/plain' });
     const sFileName = 'TR20in.err';	   // The file to save the data.
