@@ -1747,7 +1747,7 @@ function tr20controlpanel() {
             map.spin(false);
         }
 
-        if (strValue) {
+        if (errorstring === '') {
             alert("Please check error file for possible errors.")
         }
 
