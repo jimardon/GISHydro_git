@@ -222,13 +222,6 @@ button:focus{
     height: 50px;
 }
 
-#downloadwintr20-button{
-    width: 100%;
-    float: center;
-    display: none;
-    height: 50px;
-}
-
 #email-button{
     width: 100%;
     float: center;
@@ -315,6 +308,13 @@ margin: 0 }
 #plotxs-button{
     width: 100%;
     float: center;
+}
+
+#downloadwintr20-button{
+    width: 100%;
+    float: center;
+    display: none;
+    height: 50px;
 }
 
 .scroll-container {
