@@ -89,6 +89,7 @@ var subid = '';
 var occcounts = {};
 var singleshed = false;
 var upper90 = false;
+var tasker_modal = [];
 
 
 function aoi_selec(){
@@ -365,6 +366,7 @@ function basin_properties(){
 
     $('#gagelist').attr('disabled','true');
     $('#basin_properties-button').attr('disabled','true');
+    tasker_modal = [];
 
     var gpService = L.esri.GP.service({
         url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/BasinOutput",
@@ -403,17 +405,17 @@ function basin_properties(){
         var theslope = response.theslope;
         var theslope_feet = response.theslope_feet;
         landslope = response.landslope;
-        var UrbPct = response.UrbPct;
-        IA = response.IA;
+        var UrbPct = response.urbpct;
+        IA = response.ia;
         var tc = response.tc;
         var lagtime = response.lagtime;
         var maxlength = response.maxlength;
         var basinrelief = response.basinrelief;
         var avgCN = response.avgCN;
-        var FC = response.FC;
-        var ST = response.ST;
-        LI = response.LI;
-        var pctsoilR = response.pctsoilR;
+        var FC = response.fc;
+        var ST = response.st;
+        LI = response.li;
+        var pctsoilR = response.pctsoilr;
         var pctsoil = response.pctsoil;
         var p2yr = response.p2yr;
         var maprec = response.maprec;
@@ -422,15 +424,9 @@ function basin_properties(){
 
         var it_values = response.it_values;
         var q_list_all = response.q_list_all;
-        var Qcfs = response.Qcfs;
-        var estim_par = response.estim_par;
-        var warning_message = response.warning_message;
-        var cl = response.cl;
-        var cu = response.cu;
-        var yhat_list = response.yhat_list;
-        var sepc_list = response.sepc_list;
-        var eqyrs_list = response.eqyrs_list;
-        var sepred_list = response.sepred_list;
+        var Qcfs = response.qcfs;
+        var regioncount = response.regioncount;
+        var taskeroutput = response.tasker;
 
         btable0_html = '<table border="0">';
         btable0_html += '<col width="300">';
@@ -623,137 +619,150 @@ function basin_properties(){
         }
         btable9_html += '</table><p></p>';
 
-        var btable10_html = '<table border="0" align="center">';
-        btable10_html += '<col width="70">';
-        btable10_html += '<col width="70">';
-        btable10_html += '<col width="70">';
-        btable10_html += '<col width="70">';
-        btable10_html += '<col width="70">';
-        btable10_html += '<col width="70">';
-        btable10_html += '<col width="70">';
-        btable10_html += '<col width="70">';
-        btable10_html += '<col width="70">';
-        btable10_html += '<tr align="center"><th rowspan="2">Return Period</th>';
-        btable10_html += '<th colspan="2" scope="colgroup">50 PERCENT</th>';
-        btable10_html += '<th colspan="2" scope="colgroup">67 PERCENT</th>';
-        btable10_html += '<th colspan="2" scope="colgroup">90 PERCENT</th>';
-        btable10_html += '<th colspan="2" scope="colgroup">95 PERCENT</th></tr>';
-        btable10_html += '<tr align="center"><th scope="col">lower</th><th scope="col">upper</th>';
-        btable10_html += '<th scope="col">lower</th><th scope="col">upper</th>';
-        btable10_html += '<th scope="col">lower</th><th scope="col">upper</th>';
-        btable10_html += '<th scope="col">lower</th><th scope="col">upper</th></tr>';
-        for(var i=0; i < it_values.length; i++){
-            btable10_html += '<tr>';
-            btable10_html += '<td align="center">' + it_values[i] + '</td>';
-            btable10_html += '<td align="center">' + q_list_all[i][0] + '</td>';
-            btable10_html += '<td align="center">' + q_list_all[i][1] + '</td>';
-            btable10_html += '<td align="center">' + q_list_all[i][2] + '</td>';
-            btable10_html += '<td align="center">' + q_list_all[i][3] + '</td>';
-            btable10_html += '<td align="center">' + q_list_all[i][4] + '</td>';
-            btable10_html += '<td align="center">' + q_list_all[i][5] + '</td>';
-            btable10_html += '<td align="center">' + q_list_all[i][6] + '</td>';
-            btable10_html += '<td align="center">' + q_list_all[i][7] + '</td>';
-            btable10_html += '</tr>';
-        }
-        btable10_html += '</table><p></p>';
+        for(var i=0; i < regioncount-1; i++){
 
-        var btable11_html = '<table border="0" align="center">';
-        btable11_html += '<col width="150">';
-        btable11_html += '<col width="200">';
-        for(var i=0; i < estim_par[0].length; i++){
-            btable11_html += '<tr>';
-            btable11_html += '<td align="left">' + estim_par[0][i] + ':</td>';
-            btable11_html += '<td align="right">' + estim_par[1][i] + '</td>';
-            btable11_html += '</tr>';
-        }
-        btable11_html += '</table><p></p>';
+            var estim_par = tasker[i][0];
+            var warning_message = tasker[i][1];
+            var cl = tasker[i][2];
+            var cu = tasker[i][3];
+            var yhat_list = tasker[i][4];
+            var sepc_list = tasker[i][5];
+            var eqyrs_list = tasker[i][6];
+            var sepred_list = tasker[i][7];
 
-        var btable12_html = '<table border="0" align="center">';
-        btable12_html += '<col width="100">';
-        btable12_html += '<col width="100">';
-        btable12_html += '<col width="100">';
-        btable12_html += '<col width="100">';
-        btable12_html += '<col width="100">';
-        btable12_html += '<tr align="center"><th>Return<br />Period</th>';
-        btable12_html += '<th>Discharge<br />(cfs)</th>';
-        btable12_html += '<th>Standard Error<br />of Prediction<br />(percent)</th>';
-        btable12_html += '<th>Equivalent Years<br />of Record</th>';
-        btable12_html += '<th>Standard Error<br />of Prediction<br />(logs)</th></tr>';
-        for(var i=0; i < it_values.length; i++){
-            btable12_html += '<tr>';
-            btable12_html += '<td align="center">' + it_values[i] + '</td>';
-            btable12_html += '<td align="center">' + yhat_list[i] + '</td>';
-            btable12_html += '<td align="center">' + sepc_list[i] + '</td>';
-            btable12_html += '<td align="center">' + eqyrs_list[i] + '</td>';
-            btable12_html += '<td align="center">' + sepred_list[i] + '</td>';
-            btable12_html += '</tr>';
-        }
-        btable12_html += '</table><p></p>';
+            var btable10_html = '<table border="0" align="center">';
+            btable10_html += '<col width="70">';
+            btable10_html += '<col width="70">';
+            btable10_html += '<col width="70">';
+            btable10_html += '<col width="70">';
+            btable10_html += '<col width="70">';
+            btable10_html += '<col width="70">';
+            btable10_html += '<col width="70">';
+            btable10_html += '<col width="70">';
+            btable10_html += '<col width="70">';
+            btable10_html += '<tr align="center"><th rowspan="2">Return Period</th>';
+            btable10_html += '<th colspan="2" scope="colgroup">50 PERCENT</th>';
+            btable10_html += '<th colspan="2" scope="colgroup">67 PERCENT</th>';
+            btable10_html += '<th colspan="2" scope="colgroup">90 PERCENT</th>';
+            btable10_html += '<th colspan="2" scope="colgroup">95 PERCENT</th></tr>';
+            btable10_html += '<tr align="center"><th scope="col">lower</th><th scope="col">upper</th>';
+            btable10_html += '<th scope="col">lower</th><th scope="col">upper</th>';
+            btable10_html += '<th scope="col">lower</th><th scope="col">upper</th>';
+            btable10_html += '<th scope="col">lower</th><th scope="col">upper</th></tr>';
+            for(var i=0; i < it_values.length; i++){
+                btable10_html += '<tr>';
+                btable10_html += '<td align="center">' + it_values[i] + '</td>';
+                btable10_html += '<td align="center">' + q_list_all[i][0] + '</td>';
+                btable10_html += '<td align="center">' + q_list_all[i][1] + '</td>';
+                btable10_html += '<td align="center">' + q_list_all[i][2] + '</td>';
+                btable10_html += '<td align="center">' + q_list_all[i][3] + '</td>';
+                btable10_html += '<td align="center">' + q_list_all[i][4] + '</td>';
+                btable10_html += '<td align="center">' + q_list_all[i][5] + '</td>';
+                btable10_html += '<td align="center">' + q_list_all[i][6] + '</td>';
+                btable10_html += '<td align="center">' + q_list_all[i][7] + '</td>';
+                btable10_html += '</tr>';
+            }
+            btable10_html += '</table><p></p>';
 
-        var btable13_html = '<table border="0" align="center">';
-        btable13_html += '<col width="70">';
-        btable13_html += '<col width="70">';
-        btable13_html += '<col width="70">';
-        btable13_html += '<col width="70">';
-        btable13_html += '<col width="70">';
-        btable13_html += '<col width="70">';
-        btable13_html += '<col width="70">';
-        btable13_html += '<col width="70">';
-        btable13_html += '<col width="70">';
-        btable13_html += '<tr align="center"><th rowspan="2">Return Period</th>';
-        btable13_html += '<th colspan="2" scope="colgroup">50 PERCENT</th>';
-        btable13_html += '<th colspan="2" scope="colgroup">67 PERCENT</th>';
-        btable13_html += '<th colspan="2" scope="colgroup">90 PERCENT</th>';
-        btable13_html += '<th colspan="2" scope="colgroup">95 PERCENT</th></tr>';
-        btable13_html += '<tr align="center"><th scope="col">lower</th><th scope="col">upper</th>';
-        btable13_html += '<th scope="col">lower</th><th scope="col">upper</th>';
-        btable13_html += '<th scope="col">lower</th><th scope="col">upper</th>';
-        btable13_html += '<th scope="col">lower</th><th scope="col">upper</th></tr>';
-        for(var i=0; i < it_values.length; i++){
-            btable13_html += '<tr>';
-            btable13_html += '<td align="center">' + it_values[i] + '</td>';
-            btable13_html += '<td align="center">' + cl[i][0] + '</td>';
-            btable13_html += '<td align="center">' + cu[i][0] + '</td>';
-            btable13_html += '<td align="center">' + cl[i][1] + '</td>';
-            btable13_html += '<td align="center">' + cu[i][1] + '</td>';
-            btable13_html += '<td align="center">' + cl[i][2] + '</td>';
-            btable13_html += '<td align="center">' + cu[i][2] + '</td>';
-            btable13_html += '<td align="center">' + cl[i][3] + '</td>';
-            btable13_html += '<td align="center">' + cu[i][3] + '</td>';
-            btable13_html += '</tr>';
-        }
-        btable13_html += '</table><p></p>';
+            var btable11_html = '<table border="0" align="center">';
+            btable11_html += '<col width="150">';
+            btable11_html += '<col width="200">';
+            for(var i=0; i < estim_par[0].length; i++){
+                btable11_html += '<tr>';
+                btable11_html += '<td align="left">' + estim_par[0][i] + ':</td>';
+                btable11_html += '<td align="right">' + estim_par[1][i] + '</td>';
+                btable11_html += '</tr>';
+            }
+            btable11_html += '</table><p></p>';
 
-        var basin3_modal = '<div class="modal-dialog modal-lg" style="width:100%">';
-        basin3_modal +=     '<div class="modal-content">';
-        basin3_modal +=         '<div class="modal-header">';
-        basin3_modal +=             '<h4 class="modal-title">Tasker Discharge</h4>';
-        basin3_modal +=         '</div>'
-        basin3_modal +=         '<div class="modal-body">';
-        basin3_modal +=             btable0_html
-        basin3_modal +=             '<p align="center">' + thomas + '</p>';
-        basin3_modal +=             '<p align="center"><b>Discharges</b></p>';
-        basin3_modal +=             btable9_html
-        basin3_modal +=             '<p align="center"><b>Area Weighted Prediction Intervals (from Tasker)</b></p>';
-        basin3_modal +=             btable10_html
-        basin3_modal +=             '<p align="center"><b>Flood Frequency Estimates</b></p>';
-        basin3_modal +=             btable11_html
-        basin3_modal +=             btable12_html
-        basin3_modal +=             '<p align="center"><b>PREDICTION INTERVALS</b></p>';
-        basin3_modal +=             btable13_html
-        basin3_modal +=             '<p align="center" style="color:red;">'
-        for(var i=0; i < warning_message.length; i++){
-            basin3_modal += '<b>' + warning_message[i] + '</b><br/>';
-        }
-        basin3_modal +=             '</p>'
-        basin3_modal +=         '</div>';
-        basin3_modal +=         '<div class="modal-footer">';
-        basin3_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
-        basin3_modal +=         '</div>';
-        basin3_modal +=     '</div>';
-        basin3_modal += '</div>';
+            var btable12_html = '<table border="0" align="center">';
+            btable12_html += '<col width="100">';
+            btable12_html += '<col width="100">';
+            btable12_html += '<col width="100">';
+            btable12_html += '<col width="100">';
+            btable12_html += '<col width="100">';
+            btable12_html += '<tr align="center"><th>Return<br />Period</th>';
+            btable12_html += '<th>Discharge<br />(cfs)</th>';
+            btable12_html += '<th>Standard Error<br />of Prediction<br />(percent)</th>';
+            btable12_html += '<th>Equivalent Years<br />of Record</th>';
+            btable12_html += '<th>Standard Error<br />of Prediction<br />(logs)</th></tr>';
+            for(var i=0; i < it_values.length; i++){
+                btable12_html += '<tr>';
+                btable12_html += '<td align="center">' + it_values[i] + '</td>';
+                btable12_html += '<td align="center">' + yhat_list[i] + '</td>';
+                btable12_html += '<td align="center">' + sepc_list[i] + '</td>';
+                btable12_html += '<td align="center">' + eqyrs_list[i] + '</td>';
+                btable12_html += '<td align="center">' + sepred_list[i] + '</td>';
+                btable12_html += '</tr>';
+            }
+            btable12_html += '</table><p></p>';
 
-        $("#tasker_mod").html(basin3_modal);
+            var btable13_html = '<table border="0" align="center">';
+            btable13_html += '<col width="70">';
+            btable13_html += '<col width="70">';
+            btable13_html += '<col width="70">';
+            btable13_html += '<col width="70">';
+            btable13_html += '<col width="70">';
+            btable13_html += '<col width="70">';
+            btable13_html += '<col width="70">';
+            btable13_html += '<col width="70">';
+            btable13_html += '<col width="70">';
+            btable13_html += '<tr align="center"><th rowspan="2">Return Period</th>';
+            btable13_html += '<th colspan="2" scope="colgroup">50 PERCENT</th>';
+            btable13_html += '<th colspan="2" scope="colgroup">67 PERCENT</th>';
+            btable13_html += '<th colspan="2" scope="colgroup">90 PERCENT</th>';
+            btable13_html += '<th colspan="2" scope="colgroup">95 PERCENT</th></tr>';
+            btable13_html += '<tr align="center"><th scope="col">lower</th><th scope="col">upper</th>';
+            btable13_html += '<th scope="col">lower</th><th scope="col">upper</th>';
+            btable13_html += '<th scope="col">lower</th><th scope="col">upper</th>';
+            btable13_html += '<th scope="col">lower</th><th scope="col">upper</th></tr>';
+            for(var i=0; i < it_values.length; i++){
+                btable13_html += '<tr>';
+                btable13_html += '<td align="center">' + it_values[i] + '</td>';
+                btable13_html += '<td align="center">' + cl[i][0] + '</td>';
+                btable13_html += '<td align="center">' + cu[i][0] + '</td>';
+                btable13_html += '<td align="center">' + cl[i][1] + '</td>';
+                btable13_html += '<td align="center">' + cu[i][1] + '</td>';
+                btable13_html += '<td align="center">' + cl[i][2] + '</td>';
+                btable13_html += '<td align="center">' + cu[i][2] + '</td>';
+                btable13_html += '<td align="center">' + cl[i][3] + '</td>';
+                btable13_html += '<td align="center">' + cu[i][3] + '</td>';
+                btable13_html += '</tr>';
+            }
+            btable13_html += '</table><p></p>';
+
+            var basin3_modal = '<div class="modal-dialog modal-lg" style="width:100%">';
+            basin3_modal +=     '<div class="modal-content">';
+            basin3_modal +=         '<div class="modal-header">';
+            basin3_modal +=             '<h4 class="modal-title">Tasker Discharge</h4>';
+            basin3_modal +=         '</div>'
+            basin3_modal +=         '<div class="modal-body">';
+            basin3_modal +=             btable0_html
+            basin3_modal +=             '<p align="center">' + thomas + '</p>';
+            basin3_modal +=             '<p align="center"><b>Discharges</b></p>';
+            basin3_modal +=             btable9_html
+            basin3_modal +=             '<p align="center"><b>Area Weighted Prediction Intervals (from Tasker)</b></p>';
+            basin3_modal +=             btable10_html
+            basin3_modal +=             '<p align="center"><b>Flood Frequency Estimates</b></p>';
+            basin3_modal +=             btable11_html
+            basin3_modal +=             btable12_html
+            basin3_modal +=             '<p align="center"><b>PREDICTION INTERVALS</b></p>';
+            basin3_modal +=             btable13_html
+            basin3_modal +=             '<p align="center" style="color:red;">'
+            for(var i=0; i < warning_message.length; i++){
+                basin3_modal += '<b>' + warning_message[i] + '</b><br/>';
+            }
+            basin3_modal +=             '</p>'
+            basin3_modal +=         '</div>';
+            basin3_modal +=         '<div class="modal-footer">';
+            basin3_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+            basin3_modal +=         '</div>';
+            basin3_modal +=     '</div>';
+            basin3_modal += '</div>';
+
+            tasker_modal.push(basin3_modal);
+        }
+
         $('#basincomp-button').removeAttr('aria-hidden');
         $('#basincomp-button').removeAttr('disabled');
 
@@ -782,6 +791,13 @@ function basin_properties(){
         }
     }
 };
+
+function taskerregion(){
+
+    $("#tasker_mod").html(tasker_modal[document.getElementById("regionselect").value]);
+    $("#tasker_mod").modal()
+
+}
 
 function flowpaths(){
     delcheck = false;
@@ -1752,7 +1768,7 @@ function contours(){
     $('#contours-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/MiscHydro/GPServer/Contours",
+        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Contours",
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -1786,7 +1802,7 @@ function infproj(){
     $('#infstr-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/MiscHydro/GPServer/ShowStreams",
+        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/ShowStreams",
         useCors:false
       });
     var gpTask = gpService.createTask();
