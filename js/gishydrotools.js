@@ -731,7 +731,7 @@ function basin_properties(){
             }
             btable13_html += '</table><p></p>';
 
-            var basin3_modal = '<div class="modal-dialog modal-lg" style="width:100%;overflow-y:auto;">';
+            var basin3_modal = '<div class="modal-dialog modal-lg" style="width:100%;">';
             basin3_modal +=     '<div class="modal-content">';
             basin3_modal +=         '<div class="modal-header">';
             basin3_modal +=             '<h4 class="modal-title">Tasker Discharge</h4>';

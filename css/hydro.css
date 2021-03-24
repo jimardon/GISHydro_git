@@ -671,7 +671,7 @@ ul .li-alert{
     overflow-y: initial !important
 }
 .modal-body{
-    overflow-y: auto;
+    overflow-y: auto !important;
 }
 
 .column {
