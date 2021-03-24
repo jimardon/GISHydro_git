@@ -1747,74 +1747,27 @@ function tr20controlpanel() {
             map.spin(false);
         }
 
-        if (errorstring === '') {
-            alert("Please check error file for possible errors.")
-        }
-
         inputstring = response.inputstring
         outputstring = response.outputstring
-        errorstring = response.outputstring
+        errorstring = response.errorstring
         document.getElementById("createwintr20-button").style.display = "none";
         document.getElementById("downloadwintr20error-button").style.display = "block";
         document.getElementById("downloadwintr20input-button").style.display = "block";
         document.getElementById("downloadwintr20output-button").style.display = "block";
+
+        if (errorstring.length > 0) {
+            alert("Please check error file for possible errors.")
+        }
+
         map.spin(false);
     }
 }
 
-let saveFileinput = () => {
+let saveFile = (strtofile, filename) => {
 
-    // This variable stores all the data.
-    let data = inputstring.replace(/\n/g,"\r\n")
-    // Convert the text to BLOB.
+    let data = strtofile.replace(/\n/g,"\r\n")
     const textToBLOB = new Blob([data], { type: 'text/plain' });
-    const sFileName = 'TR20in.inp';	   // The file to save the data.
-
-    let newLink = document.createElement("a");
-    newLink.download = sFileName;
-
-    if (window.webkitURL != null) {
-        newLink.href = window.webkitURL.createObjectURL(textToBLOB);
-    }
-    else {
-        newLink.href = window.URL.createObjectURL(textToBLOB);
-        newLink.style.display = "none";
-        document.body.appendChild(newLink);
-    }
-
-    newLink.click();
-}
-
-let saveFile = (stringtext) => {
-
-    // This variable stores all the data.
-    let data = stringtext.replace(/\n/g,"\r\n")
-    // Convert the text to BLOB.
-    const textToBLOB = new Blob([data], { type: 'text/plain' });
-    const sFileName = 'TR20in.err';	   // The file to save the data.
-
-    let newLink = document.createElement("a");
-    newLink.download = sFileName;
-
-    if (window.webkitURL != null) {
-        newLink.href = window.webkitURL.createObjectURL(textToBLOB);
-    }
-    else {
-        newLink.href = window.URL.createObjectURL(textToBLOB);
-        newLink.style.display = "none";
-        document.body.appendChild(newLink);
-    }
-
-    newLink.click();
-}
-
-let saveFileoutput = () => {
-
-    // This variable stores all the data.
-    let data = outputstring.replace(/\n/g,"\r\n")
-    // Convert the text to BLOB.
-    const textToBLOB = new Blob([data], { type: 'text/plain' });
-    const sFileName = 'TR20in.out';	   // The file to save the data.
+    const sFileName = filename;
 
     let newLink = document.createElement("a");
     newLink.download = sFileName;
@@ -1903,10 +1856,9 @@ function infproj(){
 };
 
 function saveToFile(data, filename, element) {
-    // Stringify the GeoJson
+
     var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
 
-    // Create export
     document.getElementById(element).setAttribute('href', 'data:' + convertedData);
     document.getElementById(element).setAttribute('download', filename + '.geojson');
 }
