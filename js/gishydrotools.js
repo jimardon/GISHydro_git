@@ -621,7 +621,7 @@ function basin_properties(){
 
         alert(regioncount)
         var regionspan = '';
-        for(var i=0; i < regioncount-1; i++){
+        for(var i=0; i < regioncount; i++){
 
             var estim_par = taskeroutput[i][0];
             var warning_message = taskeroutput[i][1];
