@@ -491,7 +491,7 @@ function basin_properties(){
         basin_modal +=         '</div>'
         basin_modal +=         '<div class="modal-body">';
         basin_modal +=             btable0_html;
-        basin_modal +=             '<p align="center"><b>Distribution of Land Use by Soil Group</b></p>';
+        basin_modal +=             '<p></p><p align="center"><b>Distribution of Land Use by Soil Group</b></p>';
         basin_modal +=             btable1_html;
         basin_modal +=             '<p align="center"><b>Distribution of Land Use and Curve Numbers Used</b></p>';
         basin_modal +=             btable2_html;
@@ -586,7 +586,7 @@ function basin_properties(){
         basin2_modal +=         '</div>'
         basin2_modal +=         '<div class="modal-body">';
         basin2_modal +=             btable0_html
-        basin2_modal +=             '<p align="center"><b>Data Selected</b></p>';
+        basin2_modal +=             '<p></p><p align="center"><b>Data Selected</b></p>';
         basin2_modal +=             btable3_html
         basin2_modal +=             '<p align="center"><b>Geographic Province(s)</b></p>';
         for(var i=0; i < provstring.length; i++){
@@ -745,7 +745,7 @@ function basin_properties(){
             basin3_modal += '<tr><td align="left">Hydrologic Region:</td><td align="left">' + provstring[j] + '</td></tr>';
             basin3_modal += '</table><p></p>';
 
-            basin3_modal +=             '<p align="center">' + thomas + '</p>';
+            basin3_modal +=             '<p align="center" style="font-size:16px;"><b>' + thomas + '</b></p>';
             basin3_modal +=             '<p align="center"><b>Discharges</b></p>';
             basin3_modal +=             btable9_html
             basin3_modal +=             '<p align="center"><b>Area Weighted Prediction Intervals (from Tasker)</b></p>';
@@ -806,7 +806,7 @@ function taskerregion(){
     $("#region_modal").modal()
 }
 
-//function OpenTaskerMod(){$("#tasker_mod").modal()}
+function OpenTaskerMod(){$("#tasker_mod").modal()}
 
 function flowpaths(){
     delcheck = false;
