@@ -829,8 +829,8 @@ function flowpaths_polyline(){
     $('#flowpath-button').attr('disabled','true');
     if(singleshed == true){
         var centerwshed = wshed.getBounds().getCenter();
-        mark_lat = layer.getLatLng().centerwshed;
-        mark_lon = layer.getLatLng().centerwshed;
+        mark_lat = centerwshed.getLatLng();
+        mark_lon = centerwshed.getLatLng();
         alert(mark_lat)
         alert(mark_lon)
     }else if(clear_flowpaths === false){
@@ -847,6 +847,10 @@ function flowpaths_polyline(){
       });
     var gpTask = gpService.createTask();
 
+    alert(full_project_name)
+    alert(mark_lon)
+    alert(mark_lat)
+    alert(clear_flowpaths)
     gpTask.setParam("projectname", full_project_name)
     gpTask.setParam("x", mark_lon)
     gpTask.setParam("y", mark_lat)
