@@ -917,8 +917,6 @@
     </div>
 </div>
 
-{% block content %}{% endblock %}
-
 <div class="modal fade" id="basin_comp" role="dialog"></div>
 <div class="modal fade" id="basin_stat" role="dialog"></div>
 <div class="modal fade" id="tasker_mod" role="dialog"></div>
@@ -1351,9 +1349,9 @@
             <div class="modal-header">
                 <h4 class="modal-title">Select FRRE Region</h4>
             </div>
-            <div class="modal-body" style = "overflow-y:auto;">
-                <strong>Region:</strong>
-                <select class="generic-dropdown" style="width: 50%;" id="regionselect"></select>
+            <div class="modal-body" style = "overflow-y:scroll;">
+                <strong>Hydrologic Region:</strong>
+                <select class="generic-dropdown" style="width: 60%;" id="regionselect"></select>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#tasker_mod">Ok</button>

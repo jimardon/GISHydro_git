@@ -430,7 +430,7 @@ function basin_properties(){
 
         btable0_html = '<table border="0">';
         btable0_html += '<col width="300">';
-        btable0_html += '<col width="150">';
+        btable0_html += '<col width="300">';
         btable0_html += '<tr><td align="left">GISHydro Release Version Date:</td><td align="left">' + version + '</td></tr>';
         btable0_html += '<tr><td align="left">Project Name:</td><td align="left">' + proj_name + '</td></tr>';
         btable0_html += '<tr><td align="left">Analysis Date:</td><td align="left">' + today + '</td></tr>';
@@ -738,6 +738,13 @@ function basin_properties(){
             basin3_modal +=         '</div>'
             basin3_modal +=         '<div class="modal-body">';
             basin3_modal +=             btable0_html
+
+            basin3_modal += '<table border="0">';
+            basin3_modal += '<col width="300">';
+            basin3_modal += '<col width="300">';
+            basin3_modal += '<tr><td align="left">Hydrologic Region:</td><td align="left">' + provstring[j] + '</td></tr>';
+            basin3_modal += '</table><p></p>';
+
             basin3_modal +=             '<p align="center">' + thomas + '</p>';
             basin3_modal +=             '<p align="center"><b>Discharges</b></p>';
             basin3_modal +=             btable9_html
