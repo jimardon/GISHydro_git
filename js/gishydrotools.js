@@ -765,7 +765,6 @@ function basin_properties(){
 
             regionspan += '<option value=' + i + '>' + provstring[j] + '</option>'
         }
-
         alert(regionspan)
         $("#regionspan").html(regionspan);
         $('#basincomp-button').removeAttr('aria-hidden');
@@ -800,6 +799,7 @@ function basin_properties(){
 function taskerregion(){
 
     alert(tasker_modal)
+    alert(tasker_modal[document.getElementById("regionselect").value])
     $("#tasker_mod").html(tasker_modal[document.getElementById("regionselect").value]);
     $("#region_modal").modal()
 
