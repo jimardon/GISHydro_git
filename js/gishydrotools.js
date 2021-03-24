@@ -1745,7 +1745,7 @@ function tr20controlpanel() {
         inputstring = response.inputstring
         outputstring = response.outputstring
         errorstring = response.outputstring
-        var document.getElementById("createwintr20-button").style.display = "none";
+        document.getElementById("createwintr20-button").style.display = "none";
         document.getElementById("downloadwintr20-button").style.display = "block";
         map.spin(false);
     }
