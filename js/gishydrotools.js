@@ -772,6 +772,10 @@ function basin_properties(){
             $('#regionselect').append('<option value=' + j + '>' + provstring[j] + '</option>');
         }
 
+        if(regioncount>1){
+            document.getElementById("regiondisplay").style.display = "block";
+        }
+
         $('#basincomp-button').removeAttr('aria-hidden');
         $('#basincomp-button').removeAttr('disabled');
 
@@ -803,10 +807,8 @@ function basin_properties(){
 
 function taskerregion(){
     $("#tasker_mod").html(tasker_modal[document.getElementById("regionselect").value]);
-    $("#region_modal").modal()
+    $("#tasker_mod").modal()
 }
-
-function OpenTaskerMod(){$("#tasker_mod").modal()}
 
 function flowpaths(){
     delcheck = false;

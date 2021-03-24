@@ -322,6 +322,11 @@
                     <p></p>
                     <button id="basinstats-button" class="generic-grey-button" disabled="disabled" data-toggle="modal" data-target="#basin_stat">Basin Statistics</button>
                     <p></p>
+                    <div class="inline" style="display:none;" id="regiondisplay">
+                        <strong>Hydrologic Region:</strong>
+                        <select class="generic-dropdown" style="width: 60%;" id="regionselect"></select>
+                    </div>
+                    <p></p>
                     <button id="tasker-button" class="generic-grey-button" disabled="disabled" data-toggle="modal" onclick=taskerregion()>FRRE Discharges</button>
                     <p></p>
                 </div>
@@ -1343,23 +1348,6 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="region_modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Select FRRE Region</h4>
-            </div>
-            <div class="modal-body">
-                <strong>Hydrologic Region:</strong>
-                <select class="generic-dropdown" style="width: 60%;" id="regionselect"></select>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclick=OpenTaskerMod()>Ok</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 
 <script type="text/javascript" src="https://jimardon.github.io/GISHydroWEB/js/gishydromaps.js"></script>
