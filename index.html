@@ -322,7 +322,7 @@
                     <p></p>
                     <button id="basinstats-button" class="generic-grey-button" disabled="disabled" data-toggle="modal" data-target="#basin_stat">Basin Statistics</button>
                     <p></p>
-                    <button id="tasker-button" class="generic-grey-button" disabled="disabled" data-toggle="modal" data-target="#region_modal">FRRE Discharges</button>
+                    <button id="tasker-button" class="generic-grey-button" data-toggle="modal" data-target="#region_modal">FRRE Discharges</button>
                     <p></p>
                 </div>
             </div>
@@ -1345,8 +1345,8 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="region_modal" role="dialog">
-    <div class="modal-dialog modal-lg" style="width:100%">
+<div class="modal fade" id="region_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Select FRRE Region</h4>
