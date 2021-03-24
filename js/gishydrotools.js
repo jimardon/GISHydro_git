@@ -619,6 +619,7 @@ function basin_properties(){
         }
         btable9_html += '</table><p></p>';
 
+        alert(regioncount)
         var regionspan = '';
         for(var i=0; i < regioncount-1; i++){
 
