@@ -799,8 +799,7 @@ function basin_properties(){
 
 function taskerregion(){
 
-    alert(document.getElementById("regionselect").value)
-    alert(taskermodal)
+    alert(tasker_modal)
     $("#tasker_mod").html(tasker_modal[document.getElementById("regionselect").value]);
     $("#region_modal").modal()
 
