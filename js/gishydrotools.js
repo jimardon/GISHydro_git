@@ -621,6 +621,40 @@ function basin_properties(){
         }
         btable9_html += '</table><p></p>';
 
+        var btable10_html = '<table border="0" align="center">';
+        btable10_html += '<col width="70">';
+        btable10_html += '<col width="70">';
+        btable10_html += '<col width="70">';
+        btable10_html += '<col width="70">';
+        btable10_html += '<col width="70">';
+        btable10_html += '<col width="70">';
+        btable10_html += '<col width="70">';
+        btable10_html += '<col width="70">';
+        btable10_html += '<col width="70">';
+        btable10_html += '<tr align="center"><th rowspan="2">Return Period</th>';
+        btable10_html += '<th colspan="2" scope="colgroup">50 PERCENT</th>';
+        btable10_html += '<th colspan="2" scope="colgroup">67 PERCENT</th>';
+        btable10_html += '<th colspan="2" scope="colgroup">90 PERCENT</th>';
+        btable10_html += '<th colspan="2" scope="colgroup">95 PERCENT</th></tr>';
+        btable10_html += '<tr align="center"><th scope="col">lower</th><th scope="col">upper</th>';
+        btable10_html += '<th scope="col">lower</th><th scope="col">upper</th>';
+        btable10_html += '<th scope="col">lower</th><th scope="col">upper</th>';
+        btable10_html += '<th scope="col">lower</th><th scope="col">upper</th></tr>';
+        for(var i=0; i < it_values.length; i++){
+            btable10_html += '<tr>';
+            btable10_html += '<td align="center">' + it_values[i] + '</td>';
+            btable10_html += '<td align="center">' + Math.round(q_list_all[i][0]) + '</td>';
+            btable10_html += '<td align="center">' + Math.round(q_list_all[i][1]) + '</td>';
+            btable10_html += '<td align="center">' + Math.round(q_list_all[i][2]) + '</td>';
+            btable10_html += '<td align="center">' + Math.round(q_list_all[i][3]) + '</td>';
+            btable10_html += '<td align="center">' + Math.round(q_list_all[i][4]) + '</td>';
+            btable10_html += '<td align="center">' + Math.round(q_list_all[i][5]) + '</td>';
+            btable10_html += '<td align="center">' + Math.round(q_list_all[i][6]) + '</td>';
+            btable10_html += '<td align="center">' + Math.round(q_list_all[i][7]) + '</td>';
+            btable10_html += '</tr>';
+        }
+        btable10_html += '</table><p></p>';
+
         for(var j=0; j < regioncount; j++){
 
             var estim_par = taskeroutput[j][0];
@@ -631,40 +665,6 @@ function basin_properties(){
             var sepc_list = taskeroutput[j][5];
             var eqyrs_list = taskeroutput[j][6];
             var sepred_list = taskeroutput[j][7];
-
-            var btable10_html = '<table border="0" align="center">';
-            btable10_html += '<col width="70">';
-            btable10_html += '<col width="70">';
-            btable10_html += '<col width="70">';
-            btable10_html += '<col width="70">';
-            btable10_html += '<col width="70">';
-            btable10_html += '<col width="70">';
-            btable10_html += '<col width="70">';
-            btable10_html += '<col width="70">';
-            btable10_html += '<col width="70">';
-            btable10_html += '<tr align="center"><th rowspan="2">Return Period</th>';
-            btable10_html += '<th colspan="2" scope="colgroup">50 PERCENT</th>';
-            btable10_html += '<th colspan="2" scope="colgroup">67 PERCENT</th>';
-            btable10_html += '<th colspan="2" scope="colgroup">90 PERCENT</th>';
-            btable10_html += '<th colspan="2" scope="colgroup">95 PERCENT</th></tr>';
-            btable10_html += '<tr align="center"><th scope="col">lower</th><th scope="col">upper</th>';
-            btable10_html += '<th scope="col">lower</th><th scope="col">upper</th>';
-            btable10_html += '<th scope="col">lower</th><th scope="col">upper</th>';
-            btable10_html += '<th scope="col">lower</th><th scope="col">upper</th></tr>';
-            for(var i=0; i < it_values.length; i++){
-                btable10_html += '<tr>';
-                btable10_html += '<td align="center">' + it_values[i] + '</td>';
-                btable10_html += '<td align="center">' + q_list_all[i][0] + '</td>';
-                btable10_html += '<td align="center">' + q_list_all[i][1] + '</td>';
-                btable10_html += '<td align="center">' + q_list_all[i][2] + '</td>';
-                btable10_html += '<td align="center">' + q_list_all[i][3] + '</td>';
-                btable10_html += '<td align="center">' + q_list_all[i][4] + '</td>';
-                btable10_html += '<td align="center">' + q_list_all[i][5] + '</td>';
-                btable10_html += '<td align="center">' + q_list_all[i][6] + '</td>';
-                btable10_html += '<td align="center">' + q_list_all[i][7] + '</td>';
-                btable10_html += '</tr>';
-            }
-            btable10_html += '</table><p></p>';
 
             var btable11_html = '<table border="0" align="center">';
             btable11_html += '<col width="150">';
@@ -748,14 +748,14 @@ function basin_properties(){
             basin3_modal += '</table><p></p>';
 
             basin3_modal +=             '<p align="center" style="font-size:16px;"><b>' + thomas + '</b></p>';
-            basin3_modal +=             '<p align="center"><b>Discharges</b></p>';
+            basin3_modal +=             '<p align="center"><b> Area Weighted Discharges</b></p>';
             basin3_modal +=             btable9_html
-            basin3_modal +=             '<p align="center"><b>Area Weighted Prediction Intervals (from Tasker)</b></p>';
+            basin3_modal +=             '<p align="center"><b>Area Weighted Prediction Intervals</b></p>';
             basin3_modal +=             btable10_html
-            basin3_modal +=             '<p align="center"><b>Flood Frequency Estimates</b></p>';
+            basin3_modal +=             '<p align="center"><b>Hydrologic Region Flood Frequency Estimates</b></p>';
             basin3_modal +=             btable11_html
             basin3_modal +=             btable12_html
-            basin3_modal +=             '<p align="center"><b>PREDICTION INTERVALS</b></p>';
+            basin3_modal +=             '<p align="center"><b>Hydrologic Region Prediction Intervals</b></p>';
             basin3_modal +=             btable13_html
             basin3_modal +=             '<p align="center" style="color:red;">'
             for(var i=0; i < warning_message.length; i++){
