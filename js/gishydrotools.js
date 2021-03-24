@@ -752,8 +752,9 @@ function basin_properties(){
             basin3_modal +=             btable9_html
             basin3_modal +=             '<p align="center"><b>Area Weighted Prediction Intervals</b></p>';
             basin3_modal +=             btable10_html
-            basin3_modal +=             '<p align="center"><b>Hydrologic Region Flood Frequency Estimates</b></p>';
+            basin3_modal +=             '<p align="center"><b>Hydrologic Region Parameters</b></p>';
             basin3_modal +=             btable11_html
+            basin3_modal +=             '<p align="center"><b>Hydrologic Region Flood Frequency Estimates</b></p>';
             basin3_modal +=             btable12_html
             basin3_modal +=             '<p align="center"><b>Hydrologic Region Prediction Intervals</b></p>';
             basin3_modal +=             btable13_html
@@ -1755,7 +1756,7 @@ function tr20controlpanel() {
         document.getElementById("downloadwintr20input-button").style.display = "block";
         document.getElementById("downloadwintr20output-button").style.display = "block";
 
-        if (errorstring.length > 0) {
+        if (errorstring == 'NA') {
             alert("Please check error file for possible errors.")
         }
 
