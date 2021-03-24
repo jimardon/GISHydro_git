@@ -763,7 +763,7 @@ function basin_properties(){
 
             tasker_modal.push(basin3_modal);
 
-            regionspan += '<option value="' + i + '" id="' + i + '">' + provstring + '</option>'
+            regionspan += '<option value=' + i + '>' + provstring[i] + '</option>'
         }
 
         
