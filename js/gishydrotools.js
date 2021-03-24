@@ -1118,7 +1118,7 @@ function settoc(){
             Xarea_ = response.xarea
             Tot_Length_ = response.tot_length
             Vel_ = response.vel
-            I_Time = response.i_time
+            I_Time_ = response.i_time
 
             Pixel = Pixel_
             Type = Type_
