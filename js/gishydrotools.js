@@ -66,7 +66,7 @@ var Tot_Time_ = '';
 var thecritavg = '';
 var inputstring = '';
 var errorstring = '';
-var oututstring = '';
+var outputstring = '';
 var preciplist = [];
 var transect_bool = '';
 var plot_data = '';
@@ -840,6 +840,8 @@ function flowpaths_polyline(){
         mark_lat = "";
         mark_lon = "";
     }
+    
+    $('#subdivide-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
         url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Flowpaths",
