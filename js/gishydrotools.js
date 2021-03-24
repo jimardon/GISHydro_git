@@ -619,6 +619,7 @@ function basin_properties(){
         }
         btable9_html += '</table><p></p>';
 
+        var regionspan = '';
         for(var i=0; i < regioncount-1; i++){
 
             var estim_par = taskeroutput[i][0];
