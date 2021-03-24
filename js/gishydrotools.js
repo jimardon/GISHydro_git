@@ -434,7 +434,7 @@ function basin_properties(){
         btable0_html += '<tr><td align="left">GISHydro Release Version Date:</td><td align="left">' + version + '</td></tr>';
         btable0_html += '<tr><td align="left">Project Name:</td><td align="left">' + proj_name + '</td></tr>';
         btable0_html += '<tr><td align="left">Analysis Date:</td><td align="left">' + today + '</td></tr>';
-        btable0_html += '</table><p></p>';
+        btable0_html += '</table>';
 
         var btable1_html = '<table border="0" align="center">';
         btable1_html += '<col width="300">';
@@ -731,7 +731,7 @@ function basin_properties(){
             }
             btable13_html += '</table><p></p>';
 
-            var basin3_modal = '<div class="modal-dialog modal-lg" style="width:100%">';
+            var basin3_modal = '<div class="modal-dialog modal-lg" style="width:100%;overflow-y:auto;">';
             basin3_modal +=     '<div class="modal-content">';
             basin3_modal +=         '<div class="modal-header">';
             basin3_modal +=             '<h4 class="modal-title">Tasker Discharge</h4>';
