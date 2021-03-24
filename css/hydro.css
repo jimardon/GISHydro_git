@@ -674,6 +674,10 @@ ul .li-alert{
     overflow-y: auto !important;
 }
 
+.modal-open {
+    overflow: inherit;
+}
+
 .column {
     float: left;
     width: 50%;
