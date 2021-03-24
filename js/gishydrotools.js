@@ -391,7 +391,7 @@ function basin_properties(){
         }
         
         var lu_desc = response.lu_desc;
-        var soil_acre_lists = response.soil_acre_lists;
+        var soil_acre_lists = response.soil_acre_list;
         var total_area = response.total_area;
         var acres = response.acres;
         var area_percent = response.area_percent;
