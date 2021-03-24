@@ -937,7 +937,7 @@ function outlets_marker(){
             addasoutlets.clearLayers();
             $('#clearoutlet-button').attr('disabled','true');
         }else{
-            if(response.result_bool_outlets){
+            if(response.outlet_validation){
                 var marker = L.marker([mark_lat, mark_lon]);
                 addasoutlets.addLayer(marker);
                 $('#clearoutlet-button').removeAttr('disabled');
@@ -1148,7 +1148,7 @@ function settoc(){
                 var tcmodal = document.getElementById("tocmodal");
                 tcmodal.appendChild(element);
 
-                createtable(i, Pixel, Type, Mixed, Elev, Slope, AvgArea, Width, Depth, Xarea, Tot_Length, Vel, I_Time, Tot_Time)
+                createtable(i)
 
             }
             document.getElementById("velmeth_tc").style.display = "block";
