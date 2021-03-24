@@ -619,7 +619,6 @@ function basin_properties(){
         }
         btable9_html += '</table><p></p>';
 
-        alert(regioncount)
         var regionspan = '';
         for(var i=0; i < regioncount; i++){
 
@@ -767,7 +766,7 @@ function basin_properties(){
             regionspan += '<option value=' + i + '>' + provstring[i] + '</option>'
         }
 
-        
+        alert(regionspan)
         $("#regionspan").html(regionspan);
         $('#basincomp-button').removeAttr('aria-hidden');
         $('#basincomp-button').removeAttr('disabled');
