@@ -620,16 +620,16 @@ function basin_properties(){
         btable9_html += '</table><p></p>';
 
         var regionspan = '';
-        for(var i=0; i < regioncount; i++){
+        for(var j=0; j < regioncount; j++){
 
-            var estim_par = taskeroutput[i][0];
-            var warning_message = taskeroutput[i][1];
-            var cl = taskeroutput[i][2];
-            var cu = taskeroutput[i][3];
-            var yhat_list = taskeroutput[i][4];
-            var sepc_list = taskeroutput[i][5];
-            var eqyrs_list = taskeroutput[i][6];
-            var sepred_list = taskeroutput[i][7];
+            var estim_par = taskeroutput[j][0];
+            var warning_message = taskeroutput[j][1];
+            var cl = taskeroutput[j][2];
+            var cu = taskeroutput[j][3];
+            var yhat_list = taskeroutput[j][4];
+            var sepc_list = taskeroutput[j][5];
+            var eqyrs_list = taskeroutput[j][6];
+            var sepred_list = taskeroutput[j][7];
 
             var btable10_html = '<table border="0" align="center">';
             btable10_html += '<col width="70">';
@@ -763,7 +763,7 @@ function basin_properties(){
 
             tasker_modal.push(basin3_modal);
 
-            regionspan += '<option value=' + i + '>' + provstring[i] + '</option>'
+            regionspan += '<option value=' + i + '>' + provstring[j] + '</option>'
         }
 
         alert(regionspan)
