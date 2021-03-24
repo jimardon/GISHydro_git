@@ -801,7 +801,7 @@ function flowpaths_polyline(){
     map.spin(true);
     $('#flowpath-button').attr('disabled','true');
     if(singleshed == true){
-        centerwshed = wshed.getBounds().getCenter();
+        var centerwshed = wshed.getBounds().getCenter();
         mark_lat = layer.getLatLng().centerwshed;
         mark_lon = layer.getLatLng().centerwshed;
         alert(mark_lat)
