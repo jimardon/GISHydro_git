@@ -766,7 +766,7 @@ function basin_properties(){
         }
 
         
-
+        $("#regionspan").html(regionspan);
         $('#basincomp-button').removeAttr('aria-hidden');
         $('#basincomp-button').removeAttr('disabled');
 
