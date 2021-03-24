@@ -322,7 +322,7 @@
                     <p></p>
                     <button id="basinstats-button" class="generic-grey-button" disabled="disabled" data-toggle="modal" data-target="#basin_stat">Basin Statistics</button>
                     <p></p>
-                    <button id="tasker-button" class="generic-grey-button" data-toggle="modal" onclick=taskerregion()>FRRE Discharges</button>
+                    <button id="tasker-button" class="generic-grey-button" disabled="disabled" data-toggle="modal" onclick=taskerregion()>FRRE Discharges</button>
                     <p></p>
                 </div>
             </div>
@@ -1358,7 +1358,7 @@
                 </select>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclick=tasker_mod()>Ok</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#basin_comp">Ok</button>
             </div>
         </div>
     </div>
