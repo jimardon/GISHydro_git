@@ -830,8 +830,8 @@ function flowpaths_polyline(){
     if(singleshed == true){
         var centerwshed = wshed.getBounds().getCenter();
         alert(centerwshed)
-        mark_lat = centerwshed.getLatLng().lat;
-        mark_lon = centerwshed.getLatLng().lng;
+        mark_lat = centerwshed.lat;
+        mark_lon = centerwshed.lng;
         alert(mark_lat)
         alert(mark_lon)
     }else if(clear_flowpaths === false){
