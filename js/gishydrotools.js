@@ -1830,7 +1830,7 @@ function infproj(){
             map.spin(false);
         }
 
-        var infstreams_layer = response.infstreams
+        var infstreams_layer = response.infstr
         infstreams.addLayer(L.geoJson(infstreams_layer,{
             crossOrigin: null,
             fillColor: '#6666FF',
