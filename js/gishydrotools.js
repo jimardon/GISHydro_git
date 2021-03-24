@@ -845,10 +845,6 @@ function flowpaths_polyline(){
       });
     var gpTask = gpService.createTask();
 
-    alert(full_project_name)
-    alert(mark_lon)
-    alert(mark_lat)
-    alert(clear_flowpaths)
     gpTask.setParam("projectname", full_project_name)
     gpTask.setParam("x", mark_lon)
     gpTask.setParam("y", mark_lat)
@@ -1099,29 +1095,30 @@ function settoc(){
             map.spin(false);
         }
 
-        AvgArea_ = response.AvgArea
-        Tot_Time_ = response.Tot_Time
-        reachcount_ = response.reachcount
+        AvgArea_ = response.avgarea
+        Tot_Time_ = response.tot_time
+        reachcount_ = response.reach_check
 
         AvgArea = AvgArea_
         Tot_Time = Tot_Time_
         reachcount = reachcount_
 
         map.removeLayer(subwshed);
-        subshed_export = response.subshed
+        subshed_export = response.subshed_edit
         subwshed2.addLayer(L.geoJson(subshed_export, {onEachFeature: forEachFeature, style: style}));
 
         if(tc_method == "Velocity Method"){
-            Pixel_ = response.Pixel
-            Type_ = response.Type
-            Mixed_ = response.Mixed
-            Elev_ = response.Elev
-            Slope_ = response.Slope
-            Width_ = response.Width
-            Depth_ = response.Depth
-            Xarea_ = response.Xarea
-            Tot_Length_ = response.Tot_Length
-            Vel_ = response.Vel
+            Pixel_ = response.pixel
+            Type_ = response.type
+            Mixed_ = response.mixed
+            Elev_ = response.elev
+            Slope_ = response.slope
+            Width_ = response.width
+            Depth_ = response.depth
+            Xarea_ = response.xarea
+            Tot_Length_ = response.tot_length
+            Vel_ = response.vel
+            I_Time = response.i_time
 
             Pixel = Pixel_
             Type = Type_
@@ -1132,6 +1129,7 @@ function settoc(){
             Depth = Depth_
             Xarea = Xarea_
             Tot_Length = Tot_Length_
+            I_Time = I_Time_
             Vel = Vel_
 
             reaches = Pixel.length;
@@ -1150,7 +1148,7 @@ function settoc(){
                 var tcmodal = document.getElementById("tocmodal");
                 tcmodal.appendChild(element);
 
-                createtable(i, Pixel, Type, Mixed, Elev, Slope, AvgArea, Width, Depth, Xarea, Tot_Length, Vel, Tot_Time)
+                createtable(i, Pixel, Type, Mixed, Elev, Slope, AvgArea, Width, Depth, Xarea, Tot_Length, Vel, I_Time, Tot_Time)
 
             }
             document.getElementById("velmeth_tc").style.display = "block";
@@ -1229,6 +1227,7 @@ function createtable(subarea){
     tctable_html += '<th>XS</th>';
     tctable_html += '<th>Length</th>';
     tctable_html += '<th>Vel.</th>';
+    tctable_html += '<th>dt</th>';
     tctable_html += '<th>Tc</th></tr>';
     for(var j=0; j < Pixel[subarea].length; j++){
         tctable_html += '<tr>';
@@ -1242,6 +1241,7 @@ function createtable(subarea){
         tctable_html += '<td align="center">' + Xarea[subarea][j] + '</td>';
         tctable_html += '<td align="center">' + Tot_Length[subarea][j] + '</td>';
         tctable_html += '<td align="center">' + Vel[subarea][j] + '</td>';
+        tctable_html += '<td align="center">' + I_Time[subarea][j] + '</td>';
         tctable_html += '<td align="center">' + Tot_Time[subarea][j] + '</td>';
         tctable_html += '</tr>';
     }
@@ -1362,7 +1362,7 @@ function transect() {
             map.spin(false);
         }
 
-        if(response.transect_bool === false){
+        if(response.xs_validation === false){
             alert("Transect must be drawn into a routing reach")
         }else{
             plot_data = response.plot_data
@@ -1372,11 +1372,11 @@ function transect() {
             ratingdata = response.ratingdata
 
             $("#tlw").html('<strong>' + parseFloat(totalDistance).toFixed(2) + ' ft</strong>');
-            $("#maxelev").html('<strong>' + response.TWE_max + ' ft</strong>');
-            $("#minelev").html('<strong>' +  response.TWE_min + ' ft</strong>');
+            $("#maxelev").html('<strong>' + response.twe_max + ' ft</strong>');
+            $("#minelev").html('<strong>' +  response.twe_min + ' ft</strong>');
             $("#uda").html('<strong>' + response.areami2_usda + ' mi<sup>2</sup></strong>');
             $("#rslp").html('<strong>' + response.reachslope + ' ft</strong>');
-            $("#bfelev").html('<strong>' + response.minstage+ ' ft</strong>');
+            $("#bfelev").html('<strong>' + minstage+ ' ft</strong>');
             $("#bcw").html('<strong>' + response.wbf + ' ft</strong>');
             $("#bcd").html('<strong>' + response.dbf + ' ft</strong>');
             $("#xsplotreachno").html(reachno);
@@ -1741,13 +1741,17 @@ function tr20controlpanel() {
         }
 
         inputstring = response.inputstring
+        outputstring = response.outputstring
+        errorstring = response.outputstring
         document.getElementById("createwintr20-button").style.display = "none";
-        document.getElementById("downloadwintr20-button").style.display = "block";
+        document.getElementById("downloadwintr20inp-button").style.display = "block";
+        document.getElementById("downloadwintr20err-button").style.display = "block";
+        document.getElementById("downloadwintr20out-button").style.display = "block";
         map.spin(false);
     }
 }
 
-let saveFile = () => {
+let saveFileinput = () => {
 
     // This variable stores all the data.
     let data = inputstring.replace(/\n/g,"\r\n")
@@ -1770,8 +1774,50 @@ let saveFile = () => {
     newLink.click();
 }
 
-function SendLayers(){
+let saveFileerror = () => {
 
+    // This variable stores all the data.
+    let data = errorstring.replace(/\n/g,"\r\n")
+    // Convert the text to BLOB.
+    const textToBLOB = new Blob([data], { type: 'text/plain' });
+    const sFileName = 'TR20in.err';	   // The file to save the data.
+
+    let newLink = document.createElement("a");
+    newLink.download = sFileName;
+
+    if (window.webkitURL != null) {
+        newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+    }
+    else {
+        newLink.href = window.URL.createObjectURL(textToBLOB);
+        newLink.style.display = "none";
+        document.body.appendChild(newLink);
+    }
+
+    newLink.click();
+}
+
+let saveFileoutput = () => {
+
+    // This variable stores all the data.
+    let data = outputstring.replace(/\n/g,"\r\n")
+    // Convert the text to BLOB.
+    const textToBLOB = new Blob([data], { type: 'text/plain' });
+    const sFileName = 'TR20in.out';	   // The file to save the data.
+
+    let newLink = document.createElement("a");
+    newLink.download = sFileName;
+
+    if (window.webkitURL != null) {
+        newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+    }
+    else {
+        newLink.href = window.URL.createObjectURL(textToBLOB);
+        newLink.style.display = "none";
+        document.body.appendChild(newLink);
+    }
+
+    newLink.click();
 }
 
 function contours(){
