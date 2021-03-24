@@ -763,10 +763,9 @@ function basin_properties(){
 
             tasker_modal.push(basin3_modal);
 
-            regionspan += '<option value=' + i + '>' + provstring[j] + '</option>'
+            $('#regionselect').append('<option value=' + j + '>' + provstring[j] + '</option>');
         }
-        alert(regionspan)
-        $("#regionspan").html(regionspan);
+
         $('#basincomp-button').removeAttr('aria-hidden');
         $('#basincomp-button').removeAttr('disabled');
 
@@ -798,8 +797,6 @@ function basin_properties(){
 
 function taskerregion(){
 
-    alert(tasker_modal)
-    alert(tasker_modal[document.getElementById("regionselect").value])
     $("#tasker_mod").html(tasker_modal[document.getElementById("regionselect").value]);
     $("#region_modal").modal()
 
