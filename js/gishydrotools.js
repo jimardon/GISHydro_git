@@ -621,14 +621,14 @@ function basin_properties(){
 
         for(var i=0; i < regioncount-1; i++){
 
-            var estim_par = tasker[i][0];
-            var warning_message = tasker[i][1];
-            var cl = tasker[i][2];
-            var cu = tasker[i][3];
-            var yhat_list = tasker[i][4];
-            var sepc_list = tasker[i][5];
-            var eqyrs_list = tasker[i][6];
-            var sepred_list = tasker[i][7];
+            var estim_par = taskeroutput[i][0];
+            var warning_message = taskeroutput[i][1];
+            var cl = taskeroutput[i][2];
+            var cu = taskeroutput[i][3];
+            var yhat_list = taskeroutput[i][4];
+            var sepc_list = taskeroutput[i][5];
+            var eqyrs_list = taskeroutput[i][6];
+            var sepred_list = taskeroutput[i][7];
 
             var btable10_html = '<table border="0" align="center">';
             btable10_html += '<col width="70">';
@@ -761,7 +761,11 @@ function basin_properties(){
             basin3_modal += '</div>';
 
             tasker_modal.push(basin3_modal);
+
+            regionspan += '<option value="' + i + '" id="' + i + '">' + provstring + '</option>'
         }
+
+        
 
         $('#basincomp-button').removeAttr('aria-hidden');
         $('#basincomp-button').removeAttr('disabled');
