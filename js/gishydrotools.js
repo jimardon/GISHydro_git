@@ -619,7 +619,6 @@ function basin_properties(){
         }
         btable9_html += '</table><p></p>';
 
-        var regionspan = '';
         for(var j=0; j < regioncount; j++){
 
             var estim_par = taskeroutput[j][0];
@@ -796,11 +795,11 @@ function basin_properties(){
 };
 
 function taskerregion(){
-
     $("#tasker_mod").html(tasker_modal[document.getElementById("regionselect").value]);
     $("#region_modal").modal()
-
 }
+
+function OpenTaskerMod(){$("#tasker_mod").modal()}
 
 function flowpaths(){
     delcheck = false;
