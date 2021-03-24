@@ -843,7 +843,7 @@ function flowpaths_polyline(){
     }
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/FlowPaths",
+        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Flowpaths",
         useCors:false
       });
     var gpTask = gpService.createTask();
