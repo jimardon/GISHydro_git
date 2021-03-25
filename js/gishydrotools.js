@@ -751,9 +751,9 @@ function basin_properties(){
             basin3_modal += '</table><p></p>';
 
             basin3_modal +=             '<p align="center" style="font-size:16px;"><b>' + thomas + '</b></p>';
-            basin3_modal +=             '<p align="center"><b> Area Weighted Discharges</b></p>';
+            basin3_modal +=             '<p align="center"><b>Peak Flow (Total Area Weighted)</b></p>';
             basin3_modal +=             btable9_html
-            basin3_modal +=             '<p align="center"><b>Area Weighted Prediction Intervals</b></p>';
+            basin3_modal +=             '<p align="center"><b>Prediction Intervalsc</b></p>';
             basin3_modal +=             btable10_html
             basin3_modal +=             '<p align="center"><b>Hydrologic Region Parameters</b></p>';
             basin3_modal +=             btable11_html
@@ -806,7 +806,7 @@ function basin_properties(){
         map.spin(false);
 
         if(parseFloat(IA) > 10){
-            alertmodal("Warning","<b>Impervious area in watershed exceeds 10%!</b><br></br><br>Calculated discharges from USGS Regression Equations may not be appropriate.</br>","17vh")
+            alertmodal("Warning","<b>Impervious area in watershed exceeds 10%!</b><br></br><br>Calculated discharges from USGS Regression Equations may not be appropriate.</br>","18vh")
         }
     }
 };
