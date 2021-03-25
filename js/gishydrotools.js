@@ -806,7 +806,7 @@ function basin_properties(){
         map.spin(false);
 
         if(parseFloat(IA) > 10){
-            alertmodal("Warning","<b>Impervious area in watershed exceeds 10%!</b><br></br><br>Calculated discharges from USGS Regression Equations may not be appropriate.</br>","15vh")
+            alertmodal("Warning","<b>Impervious area in watershed exceeds 10%!</b><br></br><br>Calculated discharges from USGS Regression Equations may not be appropriate.</br>","17vh")
         }
     }
 };
