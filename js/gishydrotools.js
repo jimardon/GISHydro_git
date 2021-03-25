@@ -93,7 +93,8 @@ var singleshed = false;
 var upper90 = false;
 var tasker_modal = [];
 
-function alertmodal(title, message){
+function alertmodal(title, message,size){
+    document.getElementById("myBtn").style.height = size;
     $("#alertmodaltitle").html(title);
     $("#alertmodalmessage").html(message);
     $("#alertmodal").modal()
@@ -144,7 +145,7 @@ classification system. The 2002 and earlier Land Use/Land \
 Cover datasets are not reconciled with these improvements. \
 For more information on Department of Planning data, please \
 visit the MDP web site http://www.mdp.state.md.us or \
-call (410) 767-4500.)")
+call (410) 767-4500.)","20vh")
     }
 
     new_extents = layer.getBounds()
@@ -182,7 +183,7 @@ call (410) 767-4500.)")
     function dataselectionCallback(error, response, raw){
 
         if (error){
-            alertmodal("Error",errormsg)
+            alertmodal("Error",errormsg,"10vh")
             $('#proj_name').removeAttr('disabled');
             $('#demselect').removeAttr('disabled');
             $('#soilselect').removeAttr('disabled');
@@ -198,7 +199,7 @@ call (410) 767-4500.)")
         aoi_zoom = false
 
         if(response.aoicheck){
-            alertmodal("Warning","Warning: Land use does not cover all of the AOI extent.")
+            alertmodal("Warning","Land use does not cover all of the AOI extent.","10vh")
         }
 
         mask_layer.addLayer(L.geoJson(response.areaofinterest,{
@@ -251,7 +252,7 @@ function addpoint(){
     var longitude = document.getElementById('pp_lng').value;
     var latitude =  document.getElementById('pp_lat').value;
     if (longitude > new_extents.getEast() || longitude < new_extents.getWest() || latitude > new_extents.getNorth() || latitude > new_extents.getSouth()){
-        alertmodal("Error","Longitude and/or latitude values are out of bounds.")
+        alertmodal("Error","Longitude and/or latitude values are out of bounds.","10vh")
     } else {
         addpointvar = true
         var marker = L.marker([latitude, longitude]);
@@ -309,7 +310,7 @@ function delineate(){
     function delineationCallback(error, response, raw){
 
         if (error){
-            alertmodal("Error",errormsg)
+            alertmodal("Error",errormsg,"10vh")
             $('#delineate-button').removeAttr('disabled');
             $('#pourpoint-button').removeAttr('disabled');
             $('#pourpoint2-button').removeAttr('disabled');
@@ -391,7 +392,7 @@ function basin_properties(){
     function basinpropsCallback(error, response, raw){
 
         if (error){
-            alertmodal("Error",errormsg)
+            alertmodal("Error",errormsg,"10vh")
             $('#gagelist').removeAttr('disabled');
             $('#basin_properties-button').removeAttr('disabled');
             map.spin(false);
@@ -801,14 +802,14 @@ function basin_properties(){
 
         sidebar.enablePanel('subshed');
         drawLayers.clearLayers();
-        alertmodal("Done","Basin Properties Calculations Finished")
+        alertmodal("Done","Basin Properties Calculations Finished","10vh")
         $('#contours-button').removeAttr('disabled');
         $('#contourbase').removeAttr('disabled');
         $('#contourint').removeAttr('disabled');
         map.spin(false);
 
         if(parseFloat(IA) > 10){
-            alertmodal("Warning","Impervious area in watershed exceeds 10%! Calculated discharges from USGS Regression Equations may not be appropriate.")
+            alertmodal("Warning","<b>Impervious area in watershed exceeds 10%!</b><br>Calculated discharges from USGS Regression Equations may not be appropriate.</br>","10vh")
         }
     }
 };
@@ -866,7 +867,7 @@ function flowpaths_polyline(){
     function flowpathCallback(error, response, raw){
 
         if (error){
-            alertmodal("Error",errormsg)
+            alertmodal("Error",errormsg,"10vh")
             $('#flowpath-button').removeAttr('disabled');
             map.spin(false);
         }
@@ -939,7 +940,7 @@ function outlets_marker(){
     function outletCallback(error, response, raw){
 
         if (error){
-            alertmodal("Error",errormsg)
+            alertmodal("Error",errormsg,"10vh")
             $('#outlet-button').removeAttr('disabled');
             map.spin(false);
         }
@@ -953,7 +954,7 @@ function outlets_marker(){
                 addasoutlets.addLayer(marker);
                 $('#clearoutlet-button').removeAttr('disabled');
             }else{
-                alertmodal("Invalid","Select a valid outlet.")
+                alertmodal("Invalid","Select a valid outlet.","10vh")
             }
         }
         drawLayers.clearLayers();
@@ -998,7 +999,7 @@ function subsheds(){
     function subshedCallback(error, response, raw){
 
         if (error){
-            alertmodal("Error",errormsg)
+            alertmodal("Error",errormsg,"10vh")
             $('#flowpath-button').removeAttr('disabled');
             $('#outlet-button').removeAttr('disabled');
             $('#clearflowpath-button').removeAttr('disabled');
@@ -1085,7 +1086,7 @@ function settoc(){
     function settocCallback(error, response, raw){
 
         if (error){
-            alertmodal("Error",errormsg)
+            alertmodal("Error",errormsg,"10vh")
             $('#tc_method').removeAttr('disabled');
             $('#sheet_manning').removeAttr('disabled');
             $('#sheet_precipitation').removeAttr('disabled');
@@ -1201,7 +1202,7 @@ function settoc(){
         }
         document.getElementById("tcvalue-button").style.display = "block";
         document.getElementById("tcapply-button").style.display = "none";
-        alertmodal("Done",'Time of concentration estimated. Move to the next tab or check the computed Time of Concentration estimates for the current method by clicking on <b>Tc</b>')
+        alertmodal("Done",'Time of concentration estimated.<br>Move to the next tab or check the computed Time of Concentration estimates for the current method by clicking on <b>Tc</b></br>',"10vh")
 
         if(reachcount<1){
             sidebar.enablePanel('wintr20');
@@ -1367,14 +1368,14 @@ function transect() {
     function transectCallback(error, response, raw){
 
         if (error){
-            alertmodal("Error",errormsg)
+            alertmodal("Error",errormsg,"10vh")
             $('#addxs-button').removeAttr('disabled');
             $('#addreservoir-button').removeAttr('disabled');
             map.spin(false);
         }
 
         if(response.xs_validation === false){
-            alertmodal("Invalid","Transect must be drawn into a routing reach")
+            alertmodal("Invalid","Transect must be drawn into a routing reach","10vh")
         }else{
             plot_data = response.plot_data
             ratingtype = response.ratingtype
@@ -1456,11 +1457,11 @@ function applyxsreach(){
     totalstage[reachno-1] = minstage
     var filtered = totalreach.filter(Boolean);
     if(filtered.length == reachcount){
-        alertmodal("Done","Reach control complete")
+        alertmodal("Done","Reach control complete","10vh")
         sidebar.enablePanel('wintr20');
         sidebar.open('wintr20');
     }else{
-        alertmodal("Done","Transect added")
+        alertmodal("Done","Transect added","10vh")
     }
 }
 
@@ -1495,7 +1496,7 @@ function reservoir(){
     function transectCallback(error, response, raw){
 
         if (error){
-            alertmodal("Error",errormsg)
+            alertmodal("Error",errormsg,"10vh")
             $('#addxs-button').removeAttr('disabled');
             $('#addreservoir-button').removeAttr('disabled');
             map.spin(false);
@@ -1512,7 +1513,7 @@ function reservoir(){
             $("#resinforeachno").html(reachno);
             $("#resplotreachno").html(reachno);
         }else{
-            alertmodal("Invalid","Reservoir must be placed into a routing subwatershed")
+            alertmodal("Invalid","Reservoir must be placed into a routing subwatershed","10vh")
             drawLayers.clearLayers();
         }
         map.spin(false);
@@ -1531,11 +1532,11 @@ function applyresreach(){
     drawLayers.clearLayers();
     var filtered = totalreach.filter(Boolean);
     if(filtered.length == reachcount){
-        alertmodal("Done","Reach control complete")
+        alertmodal("Done","Reach control complete","10vh")
         sidebar.enablePanel('wintr20');
         sidebar.open('wintr20');
     }else{
-        alertmodal("Done","Reservoir added")
+        alertmodal("Done","Reservoir added","10vh")
     }
 }
 
@@ -1678,7 +1679,7 @@ function precipitationdepth() {
     function precipitationdepthCallback(error, response, raw){
 
         if (error){
-            alertmodal("Error",errormsg)
+            alertmodal("Error",errormsg,"10vh")
             $('#precipitation-button').removeAttr('disabled');
             map.spin(false);
         }
@@ -1748,7 +1749,7 @@ function tr20controlpanel() {
     function tr20controlpanelCallback(error, response, raw){
 
         if (error){
-            alertmodal("Error",errormsg)
+            alertmodal("Error",errormsg,"10vh","10vh")
             $('#createwintr20-button').removeAttr('disabled');
             map.spin(false);
         }
@@ -1756,13 +1757,14 @@ function tr20controlpanel() {
         inputstring = response.inputstring
         outputstring = response.outputstring
         errorstring = response.errorstring
+        alert(errorstring)
         document.getElementById("createwintr20-button").style.display = "none";
         document.getElementById("downloadwintr20error-button").style.display = "block";
         document.getElementById("downloadwintr20input-button").style.display = "block";
         document.getElementById("downloadwintr20output-button").style.display = "block";
 
         if (errorstring == 'NA') {
-            alertmodal("Warning","Please check error file for possible errors.")
+            alertmodal("Warning","Please check error file for possible errors.","10vh")
         }
 
         map.spin(false);
@@ -1811,7 +1813,7 @@ function contours(){
     function contourCallback(error, response, raw){
 
         if (error){
-            alertmodal("Error",errormsg)
+            alertmodal("Error",errormsg,"10vh")
             $('#contours-button').removeAttr('disabled');
             map.spin(false);
         }
@@ -1843,7 +1845,7 @@ function infproj(){
     function infprojCallback(error, response, raw){
 
         if (error){
-            alertmodal("Error",errormsg)
+            alertmodal("Error",errormsg,"10vh")
             $('#infstr-button').removeAttr('disabled');
             map.spin(false);
         }
