@@ -583,6 +583,14 @@ function basin_properties(){
         btable7_html += '<tr><td align="left">D Soils:</td><td align="left">' + pctsoil[3] + '</td></tr>';
         btable7_html += '</table><p></p>';
 
+        var btableregion_html = '<table border="0" align="center">';
+        btableregion_html += '<col width="300">';
+        btableregion_html += '<col width="300">';
+        for(var i=0; i < provstring.length; i++){
+            btableregion_html += '<tr><td align="left">' + provstring[i][0] + ':</td><td align="left">' + provstring[i][1] + '</td></tr>';
+        }
+        btableregion_html += '</table><p></p>';
+
         var basin2_modal = '<div class="modal-dialog modal-lg" style="width:100%">';
         basin2_modal +=     '<div class="modal-content">';
         basin2_modal +=         '<div class="modal-header">';
@@ -593,16 +601,15 @@ function basin_properties(){
         basin2_modal +=             '<p></p><p align="center"><b>Data Selected</b></p>';
         basin2_modal +=             btable3_html
         basin2_modal +=             '<p align="center"><b>Hydrologic Region Distribution</b></p>';
-        for(var i=0; i < provstring.length; i++){
-            basin2_modal += '<p align="center">' + provstring[i][0] + ': ' + provstring[i][1] + '%<br/></p>';
-        }
+        basin2_modal +=             btableregion_html
+        basin2_modal +=             '<p align="center"><b>Basin Properties</b></p>';
         basin2_modal +=             btable4_html
-        basin2_modal +=             '<div align="center"><p style="color:red;width: 400px;text-align: center;" ><b>' + html_warning + '</b></p></div>'
         basin2_modal +=             btable5_html
         basin2_modal +=             '<p align="center"><b>Selected Soils Data Statistics Percent</b></p>';
         basin2_modal +=             btable6_html
         basin2_modal +=             '<p align="center"><b>SSURGO Soils Data Statistics Percent (used in Regression Equations)</b></p>';
         basin2_modal +=             btable7_html
+        basin2_modal +=             '<div align="center"><p style="color:red;width: 400px;text-align: center;" ><b>' + html_warning + '</b></p></div>'
         basin2_modal +=         '</div>';
         basin2_modal +=         '<div class="modal-footer">';
         basin2_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
@@ -753,7 +760,7 @@ function basin_properties(){
             basin3_modal +=             '<p align="center" style="font-size:16px;"><b>' + thomas + '</b></p>';
             basin3_modal +=             '<p align="center"><b>Peak Flow (Total Area Weighted)</b></p>';
             basin3_modal +=             btable9_html
-            basin3_modal +=             '<p align="center"><b>Prediction Intervalsc</b></p>';
+            basin3_modal +=             '<p align="center"><b>Prediction Intervals (Total Area Weighted)</b></p>';
             basin3_modal +=             btable10_html
             basin3_modal +=             '<p align="center"><b>Hydrologic Region Parameters</b></p>';
             basin3_modal +=             btable11_html
