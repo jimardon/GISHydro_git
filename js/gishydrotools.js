@@ -218,11 +218,7 @@ call (410) 767-4500.)","20vh")
             weight: 1,
         }));
 
-        var str = response.workpath;
-        var res = str.split("\\");
-
-        full_project_name = res[res.length - 1];
-        ;
+        full_project_name = response.workpath
 
         map.removeLayer(nhdf);
         map.removeLayer(roadsf);
