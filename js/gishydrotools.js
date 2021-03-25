@@ -122,8 +122,6 @@ function apply(){
     $('#clearaoi-button').attr('disabled','true');
     $('#apply-button').attr('disabled','true');
     data_select();
-
-    alertmodal("hola","chao");
 };
 
 function data_select(){
@@ -138,7 +136,7 @@ function data_select(){
     burnopt = document.getElementById("burn").checked
 
     if (land_layer == "lu2010" || land_layer == "mdplu2002" || land_layer == "lu97m" ){
-        alert("The LandUse/Land Cover data set you have selected has been provided courtesy of the Maryland Department of Planning. \
+        alertmodal("Disclaimer","The LandUse/Land Cover data set you have selected has been provided courtesy of the Maryland Department of Planning. \
 Any use of that data set outside of this application without \
 the permission of the Department of Planning is prohibited. \
 The 2010 data are based on superior imagery and a refined \
@@ -184,7 +182,7 @@ call (410) 767-4500.)")
     function dataselectionCallback(error, response, raw){
 
         if (error){
-            alert(errormsg)
+            alertmodal("Error",errormsg)
             $('#proj_name').removeAttr('disabled');
             $('#demselect').removeAttr('disabled');
             $('#soilselect').removeAttr('disabled');
@@ -200,7 +198,7 @@ call (410) 767-4500.)")
         aoi_zoom = false
 
         if(response.aoicheck){
-            alert("Warning: Land use does not cover all of the AOI extent.")
+            alertmodal("Warning","Warning: Land use does not cover all of the AOI extent.")
         }
 
         mask_layer.addLayer(L.geoJson(response.areaofinterest,{
@@ -253,7 +251,7 @@ function addpoint(){
     var longitude = document.getElementById('pp_lng').value;
     var latitude =  document.getElementById('pp_lat').value;
     if (longitude > new_extents.getEast() || longitude < new_extents.getWest() || latitude > new_extents.getNorth() || latitude > new_extents.getSouth()){
-        alert("Error: Longitude and/or latitude values are out of bounds.")
+        alertmodal("Error","Longitude and/or latitude values are out of bounds.")
     } else {
         addpointvar = true
         var marker = L.marker([latitude, longitude]);
@@ -311,7 +309,7 @@ function delineate(){
     function delineationCallback(error, response, raw){
 
         if (error){
-            alert(errormsg)
+            alertmodal("Error",errormsg)
             $('#delineate-button').removeAttr('disabled');
             $('#pourpoint-button').removeAttr('disabled');
             $('#pourpoint2-button').removeAttr('disabled');
@@ -393,7 +391,7 @@ function basin_properties(){
     function basinpropsCallback(error, response, raw){
 
         if (error){
-            alert(errormsg)
+            alertmodal("Error",errormsg)
             $('#gagelist').removeAttr('disabled');
             $('#basin_properties-button').removeAttr('disabled');
             map.spin(false);
@@ -803,14 +801,14 @@ function basin_properties(){
 
         sidebar.enablePanel('subshed');
         drawLayers.clearLayers();
-        alert("Basin Properties Calculations Finished")
+        alertmodal("Done","Basin Properties Calculations Finished")
         $('#contours-button').removeAttr('disabled');
         $('#contourbase').removeAttr('disabled');
         $('#contourint').removeAttr('disabled');
         map.spin(false);
 
         if(parseFloat(IA) > 10){
-            alert("IMPERVIOUS AREA IN WATERSHED EXCEEDS 10%. Calculated discharges from USGS Regression Equations may not be appropriate.")
+            alertmodal("Warning","Impervious area in watershed exceeds 10%! Calculated discharges from USGS Regression Equations may not be appropriate.")
         }
     }
 };
@@ -868,7 +866,7 @@ function flowpaths_polyline(){
     function flowpathCallback(error, response, raw){
 
         if (error){
-            alert(errormsg)
+            alertmodal("Error",errormsg)
             $('#flowpath-button').removeAttr('disabled');
             map.spin(false);
         }
@@ -941,7 +939,7 @@ function outlets_marker(){
     function outletCallback(error, response, raw){
 
         if (error){
-            alert(errormsg)
+            alertmodal("Error",errormsg)
             $('#outlet-button').removeAttr('disabled');
             map.spin(false);
         }
@@ -955,7 +953,7 @@ function outlets_marker(){
                 addasoutlets.addLayer(marker);
                 $('#clearoutlet-button').removeAttr('disabled');
             }else{
-                alert("Select a valid outlet.")
+                alertmodal("Invalid","Select a valid outlet.")
             }
         }
         drawLayers.clearLayers();
@@ -1000,7 +998,7 @@ function subsheds(){
     function subshedCallback(error, response, raw){
 
         if (error){
-            alert(errormsg)
+            alertmodal("Error",errormsg)
             $('#flowpath-button').removeAttr('disabled');
             $('#outlet-button').removeAttr('disabled');
             $('#clearflowpath-button').removeAttr('disabled');
@@ -1087,7 +1085,7 @@ function settoc(){
     function settocCallback(error, response, raw){
 
         if (error){
-            alert(errormsg)
+            alertmodal("Error",errormsg)
             $('#tc_method').removeAttr('disabled');
             $('#sheet_manning').removeAttr('disabled');
             $('#sheet_precipitation').removeAttr('disabled');
@@ -1203,7 +1201,7 @@ function settoc(){
         }
         document.getElementById("tcvalue-button").style.display = "block";
         document.getElementById("tcapply-button").style.display = "none";
-        alert('Time of concentration estimated. Move to the next tab or check the Tc estimates for the current method')
+        alertmodal("Done",'Time of concentration estimated. Move to the next tab or check the computed Time of Concentration estimates for the current method by clicking on ' + <b>Tc</b>)
 
         if(reachcount<1){
             sidebar.enablePanel('wintr20');
@@ -1369,14 +1367,14 @@ function transect() {
     function transectCallback(error, response, raw){
 
         if (error){
-            alert(errormsg)
+            alertmodal("Error",errormsg)
             $('#addxs-button').removeAttr('disabled');
             $('#addreservoir-button').removeAttr('disabled');
             map.spin(false);
         }
 
         if(response.xs_validation === false){
-            alert("Transect must be drawn into a routing reach")
+            alertmodal("Invalid","Transect must be drawn into a routing reach")
         }else{
             plot_data = response.plot_data
             ratingtype = response.ratingtype
@@ -1458,11 +1456,11 @@ function applyxsreach(){
     totalstage[reachno-1] = minstage
     var filtered = totalreach.filter(Boolean);
     if(filtered.length == reachcount){
-        alert("Reach control complete")
+        alertmodal("Done","Reach control complete")
         sidebar.enablePanel('wintr20');
         sidebar.open('wintr20');
     }else{
-        alert("Transect added")
+        alertmodal("Done","Transect added")
     }
 }
 
@@ -1497,7 +1495,7 @@ function reservoir(){
     function transectCallback(error, response, raw){
 
         if (error){
-            alert(errormsg)
+            alertmodal("Error",errormsg)
             $('#addxs-button').removeAttr('disabled');
             $('#addreservoir-button').removeAttr('disabled');
             map.spin(false);
@@ -1514,7 +1512,7 @@ function reservoir(){
             $("#resinforeachno").html(reachno);
             $("#resplotreachno").html(reachno);
         }else{
-            alert("Reservoir must be placed into a routing subwatershed")
+            alertmodal("Invalid","Reservoir must be placed into a routing subwatershed")
             drawLayers.clearLayers();
         }
         map.spin(false);
@@ -1533,11 +1531,11 @@ function applyresreach(){
     drawLayers.clearLayers();
     var filtered = totalreach.filter(Boolean);
     if(filtered.length == reachcount){
-        alert("Reach control complete")
+        alertmodal("Done","Reach control complete")
         sidebar.enablePanel('wintr20');
         sidebar.open('wintr20');
     }else{
-        alert("Reservoir added")
+        alertmodal("Done","Reservoir added")
     }
 }
 
@@ -1680,7 +1678,7 @@ function precipitationdepth() {
     function precipitationdepthCallback(error, response, raw){
 
         if (error){
-            alert(errormsg)
+            alertmodal("Error",errormsg)
             $('#precipitation-button').removeAttr('disabled');
             map.spin(false);
         }
@@ -1750,7 +1748,7 @@ function tr20controlpanel() {
     function tr20controlpanelCallback(error, response, raw){
 
         if (error){
-            alert(errormsg)
+            alertmodal("Error",errormsg)
             $('#createwintr20-button').removeAttr('disabled');
             map.spin(false);
         }
@@ -1764,7 +1762,7 @@ function tr20controlpanel() {
         document.getElementById("downloadwintr20output-button").style.display = "block";
 
         if (errorstring == 'NA') {
-            alert("Please check error file for possible errors.")
+            alertmodal("Warning","Please check error file for possible errors.")
         }
 
         map.spin(false);
@@ -1813,7 +1811,7 @@ function contours(){
     function contourCallback(error, response, raw){
 
         if (error){
-            alert(errormsg)
+            alertmodal("Error",errormsg)
             $('#contours-button').removeAttr('disabled');
             map.spin(false);
         }
@@ -1845,7 +1843,7 @@ function infproj(){
     function infprojCallback(error, response, raw){
 
         if (error){
-            alert(errormsg)
+            alertmodal("Error",errormsg)
             $('#infstr-button').removeAttr('disabled');
             map.spin(false);
         }
