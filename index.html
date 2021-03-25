@@ -229,7 +229,8 @@
                     <p></p>
                     <p align="justify" style="font-size:14px;">Tap on a watershed outlet (pour point) for delineation. It must be placed on a valid stream. 
                         Before using this tool, it is helpful to add the Inferred Streams layer; this step reveals the natural drainage network of the watershed.
-                        Check on the <a href="javascript:sidebar.open('tools');">Tools</a> tab for showing Inferred Streams. </p>
+                        Check on the <a href="javascript:sidebar.open('tools');">Tools</a> tab for showing Inferred Streams. After the watershed has been delineated 
+                        the option to download the layer becomes available.</p>
                     <p></p>
                     <!-- Select Pour Point -->
                     <div class="hr-text-bar">
@@ -290,9 +291,8 @@
                 </h1>
                 <div style="width:95%;">
                     <p></p>
-                    <p align="justify" style="font-size:14px;">If available, select a stream gauge for calibration. Then click on Calculate, this could take some minutes depending on the watershed size. 
-                        After the process has finished some basin properties will become available. You can also download the current watershed in GeoJSON format or proceed to the <a href="javascript:sidebar.open('download');">Download</a> tab 
-                        to e-mail it as a package.</p>
+                    <p align="justify" style="font-size:14px;">If available, select a stream gauge for calibration. Then click on Calculate, this could take some time depending on the watershed size. 
+                        After the process has finished some basin properties will become available. You can also download the current watershed in GeoJSON format from the previous tab (<a href="javascript:sidebar.open('shed_del');">Download</a>).</p>
                     <p></p>
                     <!-- Gage List -->
                     <div class="hr-text-bar">
@@ -415,8 +415,8 @@
                 <div style="width:95%;">
                     <p></p>
                     <p align="justify" style="font-size:14px;">Select a time of concentration method and options, then click Apply. 
-                        This could take some minutes depending on the amount and size of the subwatersheds. 
-                        Tapping on a subwatershed will pop up the respective ID # (available after Tc estimate).</p>
+                        This could take some time depending on the amount and size of the subwatersheds. 
+                        Tapping on a subwatershed will show up the respective ID # (available after Tc estimate).</p>
                     <p></p>
                     <!-- TC Method -->
                     <div class="hr-text-bar">
@@ -551,7 +551,7 @@
                 </h1>
                 <div style="width:95%;">
                     <p></p>
-                    <p align="justify" style="font-size:14px;">If this option becomes available then a reach control (rating table) must be applied to the routing reaches. 
+                    <p align="justify" style="font-size:14px;">If this option becomes available then a reach control (rating table/curve) must be applied to the routing reach(es). 
                         To help draw cross section profiles, a tool to show contour lines is available in the <a href="javascript:sidebar.open('tools');">Tools</a> tab.</p>
                     <p></p>
                     <div style="display:block;" id="rating_method">
@@ -657,8 +657,8 @@
                 </h1>
                 <div style="width:95%;">
                     <p></p>
-                    <p align="justify" style="font-size:14px;">To create the WinTR-20 input, error, and output files first some events must be selected. This could take some minutes depending on how many events are selected. 
-                        After this process has finished some options will become available, press the Create WinTR-20 button to create input, error, and ouput files that can be downloaded. 
+                    <p align="justify" style="font-size:14px;">To create the WinTR-20 input, error, and output files first some events must be selected. This could take some time depending on how many events are selected. 
+                        After this process has finished some options will become available, press the Create WinTR-20 button to create input, error, and ouput files to download. 
                         Please check WinTR-20's USDA <a href="https://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/null/?cid=stelprdb1042793" rel="noopener noreferrer" target="_blank">website</a> 
                         for more information on WinTR-20.</p>
                     <p></p>
