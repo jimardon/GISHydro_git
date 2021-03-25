@@ -430,101 +430,103 @@
                             <option value="Hydrology Panel">Hydrology Panel Method</option>
                         </select>
                     </div>
+                    <div id="velocitydisplay">
                     <!--Sheet Properties -->
-                    <div class="hr-text-bar">
-                        <span class="hr-text">Sheet Flow Properties</span>
-                    </div>
-                    <p></p>
-                    <div class="inline">
-                        <strong>Manning:</strong>
-                        <div class="complete-form">
-                            <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="5" min="0" step="0.001" class="complete-input" id="sheet_manning" value="0.1">
+                        <div class="hr-text-bar">
+                            <span class="hr-text">Sheet Flow Properties</span>
                         </div>
-                    </div>
-                    <div class="inline">
-                        <strong>Precipitation T=2yr [in]:</strong>
-                        <div class="complete-form">
-                            <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="20" min="0" step="0.01" class="complete-input" id="sheet_precipitation">
+                        <p></p>
+                        <div class="inline">
+                            <strong>Manning:</strong>
+                            <div class="complete-form">
+                                <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="5" min="0" step="0.001" class="complete-input" id="sheet_manning" value="0.1">
+                            </div>
                         </div>
-                    </div>
-                    <div class="inline">
-                        <strong>Sheet Length [ft]:</strong>
-                        <div class="complete-form">
-                            <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="10000" min="0" step="1" class="complete-input" id="sheet_length" value="100">
+                        <div class="inline">
+                            <strong>Precipitation T=2yr [in]:</strong>
+                            <div class="complete-form">
+                                <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="20" min="0" step="0.01" class="complete-input" id="sheet_precipitation">
+                            </div>
                         </div>
-                    </div>
-                    <!-- Shallow Flow Properties -->
-                    <div class="hr-text-bar">
-                        <span class="hr-text">Shallow Flow Properties</span>
-                    </div>
-                    <p></p>
-                    <div class="inline">
-                        <strong>Paved:</strong>
-                        <div class="radio-form">
-                            <input type='radio' style="width:20px;height:20px;" name='shallowflow' id='pavedopt' value='paved'>
+                        <div class="inline">
+                            <strong>Sheet Length [ft]:</strong>
+                            <div class="complete-form">
+                                <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="10000" min="0" step="1" class="complete-input" id="sheet_length" value="100">
+                            </div>
                         </div>
-                    </div>
-                    <div class="inline">
-                        <strong>Unpaved:</strong>
-                        <div class="radio-form">
-                            <input type='radio' style="width:20px;height:20px;" name='shallowflow' id='unpavedopt' value='unpaved' checked>
+                        <!-- Shallow Flow Properties -->
+                        <div class="hr-text-bar">
+                            <span class="hr-text">Shallow Flow Properties</span>
                         </div>
-                    </div>
-                    <!-- Channel Flow Properties -->
-                    <div class="hr-text-bar">
-                        <span class="hr-text">Channel Flow Properties</span>
-                    </div>
-                    <p></p>
-                    <div class="inline">
-                        <strong>Use NHD Streams:</strong>
-                        <div class="radio-form">
-                            <input type='radio' style="width:20px;height:20px;" name='channelflow' id='nhdopt' value='nhdstreams' checked>
+                        <p></p>
+                        <div class="inline">
+                            <strong>Paved:</strong>
+                            <div class="radio-form">
+                                <input type='radio' style="width:20px;height:20px;" name='shallowflow' id='pavedopt' value='paved'>
+                            </div>
                         </div>
-                    </div>
-                    <div class="inline">
-                        <strong>Use Inferred Streams:</strong>
-                        <div class="radio-form">
-                            <input type='radio' style="width:20px;height:20px;" name='channelflow' id='infopt' value='inferredstreams'>
+                        <div class="inline">
+                            <strong>Unpaved:</strong>
+                            <div class="radio-form">
+                                <input type='radio' style="width:20px;height:20px;" name='shallowflow' id='unpavedopt' value='unpaved' checked>
+                            </div>
                         </div>
-                    </div>
-                    <p></p>
-                    <div class="inline">
-                        <strong>Manning:</strong>
-                        <div class="complete-form">
-                            <input type="number" style="width:60%;text-align:left;padding-left: 5px;" max="5" min="0" step="0.001" class="complete-input" id="channel_manning" value="0.05">
+                        <!-- Channel Flow Properties -->
+                        <div class="hr-text-bar">
+                            <span class="hr-text">Channel Flow Properties</span>
                         </div>
-                    </div>
-                    <div class="inline">
-                        <strong>Source Area [mi<sup>2</sup>]:</strong>
-                        <div class="complete-form">
-                            <input type="number" style="width:60%;text-align:left;padding-left: 5px;" max="20" min="0" step="0.001" class="complete-input" id="channel_area" value="0.0897">
+                        <p></p>
+                        <div class="inline">
+                            <strong>Use NHD Streams:</strong>
+                            <div class="radio-form">
+                                <input type='radio' style="width:20px;height:20px;" name='channelflow' id='nhdopt' value='nhdstreams' checked>
+                            </div>
                         </div>
-                    </div>
-                    <div class="inline">
-                        <strong>Channel Width:</strong>
-                        <div style="display:flex;float:right;">
-                            <label style="margin-right: 10px;margin-left: 10px;">Coef.</label>
-                            <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="500" min="0" step="0.01" class="complete-input" id="channel_width_coef">
-                            <label style="margin-right: 10px;margin-left: 10px;">Exp.</label>
-                            <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="5" min="0" step="0.01" class="complete-input" id="channel_width_exp">
+                        <div class="inline">
+                            <strong>Use Inferred Streams:</strong>
+                            <div class="radio-form">
+                                <input type='radio' style="width:20px;height:20px;" name='channelflow' id='infopt' value='inferredstreams'>
+                            </div>
                         </div>
-                    </div>
-                    <div class="inline">
-                        <strong>Channel Depth:</strong>
-                        <div style="display:flex;float:right;">
-                            <label style="margin-right: 10px;margin-left: 10px;">Coef.</label>
-                            <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="500" min="0" step="0.01" class="complete-input" id="channel_depth_coef">
-                            <label style="margin-right: 10px;margin-left: 10px;">Exp.</label>
-                            <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="5" min="0" step="0.01" class="complete-input" id="channel_depth_exp">
+                        <p></p>
+                        <div class="inline">
+                            <strong>Manning:</strong>
+                            <div class="complete-form">
+                                <input type="number" style="width:60%;text-align:left;padding-left: 5px;" max="5" min="0" step="0.001" class="complete-input" id="channel_manning" value="0.05">
+                            </div>
                         </div>
-                    </div>
-                    <div class="inline">
-                        <strong>Channel Area:</strong>
-                        <div style="display:flex;float:right;">
-                            <label style="margin-right: 10px;margin-left: 10px;">Coef.</label>
-                            <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="500" min="0" step="0.01" class="complete-input" id="channel_area_coef">
-                            <label style="margin-right: 10px;margin-left: 10px;">Exp.</label>
-                            <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="5" min="0" step="0.01" class="complete-input" id="channel_area_exp">
+                        <div class="inline">
+                            <strong>Source Area [mi<sup>2</sup>]:</strong>
+                            <div class="complete-form">
+                                <input type="number" style="width:60%;text-align:left;padding-left: 5px;" max="20" min="0" step="0.001" class="complete-input" id="channel_area" value="0.0897">
+                            </div>
+                        </div>
+                        <div class="inline">
+                            <strong>Channel Width:</strong>
+                            <div style="display:flex;float:right;">
+                                <label style="margin-right: 10px;margin-left: 10px;">Coef.</label>
+                                <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="500" min="0" step="0.01" class="complete-input" id="channel_width_coef">
+                                <label style="margin-right: 10px;margin-left: 10px;">Exp.</label>
+                                <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="5" min="0" step="0.01" class="complete-input" id="channel_width_exp">
+                            </div>
+                        </div>
+                        <div class="inline">
+                            <strong>Channel Depth:</strong>
+                            <div style="display:flex;float:right;">
+                                <label style="margin-right: 10px;margin-left: 10px;">Coef.</label>
+                                <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="500" min="0" step="0.01" class="complete-input" id="channel_depth_coef">
+                                <label style="margin-right: 10px;margin-left: 10px;">Exp.</label>
+                                <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="5" min="0" step="0.01" class="complete-input" id="channel_depth_exp">
+                            </div>
+                        </div>
+                        <div class="inline">
+                            <strong>Channel Area:</strong>
+                            <div style="display:flex;float:right;">
+                                <label style="margin-right: 10px;margin-left: 10px;">Coef.</label>
+                                <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="500" min="0" step="0.01" class="complete-input" id="channel_area_coef">
+                                <label style="margin-right: 10px;margin-left: 10px;">Exp.</label>
+                                <input type="number" style="width:60px;text-align:left;padding-left: 3px;" max="5" min="0" step="0.01" class="complete-input" id="channel_area_exp">
+                            </div>
                         </div>
                     </div>
                     <!-- Estimate TOC -->

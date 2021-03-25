@@ -82,12 +82,12 @@ var sidebar = L.control.sidebar({
     container: 'sidebar',
     autopan: true,
 }).addTo(map).open('home');
-//sidebar.disablePanel('shed_del');
-//sidebar.disablePanel('basin_properties');
-//sidebar.disablePanel('subshed');
+sidebar.disablePanel('shed_del');
+sidebar.disablePanel('basin_properties');
+sidebar.disablePanel('subshed');
 //sidebar.disablePanel('toc');
-//sidebar.disablePanel('reachselect');
-//sidebar.disablePanel('wintr20');
+sidebar.disablePanel('reachselect');
+sidebar.disablePanel('wintr20');
 
 //Base layers definition and addition
 var baseLayers = {
@@ -270,3 +270,16 @@ checkBoxlayer.change(function () {
     $('#email-button').prop('disabled', checkBoxlayer.filter(':checked').length < 1);
 });
 $('.LayerCheck').change();
+
+$(document).ready(function(){
+    $('#tc_method').on('change', function() {
+      if ( this.value == 'Velocity Method')
+      {
+        document.getElementById("velocitydisplay").style.display = "block";
+      }
+      else
+      {
+        document.getElementById("velocitydisplay").style.display = "none";
+      }
+    });
+});

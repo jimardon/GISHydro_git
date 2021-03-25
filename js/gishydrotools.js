@@ -809,7 +809,7 @@ function basin_properties(){
         map.spin(false);
 
         if(parseFloat(IA) > 10){
-            alertmodal("Warning","<b>Impervious area in watershed exceeds 10%!</b><br>Calculated discharges from USGS Regression Equations may not be appropriate.</br>","15vh")
+            alertmodal("Warning","<b>Impervious area in watershed exceeds 10%!</b><br></br><br>Calculated discharges from USGS Regression Equations may not be appropriate.</br>","15vh")
         }
     }
 };
@@ -1202,7 +1202,7 @@ function settoc(){
         }
         document.getElementById("tcvalue-button").style.display = "block";
         document.getElementById("tcapply-button").style.display = "none";
-        alertmodal("Done",'Time of concentration estimated. Move to the next tab or check the computed Time of Concentration estimates for the current method by clicking on <b>Tc</b>',"15vh")
+        alertmodal("Done",'Time of concentration estimated. Move to the next tab or check the computed Time of Concentration estimates for the current method by clicking on <b>Tc</b>',"12vh")
 
         if(reachcount<1){
             sidebar.enablePanel('wintr20');
@@ -1757,7 +1757,7 @@ function tr20controlpanel() {
         inputstring = response.inputstring
         outputstring = response.outputstring
         errorstring = response.errorstring
-        alert(errorstring)
+
         document.getElementById("createwintr20-button").style.display = "none";
         document.getElementById("downloadwintr20error-button").style.display = "block";
         document.getElementById("downloadwintr20input-button").style.display = "block";
