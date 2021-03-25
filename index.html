@@ -291,7 +291,7 @@
                 </h1>
                 <div style="width:95%;">
                     <p></p>
-                    <p align="justify" style="font-size:14px;">If available, select a stream gauge for calibration. Then click on Calculate, this could take some time depending on the watershed size. 
+                    <p align="justify" style="font-size:14px;">If available, select a stream gauge for calibration. Then click on Compute Properties, this could take some time depending on the watershed size. 
                         After the process has finished some basin properties will become available. You can also download the current watershed in GeoJSON format from the previous tab (<a href="javascript:sidebar.open('shed_del');">Download</a>).</p>
                     <p></p>
                     <!-- Gage List -->
@@ -311,7 +311,7 @@
                         <span class="hr-text">Basin Properties</span>
                     </div>
                     <p></p>
-                    <button id="basin_properties-button" class="generic-grey-button" onclick=basin_properties()>Calculate</button>
+                    <button id="basin_properties-button" class="generic-grey-button" onclick=basin_properties()>Compute Properties</button>
                     <p></p>
                     <!-- Basin Composition Buttons -->
                     <div class="hr-text-bar">
@@ -740,7 +740,7 @@
                         <div class="inline">
                             <strong>Override Tc (hrs) Value (optional):</strong>
                             <div class="complete-form" style="width:20%;">
-                                <input size ="10" maxlength="10" type="number" class="complete-input" id="usertcvalue">
+                                <input size ="10" maxlength="10" type="number" class="complete-input" id="usertcvalue" disabled='disabled'>
                             </div>
                         </div>
                         <p></p>
@@ -1298,7 +1298,7 @@
                         <p></p>
                         <div class="inline">
                             <button id="showpixels-button" class="generic-grey-button" onclick=showpx()>Segment Table</button>
-                            <button id="recalculate-button" class="generic-grey-button" disabled="disabled" onclick=recalculatetc()>Recalculate Tc</button>
+                            <button id="recalculate-button" class="generic-grey-button" disabled="disabled" onclick=recalculatetc()>Recompute Tc</button>
                         </div>
                     </div>
                     <div class="column">
