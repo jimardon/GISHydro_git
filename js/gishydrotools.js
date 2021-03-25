@@ -594,7 +594,7 @@ function basin_properties(){
         basin2_modal +=             btable3_html
         basin2_modal +=             '<p align="center"><b>Hydrologic Region Distribution</b></p>';
         for(var i=0; i < provstring.length; i++){
-            basin2_modal += '<p align="center">' + provstring[i] + '<br/></p>';
+            basin2_modal += '<p align="center">' + provstring[i][0] + ': ' + provstring[i][1] + '%<br/></p>';
         }
         basin2_modal +=             btable4_html
         basin2_modal +=             '<div align="center"><p style="color:red;width: 400px;text-align: center;" ><b>' + html_warning + '</b></p></div>'
@@ -746,7 +746,8 @@ function basin_properties(){
             basin3_modal += '<table border="0">';
             basin3_modal += '<col width="300">';
             basin3_modal += '<col width="300">';
-            basin3_modal += '<tr><td align="left">Hydrologic Region:</td><td align="left">' + provstring[j] + '</td></tr>';
+            basin3_modal += '<tr><td align="left">Hydrologic Region:</td><td align="left">' + provstring[j][0] + '</td></tr>';
+            basin3_modal += '<tr><td align="left">Weight of Total Area:</td><td align="left">' + provstring[j][1] + '%</td></tr>';
             basin3_modal += '</table><p></p>';
 
             basin3_modal +=             '<p align="center" style="font-size:16px;"><b>' + thomas + '</b></p>';
@@ -774,7 +775,7 @@ function basin_properties(){
 
             tasker_modal.push(basin3_modal);
 
-            $('#regionselect').append('<option value=' + j + '>' + provstring[j] + '</option>');
+            $('#regionselect').append('<option value=' + j + '>' + provstring[j][0] + '</option>');
         }
 
         if(regioncount>1){
