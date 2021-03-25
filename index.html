@@ -882,10 +882,17 @@
                     <p></p>
                     <!-- Show Streams -->
                     <div class="hr-text-bar">
-                        <span class="hr-text">Show Inferred Streams</span>
+                        <span class="hr-text">Load Inferred Streams</span>
                     </div>
                     <p align="justify" style="font-size:14px;">If the AOI size is too big then the inferred streams will not show up on the map. Try reducing the AOI as much as possible.</p>
-                    <button id="infstr-button" class="generic-grey-button" disabled="disabled" onclick=infproj()>Show Streams</button>
+                    <button id="infstr-button" class="generic-grey-button" disabled="disabled" onclick=infproj()>Load Streams</button>
+                    <p></p>
+                    <!-- Show Land Use -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Load Land Use Layer</span>
+                    </div>
+                    <p align="justify" style="font-size:14px;">If the AOI size is too big then the land use layer will not show up on the map. Try reducing the AOI as much as possible.</p>
+                    <button id="infstr-button" class="generic-grey-button" disabled="disabled" onclick=infproj()>Load Land Use</button>
                 </div>
             </div>
 
@@ -1353,7 +1360,24 @@
         </div>
     </div>
 </div>
-
+<div class="modal" id=alertmodal tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><span id="alertmodaltitle">Title</span></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="height:100px">
+          <p><span id="alertmodalmessage">Message</span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <script type="text/javascript" src="https://jimardon.github.io/GISHydroWEB/js/gishydromaps.js"></script>
 

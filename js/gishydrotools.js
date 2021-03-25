@@ -93,6 +93,11 @@ var singleshed = false;
 var upper90 = false;
 var tasker_modal = [];
 
+function alertmodal(title, message){
+    $("#alertmodaltitle").html(title);
+    $("#alertmodalmessage").html(message);
+    $("#alertmodal").modal()
+}
 
 function aoi_selec(){
     new L.Draw.Rectangle(map, drawControl.options.rectangle).enable();
@@ -117,6 +122,8 @@ function apply(){
     $('#clearaoi-button').attr('disabled','true');
     $('#apply-button').attr('disabled','true');
     data_select();
+
+    alertmodal("hola","chao");
 };
 
 function data_select(){
