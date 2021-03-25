@@ -587,7 +587,7 @@ function basin_properties(){
         btableregion_html += '<col width="300">';
         btableregion_html += '<col width="300">';
         for(var i=0; i < provstring.length; i++){
-            btableregion_html += '<tr><td align="left">' + provstring[i][0] + ':</td><td align="left">' + provstring[i][1] + '</td></tr>';
+            btableregion_html += '<tr><td align="left">' + provstring[i][0] + ':</td><td align="left">' + provstring[i][1] + '%</td></tr>';
         }
         btableregion_html += '</table><p></p>';
 
