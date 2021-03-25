@@ -271,15 +271,6 @@ checkBoxlayer.change(function () {
 });
 $('.LayerCheck').change();
 
-$(document).ready(function(){
-    $('#tc_method').on('change', function() {
-      if ( this.value == 'Velocity Method')
-      {
-        document.getElementById("velocitydisplay").style.display = "block";
-      }
-      else
-      {
-        document.getElementById("velocitydisplay").style.display = "none";
-      }
-    });
+$('#tc_method').on('change', function () {
+    $("#velocitydisplay").css('display', (this.value == 'Velocity Method') ? 'block' : 'none');
 });
