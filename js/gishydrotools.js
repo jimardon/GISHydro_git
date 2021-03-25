@@ -94,7 +94,7 @@ var upper90 = false;
 var tasker_modal = [];
 
 function alertmodal(title, message,size){
-    document.getElementById("myBtn").style.height = size;
+    document.getElementById("alert-body").style.height = size;
     $("#alertmodaltitle").html(title);
     $("#alertmodalmessage").html(message);
     $("#alertmodal").modal()
