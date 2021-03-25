@@ -738,8 +738,8 @@
                         <button id="storm-button" class="generic-grey-button" data-toggle="modal" data-target="#storm_modal">Edit Storm Depth(s)</button>
                         <p></p>
                         <div class="inline">
-                            <strong>Override Tc Value (optional):</strong>
-                            <div class="complete-form">
+                            <strong>Override Tc (hrs) Value (optional):</strong>
+                            <div class="complete-form" style="width:20%;">
                                 <input size ="10" maxlength="10" type="number" class="complete-input" id="usertcvalue">
                             </div>
                         </div>
@@ -749,7 +749,7 @@
                             <span class="hr-text">WinTR-20</span>
                         </div>
                         <p></p>
-                        <button id="createwintr20-button" class="generic-grey-button" onclick="tr20controlpanel()">Create Input File</button>
+                        <button id="createwintr20-button" class="generic-grey-button" onclick="tr20controlpanel()">Run WinTR-20</button>
                         <p></p>
                         <button id="downloadwintr20input-button" class="generic-grey-button" onclick="saveFile(inputstring, 'TR20.inp')">WinTR-20 INPUT</button>
                         <p></p>
