@@ -5,7 +5,7 @@ var date = new Date();
 var today = date.toLocaleString('default', { month: 'long' }) + ' ' + date.getDate() + ', ' + date.getFullYear();
 var version = 'March, 2021 (Beta-Testing)';
 var thomas = '2020 Maryland Fixed Region Equations';
-var errormsg = "ERROR: The application has encountered an unknown error, please try again. If you think it's a bug, please report it :)";
+var errormsg = "The application has encountered an unknown error, please try again. If you think it's a bug, please report it :)";
 var type = '';
 var layer = '';
 var full_project_name = '';
@@ -809,7 +809,7 @@ function basin_properties(){
         map.spin(false);
 
         if(parseFloat(IA) > 10){
-            alertmodal("Warning","<b>Impervious area in watershed exceeds 10%!</b><br>Calculated discharges from USGS Regression Equations may not be appropriate.</br>","10vh")
+            alertmodal("Warning","<b>Impervious area in watershed exceeds 10%!</b><br>Calculated discharges from USGS Regression Equations may not be appropriate.</br>","15vh")
         }
     }
 };
@@ -1202,7 +1202,7 @@ function settoc(){
         }
         document.getElementById("tcvalue-button").style.display = "block";
         document.getElementById("tcapply-button").style.display = "none";
-        alertmodal("Done",'Time of concentration estimated.<br>Move to the next tab or check the computed Time of Concentration estimates for the current method by clicking on <b>Tc</b></br>',"10vh")
+        alertmodal("Done",'Time of concentration estimated. Move to the next tab or check the computed Time of Concentration estimates for the current method by clicking on <b>Tc</b>',"15vh")
 
         if(reachcount<1){
             sidebar.enablePanel('wintr20');
@@ -1749,7 +1749,7 @@ function tr20controlpanel() {
     function tr20controlpanelCallback(error, response, raw){
 
         if (error){
-            alertmodal("Error",errormsg,"10vh","10vh")
+            alertmodal("Error",errormsg,"10vh")
             $('#createwintr20-button').removeAttr('disabled');
             map.spin(false);
         }
@@ -1763,7 +1763,7 @@ function tr20controlpanel() {
         document.getElementById("downloadwintr20input-button").style.display = "block";
         document.getElementById("downloadwintr20output-button").style.display = "block";
 
-        if (errorstring == 'NA') {
+        if (errorstring != 'NA') {
             alertmodal("Warning","Please check error file for possible errors.","10vh")
         }
 
