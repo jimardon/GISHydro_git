@@ -331,7 +331,7 @@ function delineate(){
 
         }else{
 
-            wshed_export = response.pour_point
+            wshed_export = response.watershed
             gagelist = response.gagelist;
             wshed.addLayer(L.geoJson(wshed_export,{
                 crossOrigin: null,
