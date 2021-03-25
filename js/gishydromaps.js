@@ -89,6 +89,8 @@ sidebar.disablePanel('toc');
 sidebar.disablePanel('reachselect');
 sidebar.disablePanel('wintr20');
 
+sidebar.disablePanel('download');
+
 //Base layers definition and addition
 var baseLayers = {
     "ESRI World Map": esristreet,

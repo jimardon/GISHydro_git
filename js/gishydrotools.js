@@ -315,7 +315,7 @@ function delineate(){
         }
 
         if (delcheckin){
-            if(response.check_return){
+            if(response.valid_outlet){
                 document.getElementById("novalidpp").style.display = "none";
                 document.getElementById("validpp").style.display = "block";
                 document.getElementById("selecpp").style.display = "none";
