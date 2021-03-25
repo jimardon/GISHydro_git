@@ -218,7 +218,7 @@ call (410) 767-4500.)","20vh")
             weight: 1,
         }));
 
-        full_project_name = response.workpath
+        full_project_name = response.full_name
 
         map.removeLayer(nhdf);
         map.removeLayer(roadsf);
@@ -296,7 +296,6 @@ function delineate(){
     }
     map.panTo(new L.LatLng(mark_lat, mark_lon));
 
-    alert(full_project_name)
     gpTask.setParam("projectname", full_project_name);
     gpTask.setParam("mouse_lat_proj", mark_lat);
     gpTask.setParam("mouse_lon_proj", mark_lon);
