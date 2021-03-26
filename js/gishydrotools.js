@@ -1724,8 +1724,6 @@ function tr20controlpanel() {
 
     var usertc = document.getElementById("usertcvalue").value
 
-    areami2 = 12.4
-
     var gpService = L.esri.GP.service({
         url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/TR20Control",
         useCors:true,
