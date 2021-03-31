@@ -1023,6 +1023,7 @@ function subsheds(){
         sidebar.enablePanel('toc');
         sidebar.open('toc');
         map.spin(false);
+        alert(full_project_name)
     }
 }
 
