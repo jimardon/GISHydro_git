@@ -277,6 +277,10 @@ $('#tc_method').on('change', function () {
     $("#velocitydisplay").css('display', (this.value == 'Velocity Method') ? 'block' : 'none');
 });
 
+$('#channelflow').on('change', function () {
+    $("#sourcearea-display").css('display', (this.value == 'inferredstreams') ? 'block' : 'none');
+});
+
 var velmethcheckboxcheckBoxlayer = $('.velmethcheckbox');
 velmethcheckboxcheckBoxlayer.change(function () {
     $('#recalculate-button').prop('disabled', velmethcheckboxcheckBoxlayer.filter(':checked').length < 1);

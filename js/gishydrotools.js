@@ -1316,7 +1316,7 @@ function recalculatetc(){
     var xarea = Xarea_[subarea]
     var i_length = I_Length_[subarea]
 
-    combinesegments(type, pixel, elev, slope, avgarea, width, depth, xarea, i_length)
+    combinesegments(subarea,type, pixel, elev, slope, avgarea, width, depth, xarea, i_length)
 
 }
 

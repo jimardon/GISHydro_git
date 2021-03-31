@@ -1,6 +1,6 @@
 
 
-function combinesegments(type, elev, slope, avgarea, width, depth, xarea, i_length){
+function combinesegments(subarea,type, elev, slope, avgarea, width, depth, xarea, i_length){
 
 
     const arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length

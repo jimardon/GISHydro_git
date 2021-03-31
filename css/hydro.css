@@ -217,6 +217,10 @@ button:focus{
     height: 50px;
 }
 
+#sourcearea-display{
+    display: none;
+}
+
 #storm-button{
     width: 100%;
     float: center;
