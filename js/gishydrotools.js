@@ -37,19 +37,19 @@ var addpointvar = false;
 var clear_outlets = false;
 var clear_flowpaths = false;
 var subshed_export = '';
-var Pixel = '';
-var Type = '';
-var Mixed = '';
-var Elev = '';
-var Slope = '';
-var AvgArea = '';
-var Width = '';
-var Depth = '';
-var Xarea = '';
-var I_Length = '';
-var Vel = '';
-var I_Time = '';
-var Tot_Time = '';
+var Pixel_ = '';
+var Type_ = '';
+var Mixed_ = '';
+var Elev_ = '';
+var Slope_ = '';
+var AvgArea_ = '';
+var Width_ = '';
+var Depth_ = '';
+var Xarea_ = '';
+var I_Length_ = '';
+var Vel_ = '';
+var I_Time_ = '';
+var Tot_Time_ = '';
 var thecritavg = '';
 var inputstring = '';
 var errorstring = '';
@@ -1098,8 +1098,8 @@ function settoc(){
             map.spin(false);
         }
 
-        AvgArea = response.avgarea
-        Tot_Time = response.tot_time
+        AvgArea_ = response.avgarea
+        Tot_Time_ = response.tot_time
         reachcount = response.reach_check
 
         map.removeLayer(subwshed);
@@ -1107,17 +1107,17 @@ function settoc(){
         subwshed2.addLayer(L.geoJson(subshed_export, {onEachFeature: forEachFeature, style: style}));
 
         if(tc_method == "Velocity Method"){
-            Pixel = response.pixel
-            Type = response.type
-            Mixed = response.mixed
-            Elev = response.elev
-            Slope = response.slope
-            Width = response.width
-            Depth = response.depth
-            Xarea = response.xarea
-            I_Length = response.tot_length
-            Vel = response.vel
-            I_Time = response.i_time
+            Pixel_ = response.pixel
+            Type_ = response.type
+            Mixed_ = response.mixed
+            Elev_ = response.elev
+            Slope_ = response.slope
+            Width_ = response.width
+            Depth_ = response.depth
+            Xarea_ = response.xarea
+            I_Length_ = response.tot_length
+            Vel_ = response.vel
+            I_Time_ = response.i_time
 
             reaches = Pixel.length;
             for(var i=0; i < reaches; i++){
@@ -1135,7 +1135,7 @@ function settoc(){
                 var tcmodal = document.getElementById("tocmodal");
                 tcmodal.appendChild(element);
 
-                createtable(i)
+                createtable(i,Pixel_[i],Type_[i],Elev_[i],Slope_[i],AvgArea_[i],Width_[i],Depth_[i],Xarea_[i],I_Length_[i],Vel_[i],I_Time_[i],Tot_Time_[i])
 
             }
             document.getElementById("velmeth_tc").style.display = "block";
@@ -1188,7 +1188,7 @@ function settoc(){
     }
 }
 
-function createtable(subarea){
+function createtable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,I_Length,Vel,I_Time,Tot_Time){
     var tc_method = document.getElementById("tc_method").value;
 
     var tctable_html = '<table border="0" align="center">';
@@ -1216,20 +1216,20 @@ function createtable(subarea){
     tctable_html += '<th>Vel.</th>';
     tctable_html += '<th>dt</th>';
     tctable_html += '<th>Tc</th></tr>';
-    for(var j=0; j < Pixel[subarea].length; j++){
+    for(var j=0; j < Pixel.length; j++){
         tctable_html += '<tr>';
-        tctable_html += '<td align="center">' + Pixel[subarea][j] + '</td>';
-        tctable_html += '<td align="center">' + Type[subarea][j] + '</td>';
-        tctable_html += '<td align="center">' + Elev[subarea][j] + '</td>';
-        tctable_html += '<td align="center">' + Slope[subarea][j] + '</td>';
-        tctable_html += '<td align="center">' + AvgArea[subarea][j] + '</td>';
-        tctable_html += '<td align="center">' + Width[subarea][j] + '</td>';
-        tctable_html += '<td align="center">' + Depth[subarea][j] + '</td>';
-        tctable_html += '<td align="center">' + Xarea[subarea][j] + '</td>';
-        tctable_html += '<td align="center">' + I_Length[subarea][j] + '</td>';
-        tctable_html += '<td align="center">' + Vel[subarea][j] + '</td>';
-        tctable_html += '<td align="center">' + I_Time[subarea][j] + '</td>';
-        tctable_html += '<td align="center">' + Tot_Time[subarea][j] + '</td>';
+        tctable_html += '<td align="center">' + Pixel[j] + '</td>';
+        tctable_html += '<td align="center">' + Type[j] + '</td>';
+        tctable_html += '<td align="center">' + Elev[j] + '</td>';
+        tctable_html += '<td align="center">' + Slope[j] + '</td>';
+        tctable_html += '<td align="center">' + AvgArea[j] + '</td>';
+        tctable_html += '<td align="center">' + Width[j] + '</td>';
+        tctable_html += '<td align="center">' + Depth[j] + '</td>';
+        tctable_html += '<td align="center">' + Xarea[j] + '</td>';
+        tctable_html += '<td align="center">' + I_Length[j] + '</td>';
+        tctable_html += '<td align="center">' + Vel[j] + '</td>';
+        tctable_html += '<td align="center">' + I_Time[j] + '</td>';
+        tctable_html += '<td align="center">' + Tot_Time[j] + '</td>';
         tctable_html += '</tr>';
     }
     tctable_html += '</table><p></p>';
@@ -1282,6 +1282,45 @@ function showpx(){
 function goback(){
     $("#vm_modal").modal()
 }
+
+function recalculatetc(){
+
+    var sheetcheck = document.getElementById("singleoverland").checked
+    var shallowcheck = document.getElementById("singleswale").checked
+    var channelcheck = document.getElementById("singlechannel").checked
+
+    var type;
+    if(sheetcheck && shallowcheck == false && channelcheck == false){
+        type = 1
+    } else if (sheetcheck == false && shallowcheck && channelcheck == false){
+        type = 2
+    } else if (sheetcheck == false && shallowcheck == false && channelcheck){
+        type = 3
+    } else if (sheetcheck && shallowcheck && channelcheck == false){
+        type = 4
+    } else if (sheetcheck && shallowcheck == false && channelcheck){
+        type = 5
+    } else if (sheetcheck == false && shallowcheck && channelcheck){
+        type = 6
+    } else {
+        type = 7
+    }
+    
+    var subarea = document.getElementById("subtc").value
+    var pixel = Pixel_[subarea]
+    var elev = Elev_[subarea]
+    var slope = Slope_[subarea]
+    var width = Width_[subarea]
+    var depth = Depth_[subarea]
+    var xarea = Xarea_[subarea]
+    var i_length = I_Length_[subarea]
+
+    segment = combinesegments(type, subarea, pixel, elev, slope, width, depth, xarea, i_length)
+
+    createtable(subarea,segment[0],segment[1],segment[2],segment[3],segment[4],segment[5],segment[6],segment[7],segment[8],segment[9],segment[10],segment[10])
+
+}
+
 
 function xs_add(){
     drawLayers.clearLayers();

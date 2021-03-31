@@ -9,9 +9,9 @@ function combinesegments(type, subarea, pixel, elev, slope, width, depth, xarea,
     if (type == 1){
 
         pixelmerge = 1
-        elevmerge = arrAvg(elev[subarea-1].map(Number))
-        slopemerge = arrAvg(slope[subarea-1].map(Number))
-        i_lengthmerge = arrSum(i_length[subarea-1].map(Number))
+        elevmerge = arrAvg(elev[subarea].map(Number))
+        slopemerge = arrAvg(slope[subarea].map(Number))
+        i_lengthmerge = arrSum(i_length[subarea].map(Number))
 
         sheetn = parseFloat(document.getElementById("sheet_manning").value)
         sheetp = parseFloat(document.getElementById("sheet_precipitation").value)
