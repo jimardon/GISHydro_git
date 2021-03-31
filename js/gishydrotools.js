@@ -1073,7 +1073,7 @@ function settoc(){
     //gpTask.setParam("Tc_cacoef", document.getElementById("channel_area_coef").value)
     //gpTask.setParam("Tc_caexp", document.getElementById("channel_area_exp").value)
 
-    gpTask.setParam("projectname", "20210331_145534_My_Project")
+    gpTask.setParam("projectname", "20210331_164228_My_Project")
     gpTask.setParam("landuse", "lu2010")
     gpTask.setParam("Tc_method", "Velocity Method")
     gpTask.setParam("Tc_ns", "0.1")
