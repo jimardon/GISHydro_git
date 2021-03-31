@@ -1306,21 +1306,17 @@ function recalculatetc(){
         type = 7
     }
 
-    var subarea = document.getElementById("subtc").value
-    var pixel = Pixel_[subarea-1]
-    var elev = Elev_[subarea-1]
-    var slope = Slope_[subarea-1]
-    var width = Width_[subarea-1]
-    var depth = Depth_[subarea-1]
-    var xarea = Xarea_[subarea-1]
-    var i_length = I_Length_[subarea-1]
+    var subarea = document.getElementById("subtc").value -1
+    var pixel = Pixel_[subarea]
+    var elev = Elev_[subarea]
+    var slope = Slope_[subarea]
+    var avgarea = AvgArea_
+    var width = Width_[subarea]
+    var depth = Depth_[subarea]
+    var xarea = Xarea_[subarea]
+    var i_length = I_Length_[subarea]
 
-    var segment = combinesegments(type, pixel, elev, slope, width, depth, xarea, i_length)
-
-    alert(segment)
-
-    createtable(subarea,segment[0],segment[1],segment[2],segment[3],segment[4],segment[5],segment[6],segment[7],segment[8],segment[9],segment[10],segment[10])
-
+    combinesegments(type, pixel, elev, slope, avgarea, width, depth, xarea, i_length)
 
 }
 
