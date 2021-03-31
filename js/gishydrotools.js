@@ -46,23 +46,10 @@ var AvgArea = '';
 var Width = '';
 var Depth = '';
 var Xarea = '';
-var Tot_Length = '';
+var I_Length = '';
 var Vel = '';
 var I_Time = '';
 var Tot_Time = '';
-var Pixel_ = '';
-var Type_ = '';
-var Mixed_ = '';
-var Elev_ = '';
-var Slope_ = '';
-var AvgArea_ = '';
-var Width_ = '';
-var Depth_ = '';
-var Xarea_ = '';
-var Tot_Length_ = '';
-var Vel_ = '';
-var I_Time_ = '';
-var Tot_Time_ = '';
 var thecritavg = '';
 var inputstring = '';
 var errorstring = '';
@@ -1111,42 +1098,26 @@ function settoc(){
             map.spin(false);
         }
 
-        AvgArea_ = response.avgarea
-        Tot_Time_ = response.tot_time
-        reachcount_ = response.reach_check
-
-        AvgArea = AvgArea_
-        Tot_Time = Tot_Time_
-        reachcount = reachcount_
+        AvgArea = response.avgarea
+        Tot_Time = response.tot_time
+        reachcount = response.reach_check
 
         map.removeLayer(subwshed);
         subshed_export = response.subshed_edit
         subwshed2.addLayer(L.geoJson(subshed_export, {onEachFeature: forEachFeature, style: style}));
 
         if(tc_method == "Velocity Method"){
-            Pixel_ = response.pixel
-            Type_ = response.type
-            Mixed_ = response.mixed
-            Elev_ = response.elev
-            Slope_ = response.slope
-            Width_ = response.width
-            Depth_ = response.depth
-            Xarea_ = response.xarea
-            Tot_Length_ = response.tot_length
-            Vel_ = response.vel
-            I_Time_ = response.i_time
-
-            Pixel = Pixel_
-            Type = Type_
-            Mixed = Mixed_
-            Elev = Elev_
-            Slope = Slope_
-            Width = Width_
-            Depth = Depth_
-            Xarea = Xarea_
-            Tot_Length = Tot_Length_
-            I_Time = I_Time_
-            Vel = Vel_
+            Pixel = response.pixel
+            Type = response.type
+            Mixed = response.mixed
+            Elev = response.elev
+            Slope = response.slope
+            Width = response.width
+            Depth = response.depth
+            Xarea = response.xarea
+            I_Length = response.tot_length
+            Vel = response.vel
+            I_Time = response.i_time
 
             reaches = Pixel.length;
             for(var i=0; i < reaches; i++){
@@ -1255,7 +1226,7 @@ function createtable(subarea){
         tctable_html += '<td align="center">' + Width[subarea][j] + '</td>';
         tctable_html += '<td align="center">' + Depth[subarea][j] + '</td>';
         tctable_html += '<td align="center">' + Xarea[subarea][j] + '</td>';
-        tctable_html += '<td align="center">' + Tot_Length[subarea][j] + '</td>';
+        tctable_html += '<td align="center">' + I_Length[subarea][j] + '</td>';
         tctable_html += '<td align="center">' + Vel[subarea][j] + '</td>';
         tctable_html += '<td align="center">' + I_Time[subarea][j] + '</td>';
         tctable_html += '<td align="center">' + Tot_Time[subarea][j] + '</td>';
