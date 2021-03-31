@@ -1023,7 +1023,6 @@ function subsheds(){
         sidebar.enablePanel('toc');
         sidebar.open('toc');
         map.spin(false);
-        alert(full_project_name)
     }
 }
 
@@ -1323,6 +1322,7 @@ function recalculatetc(){
     } else {
         type = 7
     }
+    alert(type)
     
     var subarea = document.getElementById("subtc").value
     var pixel = Pixel_[subarea]
@@ -1333,7 +1333,9 @@ function recalculatetc(){
     var xarea = Xarea_[subarea]
     var i_length = I_Length_[subarea]
 
-    segment = combinesegments(type, subarea, pixel, elev, slope, width, depth, xarea, i_length)
+    var segment = combinesegments(type, pixel, elev, slope, width, depth, xarea, i_length)
+
+    alert(segment)
 
     createtable(subarea,segment[0],segment[1],segment[2],segment[3],segment[4],segment[5],segment[6],segment[7],segment[8],segment[9],segment[10],segment[10])
 
