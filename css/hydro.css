@@ -241,13 +241,19 @@ button:focus{
 }
 
 #showpixels-button{
-    width: 40%;
-    float: left;
+    width: 100%;
+    float: center;
+    height: 50px;
 }
 
 #recalculate-button{
     width: 40%;
     float: right;
+}
+
+#restarttc-button{
+    width: 40%;
+    float: left;
 }
 
 div.container6 {

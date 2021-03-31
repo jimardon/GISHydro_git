@@ -20,7 +20,7 @@ function combinesegments(type, elev, slope, width, depth, xarea, i_length){
         var i_timemerge = 0.007*(sheetn*sheetl)**0.8/sheetp**0.5/slopemerge**0.4
         var velmerge = i_lengthmerge/i_timemerge
 
-        return(pixelmerge, elevmerge, slopemerge, i_lengthmerge, velmerge, i_timemerge)
+        return [pixelmerge, elevmerge, slopemerge, i_lengthmerge, velmerge, i_timemerge]
 
     } else if (type == 2){
 
