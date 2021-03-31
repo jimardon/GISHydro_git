@@ -1055,39 +1055,22 @@ function settoc(){
 
     var tc_method = document.getElementById("tc_method").value;
 
-    //gpTask.setParam("projectname", full_project_name)
-    //gpTask.setParam("landuse", land_layer)
-    //gpTask.setParam("Tc_method", tc_method)
-    //gpTask.setParam("Tc_ns", document.getElementById("sheet_manning").value)
-    //gpTask.setParam("Tc_p", document.getElementById("sheet_precipitation").value)
-    //gpTask.setParam("Tc_l", document.getElementById("sheet_length").value)
-    //gpTask.setParam("Tc_paved", document.getElementById("pavedopt").checked)
-    //gpTask.setParam("Tc_nhd", document.getElementById("nhdopt").checked)
-    //gpTask.setParam("Tc_sa", document.getElementById("channel_area").value)
-    //gpTask.setParam("Tc_nc", document.getElementById("channel_manning").value)
-    //gpTask.setParam("Tc_cwcoef", document.getElementById("channel_width_coef").value)
-    //gpTask.setParam("Tc_cwexp", document.getElementById("channel_width_exp").value)
-    //gpTask.setParam("Tc_cdcoef", document.getElementById("channel_depth_coef").value)
-    //gpTask.setParam("Tc_cdexp", document.getElementById("channel_depth_exp").value)
-    //gpTask.setParam("Tc_cacoef", document.getElementById("channel_area_coef").value)
-    //gpTask.setParam("Tc_caexp", document.getElementById("channel_area_exp").value)
-
-    gpTask.setParam("projectname", "20210331_164228_My_Project")
-    gpTask.setParam("landuse", "lu2010")
-    gpTask.setParam("Tc_method", "Velocity Method")
-    gpTask.setParam("Tc_ns", "0.1")
-    gpTask.setParam("Tc_p", "3.19")
-    gpTask.setParam("Tc_l", "100")
+    gpTask.setParam("projectname", full_project_name)
+    gpTask.setParam("landuse", land_layer)
+    gpTask.setParam("Tc_method", tc_method)
+    gpTask.setParam("Tc_ns", document.getElementById("sheet_manning").value)
+    gpTask.setParam("Tc_p", document.getElementById("sheet_precipitation").value)
+    gpTask.setParam("Tc_l", document.getElementById("sheet_length").value)
     gpTask.setParam("Tc_paved", document.getElementById("pavedopt").checked)
     gpTask.setParam("Tc_nhd", document.getElementById("nhdopt").checked)
-    gpTask.setParam("Tc_sa", "0.0897")
-    gpTask.setParam("Tc_nc", "0.05")
-    gpTask.setParam("Tc_cwcoef", "14.78")
-    gpTask.setParam("Tc_cwexp", "0.39")
-    gpTask.setParam("Tc_cdcoef", '1.18')
-    gpTask.setParam("Tc_cdexp", '0.34')
-    gpTask.setParam("Tc_cacoef", '17.42')
-    gpTask.setParam("Tc_caexp", '0.73')
+    gpTask.setParam("Tc_sa", document.getElementById("channel_area").value)
+    gpTask.setParam("Tc_nc", document.getElementById("channel_manning").value)
+    gpTask.setParam("Tc_cwcoef", document.getElementById("channel_width_coef").value)
+    gpTask.setParam("Tc_cwexp", document.getElementById("channel_width_exp").value)
+    gpTask.setParam("Tc_cdcoef", document.getElementById("channel_depth_coef").value)
+    gpTask.setParam("Tc_cdexp", document.getElementById("channel_depth_exp").value)
+    gpTask.setParam("Tc_cacoef", document.getElementById("channel_area_coef").value)
+    gpTask.setParam("Tc_caexp", document.getElementById("channel_area_exp").value)
 
     gpTask.run(settocCallback);
 
@@ -1323,7 +1306,7 @@ function recalculatetc(){
         type = 7
     }
     alert(type)
-    
+
     var subarea = document.getElementById("subtc").value
     var pixel = Pixel_[subarea]
     var elev = Elev_[subarea]
