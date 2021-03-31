@@ -1305,16 +1305,15 @@ function recalculatetc(){
     } else {
         type = 7
     }
-    alert(type)
 
     var subarea = document.getElementById("subtc").value
-    var pixel = Pixel_[subarea]
-    var elev = Elev_[subarea]
-    var slope = Slope_[subarea]
-    var width = Width_[subarea]
-    var depth = Depth_[subarea]
-    var xarea = Xarea_[subarea]
-    var i_length = I_Length_[subarea]
+    var pixel = Pixel_[subarea-1]
+    var elev = Elev_[subarea-1]
+    var slope = Slope_[subarea-1]
+    var width = Width_[subarea-1]
+    var depth = Depth_[subarea-1]
+    var xarea = Xarea_[subarea-1]
+    var i_length = I_Length_[subarea-1]
 
     var segment = combinesegments(type, pixel, elev, slope, width, depth, xarea, i_length)
 
