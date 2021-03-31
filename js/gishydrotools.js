@@ -1320,6 +1320,11 @@ function recalculatetc(){
 
 }
 
+function resettc(){
+    var subarea = document.getElementById("subtc").value -1
+    createtable(subarea,Pixel_[subarea],Type_[subarea],Elev_[subarea],Slope_[subarea],AvgArea_[subarea],Width_[subarea],Depth_[subarea],Xarea_[subarea],I_Length_[subarea],Vel_[subarea],I_Time_[subarea],Tot_Time_[subarea])
+}
+
 
 function xs_add(){
     drawLayers.clearLayers();
