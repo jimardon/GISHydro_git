@@ -1054,23 +1054,40 @@ function settoc(){
     var gpTask = gpService.createTask();
 
     var tc_method = document.getElementById("tc_method").value;
-    alert(full_project_name)
-    gpTask.setParam("projectname", full_project_name)
-    gpTask.setParam("landuse", land_layer)
-    gpTask.setParam("Tc_method", tc_method)
-    gpTask.setParam("Tc_ns", document.getElementById("sheet_manning").value)
-    gpTask.setParam("Tc_p", document.getElementById("sheet_precipitation").value)
-    gpTask.setParam("Tc_l", document.getElementById("sheet_length").value)
-    gpTask.setParam("Tc_paved", document.getElementById("pavedopt").checked)
-    gpTask.setParam("Tc_nhd", document.getElementById("nhdopt").checked)
-    gpTask.setParam("Tc_sa", document.getElementById("channel_area").value)
-    gpTask.setParam("Tc_nc", document.getElementById("channel_manning").value)
-    gpTask.setParam("Tc_cwcoef", document.getElementById("channel_width_coef").value)
-    gpTask.setParam("Tc_cwexp", document.getElementById("channel_width_exp").value)
-    gpTask.setParam("Tc_cdcoef", document.getElementById("channel_depth_coef").value)
-    gpTask.setParam("Tc_cdexp", document.getElementById("channel_depth_exp").value)
-    gpTask.setParam("Tc_cacoef", document.getElementById("channel_area_coef").value)
-    gpTask.setParam("Tc_caexp", document.getElementById("channel_area_exp").value)
+
+    //gpTask.setParam("projectname", full_project_name)
+    //gpTask.setParam("landuse", land_layer)
+    //gpTask.setParam("Tc_method", tc_method)
+    //gpTask.setParam("Tc_ns", document.getElementById("sheet_manning").value)
+    //gpTask.setParam("Tc_p", document.getElementById("sheet_precipitation").value)
+    //gpTask.setParam("Tc_l", document.getElementById("sheet_length").value)
+    //gpTask.setParam("Tc_paved", document.getElementById("pavedopt").checked)
+    //gpTask.setParam("Tc_nhd", document.getElementById("nhdopt").checked)
+    //gpTask.setParam("Tc_sa", document.getElementById("channel_area").value)
+    //gpTask.setParam("Tc_nc", document.getElementById("channel_manning").value)
+    //gpTask.setParam("Tc_cwcoef", document.getElementById("channel_width_coef").value)
+    //gpTask.setParam("Tc_cwexp", document.getElementById("channel_width_exp").value)
+    //gpTask.setParam("Tc_cdcoef", document.getElementById("channel_depth_coef").value)
+    //gpTask.setParam("Tc_cdexp", document.getElementById("channel_depth_exp").value)
+    //gpTask.setParam("Tc_cacoef", document.getElementById("channel_area_coef").value)
+    //gpTask.setParam("Tc_caexp", document.getElementById("channel_area_exp").value)
+
+    gpTask.setParam("projectname", "20210331_145534_My_Project")
+    gpTask.setParam("landuse", "lu2010")
+    gpTask.setParam("Tc_method", "Velocity Method")
+    gpTask.setParam("Tc_ns", 0.1)
+    gpTask.setParam("Tc_p", 3.19)
+    gpTask.setParam("Tc_l", 100)
+    gpTask.setParam("Tc_paved", false)
+    gpTask.setParam("Tc_nhd", true)
+    gpTask.setParam("Tc_sa", 0.0897)
+    gpTask.setParam("Tc_nc", 0.05)
+    gpTask.setParam("Tc_cwcoef", 14.78)
+    gpTask.setParam("Tc_cwexp", 0.39)
+    gpTask.setParam("Tc_cdcoef", 1.18)
+    gpTask.setParam("Tc_cdexp", 0.34)
+    gpTask.setParam("Tc_cacoef", 17.42)
+    gpTask.setParam("Tc_caexp", 0.73)
 
     gpTask.run(settocCallback);
 
@@ -1256,13 +1273,13 @@ function showtc(){
     if(tc_method == 'Velocity Method'){
         subid = String(document.getElementById("subtc").value);
         occcounts = {}
-        Type[subid-1].forEach(function(x) { occcounts[x] = (occcounts[x] || 0)+1; });
+        Type_[subid-1].forEach(function(x) { occcounts[x] = (occcounts[x] || 0)+1; });
 
         document.getElementById("vmsubarea").value = subid
-        document.getElementById("vmtotaltime").value = parseFloat(Tot_Time[subid-1][Tot_Time[subid-1].length - 1]).toFixed(3)
-        document.getElementById("vmoltt").value = parseFloat(Tot_Time[subid-1][occcounts['overland']-1]).toFixed(3)
-        document.getElementById("vmswtt").value = parseFloat(Tot_Time[subid-1][Tot_Time[subid-1].length-occcounts['channel']-1] - Tot_Time[subid-1][occcounts['overland']-1]).toFixed(3)
-        document.getElementById("vmchtt").value = parseFloat(Tot_Time[subid-1][Tot_Time[subid-1].length - 1] - Tot_Time[subid-1][Tot_Time[subid-1].length-occcounts['channel']-1]).toFixed(3)
+        document.getElementById("vmtotaltime").value = parseFloat(Tot_Time_[subid-1][Tot_Time_[subid-1].length - 1]).toFixed(3)
+        document.getElementById("vmoltt").value = parseFloat(Tot_Time_[subid-1][occcounts['overland']-1]).toFixed(3)
+        document.getElementById("vmswtt").value = parseFloat(Tot_Time_[subid-1][Tot_Time_[subid-1].length-occcounts['channel']-1] - Tot_Time_[subid-1][occcounts['overland']-1]).toFixed(3)
+        document.getElementById("vmchtt").value = parseFloat(Tot_Time_[subid-1][Tot_Time_[subid-1].length - 1] - Tot_Time_[subid-1][Tot_Time_[subid-1].length-occcounts['channel']-1]).toFixed(3)
         document.getElementById("vmolseg").value = occcounts['overland']
         document.getElementById("vmswseg").value = occcounts['swale']
         document.getElementById("vmchseg").value = occcounts['channel']
