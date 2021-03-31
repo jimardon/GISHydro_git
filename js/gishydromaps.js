@@ -85,7 +85,7 @@ var sidebar = L.control.sidebar({
 sidebar.disablePanel('shed_del');
 sidebar.disablePanel('basin_properties');
 sidebar.disablePanel('subshed');
-sidebar.disablePanel('toc');
+//sidebar.disablePanel('toc');
 sidebar.disablePanel('reachselect');
 sidebar.disablePanel('wintr20');
 

@@ -1054,7 +1054,7 @@ function settoc(){
     var gpTask = gpService.createTask();
 
     var tc_method = document.getElementById("tc_method").value;
-
+    alert(full_project_name)
     gpTask.setParam("projectname", full_project_name)
     gpTask.setParam("landuse", land_layer)
     gpTask.setParam("Tc_method", tc_method)
@@ -1119,7 +1119,7 @@ function settoc(){
             Vel_ = response.vel
             I_Time_ = response.i_time
 
-            reaches = Pixel.length;
+            reaches = Pixel_.length;
             for(var i=0; i < reaches; i++){
 
                 var opt = document.createElement('option');
@@ -1152,8 +1152,8 @@ function settoc(){
             for(var i=0; i < Tot_Time.length; i++){
                 tctable_html += '<tr>';
                 tctable_html += '<td align="center">' + String(i+1) + '</td>';
-                tctable_html += '<td align="center">' + AvgArea[i] + '</td>';
-                tctable_html += '<td align="center">' + Tot_Time[i] + '</td>';
+                tctable_html += '<td align="center">' + AvgArea_[i] + '</td>';
+                tctable_html += '<td align="center">' + Tot_Time_[i] + '</td>';
                 tctable_html += '</tr>';
             }
             tctable_html += '</table><p></p>';
