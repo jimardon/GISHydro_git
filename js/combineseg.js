@@ -21,9 +21,9 @@ function combinesegments(subarea,type, elev, slope, avgarea, width, depth, xarea
         var i_timemerge = 0.007*(sheetn*sheetl)**0.8/sheetp**0.5/slopemerge**0.4
         var velmerge = i_lengthmerge/i_timemerge
 
-        alert([subarea,segment[0],"overland",segment[1],segment[2],segment[3],segment[4],segment[5],segment[6],segment[6]])
+        alert([subarea,pixelmerge,"overland",elevmerge,slopemerge,avgareamerge,i_lengthmerge,velmerge,i_timemerge,i_timemerge])
 
-        createtable(subarea,segment[0],"overland",segment[1],segment[2],segment[3],segment[4],segment[5],segment[6],segment[6])
+        createtable(subarea,pixelmerge,"overland",elevmerge,slopemerge,avgareamerge,i_lengthmerge,velmerge,i_timemerge,i_timemerge)
 
 
     } else if (type == 2){
