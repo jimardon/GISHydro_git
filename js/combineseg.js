@@ -12,7 +12,7 @@ function recalculatetc(){
     var type = Type_[subarea]
     var elev = Elev_[subarea]
     var slope = Slope_[subarea]
-    var avgarea = AvgArea_
+    var avgarea = AvgArea_[subarea]
     var width = Width_[subarea]
     var depth = Depth_[subarea]
     var xarea = Xarea_[subarea]
@@ -33,7 +33,7 @@ function recalculatetc(){
         var sheetl = parseFloat(document.getElementById("sheet_length").value)
 
         var i_timemerge = parseFloat(Math.pow(0.007*(sheetn*sheetl),0.8)/Math.pow(sheetp,0.5)/Math.pow(slopemerge,0.4)).toFixed(3)
-        var velmerge = parseFloat(tot_lengthmerge/i_timemerge*3600).toFixed(2)
+        var velmerge = parseFloat(tot_lengthmerge/i_timemerge/3600).toFixed(2)
 
         alert([subarea,pixelmerge,"overland",elevmerge,slopemerge,avgareamerge,"-1","-1","-1",tot_lengthmerge,velmerge,i_timemerge,i_timemerge])
 

@@ -1217,6 +1217,7 @@ function createtable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,I_L
     tctable_html += '<th>Vel.</th>';
     tctable_html += '<th>dt</th>';
     tctable_html += '<th>Tc</th></tr>';
+    alert(Pixel.length)
     for(var j=0; j < Pixel.length; j++){
         tctable_html += '<tr>';
         tctable_html += '<td align="center">' + Pixel[j] + '</td>';
