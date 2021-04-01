@@ -56,7 +56,6 @@ function recalculatetc(){
 
     if(sheetcheck && shallowcheck == false && channelcheck == false){
 
-        var pixelmerge = [pixel_sheet[pixel_sheet.length - 1]]
         var typemerge = [type_sheet[type_sheet.length - 1]]
         var elevmerge = [parseFloat(arrAvg(elev_sheet.map(Number))).toFixed(1)]
         var slopemerge = [parseFloat(arrAvg(slope_sheet.map(Number))).toFixed(6)]
@@ -74,7 +73,7 @@ function recalculatetc(){
         var i_timemerge = [parseFloat(tot_timemerge[0]).toFixed(3)]
         var velmerge = [parseFloat(tot_lengthmerge[0]/tot_timemerge[0]/3600).toFixed(2)]
 
-        p = pixelmerge.concat(pixel_shallow).concat(pixel_channel)
+        p = Array.from({length: typemerge.length}, (_, i) => i + 1)
         t = typemerge.concat(type_shallow).concat(type_channel)
         e = elevmerge.concat(elev_shallow).concat(elev_channel)
         s = slopemerge.concat(slope_shallow).concat(slope_channel)
