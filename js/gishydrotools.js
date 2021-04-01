@@ -50,6 +50,8 @@ var Tot_Length_ = '';
 var Vel_ = '';
 var I_Time_ = '';
 var Tot_Time_ = '';
+var lasttype = '';
+var lasttotime = '';
 var thecritavg = '';
 var inputstring = '';
 var errorstring = '';
@@ -1137,7 +1139,7 @@ function settoc(){
                 var tcmodal = document.getElementById("tocmodal");
                 tcmodal.appendChild(element);
 
-                createtable(i,Pixel_[i],Type_[i],Elev_[i],Slope_[i],AvgArea_[i],Width_[i],Depth_[i],Xarea_[i],Tot_Length_[i],Vel_[i],I_Time_[i],Tot_Time_[i])
+                createtctable(i,Pixel_[i],Type_[i],Elev_[i],Slope_[i],AvgArea_[i],Width_[i],Depth_[i],Xarea_[i],Tot_Length_[i],Vel_[i],I_Time_[i],Tot_Time_[i])
 
             }
             if(reaches>1){document.getElementById("velmeth_tc").style.display = "block";};
@@ -1190,7 +1192,7 @@ function settoc(){
     }
 }
 
-function createtable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,I_Length,Vel,I_Time,Tot_Time){
+function createtctable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,I_Length,Vel,I_Time,Tot_Time){
     var tc_method = document.getElementById("tc_method").value;
 
     var tctable_html = '<table border="0" align="center">';
@@ -1251,28 +1253,36 @@ function createtable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,I_L
     tc_modal += '</div>';
 
     $("#tc_modal" + String(subarea+1)).html(tc_modal);
-    showtc(Type,Tot_Time)
+
+    lasttype = Type_
+    lasttotime = Tot_Time_
 }
 
-function showtc(typetc,tottimetc){
+function changetcmodal(typetc,tottimetc){
+
+    subid = String(document.getElementById("subtc").value);
+    occcounts = {}
+    typetc[subid-1].forEach(function(x) { occcounts[x] = (occcounts[x] || 0)+1; });
+
+    document.getElementById("vmsubarea").value = subid
+    document.getElementById("vmtotaltime").value = parseFloat(tottimetc[subid-1][tottimetc[subid-1].length - 1]).toFixed(3)
+    document.getElementById("vmoltt").value = parseFloat(tottimetc[subid-1][occcounts['overland']-1]).toFixed(3)
+    document.getElementById("vmswtt").value = parseFloat(tottimetc[subid-1][tottimetc[subid-1].length-occcounts['channel']-1] - tottimetc[subid-1][occcounts['overland']-1]).toFixed(3)
+    document.getElementById("vmchtt").value = parseFloat(tottimetc[subid-1][tottimetc[subid-1].length - 1] - tottimetc[subid-1][tottimetc[subid-1].length-occcounts['channel']-1]).toFixed(3)
+    document.getElementById("vmolseg").value = occcounts['overland']
+    document.getElementById("vmswseg").value = occcounts['swale']
+    document.getElementById("vmchseg").value = occcounts['channel']
+
+    alert(occcounts['overland'])
+    alert(occcounts['swale'])
+    alert(occcounts['channel'])
+}
+
+function showtc(){
     var tc_method = document.getElementById("tc_method").value;
     if(tc_method == 'Velocity Method'){
-        subid = String(document.getElementById("subtc").value);
-        occcounts = {}
-        Type_[subid-1].forEach(function(x) { occcounts[x] = (occcounts[x] || 0)+1; });
 
-        document.getElementById("vmsubarea").value = subid
-        document.getElementById("vmtotaltime").value = parseFloat(tottimetc[subid-1][tottimetc[subid-1].length - 1]).toFixed(3)
-        document.getElementById("vmoltt").value = parseFloat(tottimetc[subid-1][occcounts['overland']-1]).toFixed(3)
-        document.getElementById("vmswtt").value = parseFloat(tottimetc[subid-1][tottimetc[subid-1].length-occcounts['channel']-1] - tottimetc[subid-1][occcounts['overland']-1]).toFixed(3)
-        document.getElementById("vmchtt").value = parseFloat(tottimetc[subid-1][tottimetc[subid-1].length - 1] - tottimetc[subid-1][tottimetc[subid-1].length-occcounts['channel']-1]).toFixed(3)
-        document.getElementById("vmolseg").value = occcounts['overland']
-        document.getElementById("vmswseg").value = occcounts['swale']
-        document.getElementById("vmchseg").value = occcounts['channel']
-
-        alert(occcounts['overland'])
-        alert(occcounts['swale'])
-        alert(occcounts['channel'])
+        changetcmodal(lasttype,lasttotime)
 
         $("#vm_modal").modal()
 
@@ -1292,7 +1302,7 @@ function goback(){
 
 function resettc(){
     var subarea = document.getElementById("subtc").value -1
-    createtable(subarea,Pixel_[subarea],Type_[subarea],Elev_[subarea],Slope_[subarea],AvgArea_[subarea],Width_[subarea],Depth_[subarea],Xarea_[subarea],Tot_Length_[subarea],Vel_[subarea],I_Time_[subarea],Tot_Time_[subarea])
+    createtctable(subarea,Pixel_[subarea],Type_[subarea],Elev_[subarea],Slope_[subarea],AvgArea_[subarea],Width_[subarea],Depth_[subarea],Xarea_[subarea],Tot_Length_[subarea],Vel_[subarea],I_Time_[subarea],Tot_Time_[subarea])
 }
 
 

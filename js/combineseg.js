@@ -86,7 +86,11 @@ function recalculatetc(){
         i = i_timemerge.concat(i_time_shallow).concat(i_time_channel)
         tt = tot_timemerge.concat(tot_time_shallow).concat(tot_time_channel)
 
-        createtable(subarea,p,t,e,s,a,w,d,x,tl,v,i,tt)
+        lasttype = t
+        lasttotime = tt
+        changetcmodal(lasttype,lasttotime)
+
+        createtctable(subarea,p,t,e,s,a,w,d,x,tl,v,i,tt)
 
     } else if (sheetcheck == false && shallowcheck && channelcheck == false){
         type = 2
