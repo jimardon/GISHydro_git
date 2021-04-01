@@ -50,8 +50,9 @@ var Tot_Length_ = '';
 var Vel_ = '';
 var I_Time_ = '';
 var Tot_Time_ = '';
-var lasttype = '';
-var lasttotime = '';
+var t_ = [];
+var tt_ = [];
+var tcmerged = false;
 var thecritavg = '';
 var inputstring = '';
 var errorstring = '';
@@ -1140,7 +1141,8 @@ function settoc(){
                 tcmodal.appendChild(element);
 
                 createtctable(i,Pixel_[i],Type_[i],Elev_[i],Slope_[i],AvgArea_[i],Width_[i],Depth_[i],Xarea_[i],Tot_Length_[i],Vel_[i],I_Time_[i],Tot_Time_[i])
-
+                t_ = Type_[i]
+                tt_ = Tot_Time_[i]
             }
             if(reaches>1){document.getElementById("velmeth_tc").style.display = "block";};
 
@@ -1179,6 +1181,7 @@ function settoc(){
             $("#toc_mod").html(tc_modal);
 
         }
+
         document.getElementById("tcvalue-button").style.display = "block";
         document.getElementById("tcapply-button").style.display = "none";
         alertmodal("Done",'Time of concentration estimated. Move to the next tab or check the computed Time of Concentration estimates for the current method by clicking on <b>Tc</b>',"13vh")
@@ -1253,22 +1256,21 @@ function createtctable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,I
     tc_modal += '</div>';
 
     $("#tc_modal" + String(subarea+1)).html(tc_modal);
-
-    lasttype = Type_
-    lasttotime = Tot_Time_
 }
 
 function changetcmodal(typetc,tottimetc){
 
-    subid = String(document.getElementById("subtc").value);
+    t_ = typetc
+    tt_ = tottimetc
+
     occcounts = {}
-    typetc[subid-1].forEach(function(x) { occcounts[x] = (occcounts[x] || 0)+1; });
+    typetc.forEach(function(x) { occcounts[x] = (occcounts[x] || 0)+1; });
 
     document.getElementById("vmsubarea").value = subid
-    document.getElementById("vmtotaltime").value = parseFloat(tottimetc[subid-1][tottimetc[subid-1].length - 1]).toFixed(3)
-    document.getElementById("vmoltt").value = parseFloat(tottimetc[subid-1][occcounts['overland']-1]).toFixed(3)
-    document.getElementById("vmswtt").value = parseFloat(tottimetc[subid-1][tottimetc[subid-1].length-occcounts['channel']-1] - tottimetc[subid-1][occcounts['overland']-1]).toFixed(3)
-    document.getElementById("vmchtt").value = parseFloat(tottimetc[subid-1][tottimetc[subid-1].length - 1] - tottimetc[subid-1][tottimetc[subid-1].length-occcounts['channel']-1]).toFixed(3)
+    document.getElementById("vmtotaltime").value = parseFloat(tottimetc[tottimetc.length - 1]).toFixed(3)
+    document.getElementById("vmoltt").value = parseFloat(tottimetc[occcounts['overland']-1]).toFixed(3)
+    document.getElementById("vmswtt").value = parseFloat(tottimetc[tottimetc.length-occcounts['channel']-1] - tottimetc[occcounts['overland']-1]).toFixed(3)
+    document.getElementById("vmchtt").value = parseFloat(tottimetc[tottimetc.length - 1] - tottimetc[tottimetc.length-occcounts['channel']-1]).toFixed(3)
     document.getElementById("vmolseg").value = occcounts['overland']
     document.getElementById("vmswseg").value = occcounts['swale']
     document.getElementById("vmchseg").value = occcounts['channel']
@@ -1282,7 +1284,12 @@ function showtc(){
     var tc_method = document.getElementById("tc_method").value;
     if(tc_method == 'Velocity Method'){
 
-        changetcmodal(lasttype,lasttotime)
+        subid = String(document.getElementById("subtc").value);
+        if(tcmerged){            
+            changetcmodal(Type_[subid-1],Tot_Time_[subid-1])
+        } else {
+            changetcmodal(t_[subid-1],tt_[subid-1])
+        }
 
         $("#vm_modal").modal()
 
@@ -1303,6 +1310,7 @@ function goback(){
 function resettc(){
     var subarea = document.getElementById("subtc").value -1
     createtctable(subarea,Pixel_[subarea],Type_[subarea],Elev_[subarea],Slope_[subarea],AvgArea_[subarea],Width_[subarea],Depth_[subarea],Xarea_[subarea],Tot_Length_[subarea],Vel_[subarea],I_Time_[subarea],Tot_Time_[subarea])
+    tcmerged = false
 }
 
 

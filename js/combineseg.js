@@ -1,5 +1,7 @@
 function recalculatetc(){
 
+    tcmerged = true
+
     var subarea = document.getElementById("subtc").value -1
     var sheetcheck = document.getElementById("singleoverland").checked
     var shallowcheck = document.getElementById("singleswale").checked
@@ -86,9 +88,8 @@ function recalculatetc(){
         i = i_timemerge.concat(i_time_shallow).concat(i_time_channel)
         tt = tot_timemerge.concat(tot_time_shallow).concat(tot_time_channel)
 
-        lasttype = t
-        lasttotime = tt
-        changetcmodal(lasttype,lasttotime)
+
+        changetcmodal(t,tt)
 
         createtctable(subarea,p,t,e,s,a,w,d,x,tl,v,i,tt)
 
