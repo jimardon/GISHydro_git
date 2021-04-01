@@ -1140,8 +1140,8 @@ function settoc(){
                 tcmodal.appendChild(element);
 
                 createtctable(i,Pixel_[i],Type_[i],Elev_[i],Slope_[i],AvgArea_[i],Width_[i],Depth_[i],Xarea_[i],Tot_Length_[i],Vel_[i],I_Time_[i],Tot_Time_[i])
-                t_ = Type_[i]
-                tt_ = Tot_Time_[i]
+                t_.push(Type_[i])
+                tt_.push(Tot_Time_[i])
             }
             if(reaches>1){document.getElementById("velmeth_tc").style.display = "block";};
 
@@ -1259,14 +1259,10 @@ function createtctable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,I
 
 function changetcmodal(typetc,tottimetc){
 
-    subid = String(document.getElementById("subtc").value);
-    t_[subid-1] = typetc
-    tt_[subid-1] = tottimetc
-
     occcounts = {}
     typetc.forEach(function(x) { occcounts[x] = (occcounts[x] || 0)+1; });
 
-    document.getElementById("vmsubarea").value = subid
+    document.getElementById("vmsubarea").value = String(document.getElementById("subtc").value);
     document.getElementById("vmtotaltime").value = parseFloat(tottimetc[tottimetc.length - 1]).toFixed(3)
     document.getElementById("vmoltt").value = parseFloat(tottimetc[occcounts['overland']-1]).toFixed(3)
     document.getElementById("vmswtt").value = parseFloat(tottimetc[tottimetc.length-occcounts['channel']-1] - tottimetc[occcounts['overland']-1]).toFixed(3)
@@ -1305,6 +1301,9 @@ function goback(){
 
 function resettc(){
     var subarea = document.getElementById("subtc").value -1
+    t_[subarea] = Type_[subarea]
+    tt_[subarea] = Tot_Time_[subarea]
+    changetcmodal(t_[subarea],tt_[subarea])
     createtctable(subarea,Pixel_[subarea],Type_[subarea],Elev_[subarea],Slope_[subarea],AvgArea_[subarea],Width_[subarea],Depth_[subarea],Xarea_[subarea],Tot_Length_[subarea],Vel_[subarea],I_Time_[subarea],Tot_Time_[subarea])
 }
 
