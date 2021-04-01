@@ -280,8 +280,8 @@ function delineate(){
     }else{
         mark_lat = layer.getLatLng().lat;
         mark_lon = layer.getLatLng().lng;
-        document.getElementById('pp_lng').value = mark_lon
-        document.getElementById('pp_lat').value = mark_lat
+        document.getElementById('pp_lng').value = parseFloat(mark_lon).toFixed(6)
+        document.getElementById('pp_lat').value = parseFloat(mark_lat).toFixed(6)
     }
     map.panTo(new L.LatLng(mark_lat, mark_lon));
 
