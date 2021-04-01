@@ -54,10 +54,6 @@ function recalculatetc(){
     var i_time_channel = I_Time_[subarea].slice(occcounts['swale'],occcounts['swale']+occcounts['channel'])
     var tot_time_channel = Tot_Time_[subarea].slice(occcounts['swale'],occcounts['swale']+occcounts['channel'])
 
-    alert(occcounts['overland'])
-    alert(occcounts['swale'])
-    alert(occcounts['channel'])
-
     if(sheetcheck && shallowcheck == false && channelcheck == false){
 
         var pixelmerge = [pixel_sheet[pixel_sheet.length - 1]]

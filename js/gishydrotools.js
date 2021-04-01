@@ -77,7 +77,6 @@ var tabledata = '';
 var reachcount = '';
 var reachcount_ = '';
 var subid = '';
-var occcounts = {};
 var singleshed = false;
 var upper90 = false;
 var tasker_modal = [];
@@ -1271,9 +1270,6 @@ function changetcmodal(typetc,tottimetc){
     document.getElementById("vmswseg").value = occcounts['swale']
     document.getElementById("vmchseg").value = occcounts['channel']
 
-    alert(occcounts['overland'])
-    alert(occcounts['swale'])
-    alert(occcounts['channel'])
 }
 
 function showtc(){
