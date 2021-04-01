@@ -11,6 +11,7 @@ function recalculatetc(){
     var tt = '';
 
     const arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
+    const cumulativeSum = arr => arr.reduce((a, x, i) => [...a, x + (a[i-1] || 0)], []);
 
     var occcounts = {}
     Type_[subarea].forEach(function(x) { occcounts[x] = (occcounts[x] || 0) + 1;});
@@ -69,9 +70,8 @@ function recalculatetc(){
         var sheetp = parseFloat(document.getElementById("sheet_precipitation").value)
         var sheetl = parseFloat(document.getElementById("sheet_length").value)
 
-        var tot_timemerge = [parseFloat(Math.pow(0.007*(sheetn*sheetl),0.8)/Math.pow(sheetp,0.5)/Math.pow(slopemerge[0],0.4)).toFixed(4)]
-        var i_timemerge = [parseFloat(tot_timemerge[0]).toFixed(3)]
-        var velmerge = [parseFloat(tot_lengthmerge[0]/tot_timemerge[0]/3600).toFixed(2)]
+        var i_timemerge = [parseFloat(0.007*Math.pow((sheetn*sheetl),0.8)/Math.pow(sheetp,0.5)/Math.pow(slopemerge[0],0.4)).toFixed(3)]
+        var velmerge = [parseFloat(tot_lengthmerge[0]/i_timemerge[0]/3600).toFixed(2)]
 
         t = typemerge.concat(type_shallow).concat(type_channel)
         e = elevmerge.concat(elev_shallow).concat(elev_channel)
@@ -83,7 +83,7 @@ function recalculatetc(){
         tl = tot_lengthmerge.concat(tot_length_shallow).concat(tot_length_channel)
         v = velmerge.concat(vel_shallow).concat(vel_channel)
         i = i_timemerge.concat(i_time_shallow).concat(i_time_channel)
-        tt = tot_timemerge.concat(tot_time_shallow).concat(tot_time_channel)
+        tt = cumulativeSum(i_timemerge)
 
         p = Array.from({length: t.length}, (_, i) => i + 1)
 
