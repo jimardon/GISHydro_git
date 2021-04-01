@@ -1139,7 +1139,7 @@ function settoc(){
                 createtable(i,Pixel_[i],Type_[i],Elev_[i],Slope_[i],AvgArea_[i],Width_[i],Depth_[i],Xarea_[i],I_Length_[i],Vel_[i],I_Time_[i],Tot_Time_[i])
 
             }
-            document.getElementById("velmeth_tc").style.display = "block";
+            if(reaches>1){document.getElementById("velmeth_tc").style.display = "block";};
 
         }else{
 
@@ -1218,7 +1218,6 @@ function createtable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,I_L
     tctable_html += '<th>dt</th>';
     tctable_html += '<th>Tc</th></tr>';
     for(var j=0; j < Pixel.length; j++){
-        alert(Pixel[j])
         tctable_html += '<tr>';
         tctable_html += '<td align="center">' + Pixel[j] + '</td>';
         tctable_html += '<td align="center">' + Type[j] + '</td>';
