@@ -9,32 +9,35 @@ function recalculatetc(){
 
     var subarea = document.getElementById("subtc").value -1
     var pixel = Pixel_[subarea]
+    var type = Type_[subarea]
     var elev = Elev_[subarea]
     var slope = Slope_[subarea]
     var avgarea = AvgArea_
     var width = Width_[subarea]
     var depth = Depth_[subarea]
     var xarea = Xarea_[subarea]
-    var i_length = I_Length_[subarea]
+    var tot_length = Tot_Length_[subarea]
 
     if(sheetcheck && shallowcheck == false && channelcheck == false){
 
+        type.forEach(function(x) { occcounts[x] = (occcounts[x] || 0)+1; });
+
         var pixelmerge = 1
-        var elevmerge = parseFloat(arrAvg(elev.map(Number))).toFixed(2)
-        var slopemerge = parseFloat(arrAvg(slope.map(Number))).toFixed(2)
-        var avgareamerge = parseFloat(arrSum(avgarea.map(Number))).toFixed(2)
-        var i_lengthmerge = parseFloat(arrSum(i_length.map(Number))).toFixed(2)
+        var elevmerge = parseFloat(arrAvg(elev.slice(0,occcounts['overland']-1).map(Number))).toFixed(2)
+        var slopemerge = parseFloat(arrAvg(slope.slice(0,occcounts['overland']-1).map(Number))).toFixed(2)
+        var avgareamerge = parseFloat(arrSum(avgarea.slice(0,occcounts['overland']-1).map(Number))).toFixed(2)
+        var tot_lengthmerge = parseFloat(tot_length[occcounts['overland']-1].map(Number)).toFixed(2)
 
         var sheetn = parseFloat(document.getElementById("sheet_manning").value)
         var sheetp = parseFloat(document.getElementById("sheet_precipitation").value)
         var sheetl = parseFloat(document.getElementById("sheet_length").value)
 
         var i_timemerge = parseFloat(Math.pow(0.007*(sheetn*sheetl),0.8)/Math.pow(sheetp,0.5)/Math.pow(slopemerge,0.4)).toFixed(2)
-        var velmerge = parseFloat(i_lengthmerge/i_timemerge).toFixed(2)
+        var velmerge = parseFloat(tot_lengthmerge/i_timemerge*3600).toFixed(2)
 
-        alert([subarea,pixelmerge,"overland",elevmerge,slopemerge,avgareamerge,"-1","-1","-1",i_lengthmerge,velmerge,i_timemerge,i_timemerge])
+        alert([subarea,pixelmerge,"overland",elevmerge,slopemerge,avgareamerge,"-1","-1","-1",tot_lengthmerge,velmerge,i_timemerge,i_timemerge])
 
-        createtable(subarea,pixelmerge,"overland",elevmerge,slopemerge,avgareamerge,"-1","-1","-1",i_lengthmerge,velmerge,i_timemerge,i_timemerge)
+        createtable(subarea,pixelmerge,"overland",elevmerge,slopemerge,avgareamerge,"-1","-1","-1",tot_lengthmerge,velmerge,i_timemerge,i_timemerge)
 
 
 

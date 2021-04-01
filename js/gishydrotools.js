@@ -46,7 +46,7 @@ var AvgArea_ = '';
 var Width_ = '';
 var Depth_ = '';
 var Xarea_ = '';
-var I_Length_ = '';
+var Tot_Length_ = '';
 var Vel_ = '';
 var I_Time_ = '';
 var Tot_Time_ = '';
@@ -1116,7 +1116,7 @@ function settoc(){
             Width_ = response.width
             Depth_ = response.depth
             Xarea_ = response.xarea
-            I_Length_ = response.tot_length
+            Tot_Length_ = response.tot_length
             Vel_ = response.vel
             I_Time_ = response.i_time
 
@@ -1136,7 +1136,7 @@ function settoc(){
                 var tcmodal = document.getElementById("tocmodal");
                 tcmodal.appendChild(element);
 
-                createtable(i,Pixel_[i],Type_[i],Elev_[i],Slope_[i],AvgArea_[i],Width_[i],Depth_[i],Xarea_[i],I_Length_[i],Vel_[i],I_Time_[i],Tot_Time_[i])
+                createtable(i,Pixel_[i],Type_[i],Elev_[i],Slope_[i],AvgArea_[i],Width_[i],Depth_[i],Xarea_[i],Tot_Length_[i],Vel_[i],I_Time_[i],Tot_Time_[i])
 
             }
             if(reaches>1){document.getElementById("velmeth_tc").style.display = "block";};
@@ -1286,7 +1286,7 @@ function goback(){
 
 function resettc(){
     var subarea = document.getElementById("subtc").value -1
-    createtable(subarea,Pixel_[subarea],Type_[subarea],Elev_[subarea],Slope_[subarea],AvgArea_[subarea],Width_[subarea],Depth_[subarea],Xarea_[subarea],I_Length_[subarea],Vel_[subarea],I_Time_[subarea],Tot_Time_[subarea])
+    createtable(subarea,Pixel_[subarea],Type_[subarea],Elev_[subarea],Slope_[subarea],AvgArea_[subarea],Width_[subarea],Depth_[subarea],Xarea_[subarea],Tot_Length_[subarea],Vel_[subarea],I_Time_[subarea],Tot_Time_[subarea])
 }
 
 
