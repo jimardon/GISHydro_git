@@ -7,6 +7,9 @@ function recalculatetc(){
     var shallowcheck = document.getElementById("singleswale").checked
     var channelcheck = document.getElementById("singlechannel").checked
 
+    var t = '';
+    var tt = '';
+
     const arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
 
     occcounts = {}
@@ -107,4 +110,6 @@ function recalculatetc(){
         type = 7
     }
 
+    t_ = t;
+    tt_ = tt;
 }
