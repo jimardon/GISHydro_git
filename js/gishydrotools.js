@@ -870,7 +870,7 @@ function flowpaths_polyline(){
             $('#outlet-button').attr('disabled','true');
             clearoutlets()
         }else{
-            if(singleshed == true){
+            if(singleshed == false){
                 addasstreams.addLayer(L.geoJson(response.flowpath,{
                     color: '#00eaff',
                     weight: 2,
@@ -1282,43 +1282,6 @@ function showpx(){
 
 function goback(){
     $("#vm_modal").modal()
-}
-
-function recalculatetc(){
-
-    var sheetcheck = document.getElementById("singleoverland").checked
-    var shallowcheck = document.getElementById("singleswale").checked
-    var channelcheck = document.getElementById("singlechannel").checked
-
-    var type;
-    if(sheetcheck && shallowcheck == false && channelcheck == false){
-        type = 1
-    } else if (sheetcheck == false && shallowcheck && channelcheck == false){
-        type = 2
-    } else if (sheetcheck == false && shallowcheck == false && channelcheck){
-        type = 3
-    } else if (sheetcheck && shallowcheck && channelcheck == false){
-        type = 4
-    } else if (sheetcheck && shallowcheck == false && channelcheck){
-        type = 5
-    } else if (sheetcheck == false && shallowcheck && channelcheck){
-        type = 6
-    } else {
-        type = 7
-    }
-
-    var subarea = document.getElementById("subtc").value -1
-    var pixel = Pixel_[subarea]
-    var elev = Elev_[subarea]
-    var slope = Slope_[subarea]
-    var avgarea = AvgArea_
-    var width = Width_[subarea]
-    var depth = Depth_[subarea]
-    var xarea = Xarea_[subarea]
-    var i_length = I_Length_[subarea]
-
-    combinesegments(subarea,type, pixel, elev, slope, avgarea, width, depth, xarea, i_length)
-
 }
 
 function resettc(){
