@@ -73,7 +73,6 @@ function recalculatetc(){
         var i_timemerge = [parseFloat(tot_timemerge[0]).toFixed(3)]
         var velmerge = [parseFloat(tot_lengthmerge[0]/tot_timemerge[0]/3600).toFixed(2)]
 
-        p = Array.from({length: typemerge.length}, (_, i) => i + 1)
         t = typemerge.concat(type_shallow).concat(type_channel)
         e = elevmerge.concat(elev_shallow).concat(elev_channel)
         s = slopemerge.concat(slope_shallow).concat(slope_channel)
@@ -86,6 +85,7 @@ function recalculatetc(){
         i = i_timemerge.concat(i_time_shallow).concat(i_time_channel)
         tt = tot_timemerge.concat(tot_time_shallow).concat(tot_time_channel)
 
+        p = Array.from({length: t.length}, (_, i) => i + 1)
 
         changetcmodal(t,tt)
 
