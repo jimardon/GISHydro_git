@@ -1258,7 +1258,7 @@ function createtctable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,I
 
 function changetcmodal(typetc,tottimetc){
 
-    occcounts = {}
+    var occcounts = {}
     typetc.forEach(function(x) { occcounts[x] = (occcounts[x] || 0)+1; });
 
     document.getElementById("vmsubarea").value = String(document.getElementById("subtc").value);

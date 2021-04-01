@@ -12,7 +12,7 @@ function recalculatetc(){
 
     const arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
 
-    occcounts = {}
+    var occcounts = {}
     Type_[subarea].forEach(function(x) { occcounts[x] = (occcounts[x] || 0) + 1;});
 
     var pixel_sheet = Pixel_[subarea].slice(0,occcounts['overland'])
