@@ -110,6 +110,6 @@ function recalculatetc(){
         type = 7
     }
 
-    t_ = t;
-    tt_ = tt;
+    t_[subarea] = t;
+    tt_[subarea] = tt;
 }
