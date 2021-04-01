@@ -1253,18 +1253,18 @@ function createtable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,I_L
     $("#tc_modal" + String(subarea+1)).html(tc_modal);
 }
 
-function showtc(){
+function showtc(typetc,tottimetc){
     var tc_method = document.getElementById("tc_method").value;
     if(tc_method == 'Velocity Method'){
         subid = String(document.getElementById("subtc").value);
         occcounts = {}
-        Type_[subid-1].forEach(function(x) { occcounts[x] = (occcounts[x] || 0)+1; });
+        typetc[subid-1].forEach(function(x) { occcounts[x] = (occcounts[x] || 0)+1; });
 
         document.getElementById("vmsubarea").value = subid
-        document.getElementById("vmtotaltime").value = parseFloat(Tot_Time_[subid-1][Tot_Time_[subid-1].length - 1]).toFixed(3)
-        document.getElementById("vmoltt").value = parseFloat(Tot_Time_[subid-1][occcounts['overland']-1]).toFixed(3)
-        document.getElementById("vmswtt").value = parseFloat(Tot_Time_[subid-1][Tot_Time_[subid-1].length-occcounts['channel']-1] - Tot_Time_[subid-1][occcounts['overland']-1]).toFixed(3)
-        document.getElementById("vmchtt").value = parseFloat(Tot_Time_[subid-1][Tot_Time_[subid-1].length - 1] - Tot_Time_[subid-1][Tot_Time_[subid-1].length-occcounts['channel']-1]).toFixed(3)
+        document.getElementById("vmtotaltime").value = parseFloat(tottimetc[subid-1][tottimetc[subid-1].length - 1]).toFixed(3)
+        document.getElementById("vmoltt").value = parseFloat(tottimetc[subid-1][occcounts['overland']-1]).toFixed(3)
+        document.getElementById("vmswtt").value = parseFloat(tottimetc[subid-1][tottimetc[subid-1].length-occcounts['channel']-1] - tottimetc[subid-1][occcounts['overland']-1]).toFixed(3)
+        document.getElementById("vmchtt").value = parseFloat(tottimetc[subid-1][tottimetc[subid-1].length - 1] - tottimetc[subid-1][tottimetc[subid-1].length-occcounts['channel']-1]).toFixed(3)
         document.getElementById("vmolseg").value = occcounts['overland']
         document.getElementById("vmswseg").value = occcounts['swale']
         document.getElementById("vmchseg").value = occcounts['channel']

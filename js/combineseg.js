@@ -22,7 +22,7 @@ function recalculatetc(){
 
         type.forEach(function(x) { occcounts[x] = (occcounts[x] || 0)+1; });
 
-        var pixelmerge = [1]
+        var pixelmerge = ["1"]
         var typemerge = ["overland"]
         var elevmerge = [parseFloat(arrAvg(elev.slice(0,occcounts['overland']-1).map(Number))).toFixed(1)]
         var slopemerge = [parseFloat(arrAvg(slope.slice(0,occcounts['overland']-1).map(Number))).toFixed(6)]
@@ -36,12 +36,11 @@ function recalculatetc(){
         var sheetp = parseFloat(document.getElementById("sheet_precipitation").value)
         var sheetl = parseFloat(document.getElementById("sheet_length").value)
 
-        var i_timemerge = [parseFloat(Math.pow(0.007*(sheetn*sheetl),0.8)/Math.pow(sheetp,0.5)/Math.pow(slopemerge,0.4)).toFixed(3)]
+        var tot_timemerge = [parseFloat(Math.pow(0.007*(sheetn*sheetl),0.8)/Math.pow(sheetp,0.5)/Math.pow(slopemerge,0.4)).toFixed(4)]
+        var i_timemerge = [parseFloat(tot_timemerge[0]).toFixed(3)]
         var velmerge = [parseFloat(tot_lengthmerge/i_timemerge/3600).toFixed(2)]
 
-        alert([subarea,pixelmerge,typemerge,elevmerge,slopemerge,avgareamerge,widthmerge,depthmerge,xareamerge,tot_lengthmerge,velmerge,i_timemerge,i_timemerge])
-
-        createtable(subarea,pixelmerge,typemerge,elevmerge,slopemerge,avgareamerge,widthmerge,depthmerge,xareamerge,tot_lengthmerge,velmerge,i_timemerge,i_timemerge)
+        createtable(subarea,pixelmerge,typemerge,elevmerge,slopemerge,avgareamerge,widthmerge,depthmerge,xareamerge,tot_lengthmerge,velmerge,i_timemerge,tot_timemerge)
 
 
 
