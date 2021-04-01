@@ -1150,7 +1150,7 @@ function settoc(){
             tctable_html += '<tr align="center"><th>Subwatershed</th>';
             tctable_html += '<th>Area<br/>(mi<sup>2</sup>)</th>';
             tctable_html += '<th>Time of Concentration<br/>(h)</th></tr>';
-            for(var i=0; i < Tot_Time.length; i++){
+            for(var i=0; i < Tot_Time_.length; i++){
                 tctable_html += '<tr>';
                 tctable_html += '<td align="center">' + String(i+1) + '</td>';
                 tctable_html += '<td align="center">' + AvgArea_[i] + '</td>';
@@ -1250,6 +1250,7 @@ function createtable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,I_L
     tc_modal += '</div>';
 
     $("#tc_modal" + String(subarea+1)).html(tc_modal);
+    showtc(Type,Tot_Time)
 }
 
 function showtc(typetc,tottimetc){
@@ -1267,6 +1268,10 @@ function showtc(typetc,tottimetc){
         document.getElementById("vmolseg").value = occcounts['overland']
         document.getElementById("vmswseg").value = occcounts['swale']
         document.getElementById("vmchseg").value = occcounts['channel']
+
+        alert(occcounts['overland'])
+        alert(occcounts['swale'])
+        alert(occcounts['channel'])
 
         $("#vm_modal").modal()
 

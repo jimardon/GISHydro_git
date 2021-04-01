@@ -7,7 +7,8 @@ function recalculatetc(){
 
     const arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
 
-    Type_[subarea].forEach(function(x) { occcounts[x] = (occcounts[x] || 0)+1; });
+    occcounts = {}
+    Type_[subarea].forEach(function(x) { occcounts[x] = (occcounts[x] || 0) + 1;});
 
     var pixel_sheet = Pixel_[subarea].slice(0,occcounts['overland'])
     var type_sheet = Type_[subarea].slice(0,occcounts['overland'])
@@ -86,7 +87,6 @@ function recalculatetc(){
         tt = tot_timemerge.concat(tot_time_shallow).concat(tot_time_channel)
 
         createtable(subarea,p,t,e,s,a,w,d,x,tl,v,i,tt)
-        showtc(t,tt)
 
     } else if (sheetcheck == false && shallowcheck && channelcheck == false){
         type = 2
