@@ -870,11 +870,12 @@ function flowpaths_polyline(){
             $('#outlet-button').attr('disabled','true');
             clearoutlets()
         }else{
-
-            addasstreams.addLayer(L.geoJson(response.flowpath,{
-                color: '#00eaff',
-                weight: 2,
-            }));
+            if(singleshed == true){
+                addasstreams.addLayer(L.geoJson(response.flowpath,{
+                    color: '#00eaff',
+                    weight: 2,
+                }));
+            }
             $('#clearflowpath-button').removeAttr('disabled');
             $('#subsheds-button').removeAttr('disabled');
             $('#outlet-button').removeAttr('disabled');
@@ -958,7 +959,7 @@ function subdivide_yes(){
 
     document.getElementById("subshedyes").style.display = "block";
     document.getElementById("subshedoption").style.display = "none";
-
+    singleshed = false;
 }
 
 function subdivide_no(){
@@ -1217,6 +1218,7 @@ function createtable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,I_L
     tctable_html += '<th>dt</th>';
     tctable_html += '<th>Tc</th></tr>';
     for(var j=0; j < Pixel.length; j++){
+        alert(Pixel[j])
         tctable_html += '<tr>';
         tctable_html += '<td align="center">' + Pixel[j] + '</td>';
         tctable_html += '<td align="center">' + Type[j] + '</td>';
