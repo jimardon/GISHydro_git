@@ -52,7 +52,6 @@ var I_Time_ = '';
 var Tot_Time_ = '';
 var t_ = [];
 var tt_ = [];
-var tcmerged = false;
 var thecritavg = '';
 var inputstring = '';
 var errorstring = '';
@@ -1285,11 +1284,7 @@ function showtc(){
     if(tc_method == 'Velocity Method'){
 
         subid = String(document.getElementById("subtc").value);
-        if(tcmerged){            
-            changetcmodal(Type_[subid-1],Tot_Time_[subid-1])
-        } else {
-            changetcmodal(t_[subid-1],tt_[subid-1])
-        }
+        changetcmodal(t_[subid-1],tt_[subid-1])
 
         $("#vm_modal").modal()
 
@@ -1310,7 +1305,6 @@ function goback(){
 function resettc(){
     var subarea = document.getElementById("subtc").value -1
     createtctable(subarea,Pixel_[subarea],Type_[subarea],Elev_[subarea],Slope_[subarea],AvgArea_[subarea],Width_[subarea],Depth_[subarea],Xarea_[subarea],Tot_Length_[subarea],Vel_[subarea],I_Time_[subarea],Tot_Time_[subarea])
-    tcmerged = false
 }
 
 
