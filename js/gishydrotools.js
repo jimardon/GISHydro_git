@@ -1259,7 +1259,7 @@ function showtc(typetc,tottimetc){
     if(tc_method == 'Velocity Method'){
         subid = String(document.getElementById("subtc").value);
         occcounts = {}
-        typetc[subid-1].forEach(function(x) { occcounts[x] = (occcounts[x] || 0)+1; });
+        Type_[subid-1].forEach(function(x) { occcounts[x] = (occcounts[x] || 0)+1; });
 
         document.getElementById("vmsubarea").value = subid
         document.getElementById("vmtotaltime").value = parseFloat(tottimetc[subid-1][tottimetc[subid-1].length - 1]).toFixed(3)
