@@ -215,6 +215,7 @@ call (410) 767-4500.)","20vh")
         sidebar.open('shed_del');
         drawLayers.clearLayers();
         $('#infstr-button').removeAttr('disabled');
+        $('#landuse-button').removeAttr('disabled');
         map.spin(false);
     }
 }
