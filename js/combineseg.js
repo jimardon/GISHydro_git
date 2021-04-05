@@ -55,7 +55,19 @@ function recalculatetc(){
     var i_time_channel = I_Time_[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
     var tot_time_channel = Tot_Time_[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
 
-    if(sheetcheck && shallowcheck == false && channelcheck == false){
+    var t = '';
+    var e = '';
+    var s = '';
+    var a = '';
+    var w = '';
+    var d = '';
+    var x = '';
+    var tl = '';
+    var v = '';
+    var i = '';
+    var tt = '';
+
+    function mergeoverland(){
 
         var typemerge = [type_sheet[type_sheet.length - 1]]
         var elevmerge = [parseFloat(arrAvg(elev_sheet.map(Number))).toFixed(1)]
@@ -92,18 +104,36 @@ function recalculatetc(){
 
         createtctable(subarea,p,t,e,s,a,w,d,x,tl,v,i,tt)
 
-    } else if (sheetcheck == false && shallowcheck && channelcheck == false){
-        type = 2
-    } else if (sheetcheck == false && shallowcheck == false && channelcheck){
-        type = 3
-    } else if (sheetcheck && shallowcheck && channelcheck == false){
-        type = 4
-    } else if (sheetcheck && shallowcheck == false && channelcheck){
-        type = 5
-    } else if (sheetcheck == false && shallowcheck && channelcheck){
-        type = 6
+    }
+
+    if (sheetcheck && shallowcheck == false && channelcheck == false && occcounts['overland'] > 1){
+        mergeoverland()
+    }
+    else if (sheetcheck == false && shallowcheck && channelcheck == false && occcounts['swale'] > 1){
+        mergeswale()
+    }
+    else if (sheetcheck == false && shallowcheck == false && channelcheck && occcounts['channel'] > 1){
+        mergechannel()
+    }
+    else if (sheetcheck && shallowcheck && channelcheck == false && (occcounts['overland'] > 1 || occcounts['swale'] > 1)){
+        mergeoverland()
+        mergeswale()
+    }
+    else if (sheetcheck && shallowcheck == false && channelcheck && (occcounts['overland'] > 1 || occcounts['channel'] > 1)){
+        mergeoverland()
+        mergechannel()
+    }
+    else if (sheetcheck == false && shallowcheck && channelcheck && (occcounts['swale'] > 1 || occcounts['channel'] > 1)){
+        mergeswale()
+        mergechannel()
+    }
+    else if (sheetcheck && shallowcheck && channelcheck && (occcounts['overland'] > 1 || occcounts['swale'] > 1 || occcounts['channel'] > 1)){
+        mergeoverland()
+        mergeswale()
+        mergechannel()
     } else {
-        type = 7
+        t_ = Type_[subarea]
+        tt_ = Tot_Time_[subarea]
     }
 
     t_[subarea] = t;
