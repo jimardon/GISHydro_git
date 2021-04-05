@@ -1193,7 +1193,7 @@ function settoc(){
     }
 }
 
-function createtctable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,I_Length,Vel,I_Time,Tot_Time){
+function createtctable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,Tot_Length,Vel,I_Time,Tot_Time){
     var tc_method = document.getElementById("tc_method").value;
 
     var tctable_html = '<table border="0" align="center">';
@@ -1225,16 +1225,16 @@ function createtctable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,I
         tctable_html += '<tr>';
         tctable_html += '<td align="center">' + Pixel[j] + '</td>';
         tctable_html += '<td align="center">' + Type[j] + '</td>';
-        tctable_html += '<td align="center">' + Elev[j] + '</td>';
-        tctable_html += '<td align="center">' + Slope[j] + '</td>';
-        tctable_html += '<td align="center">' + AvgArea[j] + '</td>';
+        tctable_html += '<td align="center">' + Elev[j].toFixed(1) + '</td>';
+        tctable_html += '<td align="center">' + Slope[j].toFixed(6) + '</td>';
+        tctable_html += '<td align="center">' + AvgArea[j].toFixed(6) + '</td>';
         tctable_html += '<td align="center">' + Width[j] + '</td>';
         tctable_html += '<td align="center">' + Depth[j] + '</td>';
         tctable_html += '<td align="center">' + Xarea[j] + '</td>';
-        tctable_html += '<td align="center">' + I_Length[j] + '</td>';
-        tctable_html += '<td align="center">' + Vel[j] + '</td>';
-        tctable_html += '<td align="center">' + I_Time[j] + '</td>';
-        tctable_html += '<td align="center">' + Tot_Time[j] + '</td>';
+        tctable_html += '<td align="center">' + Tot_Length[j].toFixed(1) + '</td>';
+        tctable_html += '<td align="center">' + Vel[j].toFixed(3) + '</td>';
+        tctable_html += '<td align="center">' + I_Time[j].toFixed(4) + '</td>';
+        tctable_html += '<td align="center">' + Tot_Time[j].toFixed(4) + '</td>';
         tctable_html += '</tr>';
     }
     tctable_html += '</table><p></p>';
