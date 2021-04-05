@@ -84,7 +84,7 @@ function recalculatetc(){
         v = velmerge.concat(vel_shallow).concat(vel_channel)
         i = i_timemerge.concat(i_time_shallow).concat(i_time_channel)
         tt = cumulativeSum(i.map(Number))
-        tt = tt.map(arr=>arr.toFixed(3))
+        tt = tt.map(arr=>arr.toFixed(4))
 
         p = Array.from({length: t.length}, (_, i) => i + 1)
 
