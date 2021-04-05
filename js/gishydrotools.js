@@ -1225,16 +1225,16 @@ function createtctable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,T
         tctable_html += '<tr>';
         tctable_html += '<td align="center">' + Pixel[j] + '</td>';
         tctable_html += '<td align="center">' + Type[j] + '</td>';
-        tctable_html += '<td align="center">' + Elev[j].toFixed(1) + '</td>';
-        tctable_html += '<td align="center">' + Slope[j].toFixed(6) + '</td>';
-        tctable_html += '<td align="center">' + AvgArea[j].toFixed(6) + '</td>';
+        tctable_html += '<td align="center">' + parseFloat(Elev[j]).toFixed(1) + '</td>';
+        tctable_html += '<td align="center">' + parseFloat(Slope[j]).toFixed(6) + '</td>';
+        tctable_html += '<td align="center">' + parseFloat(AvgArea[j]).toFixed(6) + '</td>';
         tctable_html += '<td align="center">' + Width[j] + '</td>';
         tctable_html += '<td align="center">' + Depth[j] + '</td>';
         tctable_html += '<td align="center">' + Xarea[j] + '</td>';
-        tctable_html += '<td align="center">' + Tot_Length[j].toFixed(1) + '</td>';
-        tctable_html += '<td align="center">' + Vel[j].toFixed(3) + '</td>';
-        tctable_html += '<td align="center">' + I_Time[j].toFixed(4) + '</td>';
-        tctable_html += '<td align="center">' + Tot_Time[j].toFixed(4) + '</td>';
+        tctable_html += '<td align="center">' + parseFloat(Tot_Length[j]).toFixed(1) + '</td>';
+        tctable_html += '<td align="center">' + parseFloat(Vel[j]).toFixed(3) + '</td>';
+        tctable_html += '<td align="center">' + parseFloat(I_Time[j]).toFixed(4) + '</td>';
+        tctable_html += '<td align="center">' + parseFloat(Tot_Time[j]).toFixed(4) + '</td>';
         tctable_html += '</tr>';
     }
     tctable_html += '</table><p></p>';
