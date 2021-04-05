@@ -70,7 +70,7 @@ function recalculatetc(){
         var sheetp = parseFloat(document.getElementById("sheet_precipitation").value)
         var sheetl = parseFloat(document.getElementById("sheet_length").value)
 
-        var i_timemerge = [parseFloat(0.007*Math.pow((sheetn*sheetl),0.8)/Math.pow(sheetp,0.5)/Math.pow(slopemerge[0],0.4)).toFixed(3)]
+        var i_timemerge = [parseFloat(0.007*Math.pow((sheetn*sheetl),0.8)/Math.pow(sheetp,0.5)/Math.pow(slopemerge[0],0.4)).toFixed(4)]
         var velmerge = [parseFloat(tot_lengthmerge[0]/i_timemerge[0]/3600).toFixed(2)]
 
         t = typemerge.concat(type_shallow).concat(type_channel)
