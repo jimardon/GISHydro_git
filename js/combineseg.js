@@ -16,56 +16,41 @@ function recalculatetc(){
     var occcounts = {}
     Type_[subarea].forEach(function(x) { occcounts[x] = (occcounts[x] || 0) + 1;});
 
-    var pixel_sheet = Pixel_[subarea].slice(0,occcounts['overland'])
-    var type_sheet = Type_[subarea].slice(0,occcounts['overland'])
-    var elev_sheet = Elev_[subarea].slice(0,occcounts['overland'])
-    var slope_sheet = Slope_[subarea].slice(0,occcounts['overland'])
-    var avgarea_sheet = AvgArea_[subarea].slice(0,occcounts['overland'])
-    var width_sheet = Width_[subarea].slice(0,occcounts['overland'])
-    var depth_sheet = Depth_[subarea].slice(0,occcounts['overland'])
-    var xarea_sheet = Xarea_[subarea].slice(0,occcounts['overland'])
-    var tot_length_sheet = Tot_Length_[subarea].slice(0,occcounts['overland'])
-    var vel_sheet = Vel_[subarea].slice(0,occcounts['overland'])
-    var i_time_sheet = I_Time_[subarea].slice(0,occcounts['overland'])
-    var tot_time_sheet = Tot_Time_[subarea].slice(0,occcounts['overland'])
+    var type_sheet = t_temp[subarea].slice(0,occcounts['overland'])
+    var elev_sheet = e_temp[subarea].slice(0,occcounts['overland'])
+    var slope_sheet = s_temp[subarea].slice(0,occcounts['overland'])
+    var avgarea_sheet = a_temp[subarea].slice(0,occcounts['overland'])
+    var width_sheet = w_temp[subarea].slice(0,occcounts['overland'])
+    var depth_sheet = d_temp[subarea].slice(0,occcounts['overland'])
+    var xarea_sheet = xa_temp[subarea].slice(0,occcounts['overland'])
+    var tot_length_sheet = tl_temp[subarea].slice(0,occcounts['overland'])
+    var vel_sheet = v_temp[subarea].slice(0,occcounts['overland'])
+    var i_time_sheet = it_temp[subarea].slice(0,occcounts['overland'])
+    var tot_time_sheet = tt_temp[subarea].slice(0,occcounts['overland'])
 
-    var pixel_shallow = Pixel_[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
-    var type_shallow = Type_[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
-    var elev_shallow = Elev_[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
-    var slope_shallow = Slope_[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
-    var avgarea_shallow = AvgArea_[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
-    var width_shallow = Width_[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
-    var depth_shallow = Depth_[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
-    var xarea_shallow = Xarea_[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
-    var tot_length_shallow = Tot_Length_[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
-    var vel_shallow = Vel_[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
-    var i_time_shallow = I_Time_[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
-    var tot_time_shallow = Tot_Time_[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
+    var type_shallow = t_temp[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
+    var elev_shallow = e_temp[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
+    var slope_shallow = s_temp[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
+    var avgarea_shallow = a_temp[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
+    var width_shallow = w_temp[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
+    var depth_shallow = d_temp[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
+    var xarea_shallow = x_temp[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
+    var tot_length_shallow = tl_temp[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
+    var vel_shallow = v_temp[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
+    var i_time_shallow = it_temp[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
+    var tt = tt_temp[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
 
-    var pixel_channel = Pixel_[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
-    var type_channel = Type_[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
-    var elev_channel = Elev_[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
-    var slope_channel = Slope_[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
-    var avgarea_channel = AvgArea_[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
-    var width_channel = Width_[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
-    var depth_channel = Depth_[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
-    var xarea_channel = Xarea_[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
-    var tot_length_channel = Tot_Length_[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
-    var vel_channel = Vel_[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
-    var i_time_channel = I_Time_[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
-    var tot_time_channel = Tot_Time_[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
-
-    var t = '';
-    var e = '';
-    var s = '';
-    var a = '';
-    var w = '';
-    var d = '';
-    var x = '';
-    var tl = '';
-    var v = '';
-    var i = '';
-    var tt = '';
+    var type_channel = t_temp[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
+    var elev_channel = e_temp[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
+    var slope_channel = s_temp[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
+    var avgarea_channel = a_temp[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
+    var width_channel = w_temp[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
+    var depth_channel = d_temp[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
+    var xarea_channel = x_temp[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
+    var tot_length_channel = tl[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
+    var vel_channel = v_temp[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
+    var i_time_channel = it_temp[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
+    var tot_time_channel = tt_temp[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
 
     function mergeoverland(){
 
@@ -94,7 +79,7 @@ function recalculatetc(){
         x = xareamerge.concat(xarea_shallow).concat(xarea_channel)
         tl = tot_lengthmerge.concat(tot_length_shallow).concat(tot_length_channel)
         v = velmerge.concat(vel_shallow).concat(vel_channel)
-        i = i_timemerge.concat(i_time_shallow).concat(i_time_channel)
+        it = i_timemerge.concat(i_time_shallow).concat(i_time_channel)
         tt = cumulativeSum(i.map(Number))
         tt = tt.map(arr=>arr.toFixed(4))
 
@@ -102,7 +87,7 @@ function recalculatetc(){
 
         changetcmodal(t,tt)
 
-        createtctable(subarea,p,t,e,s,a,w,d,x,tl,v,i,tt)
+        createtctable(subarea,p,t,e,s,a,w,d,x,tl,v,it,tt)
 
     }
 

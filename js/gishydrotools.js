@@ -52,6 +52,17 @@ var I_Time_ = '';
 var Tot_Time_ = '';
 var t_ = [];
 var tt_ = [];
+var t_temp = '';
+var e_temp = '';
+var s_temp = '';
+var a_temp = '';
+var w_temp = '';
+var d_temp = '';
+var x_temp = '';
+var tl_temp = '';
+var v_temp = '';
+var it_temp = '';
+var tt_temp = '';
 var thecritavg = '';
 var inputstring = '';
 var errorstring = '';
@@ -1122,6 +1133,18 @@ function settoc(){
             Vel_ = response.vel
             I_Time_ = response.i_time
 
+            t_temp = Type_;
+            e_temp = Mixed_;
+            s_temp = Elev_;
+            a_temp = Slope_;
+            w_temp = Width_;
+            d_temp = Depth_;
+            x_temp = Xarea_;
+            tl_temp = Tot_Length_;
+            v_temp = Vel_;
+            it_temp = I_Time_;
+            tt_temp = Tot_Time_;
+
             reaches = Pixel_.length;
             for(var i=0; i < reaches; i++){
 
@@ -1299,6 +1322,19 @@ function resettc(){
     var subarea = document.getElementById("subtc").value -1
     t_[subarea] = Type_[subarea]
     tt_[subarea] = Tot_Time_[subarea]
+
+    t_temp = Type_;
+    e_temp = Mixed_;
+    s_temp = Elev_;
+    a_temp = Slope_;
+    w_temp = Width_;
+    d_temp = Depth_;
+    x_temp = Xarea_;
+    tl_temp = Tot_Length_;
+    v_temp = Vel_;
+    it_temp = I_Time_;
+    tt_temp = Tot_Time_;
+
     changetcmodal(t_[subarea],tt_[subarea])
     createtctable(subarea,Pixel_[subarea],Type_[subarea],Elev_[subarea],Slope_[subarea],AvgArea_[subarea],Width_[subarea],Depth_[subarea],Xarea_[subarea],Tot_Length_[subarea],Vel_[subarea],I_Time_[subarea],Tot_Time_[subarea])
 }
