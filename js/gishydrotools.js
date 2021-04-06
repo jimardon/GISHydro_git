@@ -496,9 +496,9 @@ function basin_properties(){
         basin_modal +=         '</div>'
         basin_modal +=         '<div class="modal-body">';
         basin_modal +=             btable0_html;
-        basin_modal +=             '<p></p><p align="center"><b>Distribution of Land Use by Soil Group</b></p>';
+        basin_modal +=             '<p></p><p align="center"><b>Distribution of Land Use by Soil Group (Acres)</b></p>';
         basin_modal +=             btable1_html;
-        basin_modal +=             '<p align="center"><b>Distribution of Land Use and Curve Numbers Used</b></p>';
+        basin_modal +=             '<p align="center"><b>Distribution of Land Use by Curve Number</b></p>';
         basin_modal +=             btable2_html;
         basin_modal +=         '</div>';
         basin_modal +=         '<div class="modal-footer">';
@@ -544,7 +544,7 @@ function basin_properties(){
         var btable4_html = '<table border="0" align="center">';
         btable4_html += '<col width="300">';
         btable4_html += '<col width="300">';
-        btable4_html += '<tr><td align="left">Drainage Area:</td><td align="left">' + areami2 + ' mi<sup>2</sup> (' + parseFloat(areami2*640).toFixed(1) + ' ac))</td></tr>';
+        btable4_html += '<tr><td align="left">Drainage Area:</td><td align="left">' + areami2 + ' mi<sup>2</sup> (' + parseFloat(areami2*640).toFixed(1) + ' ac)</td></tr>';
         btable4_html += '<tr><td align="left">Channel Slope:</td><td align="left">' + parseFloat(theslope).toFixed(3) + ' ft/mi (' + parseFloat(theslope_feet).toFixed(3) +' ft/ft)' + '</td></tr>';
         btable4_html += '<tr><td align="left">Land Slope:</td><td align="left">' + parseFloat(landslope).toFixed(3) + ' ft/ft' + '</td></tr>';
         btable4_html += '<tr><td align="left">Urban Area:</td><td align="left">' + UrbPct + '%</td></tr>';
@@ -556,8 +556,8 @@ function basin_properties(){
         btable5_html += '<col width="300">';
         btable5_html += '<tr><td align="left">Time of Concentration:</td><td align="left">' + tc + ' hours [W.O. Thomas, Jr. Equation]' + '</td></tr>';
         btable5_html += '<tr><td align="left">Time of Concentration:</td><td align="left">' + lagtime + ' hours  [From SCS Lag Equation * 1.67]' + '</td></tr>';
-        btable5_html += '<tr><td align="left">Longest Flow Path:</td><td align="left">' + maxlength + ' feet</td></tr>';
-        btable5_html += '<tr><td align="left">Basin Relief:</td><td align="left">' + basinrelief + ' feet</td></tr>';
+        btable5_html += '<tr><td align="left">Longest Flow Path:</td><td align="left">' + maxlength + ' mi</td></tr>';
+        btable5_html += '<tr><td align="left">Basin Relief:</td><td align="left">' + basinrelief + ' ft</td></tr>';
         btable5_html += '<tr><td align="left">Average CN:</td><td align="left">' + avgCN + '</td></tr>';
         btable5_html += '<tr><td align="left">Forest Cover:</td><td align="left">' + FC + '%</td></tr>';
         btable5_html += '<tr><td align="left">Storage:</td><td align="left">' + ST + '%</td></tr>';
@@ -642,10 +642,10 @@ function basin_properties(){
         btable10_html += '<col width="70">';
         btable10_html += '<col width="70">';
         btable10_html += '<tr align="center"><th rowspan="2">Return Period</th>';
-        btable10_html += '<th colspan="2" scope="colgroup">50 PERCENT</th>';
-        btable10_html += '<th colspan="2" scope="colgroup">67 PERCENT</th>';
-        btable10_html += '<th colspan="2" scope="colgroup">90 PERCENT</th>';
-        btable10_html += '<th colspan="2" scope="colgroup">95 PERCENT</th></tr>';
+        btable10_html += '<th colspan="2" scope="colgroup">50%</th>';
+        btable10_html += '<th colspan="2" scope="colgroup">67%</th>';
+        btable10_html += '<th colspan="2" scope="colgroup">90%</th>';
+        btable10_html += '<th colspan="2" scope="colgroup">95%</th></tr>';
         btable10_html += '<tr align="center"><th scope="col">lower</th><th scope="col">upper</th>';
         btable10_html += '<th scope="col">lower</th><th scope="col">upper</th>';
         btable10_html += '<th scope="col">lower</th><th scope="col">upper</th>';
@@ -720,10 +720,10 @@ function basin_properties(){
             btable13_html += '<col width="70">';
             btable13_html += '<col width="70">';
             btable13_html += '<tr align="center"><th rowspan="2">Return Period</th>';
-            btable13_html += '<th colspan="2" scope="colgroup">50 PERCENT</th>';
-            btable13_html += '<th colspan="2" scope="colgroup">67 PERCENT</th>';
-            btable13_html += '<th colspan="2" scope="colgroup">90 PERCENT</th>';
-            btable13_html += '<th colspan="2" scope="colgroup">95 PERCENT</th></tr>';
+            btable13_html += '<th colspan="2" scope="colgroup">50%</th>';
+            btable13_html += '<th colspan="2" scope="colgroup">67%</th>';
+            btable13_html += '<th colspan="2" scope="colgroup">90%</th>';
+            btable13_html += '<th colspan="2" scope="colgroup">95%</th></tr>';
             btable13_html += '<tr align="center"><th scope="col">lower</th><th scope="col">upper</th>';
             btable13_html += '<th scope="col">lower</th><th scope="col">upper</th>';
             btable13_html += '<th scope="col">lower</th><th scope="col">upper</th>';
@@ -1310,6 +1310,18 @@ function changetcmodal(typetc,tottimetc){
 function showtc(){
     var tc_method = document.getElementById("tc_method").value;
     if(tc_method == 'Velocity Method'){
+
+        t_temp = Type_;
+        e_temp = Elev_;
+        s_temp = Slope_;
+        a_temp = AvgArea_;
+        w_temp = Width_;
+        d_temp = Depth_;
+        x_temp = Xarea_;
+        tl_temp = Tot_Length_;
+        v_temp = Vel_;
+        it_temp = I_Time_;
+        tt_temp = Tot_Time_;
 
         subid = String(document.getElementById("subtc").value);
         changetcmodal(t_[subid-1],tt_[subid-1])
