@@ -166,12 +166,14 @@ function recalculatetc(){
         alert(widthmerge)
         alert(depthmerge)
         alert(xareamerge)
-        const hydrad = xareamerge[0]/(2*widthmerge[0])
+        const hydrad = xareamerge[0]/(2*depthmerge[0])
+        const hydrad2 = xareamerge[0]/(2*depthmerge[0]+widthmerge[0])
 
         const velmerge = [parseFloat(1.49*Math.pow(hydrad,2/3)*Math.pow(slopemerge[0],0.5)/channeln).toFixed(3)]
         const i_timemerge = [parseFloat(tot_lengthmerge[0]/velmerge[0]/3600).toFixed(4)]
 
         alert(hydrad)
+        alert(hydrad2)
 
         t_temp[subarea] = type_sheet.concat(type_shallow).concat(typemerge)
         e_temp[subarea] = elev_sheet.concat(elev_shallow).concat(elevmerge)
