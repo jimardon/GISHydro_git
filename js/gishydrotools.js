@@ -1135,9 +1135,9 @@ function settoc(){
             I_Time_ = response.i_time
 
             t_temp = Type_;
-            e_temp = Mixed_;
-            s_temp = Elev_;
-            a_temp = Slope_;
+            e_temp = Elev_;
+            s_temp = Slope_;
+            a_temp = AvgArea_;
             w_temp = Width_;
             d_temp = Depth_;
             x_temp = Xarea_;
@@ -1336,9 +1336,9 @@ function resettc(){
     tt_[subarea] = Tot_Time_[subarea]
 
     t_temp = Type_;
-    e_temp = Mixed_;
-    s_temp = Elev_;
-    a_temp = Slope_;
+    e_temp = Elev_;
+    s_temp = Slope_;
+    a_temp = AvgArea_;
     w_temp = Width_;
     d_temp = Depth_;
     x_temp = Xarea_;
@@ -1346,7 +1346,7 @@ function resettc(){
     v_temp = Vel_;
     it_temp = I_Time_;
     tt_temp = Tot_Time_;
-
+    
     changetcmodal(t_[subarea],tt_[subarea])
     createtctable(subarea,Pixel_[subarea],Type_[subarea],Elev_[subarea],Slope_[subarea],AvgArea_[subarea],Width_[subarea],Depth_[subarea],Xarea_[subarea],Tot_Length_[subarea],Vel_[subarea],I_Time_[subarea],Tot_Time_[subarea])
 }
