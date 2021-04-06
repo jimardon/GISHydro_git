@@ -167,9 +167,9 @@ function recalculatetc(){
         const velmerge = [parseFloat(1.49*Math.pow(hr,2/3)*Math.pow(slopemerge[0],0.5)/channeln).toFixed(3)]
         const i_timemerge = [parseFloat(tot_lengthmerge[0]/velmerge[0]/3600).toFixed(4)]
 
-        alert(channeln)
-        alert(hr)
-        alert(velmerge)
+        alert(xareamerge[0])
+        alert(depthmerge[0])
+        alert(widthmerge[0])
 
         t_temp[subarea] = type_sheet.concat(type_shallow).concat(typemerge)
         e_temp[subarea] = elev_sheet.concat(elev_shallow).concat(elevmerge)
