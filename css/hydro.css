@@ -80,6 +80,10 @@ button:focus{
     display: none;
 }
 
+#lp_subarea{
+    display: none;
+}
+
 #aoi-button{
     width: 100%;
     float: center;
@@ -98,6 +102,12 @@ button:focus{
 }
 
 #landuse-button{
+    width: 100%;
+    float: center;
+    height: 50px;
+}
+
+#longestpath-button{
     width: 100%;
     float: center;
     height: 50px;
