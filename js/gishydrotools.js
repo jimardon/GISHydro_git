@@ -556,14 +556,14 @@ function basin_properties(){
         btable5_html += '<col width="300">';
         btable5_html += '<tr><td align="left">Time of Concentration:</td><td align="left">' + tc + ' hours [W.O. Thomas, Jr. Equation]' + '</td></tr>';
         btable5_html += '<tr><td align="left">Time of Concentration:</td><td align="left">' + lagtime + ' hours  [From SCS Lag Equation * 1.67]' + '</td></tr>';
-        btable5_html += '<tr><td align="left">Longest Flow Path:</td><td align="left">' + maxlength + '</td></tr>';
-        btable5_html += '<tr><td align="left">Basin Relief:</td><td align="left">' + basinrelief + '</td></tr>';
+        btable5_html += '<tr><td align="left">Longest Flow Path:</td><td align="left">' + maxlength + ' feet</td></tr>';
+        btable5_html += '<tr><td align="left">Basin Relief:</td><td align="left">' + basinrelief + ' feet</td></tr>';
         btable5_html += '<tr><td align="left">Average CN:</td><td align="left">' + avgCN + '</td></tr>';
-        btable5_html += '<tr><td align="left">Forest Cover (percent):</td><td align="left">' + FC + '</td></tr>';
-        btable5_html += '<tr><td align="left">Storage (percent):</td><td align="left">' + ST + '</td></tr>';
-        btable5_html += '<tr><td align="left">Limestone (percent):</td><td align="left">' + LI + '</td></tr>';
-        btable5_html += '<tr><td align="left">2-Year,24-hour Prec. (in.):</td><td align="left">' + p2yr + '</td></tr>';
-        btable5_html += '<tr><td align="left">Mean Annual Prec. (in.):</td><td align="left">' + maprec + '</td></tr>';
+        btable5_html += '<tr><td align="left">Forest Cover:</td><td align="left">' + FC + '%</td></tr>';
+        btable5_html += '<tr><td align="left">Storage:</td><td align="left">' + ST + '%</td></tr>';
+        btable5_html += '<tr><td align="left">Limestone:</td><td align="left">' + LI + '%</td></tr>';
+        btable5_html += '<tr><td align="left">2-Year,24-hour Precipitation:</td><td align="left">' + p2yr + ' in</td></tr>';
+        btable5_html += '<tr><td align="left">Mean Annual Precipitation:</td><td align="left">' + maprec + ' in</td></tr>';
         btable5_html += '</table><p></p>';
 
         var btable6_html = '<table border="0" align="center">';
