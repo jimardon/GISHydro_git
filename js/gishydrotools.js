@@ -1289,6 +1289,8 @@ function createtctable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,T
 
 function changetcmodal(typetc,tottimetc){
 
+    alert(typetc)
+    alert(tottimetc)
     var occcounts = {}
     typetc.forEach(function(x) { occcounts[x] = (occcounts[x] || 0)+1; });
 
