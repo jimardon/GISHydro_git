@@ -1263,7 +1263,7 @@ function createtctable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,T
         tctable_html += '<td align="center">' + parseFloat(Elev[j]).toFixed(1) + '</td>';
         tctable_html += '<td align="center">' + parseFloat(Slope[j]).toFixed(6) + '</td>';
         tctable_html += '<td align="center">' + parseFloat(AvgArea[j]).toFixed(6) + '</td>';
-        if(Width[j] = "-1"){
+        if(Width[j] == "-1"){
             tctable_html += '<td align="center">-</td>';
             tctable_html += '<td align="center">-</td>';
             tctable_html += '<td align="center">-</td>';

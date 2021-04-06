@@ -163,6 +163,9 @@ function recalculatetc(){
 
         const channeln = parseFloat(document.getElementById("channel_manning").value)
         //const hydrad = xareamerge[0]/(2*depthmerge[0]+widthmerge[0])
+        alert(widthmerge)
+        alert(depthmerge)
+        alert(xareamerge)
         const hydrad = xareamerge[0]/(2*widthmerge[0])
 
         const velmerge = [parseFloat(1.49*Math.pow(hydrad,2/3)*Math.pow(slopemerge[0],0.5)/channeln).toFixed(3)]
