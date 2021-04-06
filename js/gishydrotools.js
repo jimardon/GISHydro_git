@@ -1858,7 +1858,77 @@ function contours(){
     }
 }
 
-function infproj(){
+function infstreamload(){
+    map.spin(true);
+    $('#infstr-button').attr('disabled','true');
+
+    var gpService = L.esri.GP.service({
+        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/ShowStreams",
+        useCors:false
+      });
+    var gpTask = gpService.createTask();
+
+    gpTask.setParam("projectname",  full_project_name)
+    
+    gpTask.run(infstreamloadCallback);
+
+    function infstreamloadCallback(error, response, raw){
+
+        if (error){
+            alertmodal("Error",errormsg,"10vh")
+            $('#infstr-button').removeAttr('disabled');
+            map.spin(false);
+        }
+
+        var infstreams_layer = response.infstr
+        infstreams.addLayer(L.geoJson(infstreams_layer,{
+            crossOrigin: null,
+            fillColor: '#6666FF',
+            fillOpacity: 0.5,
+            weight: 0,
+        }));
+        LC.addOverlay(infstreams, "Inferred Streams");
+
+        map.spin(false);
+    }
+};
+
+function landuseload(){
+    map.spin(true);
+    $('#landuse-button').attr('disabled','true');
+
+    var gpService = L.esri.GP.service({
+        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/ShowStreams",
+        useCors:false
+      });
+    var gpTask = gpService.createTask();
+
+    gpTask.setParam("projectname",  full_project_name)
+    
+    gpTask.run(landuseloadCallback);
+
+    function landuseloadCallback(error, response, raw){
+
+        if (error){
+            alertmodal("Error",errormsg,"10vh")
+            $('#infstr-button').removeAttr('disabled');
+            map.spin(false);
+        }
+
+        var infstreams_layer = response.infstr
+        infstreams.addLayer(L.geoJson(infstreams_layer,{
+            crossOrigin: null,
+            fillColor: '#6666FF',
+            fillOpacity: 0.5,
+            weight: 0,
+        }));
+        LC.addOverlay(infstreams, "Inferred Streams");
+
+        map.spin(false);
+    }
+};
+
+function longestpathload(){
     map.spin(true);
     $('#infstr-button').attr('disabled','true');
 
