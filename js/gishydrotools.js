@@ -496,7 +496,7 @@ function basin_properties(){
         basin_modal +=         '</div>'
         basin_modal +=         '<div class="modal-body">';
         basin_modal +=             btable0_html;
-        basin_modal +=             '<p></p><p align="center"><b>Distribution of Land Use by Soil Group (Acres)</b></p>';
+        basin_modal +=             '<p></p><p align="center"><b>Distribution of Land Use by Soil Group</b></p>';
         basin_modal +=             btable1_html;
         basin_modal +=             '<p align="center"><b>Distribution of Land Use by Curve Number</b></p>';
         basin_modal +=             btable2_html;
@@ -1346,7 +1346,7 @@ function resettc(){
     v_temp[subarea] = Vel_[subarea];
     it_temp[subarea] = I_Time_[subarea];
     tt_temp[subarea] = Tot_Time_[subarea];
-
+    alert(Type_[subarea])
     changetcmodal(t_[subarea],tt_[subarea])
     createtctable(subarea,Pixel_[subarea],Type_[subarea],Elev_[subarea],Slope_[subarea],AvgArea_[subarea],Width_[subarea],Depth_[subarea],Xarea_[subarea],Tot_Length_[subarea],Vel_[subarea],I_Time_[subarea],Tot_Time_[subarea])
 }
