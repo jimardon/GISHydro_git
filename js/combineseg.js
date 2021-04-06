@@ -10,7 +10,6 @@ function recalculatetc(){
     var tot_length_sheet = "";
     var vel_sheet = "";
     var i_time_sheet = "";
-    var tot_time_sheet = "";
 
     var type_shallow = "";
     var elev_shallow = "";
@@ -22,7 +21,6 @@ function recalculatetc(){
     var tot_length_shallow = "";
     var vel_shallow = "";
     var i_time_shallow = "";
-    var tot_time_shallow = "";
 
     var type_channel = "";
     var elev_channel = "";
@@ -34,7 +32,6 @@ function recalculatetc(){
     var tot_length_channel = "";
     var vel_channel = "";
     var i_time_channel = "";
-    var tot_time_channel = "";
 
     tcmerged = true
 
@@ -60,7 +57,6 @@ function recalculatetc(){
         tot_length_sheet = tl_temp[subarea].slice(0,occcounts['overland'])
         vel_sheet = v_temp[subarea].slice(0,occcounts['overland'])
         i_time_sheet = it_temp[subarea].slice(0,occcounts['overland'])
-        tot_time_sheet = tt_temp[subarea].slice(0,occcounts['overland'])
 
         type_shallow = t_temp[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
         elev_shallow = e_temp[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
@@ -72,7 +68,6 @@ function recalculatetc(){
         tot_length_shallow = tl_temp[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
         vel_shallow = v_temp[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
         i_time_shallow = it_temp[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
-        tot_time_shallow= tt_temp[subarea].slice(occcounts['overland'],occcounts['overland']+occcounts['swale'])
 
         type_channel = t_temp[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
         elev_channel = e_temp[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
@@ -84,7 +79,6 @@ function recalculatetc(){
         tot_length_channel = tl[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
         vel_channel = v_temp[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
         i_time_channel = it_temp[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
-        tot_time_channel = tt_temp[subarea].slice(occcounts['overland']+occcounts['swale'],occcounts['overland']+occcounts['swale']+occcounts['channel'])
     }
 
     function mergeoverland(){
