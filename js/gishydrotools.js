@@ -38,19 +38,19 @@ var addpointvar = false;
 var clear_outlets = false;
 var clear_flowpaths = false;
 var subshed_export = '';
-var Pixel_ = '';
-var Type_ = '';
-var Mixed_ = '';
-var Elev_ = '';
-var Slope_ = '';
-var AvgArea_ = '';
-var Width_ = '';
-var Depth_ = '';
-var Xarea_ = '';
-var Tot_Length_ = '';
-var Vel_ = '';
-var I_Time_ = '';
-var Tot_Time_ = '';
+const Pixel_;
+const Type_;
+const Mixed_;
+const Elev_;
+const Slope_;
+const AvgArea_;
+const Width_;
+const Depth_;
+const Xarea_;
+const Tot_Length_;
+const Vel_;
+const I_Time_;
+const Tot_Time_;
 var t_ = [];
 var tt_ = [];
 var t_temp = '';
@@ -1346,6 +1346,7 @@ function resettc(){
     v_temp[subarea] = Vel_[subarea];
     it_temp[subarea] = I_Time_[subarea];
     tt_temp[subarea] = Tot_Time_[subarea];
+
     alert(Type_[subarea])
     changetcmodal(t_[subarea],tt_[subarea])
     createtctable(subarea,Pixel_[subarea],Type_[subarea],Elev_[subarea],Slope_[subarea],AvgArea_[subarea],Width_[subarea],Depth_[subarea],Xarea_[subarea],Tot_Length_[subarea],Vel_[subarea],I_Time_[subarea],Tot_Time_[subarea])
