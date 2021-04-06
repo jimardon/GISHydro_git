@@ -87,21 +87,21 @@ function recalculatetc(){
     function mergeoverland(){
 
         mergevalues()
-        var typemerge = [type_sheet[type_sheet.length - 1]]
-        var elevmerge = [parseFloat(arrAvg(elev_sheet.map(Number))).toFixed(1)]
-        var slopemerge = [parseFloat(arrAvg(slope_sheet.map(Number))).toFixed(6)]
-        var avgareamerge = [parseFloat(avgarea_sheet[avgarea_sheet.length - 1]).toFixed(6)]
-        var widthmerge = [width_sheet[width_sheet.length - 1]]
-        var depthmerge = [depth_sheet[depth_sheet.length - 1]]
-        var xareamerge = [xarea_sheet[xarea_sheet.length - 1]]
-        var tot_lengthmerge = [parseFloat(tot_length_sheet[tot_length_sheet.length - 1]).toFixed(1)]
+        const typemerge = [type_sheet[type_sheet.length - 1]]
+        const elevmerge = [parseFloat(arrAvg(elev_sheet.map(Number))).toFixed(1)]
+        const slopemerge = [parseFloat(arrAvg(slope_sheet.map(Number))).toFixed(6)]
+        const avgareamerge = [parseFloat(avgarea_sheet[avgarea_sheet.length - 1]).toFixed(6)]
+        const widthmerge = [width_sheet[width_sheet.length - 1]]
+        const depthmerge = [depth_sheet[depth_sheet.length - 1]]
+        const xareamerge = [xarea_sheet[xarea_sheet.length - 1]]
+        const tot_lengthmerge = [parseFloat(tot_length_sheet[tot_length_sheet.length - 1]).toFixed(1)]
 
-        var sheetn = parseFloat(document.getElementById("sheet_manning").value)
-        var sheetp = parseFloat(document.getElementById("sheet_precipitation").value)
-        var sheetl = parseFloat(document.getElementById("sheet_length").value)
+        const sheetn = parseFloat(document.getElementById("sheet_manning").value)
+        const sheetp = parseFloat(document.getElementById("sheet_precipitation").value)
+        const sheetl = parseFloat(document.getElementById("sheet_length").value)
 
-        var i_timemerge = [parseFloat(0.007*Math.pow((sheetn*sheetl),0.8)/Math.pow(sheetp,0.5)/Math.pow(slopemerge[0],0.4)).toFixed(4)]
-        var velmerge = [parseFloat(tot_lengthmerge[0]/i_timemerge[0]/3600).toFixed(3)]
+        const i_timemerge = [parseFloat(0.007*Math.pow((sheetn*sheetl),0.8)/Math.pow(sheetp,0.5)/Math.pow(slopemerge[0],0.4)).toFixed(4)]
+        const velmerge = [parseFloat(tot_lengthmerge[0]/i_timemerge[0]/3600).toFixed(3)]
 
         t_temp[subarea] = typemerge.concat(type_shallow).concat(type_channel)
         e_temp[subarea] = elevmerge.concat(elev_shallow).concat(elev_channel)
@@ -120,20 +120,20 @@ function recalculatetc(){
     function mergeswale(){
 
         mergevalues()
-        var typemerge = [type_shallow[type_shallow.length - 1]]
-        var elevmerge = [parseFloat(arrAvg(elev_shallow.map(Number))).toFixed(1)]
-        var slopemerge = [parseFloat(arrAvg(slope_shallow.map(Number))).toFixed(6)]
-        var avgareamerge = [parseFloat(avgarea_shallow[avgarea_shallow.length - 1]).toFixed(6)]
-        var widthmerge = [width_shallow[width_shallow.length - 1]]
-        var depthmerge = [depth_shallow[depth_shallow.length - 1]]
-        var xareamerge = [xarea_shallow[xarea_shallow.length - 1]]
-        var tot_lengthmerge = [parseFloat(tot_length_shallow[tot_length_shallow.length - 1]).toFixed(1)]
+        const typemerge = [type_shallow[type_shallow.length - 1]]
+        const elevmerge = [parseFloat(arrAvg(elev_shallow.map(Number))).toFixed(1)]
+        const slopemerge = [parseFloat(arrAvg(slope_shallow.map(Number))).toFixed(6)]
+        const avgareamerge = [parseFloat(avgarea_shallow[avgarea_shallow.length - 1]).toFixed(6)]
+        const widthmerge = [width_shallow[width_shallow.length - 1]]
+        const depthmerge = [depth_shallow[depth_shallow.length - 1]]
+        const xareamerge = [xarea_shallow[xarea_shallow.length - 1]]
+        const tot_lengthmerge = [parseFloat(tot_length_shallow[tot_length_shallow.length - 1]).toFixed(1)]
 
         var paved_const = 20.3282
         if(document.getElementById("unpavedopt").checked){paved_const = 16.1345}
 
-        var velmerge = [parseFloat(paved_const*Math.pow(slopemerge[0],0.5)).toFixed(3)]
-        var i_timemerge = [parseFloat(tot_lengthmerge[0]/velmerge[0]/3600).toFixed(4)]
+        const velmerge = [parseFloat(paved_const*Math.pow(slopemerge[0],0.5)).toFixed(3)]
+        const i_timemerge = [parseFloat(tot_lengthmerge[0]/velmerge[0]/3600).toFixed(4)]
 
         t_temp[subarea] = type_sheet.concat(typemerge).concat(type_channel)
         e_temp[subarea] = elev_sheet.concat(elevmerge).concat(elev_channel)
@@ -152,19 +152,24 @@ function recalculatetc(){
     function mergechannel(){
 
         mergevalues()
-        var typemerge = [type_channel[type_channel.length - 1]]
-        var elevmerge = [parseFloat(arrAvg(elev_channel.map(Number))).toFixed(1)]
-        var slopemerge = [parseFloat(arrAvg(slope_channel.map(Number))).toFixed(6)]
-        var avgareamerge = [parseFloat(avgarea_channel[avgarea_channel.length - 1]).toFixed(6)]
-        var widthmerge = [parseFloat(arrAvg(width_channel.map(Number))).toFixed(2)]
-        var depthmerge = [parseFloat(arrAvg(depth_channel.map(Number))).toFixed(2)]
-        var xareamerge = [parseFloat(arrAvg(xarea_channel.map(Number))).toFixed(2)]
-        var tot_lengthmerge = [parseFloat(tot_length_channel[tot_length_channel.length - 1]).toFixed(1)]
+        const typemerge = [type_channel[type_channel.length - 1]]
+        const elevmerge = [parseFloat(arrAvg(elev_channel.map(Number))).toFixed(1)]
+        const slopemerge = [parseFloat(arrAvg(slope_channel.map(Number))).toFixed(6)]
+        const avgareamerge = [parseFloat(avgarea_channel[avgarea_channel.length - 1]).toFixed(6)]
+        const widthmerge = [parseFloat(arrAvg(width_channel.map(Number))).toFixed(2)]
+        const depthmerge = [parseFloat(arrAvg(depth_channel.map(Number))).toFixed(2)]
+        const xareamerge = [parseFloat(arrAvg(xarea_channel.map(Number))).toFixed(2)]
+        const tot_lengthmerge = [parseFloat(tot_length_channel[tot_length_channel.length - 1]).toFixed(1)]
 
-        var channeln = parseFloat(document.getElementById("channel_manning").value)
+        const channeln = parseFloat(document.getElementById("channel_manning").value)
+        const hr = xareamerge[0]/(2*depthmerge[0]+widthmerge[0])
 
-        var velmerge = [parseFloat(1.49*Math.pow(xareamerge[0]/(2*depthmerge[0]+widthmerge[0]),2/3)*Math.pow(slopemerge[0],0.5)/channeln).toFixed(3)]
-        var i_timemerge = [parseFloat(tot_lengthmerge[0]/velmerge[0]/3600).toFixed(4)]
+        const velmerge = [parseFloat(1.49*Math.pow(hr,2/3)*Math.pow(slopemerge[0],0.5)/channeln).toFixed(3)]
+        const i_timemerge = [parseFloat(tot_lengthmerge[0]/velmerge[0]/3600).toFixed(4)]
+
+        alert(channeln)
+        alert(hr)
+        alert(velmerge)
 
         t_temp[subarea] = type_sheet.concat(type_shallow).concat(typemerge)
         e_temp[subarea] = elev_sheet.concat(elev_shallow).concat(elevmerge)
