@@ -170,6 +170,9 @@ function recalculatetc(){
         alert(xareamerge[0])
         alert(depthmerge[0])
         alert(widthmerge[0])
+        alert(hr)
+        alert(slopemerge[0])
+        alert(velmerge[0])
 
         t_temp[subarea] = type_sheet.concat(type_shallow).concat(typemerge)
         e_temp[subarea] = elev_sheet.concat(elev_shallow).concat(elevmerge)
