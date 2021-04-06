@@ -56,7 +56,7 @@ function recalculatetc(){
         avgarea_sheet = a_temp[subarea].slice(0,occcounts['overland'])
         width_sheet = w_temp[subarea].slice(0,occcounts['overland'])
         depth_sheet = d_temp[subarea].slice(0,occcounts['overland'])
-        xarea_sheet = xa_temp[subarea].slice(0,occcounts['overland'])
+        xarea_sheet = x_temp[subarea].slice(0,occcounts['overland'])
         tot_length_sheet = tl_temp[subarea].slice(0,occcounts['overland'])
         vel_sheet = v_temp[subarea].slice(0,occcounts['overland'])
         i_time_sheet = it_temp[subarea].slice(0,occcounts['overland'])

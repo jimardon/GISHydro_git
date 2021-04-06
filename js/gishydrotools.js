@@ -1312,10 +1312,6 @@ function showtc(){
     if(tc_method == 'Velocity Method'){
 
         subid = String(document.getElementById("subtc").value);
-        alert(subid)
-        alert(t_[subid-1])
-        alert(tt_[subid-1])
-        alert(t_)
         changetcmodal(t_[subid-1],tt_[subid-1])
 
         $("#vm_modal").modal()
