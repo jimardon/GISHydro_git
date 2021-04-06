@@ -114,7 +114,7 @@ function recalculatetc(){
         v_temp[subarea] = velmerge.concat(vel_shallow).concat(vel_channel)
         it_temp[subarea] = i_timemerge.concat(i_time_shallow).concat(i_time_channel)
         tt_temp[subarea] = cumulativeSum(it_temp.map(Number))
-        tt_temp[subarea] = tt_temp.map(arr=>arr.toFixed(4))
+        tt_temp[subarea] = tt_temp[subarea].map(arr=>arr.toFixed(4))
     }
 
     function mergeswale(){
@@ -146,7 +146,7 @@ function recalculatetc(){
         v_temp[subarea] = vel_sheet.concat(velmerge).concat(vel_channel)
         it_temp[subarea] = i_time_sheet.concat(i_timemerge).concat(i_time_channel)
         tt_temp[subarea] = cumulativeSum(it_temp.map(Number))
-        tt_temp[subarea] = tt_temp.map(arr=>arr.toFixed(4))
+        tt_temp[subarea] = tt_temp[subarea].map(arr=>arr.toFixed(4))
     }
 
     function mergechannel(){
@@ -177,7 +177,7 @@ function recalculatetc(){
         v_temp[subarea] = vel_sheet.concat(vel_shallow).concat(velmerge)
         it_temp[subarea] = i_time_sheet.concat(i_time_shallow).concat(i_timemerge)
         tt_temp[subarea] = cumulativeSum(it_temp.map(Number))
-        tt_temp[subarea] = tt_temp.map(arr=>arr.toFixed(4))
+        tt_temp[subarea] = tt_temp[subarea].map(arr=>arr.toFixed(4))
     }
 
     if (sheetcheck && shallowcheck == false && channelcheck == false && occcounts_all['overland'] > 1){
