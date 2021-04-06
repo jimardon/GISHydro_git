@@ -43,6 +43,9 @@ function recalculatetc(){
     const arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
     const cumulativeSum = arr => arr.reduce((a, x, i) => [...a, x + (a[i-1] || 0)], []);
 
+    var occcounts_all = {}
+    t_temp[subarea].forEach(function(x) { occcounts_all[x] = (occcounts_all[x] || 0) + 1;});
+
     function mergevalues(){
         var occcounts = {}
         t_temp[subarea].forEach(function(x) { occcounts[x] = (occcounts[x] || 0) + 1;});
@@ -180,28 +183,28 @@ function recalculatetc(){
         tt_temp = tt.map(arr=>arr.toFixed(4))
     }
 
-    if (sheetcheck && shallowcheck == false && channelcheck == false && occcounts['overland'] > 1){
+    if (sheetcheck && shallowcheck == false && channelcheck == false && occcounts_all['overland'] > 1){
         mergeoverland()
     }
-    else if (sheetcheck == false && shallowcheck && channelcheck == false && occcounts['swale'] > 1){
+    else if (sheetcheck == false && shallowcheck && channelcheck == false && occcounts_all['swale'] > 1){
         mergeswale()
     }
-    else if (sheetcheck == false && shallowcheck == false && channelcheck && occcounts['channel'] > 1){
+    else if (sheetcheck == false && shallowcheck == false && channelcheck && occcounts_all['channel'] > 1){
         mergechannel()
     }
-    else if (sheetcheck && shallowcheck && channelcheck == false && (occcounts['overland'] > 1 || occcounts['swale'] > 1)){
+    else if (sheetcheck && shallowcheck && channelcheck == false && (occcounts_all['overland'] > 1 || occcounts_all['swale'] > 1)){
         mergeoverland()
         mergeswale()
     }
-    else if (sheetcheck && shallowcheck == false && channelcheck && (occcounts['overland'] > 1 || occcounts['channel'] > 1)){
+    else if (sheetcheck && shallowcheck == false && channelcheck && (occcounts_all['overland'] > 1 || occcounts_all['channel'] > 1)){
         mergeoverland()
         mergechannel()
     }
-    else if (sheetcheck == false && shallowcheck && channelcheck && (occcounts['swale'] > 1 || occcounts['channel'] > 1)){
+    else if (sheetcheck == false && shallowcheck && channelcheck && (occcounts_all['swale'] > 1 || occcounts_all['channel'] > 1)){
         mergeswale()
         mergechannel()
     }
-    else if (sheetcheck && shallowcheck && channelcheck && (occcounts['overland'] > 1 || occcounts['swale'] > 1 || occcounts['channel'] > 1)){
+    else if (sheetcheck && shallowcheck && channelcheck && (occcounts_all['overland'] > 1 || occcounts_all['swale'] > 1 || occcounts_all['channel'] > 1)){
         mergeoverland()
         mergeswale()
         mergechannel()
