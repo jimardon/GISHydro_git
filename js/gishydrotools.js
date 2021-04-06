@@ -53,17 +53,17 @@ var I_Time_;
 var Tot_Time_;
 var t_ = [];
 var tt_ = [];
-var t_temp = '';
-var e_temp = '';
-var s_temp = '';
-var a_temp = '';
-var w_temp = '';
-var d_temp = '';
-var x_temp = '';
-var tl_temp = '';
-var v_temp = '';
-var it_temp = '';
-var tt_temp = '';
+var t_temp = [];
+var e_temp = [];
+var s_temp = [];
+var a_temp = [];
+var w_temp = [];
+var d_temp = [];
+var x_temp = [];
+var tl_temp = [];
+var v_temp = [];
+var it_temp = [];
+var tt_temp = [];
 var thecritavg = '';
 var inputstring = '';
 var errorstring = '';
@@ -1134,18 +1134,6 @@ function settoc(){
             Vel_ = response.vel
             I_Time_ = response.i_time
 
-            t_temp = Type_;
-            e_temp = Elev_;
-            s_temp = Slope_;
-            a_temp = AvgArea_;
-            w_temp = Width_;
-            d_temp = Depth_;
-            x_temp = Xarea_;
-            tl_temp = Tot_Length_;
-            v_temp = Vel_;
-            it_temp = I_Time_;
-            tt_temp = Tot_Time_;
-
             reaches = Pixel_.length;
             for(var i=0; i < reaches; i++){
 
@@ -1168,6 +1156,18 @@ function settoc(){
                 tcmodal.appendChild(element);
 
                 createtctable(i,Pixel_[i],Type_[i],Elev_[i],Slope_[i],AvgArea_[i],Width_[i],Depth_[i],Xarea_[i],Tot_Length_[i],Vel_[i],I_Time_[i],Tot_Time_[i])
+
+                t_temp.push(Type_[i].slice(0));
+                e_temp.push(Elev_[i].slice(0));
+                s_temp.push(Slope_[i].slice(0));
+                a_temp.push(AvgArea_[i].slice(0));
+                w_temp.push(Width_[i].slice(0));
+                d_temp.push(Depth_[i].slice(0));
+                x_temp.push(Xarea_[i].slice(0));
+                tl_temp.push(Tot_Length_[i].slice(0));
+                v_temp.push(Vel_[i].slice(0));
+                it_temp.push(I_Time_[i].slice(0));
+                tt_temp.push(Tot_Time_[i].slice(0));
             }
             if(reaches>1){
                 document.getElementById("velmeth_tc").style.display = "block";
