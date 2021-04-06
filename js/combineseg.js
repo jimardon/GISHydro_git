@@ -162,17 +162,12 @@ function recalculatetc(){
         const tot_lengthmerge = [parseFloat(tot_length_channel[tot_length_channel.length - 1]).toFixed(1)]
 
         const channeln = parseFloat(document.getElementById("channel_manning").value)
-        const hr = xareamerge[0]/(2*depthmerge[0]+widthmerge[0])
+        const hr = parseFloat(xareamerge[0]/(2*depthmerge[0]+widthmerge[0]))
 
         const velmerge = [parseFloat(1.49*Math.pow(hr,2/3)*Math.pow(slopemerge[0],0.5)/channeln).toFixed(3)]
         const i_timemerge = [parseFloat(tot_lengthmerge[0]/velmerge[0]/3600).toFixed(4)]
 
-        alert(xareamerge[0])
-        alert(depthmerge[0])
-        alert(widthmerge[0])
         alert(hr)
-        alert(slopemerge[0])
-        alert(velmerge[0])
 
         t_temp[subarea] = type_sheet.concat(type_shallow).concat(typemerge)
         e_temp[subarea] = elev_sheet.concat(elev_shallow).concat(elevmerge)
