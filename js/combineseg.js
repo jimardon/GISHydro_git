@@ -127,7 +127,7 @@ function recalculatetc(){
         const widthmerge = [width_shallow[width_shallow.length - 1]]
         const depthmerge = [depth_shallow[depth_shallow.length - 1]]
         const xareamerge = [xarea_shallow[xarea_shallow.length - 1]]
-        const tot_lengthmerge = [parseFloat(tot_length_shallow[tot_length_shallow.length - 1]).toFixed(1)]
+        const tot_lengthmerge = [parseFloat(tot_length_shallow[tot_length_shallow.length - 1]).toFixed(1) - parseFloat(tot_length_sheet[tot_length_sheet.length - 1]).toFixed(1)]
 
         var paved_const = 20.3282
         if(document.getElementById("unpavedopt").checked){paved_const = 16.1345}
@@ -159,15 +159,13 @@ function recalculatetc(){
         const widthmerge = [parseFloat(arrAvg(width_channel.map(Number))).toFixed(2)]
         const depthmerge = [parseFloat(arrAvg(depth_channel.map(Number))).toFixed(2)]
         const xareamerge = [parseFloat(arrAvg(xarea_channel.map(Number))).toFixed(2)]
-        const tot_lengthmerge = [parseFloat(tot_length_channel[tot_length_channel.length - 1]).toFixed(1)]
+        const tot_lengthmerge = [parseFloat(tot_length_channel[tot_length_channel.length - 1]).toFixed(1) - parseFloat(tot_length_shallow[tot_length_shallow.length - 1]).toFixed(1)]
 
         const channeln = parseFloat(document.getElementById("channel_manning").value)
         const hydrad = xareamerge[0]/(2*Number(depthmerge[0])+Number(widthmerge[0]))
 
         const velmerge = [parseFloat(1.49*Math.pow(hydrad,2/3)*Math.pow(slopemerge[0],0.5)/channeln).toFixed(3)]
         const i_timemerge = [parseFloat(tot_lengthmerge[0]/velmerge[0]/3600).toFixed(4)]
-
-        alert(hydrad)
 
         t_temp[subarea] = type_sheet.concat(type_shallow).concat(typemerge)
         e_temp[subarea] = elev_sheet.concat(elev_shallow).concat(elevmerge)
