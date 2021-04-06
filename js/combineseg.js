@@ -211,7 +211,7 @@ function recalculatetc(){
 
     changetcmodal(t_temp[subarea],tt_temp[subarea])
     createtctable(subarea,p_temp,t_temp[subarea],e_temp[subarea],s_temp[subarea],a_temp[subarea],w_temp[subarea],d_temp[subarea],x_temp[subarea],tl_temp[subarea],v_temp[subarea],it_temp[subarea],tt_temp[subarea])
-
-    t_[subarea] = t_temp[subarea];
-    tt_[subarea] = tt_temp[subarea];
+    
+    t_[subarea] = t_temp[subarea].slice(0);
+    tt_[subarea] = tt_temp[subarea].slice(0);
 }

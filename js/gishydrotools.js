@@ -1168,15 +1168,15 @@ function settoc(){
                 v_temp.push(Vel_[i].slice(0));
                 it_temp.push(I_Time_[i].slice(0));
                 tt_temp.push(Tot_Time_[i].slice(0));
+
+                t_.push(Type_[i].slice(0));
+                tt_.push(Tot_Time_[i].slice(0));
             }
             if(reaches>1){
                 document.getElementById("velmeth_tc").style.display = "block";
                 document.getElementById("lp_subarea").style.display = "block";
             };
             document.getElementById("longestpath-button").style.display = "block";
-
-            t_ = Type_
-            tt_ = Tot_Time_
 
         }else{
 
@@ -1331,21 +1331,23 @@ function goback(){
 }
 
 function resettc(){
-    var subarea = document.getElementById("subtc").value -1
-    t_[subarea] = Type_[subarea]
-    tt_[subarea] = Tot_Time_[subarea]
 
-    t_temp[subarea] = Type_[subarea];
-    e_temp[subarea] = Elev_[subarea];
-    s_temp[subarea] = Slope_[subarea];
-    a_temp[subarea] = AvgArea_[subarea];
-    w_temp[subarea] = Width_[subarea];
-    d_temp[subarea] = Depth_[subarea];
-    x_temp[subarea] = Xarea_[subarea];
-    tl_temp[subarea] = Tot_Length_[subarea];
-    v_temp[subarea] = Vel_[subarea];
-    it_temp[subarea] = I_Time_[subarea];
-    tt_temp[subarea] = Tot_Time_[subarea];
+    var subarea = document.getElementById("subtc").value -1
+
+    t_temp[subarea] = Type_[subarea].slice(0);
+    e_temp[subarea] = Elev_[subarea].slice(0);
+    s_temp[subarea] = Slope_[subarea].slice(0);
+    a_temp[subarea] = AvgArea_[subarea].slice(0);
+    w_temp[subarea] = Width_[subarea].slice(0);
+    d_temp[subarea] = Depth_[subarea].slice(0);
+    x_temp[subarea] = Xarea_[subarea].slice(0);
+    tl_temp[subarea] = Tot_Length_[subarea].slice(0);
+    v_temp[subarea] = Vel_[subarea].slice(0);
+    it_temp[subarea] = I_Time_[subarea].slice(0);
+    tt_temp[subarea] = Tot_Time_[subarea].slice(0);
+
+    t_[subarea] = Type_[subarea].slice(0);
+    tt_[subarea] = Tot_Time_[subarea].slice(0);
 
     alert(Type_[subarea])
     changetcmodal(t_[subarea],tt_[subarea])
