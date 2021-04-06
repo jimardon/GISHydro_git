@@ -544,11 +544,11 @@ function basin_properties(){
         var btable4_html = '<table border="0" align="center">';
         btable4_html += '<col width="300">';
         btable4_html += '<col width="300">';
-        btable4_html += '<tr><td align="left">Drainage Area:</td><td align="left">' + areami2 + '</td></tr>';
-        btable4_html += '<tr><td align="left">Channel Slope:</td><td align="left">' + parseFloat(theslope).toFixed(3) + ' feet/mile (' + parseFloat(theslope_feet).toFixed(3) +' feet/feet)' + '</td></tr>';
-        btable4_html += '<tr><td align="left">Land Slope:</td><td align="left">' + parseFloat(landslope).toFixed(3) + ' feet/feet' + '</td></tr>';
-        btable4_html += '<tr><td align="left">Urban Area (percent):</td><td align="left">' + UrbPct + '</td></tr>';
-        btable4_html += '<tr><td align="left">Impervious Area (percent):</td><td align="left">' + IA + '</td></tr>';
+        btable4_html += '<tr><td align="left">Drainage Area:</td><td align="left">' + areami2 + ' mi<sup>2</sup> (' + parseFloat(areami2*640).toFixed(1) + ' ac))</td></tr>';
+        btable4_html += '<tr><td align="left">Channel Slope:</td><td align="left">' + parseFloat(theslope).toFixed(3) + ' ft/mi (' + parseFloat(theslope_feet).toFixed(3) +' ft/ft)' + '</td></tr>';
+        btable4_html += '<tr><td align="left">Land Slope:</td><td align="left">' + parseFloat(landslope).toFixed(3) + ' ft/ft' + '</td></tr>';
+        btable4_html += '<tr><td align="left">Urban Area:</td><td align="left">' + UrbPct + '%</td></tr>';
+        btable4_html += '<tr><td align="left">Impervious Area:</td><td align="left">' + IA + '%</td></tr>';
         btable4_html += '</table><p></p>';
 
         var btable5_html = '<table border="0" align="center">';
@@ -1246,16 +1246,16 @@ function createtctable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,T
     tctable_html += '<col width="150">';
     tctable_html += '<tr align="center"><th>Pixel</th>';
     tctable_html += '<th>Type</th>';
-    tctable_html += '<th>Elev.</th>';
-    tctable_html += '<th>Slope</th>';
-    tctable_html += '<th>Area</th>';
-    tctable_html += '<th>Width</th>';
-    tctable_html += '<th>Depth</th>';
-    tctable_html += '<th>XS</th>';
-    tctable_html += '<th>Length</th>';
-    tctable_html += '<th>Vel.</th>';
-    tctable_html += '<th>dt</th>';
-    tctable_html += '<th>Tc</th></tr>';
+    tctable_html += '<th>Elev<br>(ft)</br></th>';
+    tctable_html += '<th>Slope<br>(ft/ft)</br></th>';
+    tctable_html += '<th>Area<br>(mi<sup>2</sup>)</br></th>';
+    tctable_html += '<th>Width<br>(ft)</br></th>';
+    tctable_html += '<th>Depth<br>(ft)</br></th>';
+    tctable_html += '<th>XS<br>(ft<sup>2</sup>)</br></th>';
+    tctable_html += '<th>Length<br>(ft)</br></th>';
+    tctable_html += '<th>V<br>(ft/s)</br></th>';
+    tctable_html += '<th>dt<br>(hr)</br></th>';
+    tctable_html += '<th>Tc<br>(hr)</br></th></tr>';
     for(var j=0; j < Pixel.length; j++){
         tctable_html += '<tr>';
         tctable_html += '<td align="center">' + Pixel[j] + '</td>';
@@ -1346,7 +1346,7 @@ function resettc(){
     v_temp = Vel_;
     it_temp = I_Time_;
     tt_temp = Tot_Time_;
-    
+
     changetcmodal(t_[subarea],tt_[subarea])
     createtctable(subarea,Pixel_[subarea],Type_[subarea],Elev_[subarea],Slope_[subarea],AvgArea_[subarea],Width_[subarea],Depth_[subarea],Xarea_[subarea],Tot_Length_[subarea],Vel_[subarea],I_Time_[subarea],Tot_Time_[subarea])
 }

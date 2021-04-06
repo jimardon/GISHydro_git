@@ -133,7 +133,7 @@ function recalculatetc(){
         if(document.getElementById("unpavedopt").checked){paved_const = 16.1345}
 
         var velmerge = [parseFloat(paved_const*Math.pow(slopemerge[0],0.5)).toFixed(3)]
-        var i_timemerge = [parseFloat(tot_lengthmerge[0]/velmerge[0]).toFixed(4)]
+        var i_timemerge = [parseFloat(tot_lengthmerge[0]/velmerge[0]/3600).toFixed(4)]
 
         t_temp[subarea] = type_sheet.concat(typemerge).concat(type_channel)
         e_temp[subarea] = elev_sheet.concat(elevmerge).concat(elev_channel)
@@ -164,7 +164,7 @@ function recalculatetc(){
         var channeln = parseFloat(document.getElementById("channel_manning").value)
 
         var velmerge = [parseFloat(1.49*Math.pow(xareamerge[0]/(2*depthmerge[0]+widthmerge[0]),2/3)*Math.pow(slopemerge[0],0.5)/channeln).toFixed(3)]
-        var i_timemerge = [parseFloat(tot_lengthmerge[0]/velmerge[0]).toFixed(4)]
+        var i_timemerge = [parseFloat(tot_lengthmerge[0]/velmerge[0]/3600).toFixed(4)]
 
         t_temp[subarea] = type_sheet.concat(type_shallow).concat(typemerge)
         e_temp[subarea] = elev_sheet.concat(elev_shallow).concat(elevmerge)
