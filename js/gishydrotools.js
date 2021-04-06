@@ -24,6 +24,7 @@ var landslope = '';
 var IA = '';
 var LI = '';
 var areami2 = '';
+var basin_lu = '';
 var mark_lat = '';
 var mark_lon = '';
 var btable0_html = '';
@@ -509,7 +510,7 @@ function basin_properties(){
         $("#basin_comp").html(basin_modal);
 
         var basin_dem = 'Unknown';
-        var basin_lu = 'Unknown';
+        basin_lu = 'Unknown';
         var basin_soil = 'Unknown';
 
         if(dem_layer == "neddem"){basin_dem = "NED DEM (May 2018)"}
@@ -1152,6 +1153,7 @@ function settoc(){
                 opt.innerHTML = i+1;
                 opt.value = i+1;
                 document.getElementById('subtc').appendChild(opt);
+                document.getElementById('lpsubarea').appendChild(opt);
 
                 var element = document.createElement("div");
                 element.setAttribute("class", "modal fade");
@@ -1165,7 +1167,11 @@ function settoc(){
                 t_.push(Type_[i])
                 tt_.push(Tot_Time_[i])
             }
-            if(reaches>1){document.getElementById("velmeth_tc").style.display = "block";};
+            if(reaches>1){
+                document.getElementById("velmeth_tc").style.display = "block";
+                document.getElementById("lp_subarea").style.display = "block";
+            };
+            document.getElementById("longestpath-button").style.display = "block";
 
         }else{
 
@@ -1205,6 +1211,7 @@ function settoc(){
 
         document.getElementById("tcvalue-button").style.display = "block";
         document.getElementById("tcapply-button").style.display = "none";
+        
         alertmodal("Done",'Time of concentration estimated. Move to the next tab or check the computed Time of Concentration estimates for the current method by clicking on <b>Tc</b>',"13vh")
 
         if(reachcount<1){
@@ -1911,18 +1918,18 @@ function landuseload(){
 
         if (error){
             alertmodal("Error",errormsg,"10vh")
-            $('#infstr-button').removeAttr('disabled');
+            $('#landuse-button').removeAttr('disabled');
             map.spin(false);
         }
 
-        var infstreams_layer = response.infstr
-        infstreams.addLayer(L.geoJson(infstreams_layer,{
+        var landuse_layer = response.infstr
+        landuselyr.addLayer(L.geoJson(landuse_layer,{
             crossOrigin: null,
             fillColor: '#6666FF',
             fillOpacity: 0.5,
             weight: 0,
         }));
-        LC.addOverlay(infstreams, "Inferred Streams");
+        LC.addOverlay(landuselyr, "Land Use: " + basin_lu);
 
         map.spin(false);
     }
@@ -1930,7 +1937,7 @@ function landuseload(){
 
 function longestpathload(){
     map.spin(true);
-    $('#infstr-button').attr('disabled','true');
+    $('#longestpath-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
         url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/ShowStreams",
@@ -1939,6 +1946,7 @@ function longestpathload(){
     var gpTask = gpService.createTask();
 
     gpTask.setParam("projectname",  full_project_name)
+    gpTask.setParam("subarea", document.getElementById("lpsubarea").value)
     
     gpTask.run(infprojCallback);
 
@@ -1946,18 +1954,18 @@ function longestpathload(){
 
         if (error){
             alertmodal("Error",errormsg,"10vh")
-            $('#infstr-button').removeAttr('disabled');
+            $('#longestpath-button').removeAttr('disabled');
             map.spin(false);
         }
 
-        var infstreams_layer = response.infstr
-        infstreams.addLayer(L.geoJson(infstreams_layer,{
+        var longestpath_layer = response.longestpath
+        longestpathlyr.addLayer(L.geoJson(longestpath_layer,{
             crossOrigin: null,
             fillColor: '#6666FF',
             fillOpacity: 0.5,
             weight: 0,
         }));
-        LC.addOverlay(infstreams, "Inferred Streams");
+        LC.addOverlay(longestpathlyr, "Longest Path: Subarea " + document.getElementById("lpsubarea").value);
 
         map.spin(false);
     }

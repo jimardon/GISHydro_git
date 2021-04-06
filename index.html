@@ -885,19 +885,29 @@
                     <p></p>
                     <button id="contours-button" class="generic-grey-button" disabled='disabled' onclick=contours()>Display Contours</button>
                     <p></p>
-                    <!-- Show Streams -->
+                    <!-- Load Derived Streams Layer-->
                     <div class="hr-text-bar">
                         <span class="hr-text">Load Inferred Streams</span>
                     </div>
                     <p align="justify" style="font-size:14px;">If the AOI size is too big then the inferred streams will not show up on the map. Try reducing the AOI as much as possible.</p>
                     <button id="infstr-button" class="generic-grey-button" disabled="disabled" onclick=infstreamload()>Load Streams</button>
                     <p></p>
-                    <!-- Show Land Use -->
+                    <!-- Load Land Use Layer -->
                     <div class="hr-text-bar">
                         <span class="hr-text">Load Land Use Layer</span>
                     </div>
                     <p align="justify" style="font-size:14px;">If the AOI size is too big then the land use layer will not show up on the map. Try reducing the AOI as much as possible.</p>
-                    <button id="landuse-button" class="generic-grey-button" disabled="disabled" onclick=landuse()>Load Land Use</button>
+                    <button id="landuse-button" class="generic-grey-button" disabled="disabled" onclick=landuseload()>Load Land Use</button>
+                    <!-- Load Longest Path Layer -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Load Longest Path Layer</span>
+                    </div>
+                    <p align="justify" style="font-size:14px;">If the AOI size is too big then the land use layer will not show up on the map. Try reducing the AOI as much as possible.</p>
+                    <div id="lp_subarea" class="inline">
+                        <strong>Subwatershed:</strong>
+                        <select class="generic-dropdown" id="lpsubarea" ></select>
+                    </div>
+                    <button id="longestpath-button" class="generic-grey-button" disabled="disabled" onclick=longestpathload()>Load Land Use</button>
                 </div>
             </div>
 
