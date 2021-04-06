@@ -1349,7 +1349,6 @@ function resettc(){
     t_[subarea] = Type_[subarea].slice(0);
     tt_[subarea] = Tot_Time_[subarea].slice(0);
 
-    alert(Type_[subarea])
     changetcmodal(t_[subarea],tt_[subarea])
     createtctable(subarea,Pixel_[subarea],Type_[subarea],Elev_[subarea],Slope_[subarea],AvgArea_[subarea],Width_[subarea],Depth_[subarea],Xarea_[subarea],Tot_Length_[subarea],Vel_[subarea],I_Time_[subarea],Tot_Time_[subarea])
 }

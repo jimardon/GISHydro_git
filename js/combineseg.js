@@ -215,7 +215,7 @@ function recalculatetc(){
         mergechannel()
     }
 
-    var p_temp = Array.from({length: t_temp[subarea].length}, (_, i) => i + 1)
+    const p_temp = Array.from({length: t_temp[subarea].length}, (_, i) => i + 1)
 
     changetcmodal(t_temp[subarea],tt_temp[subarea])
     createtctable(subarea,p_temp,t_temp[subarea],e_temp[subarea],s_temp[subarea],a_temp[subarea],w_temp[subarea],d_temp[subarea],x_temp[subarea],tl_temp[subarea],v_temp[subarea],it_temp[subarea],tt_temp[subarea])
