@@ -103,7 +103,6 @@ function recalculatetc(){
         var i_timemerge = [parseFloat(0.007*Math.pow((sheetn*sheetl),0.8)/Math.pow(sheetp,0.5)/Math.pow(slopemerge[0],0.4)).toFixed(4)]
         var velmerge = [parseFloat(tot_lengthmerge[0]/i_timemerge[0]/3600).toFixed(3)]
 
-        p_temp[subarea] = Array.from({length: t.length}, (_, i) => i + 1)
         t_temp[subarea] = typemerge.concat(type_shallow).concat(type_channel)
         e_temp[subarea] = elevmerge.concat(elev_shallow).concat(elev_channel)
         s_temp[subarea] = slopemerge.concat(slope_shallow).concat(slope_channel)
@@ -136,7 +135,6 @@ function recalculatetc(){
         var velmerge = [parseFloat(paved_const*Math.pow(slopemerge[0],0.5)).toFixed(3)]
         var i_timemerge = [parseFloat(tot_lengthmerge[0]/velmerge[0]).toFixed(4)]
 
-        p_temp[subarea] = Array.from({length: t.length}, (_, i) => i + 1)
         t_temp[subarea] = type_sheet.concat(typemerge).concat(type_channel)
         e_temp[subarea] = elev_sheet.concat(elevmerge).concat(elev_channel)
         s_temp[subarea] = slope_sheet.concat(slopemerge).concat(slope_channel)
@@ -168,7 +166,6 @@ function recalculatetc(){
         var velmerge = [parseFloat(1.49*Math.pow(xareamerge[0]/(2*depthmerge[0]+widthmerge[0]),2/3)*Math.pow(slopemerge[0],0.5)/channeln).toFixed(3)]
         var i_timemerge = [parseFloat(tot_lengthmerge[0]/velmerge[0]).toFixed(4)]
 
-        p_temp[subarea] = Array.from({length: t.length}, (_, i) => i + 1)
         t_temp[subarea] = type_sheet.concat(type_shallow).concat(typemerge)
         e_temp[subarea] = elev_sheet.concat(elev_shallow).concat(elevmerge)
         s_temp[subarea] = slope_sheet.concat(slope_shallow).concat(slopemerge)
@@ -210,8 +207,10 @@ function recalculatetc(){
         mergechannel()
     }
 
+    var p_temp = Array.from({length: t_temp[subarea].length}, (_, i) => i + 1)
+
     changetcmodal(t_temp[subarea],tt_temp[subarea])
-    createtctable(subarea,p_temp[subarea],t_temp[subarea],e_temp[subarea],s_temp[subarea],a_temp[subarea],w_temp[subarea],d_temp[subarea],x_temp[subarea],tl_temp[subarea],v_temp[subarea],it_temp[subarea],tt_temp[subarea])
+    createtctable(subarea,p_temp,t_temp[subarea],e_temp[subarea],s_temp[subarea],a_temp[subarea],w_temp[subarea],d_temp[subarea],x_temp[subarea],tl_temp[subarea],v_temp[subarea],it_temp[subarea],tt_temp[subarea])
 
     t_[subarea] = t_temp[subarea];
     tt_[subarea] = tt_temp[subarea];

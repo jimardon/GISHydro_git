@@ -1153,7 +1153,11 @@ function settoc(){
                 opt.innerHTML = i+1;
                 opt.value = i+1;
                 document.getElementById('subtc').appendChild(opt);
-                //document.getElementById('lpsubarea').appendChild(opt);
+                
+                var opt2 = document.createElement('option');
+                opt2.innerHTML = i+1;
+                opt2.value = i+1;
+                document.getElementById('lpsubarea').appendChild(opt2);
 
                 var element = document.createElement("div");
                 element.setAttribute("class", "modal fade");
