@@ -1164,14 +1164,15 @@ function settoc(){
                 tcmodal.appendChild(element);
 
                 createtctable(i,Pixel_[i],Type_[i],Elev_[i],Slope_[i],AvgArea_[i],Width_[i],Depth_[i],Xarea_[i],Tot_Length_[i],Vel_[i],I_Time_[i],Tot_Time_[i])
-                t_.push(Type_[i])
-                tt_.push(Tot_Time_[i])
             }
             if(reaches>1){
                 document.getElementById("velmeth_tc").style.display = "block";
                 document.getElementById("lp_subarea").style.display = "block";
             };
             document.getElementById("longestpath-button").style.display = "block";
+
+            t_ = Type_
+            tt_ = Tot_Time_
 
         }else{
 

@@ -103,19 +103,19 @@ function recalculatetc(){
         var i_timemerge = [parseFloat(0.007*Math.pow((sheetn*sheetl),0.8)/Math.pow(sheetp,0.5)/Math.pow(slopemerge[0],0.4)).toFixed(4)]
         var velmerge = [parseFloat(tot_lengthmerge[0]/i_timemerge[0]/3600).toFixed(3)]
 
-        p_temp = Array.from({length: t.length}, (_, i) => i + 1)
-        t_temp = typemerge.concat(type_shallow).concat(type_channel)
-        e_temp = elevmerge.concat(elev_shallow).concat(elev_channel)
-        s_temp = slopemerge.concat(slope_shallow).concat(slope_channel)
-        a_temp = avgareamerge.concat(avgarea_shallow).concat(avgarea_channel)
-        w_temp = widthmerge.concat(width_shallow).concat(width_channel)
-        d_temp = depthmerge.concat(depth_shallow).concat(depth_channel)
-        x_temp = xareamerge.concat(xarea_shallow).concat(xarea_channel)
-        tl_temp = tot_lengthmerge.concat(tot_length_shallow).concat(tot_length_channel)
-        v_temp = velmerge.concat(vel_shallow).concat(vel_channel)
-        it_temp = i_timemerge.concat(i_time_shallow).concat(i_time_channel)
-        tt_temp = cumulativeSum(i.map(Number))
-        tt_temp = tt.map(arr=>arr.toFixed(4))
+        p_temp[subarea] = Array.from({length: t.length}, (_, i) => i + 1)
+        t_temp[subarea] = typemerge.concat(type_shallow).concat(type_channel)
+        e_temp[subarea] = elevmerge.concat(elev_shallow).concat(elev_channel)
+        s_temp[subarea] = slopemerge.concat(slope_shallow).concat(slope_channel)
+        a_temp[subarea] = avgareamerge.concat(avgarea_shallow).concat(avgarea_channel)
+        w_temp[subarea] = widthmerge.concat(width_shallow).concat(width_channel)
+        d_temp[subarea] = depthmerge.concat(depth_shallow).concat(depth_channel)
+        x_temp[subarea] = xareamerge.concat(xarea_shallow).concat(xarea_channel)
+        tl_temp[subarea] = tot_lengthmerge.concat(tot_length_shallow).concat(tot_length_channel)
+        v_temp[subarea] = velmerge.concat(vel_shallow).concat(vel_channel)
+        it_temp[subarea] = i_timemerge.concat(i_time_shallow).concat(i_time_channel)
+        tt_temp[subarea] = cumulativeSum(i.map(Number))
+        tt_temp[subarea] = tt.map(arr=>arr.toFixed(4))
     }
 
     function mergeswale(){
@@ -136,19 +136,19 @@ function recalculatetc(){
         var velmerge = [parseFloat(paved_const*Math.pow(slopemerge[0],0.5)).toFixed(3)]
         var i_timemerge = [parseFloat(tot_lengthmerge[0]/velmerge[0]).toFixed(4)]
 
-        p_temp = Array.from({length: t.length}, (_, i) => i + 1)
-        t_temp = type_sheet.concat(typemerge).concat(type_channel)
-        e_temp = elev_sheet.concat(elevmerge).concat(elev_channel)
-        s_temp = slope_sheet.concat(slopemerge).concat(slope_channel)
-        a_temp = avgarea_sheet.concat(avgareamerge).concat(avgarea_channel)
-        w_temp = width_sheet.concat(widthmerge).concat(width_channel)
-        d_temp = depth_sheet.concat(depthmerge).concat(depth_channel)
-        x_temp = xarea_sheet.concat(xareamerge).concat(xarea_channel)
-        tl_temp = tot_length_sheet.concat(tot_lengthmerge).concat(tot_length_channel)
-        v_temp = vel_sheet.concat(velmerge).concat(vel_channel)
-        it_temp = i_time_sheet.concat(i_timemerge).concat(i_time_channel)
-        tt_temp = cumulativeSum(i.map(Number))
-        tt_temp = tt.map(arr=>arr.toFixed(4))
+        p_temp[subarea] = Array.from({length: t.length}, (_, i) => i + 1)
+        t_temp[subarea] = type_sheet.concat(typemerge).concat(type_channel)
+        e_temp[subarea] = elev_sheet.concat(elevmerge).concat(elev_channel)
+        s_temp[subarea] = slope_sheet.concat(slopemerge).concat(slope_channel)
+        a_temp[subarea] = avgarea_sheet.concat(avgareamerge).concat(avgarea_channel)
+        w_temp[subarea] = width_sheet.concat(widthmerge).concat(width_channel)
+        d_temp[subarea] = depth_sheet.concat(depthmerge).concat(depth_channel)
+        x_temp[subarea] = xarea_sheet.concat(xareamerge).concat(xarea_channel)
+        tl_temp[subarea] = tot_length_sheet.concat(tot_lengthmerge).concat(tot_length_channel)
+        v_temp[subarea] = vel_sheet.concat(velmerge).concat(vel_channel)
+        it_temp[subarea] = i_time_sheet.concat(i_timemerge).concat(i_time_channel)
+        tt_temp[subarea] = cumulativeSum(i.map(Number))
+        tt_temp[subarea] = tt.map(arr=>arr.toFixed(4))
     }
 
     function mergechannel(){
@@ -168,19 +168,19 @@ function recalculatetc(){
         var velmerge = [parseFloat(1.49*Math.pow(xareamerge[0]/(2*depthmerge[0]+widthmerge[0]),2/3)*Math.pow(slopemerge[0],0.5)/channeln).toFixed(3)]
         var i_timemerge = [parseFloat(tot_lengthmerge[0]/velmerge[0]).toFixed(4)]
 
-        p_temp = Array.from({length: t.length}, (_, i) => i + 1)
-        t_temp = type_sheet.concat(type_shallow).concat(typemerge)
-        e_temp = elev_sheet.concat(elev_shallow).concat(elevmerge)
-        s_temp = slope_sheet.concat(slope_shallow).concat(slopemerge)
-        a_temp = avgarea_sheet.concat(avgarea_shallow).concat(avgareamerge)
-        w_temp = width_sheet.concat(width_shallow).concat(widthmerge)
-        d_temp = depth_sheet.concat(depth_shallow).concat(depthmerge)
-        x_temp = xarea_sheet.concat(xarea_shallow).concat(xareamerge)
-        tl_temp = tot_length_sheet.concat(tot_length_shallow).concat(tot_lengthmerge)
-        v_temp = vel_sheet.concat(vel_shallow).concat(velmerge)
-        it_temp = i_time_sheet.concat(i_time_shallow).concat(i_timemerge)
-        tt_temp = cumulativeSum(i.map(Number))
-        tt_temp = tt.map(arr=>arr.toFixed(4))
+        p_temp[subarea] = Array.from({length: t.length}, (_, i) => i + 1)
+        t_temp[subarea] = type_sheet.concat(type_shallow).concat(typemerge)
+        e_temp[subarea] = elev_sheet.concat(elev_shallow).concat(elevmerge)
+        s_temp[subarea] = slope_sheet.concat(slope_shallow).concat(slopemerge)
+        a_temp[subarea] = avgarea_sheet.concat(avgarea_shallow).concat(avgareamerge)
+        w_temp[subarea] = width_sheet.concat(width_shallow).concat(widthmerge)
+        d_temp[subarea] = depth_sheet.concat(depth_shallow).concat(depthmerge)
+        x_temp[subarea] = xarea_sheet.concat(xarea_shallow).concat(xareamerge)
+        tl_temp[subarea] = tot_length_sheet.concat(tot_length_shallow).concat(tot_lengthmerge)
+        v_temp[subarea] = vel_sheet.concat(vel_shallow).concat(velmerge)
+        it_temp[subarea] = i_time_sheet.concat(i_time_shallow).concat(i_timemerge)
+        tt_temp[subarea] = cumulativeSum(i.map(Number))
+        tt_temp[subarea] = tt.map(arr=>arr.toFixed(4))
     }
 
     if (sheetcheck && shallowcheck == false && channelcheck == false && occcounts_all['overland'] > 1){
@@ -210,9 +210,9 @@ function recalculatetc(){
         mergechannel()
     }
 
-    changetcmodal(t_temp,tt_temp)
-    createtctable(subarea,p_temp,t_temp,e_temp,s_temp,a_temp,w_temp,d_temp,x_temp,tl_temp,v_temp,it_temp,tt_temp)
+    changetcmodal(t_temp[subarea],tt_temp[subarea])
+    createtctable(subarea,p_temp[subarea],t_temp[subarea],e_temp[subarea],s_temp[subarea],a_temp[subarea],w_temp[subarea],d_temp[subarea],x_temp[subarea],tl_temp[subarea],v_temp[subarea],it_temp[subarea],tt_temp[subarea])
 
-    t_[subarea] = t_temp;
-    tt_[subarea] = tt_temp;
+    t_[subarea] = t_temp[subarea];
+    tt_[subarea] = tt_temp[subarea];
 }
