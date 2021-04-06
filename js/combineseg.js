@@ -113,7 +113,7 @@ function recalculatetc(){
         tl_temp[subarea] = tot_lengthmerge.concat(tot_length_shallow).concat(tot_length_channel)
         v_temp[subarea] = velmerge.concat(vel_shallow).concat(vel_channel)
         it_temp[subarea] = i_timemerge.concat(i_time_shallow).concat(i_time_channel)
-        tt_temp[subarea] = cumulativeSum(i.map(Number))
+        tt_temp[subarea] = cumulativeSum(it_temp.map(Number))
         tt_temp[subarea] = tt.map(arr=>arr.toFixed(4))
     }
 
@@ -145,7 +145,7 @@ function recalculatetc(){
         tl_temp[subarea] = tot_length_sheet.concat(tot_lengthmerge).concat(tot_length_channel)
         v_temp[subarea] = vel_sheet.concat(velmerge).concat(vel_channel)
         it_temp[subarea] = i_time_sheet.concat(i_timemerge).concat(i_time_channel)
-        tt_temp[subarea] = cumulativeSum(i.map(Number))
+        tt_temp[subarea] = cumulativeSum(it_temp.map(Number))
         tt_temp[subarea] = tt.map(arr=>arr.toFixed(4))
     }
 
@@ -176,7 +176,7 @@ function recalculatetc(){
         tl_temp[subarea] = tot_length_sheet.concat(tot_length_shallow).concat(tot_lengthmerge)
         v_temp[subarea] = vel_sheet.concat(vel_shallow).concat(velmerge)
         it_temp[subarea] = i_time_sheet.concat(i_time_shallow).concat(i_timemerge)
-        tt_temp[subarea] = cumulativeSum(i.map(Number))
+        tt_temp[subarea] = cumulativeSum(it_temp.map(Number))
         tt_temp[subarea] = tt.map(arr=>arr.toFixed(4))
     }
 
