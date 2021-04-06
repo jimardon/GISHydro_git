@@ -1311,18 +1311,6 @@ function showtc(){
     var tc_method = document.getElementById("tc_method").value;
     if(tc_method == 'Velocity Method'){
 
-        t_temp = Type_;
-        e_temp = Elev_;
-        s_temp = Slope_;
-        a_temp = AvgArea_;
-        w_temp = Width_;
-        d_temp = Depth_;
-        x_temp = Xarea_;
-        tl_temp = Tot_Length_;
-        v_temp = Vel_;
-        it_temp = I_Time_;
-        tt_temp = Tot_Time_;
-
         subid = String(document.getElementById("subtc").value);
         changetcmodal(t_[subid-1],tt_[subid-1])
 
@@ -1347,17 +1335,17 @@ function resettc(){
     t_[subarea] = Type_[subarea]
     tt_[subarea] = Tot_Time_[subarea]
 
-    t_temp = Type_;
-    e_temp = Elev_;
-    s_temp = Slope_;
-    a_temp = AvgArea_;
-    w_temp = Width_;
-    d_temp = Depth_;
-    x_temp = Xarea_;
-    tl_temp = Tot_Length_;
-    v_temp = Vel_;
-    it_temp = I_Time_;
-    tt_temp = Tot_Time_;
+    t_temp[subarea] = Type_[subarea];
+    e_temp[subarea] = Elev_[subarea];
+    s_temp[subarea] = Slope_[subarea];
+    a_temp[subarea] = AvgArea_[subarea];
+    w_temp[subarea] = Width_[subarea];
+    d_temp[subarea] = Depth_[subarea];
+    x_temp[subarea] = Xarea_[subarea];
+    tl_temp[subarea] = Tot_Length_[subarea];
+    v_temp[subarea] = Vel_[subarea];
+    it_temp[subarea] = I_Time_[subarea];
+    tt_temp[subarea] = Tot_Time_[subarea];
 
     changetcmodal(t_[subarea],tt_[subarea])
     createtctable(subarea,Pixel_[subarea],Type_[subarea],Elev_[subarea],Slope_[subarea],AvgArea_[subarea],Width_[subarea],Depth_[subarea],Xarea_[subarea],Tot_Length_[subarea],Vel_[subarea],I_Time_[subarea],Tot_Time_[subarea])
