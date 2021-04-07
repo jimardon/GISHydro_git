@@ -1783,6 +1783,7 @@ function stormcheck(){
 function tcsubareachange(sub) {
     alert(usertcchange[Number(sub)-1])
     document.getElementById("usertcvalue").value = usertcchange[Number(sub)-1]
+    alert(usertcchange)
 }
 
 function tcvaluechange(valuetc) {
@@ -1796,7 +1797,6 @@ function restoretcvalues(){
 }
 
 function tr20controlpanel() {
-    alert(usertcchange)
     map.spin(true);
     $('#createwintr20-button').attr('disabled','true');
 
