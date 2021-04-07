@@ -502,9 +502,9 @@ function basin_properties(){
         basin_modal +=             '<p align="center"><b>Distribution of Land Use by Curve Number</b></p>';
         basin_modal +=             btable2_html;
         basin_modal +=         '</div>';
-        basin_modal +=         '<div class="modal-footer">';
+        basin_modal +=         '<div class="modal-footer" style="width:100%;">';
         basin_modal +=             '<button type="button" class="btn btn-default" style="float:left;" onclick=modaltotxt()>Download</button>'
-        basin_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+        basin_modal +=             '<button type="button" class="btn btn-default" style="float:right; data-dismiss="modal">Close</button>';
         basin_modal +=         '</div>';
         basin_modal +=     '</div>';
         basin_modal += '</div>';
