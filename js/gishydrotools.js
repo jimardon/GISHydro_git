@@ -1781,16 +1781,13 @@ function stormcheck(){
     };
 }
 
-function tcsubareachange(){
-    const subidtc = Number(document.getElementById("tcsubarea").value)-1
-    alert(subidtc)
-    alert(usertcchange)
-    document.getElementById("usertcvalue").value = usertcchange[subidtc-1]
+function tcsubareachange(sub){
+    document.getElementById("usertcvalue").value = usertcchange[sub.value-1]
 }
 
-function tcvaluechange() {
+function tcvaluechange(uservalue) {
     const subidtc = Number(document.getElementById("tcsubarea").value)-1
-    usertcchange[subidtc] = String(document.getElementById("usertcvalue").value)
+    usertcchange[subidtc] = Number(uservalue.value)
     alert(usertcchange[subidtc])
 }
 
