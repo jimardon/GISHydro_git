@@ -229,7 +229,7 @@ call (410) 767-4500.)","20vh")
         sidebar.open('shed_del');
         drawLayers.clearLayers();
         $('#infstr-button').removeAttr('disabled');
-        $('#landuse-button').removeAttr('disabled');
+        //$('#landuse-button').removeAttr('disabled');
         map.spin(false);
     }
 }
@@ -1958,7 +1958,7 @@ function landuseload(){
 
         if (error){
             alertmodal("Error",errormsg,"10vh")
-            $('#landuse-button').removeAttr('disabled');
+            //$('#landuse-button').removeAttr('disabled');
             map.spin(false);
         }
 
