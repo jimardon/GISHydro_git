@@ -674,7 +674,7 @@
                     <p></p>
                     <button id="precipitation-button" class="generic-grey-button" data-toggle="modal" data-target="#precipitation_modal">Select Storm Event(s)</button>
                     <p></p>
-                    <div style="display:block;" id="tr20input">
+                    <div style="display:none;" id="tr20input">
                         <!-- Input Options -->
                         <div class="hr-text-bar">
                             <span class="hr-text">Peak Rate Factor</span>
@@ -748,18 +748,18 @@
                             <span class="hr-text">Tc Editing</span>
                         </div>
                         <p></p>
-                        <div id="tc_subarea" class="inline">
+                        <div id="tc_subarea" style="display:block;" class="inline">
                             <strong>Subwatershed:</strong>
-                            <select class="generic-dropdown" style="width:60%;text-align:left;padding-left: 10px;" id="tcsubarea" onchange="tcsubareachange(event)"></select>
+                            <select class="generic-dropdown" style="width:100px;text-align:left;padding-left: 10px;" id="tcsubarea" onchange="tcsubareachange(event)"></select>
                         </div>
                         <p></p>
                         <div class="inline">
-                            <strong style="width:60px">Time of Concentration:</strong>
-                            <button class="generic-grey-button" style="width:60px;float:right;" onclick="restoretcvalues()">Reset</button>
-                            <div class="complete-form" style="float:center;">
+                            <strong>Time of Concentration (hr):</strong>
+                            <div class="complete-form">
                                 <input size ="10" maxlength="10" type="number" style="width:100px;text-align:left;padding-left: 10px;" class="complete-input" id="usertcvalue" onchange="tcvaluechange(event)">
                             </div>
                         </div>
+                        <button class="generic-grey-button" style="width:100%;" onclick="restoretcvalues()">Reset Value</button>
                         <p></p>
                         <!-- Create Input Button -->
                         <div class="hr-text-bar">
