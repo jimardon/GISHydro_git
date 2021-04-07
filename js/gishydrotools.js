@@ -1767,8 +1767,7 @@ function precipitationdepth() {
         document.getElementById("downloadwintr20input-button").style.display = "none";
         document.getElementById("downloadwintr20output-button").style.display = "none";
 
-        //Assign Tc Value:
-        document.getElementById("usertcvalue").value = tt_[0][tt_[0].length - 1]
+        document.getElementById("tcsubarea").selectedIndex = 1;
 
         map.spin(false);
     }
