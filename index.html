@@ -729,8 +729,9 @@
                                 <input type="checkbox" class="checkbox-box" id="arealreduction" checked>
                             </div>
                         </div>
-                        <div class="inline" id="arealoption" style="display:block;">
-                            <strong>Antecedent Runoff Condition (ARC):</strong>
+                        <p></p>
+                        <div class="inline">
+                            <strong>Antecedent Runoff Condition:</strong>
                             <div class="complete-form">
                                 <select class="generic-dropdown" id="arc">
                                     <option value="1" id="arc1">I</option>
@@ -749,13 +750,13 @@
                         <p></p>
                         <div id="tc_subarea" class="inline">
                             <strong>Subwatershed:</strong>
-                            <select class="generic-dropdown" id="tcsubarea" onchange="tcsubareachange(event)"></select>
+                            <select class="generic-dropdown" style="width:60%;text-align:left;padding-left: 10px;" id="tcsubarea" onchange="tcsubareachange(event)"></select>
                         </div>
                         <p></p>
                         <div class="inline">
                             <strong>Time of Concentration (hr):</strong>
                             <div class="complete-form">
-                                <input size ="10" maxlength="10" type="number" class="complete-input" id="usertcvalue" onchange="tcvaluechange(event)">
+                                <input size ="10" maxlength="10" type="number" style="width:60%;text-align:left;padding-left: 10px;" class="complete-input" id="usertcvalue" onchange="tcvaluechange(event)">
                             </div>
                         </div>
                         <p></p>

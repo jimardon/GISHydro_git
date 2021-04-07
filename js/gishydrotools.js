@@ -1767,7 +1767,7 @@ function precipitationdepth() {
         document.getElementById("downloadwintr20input-button").style.display = "none";
         document.getElementById("downloadwintr20output-button").style.display = "none";
 
-        document.getElementById("tcsubarea").selectedIndex = 1;
+        document.getElementById("tcsubarea").selectedIndex = 0;
 
         map.spin(false);
     }
@@ -1781,11 +1781,12 @@ function stormcheck(){
 }
 
 function tcsubareachange(sub) {
+    alert(usertcchange[Number(sub)-1])
     document.getElementById("usertcvalue").value = usertcchange[Number(sub)-1]
 }
 
 function tcvaluechange(valuetc) {
-    usertcchange[Number(document.getElementById("usertcvalue").value)-1] = String(valuetc)
+    usertcchange[Number(document.getElementById("tcsubarea").value)-1] = String(valuetc)
 }
 
 function tr20controlpanel() {

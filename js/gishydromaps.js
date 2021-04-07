@@ -281,10 +281,6 @@ $('#channelflow').on('change', function () {
     $("#sourcearea-display").css('display', (this.value == 'inferredstreams') ? 'block' : 'none');
 });
 
-$('#arealreduction').on('change', function () {
-    $("#arealoption").css('display', (this.checked) ? 'block' : 'none');
-});
-
 var velmethcheckboxcheckBoxlayer = $('.velmethcheckbox');
 velmethcheckboxcheckBoxlayer.change(function () {
     $('#recalculate-button').prop('disabled', velmethcheckboxcheckBoxlayer.filter(':checked').length < 1);
