@@ -92,6 +92,7 @@ var subid = '';
 var singleshed = false;
 var upper90 = false;
 var tasker_modal = [];
+var usertcchange = '';
 
 function alertmodal(title, message,size){
     document.getElementById("alert-body").style.height = size;
@@ -1176,6 +1177,8 @@ function settoc(){
 
                 t_.push(Type_[i].slice(0));
                 tt_.push(Tot_Time_[i].slice(0));
+
+                usertcchange.push(tt_[i][tt_[i].length - 1])
             }
             if(reaches>1){
                 document.getElementById("velmeth_tc").style.display = "block";
@@ -1199,6 +1202,8 @@ function settoc(){
                 tctable_html += '<td align="center">' + AvgArea_[i] + '</td>';
                 tctable_html += '<td align="center">' + Tot_Time_[i] + '</td>';
                 tctable_html += '</tr>';
+
+                usertcchange.push(Tot_Time_[i][Tot_Time_[i].length - 1])
             }
             tctable_html += '</table><p></p>';
     
@@ -1317,7 +1322,6 @@ function changetcmodal(typetc,tottimetc){
     document.getElementById("vmolseg").value = occcounts['overland']
     document.getElementById("vmswseg").value = occcounts['swale']
     document.getElementById("vmchseg").value = occcounts['channel']
-
 }
 
 function showtc(){
@@ -1327,11 +1331,15 @@ function showtc(){
         subid = String(document.getElementById("subtc").value);
         changetcmodal(t_[subid-1],tt_[subid-1])
 
+        usertcchange[subid-1] = tt_[subid-1][tt_[subid-1].length - 1]
+
         $("#vm_modal").modal()
 
     }else{
         $("#toc_mod").modal()
     }
+
+
 }
 
 function showpx(){
@@ -1364,6 +1372,8 @@ function resettc(){
 
     changetcmodal(t_[subarea],tt_[subarea])
     createtctable(subarea,Pixel_[subarea],Type_[subarea],Elev_[subarea],Slope_[subarea],AvgArea_[subarea],Width_[subarea],Depth_[subarea],Xarea_[subarea],Tot_Length_[subarea],Vel_[subarea],I_Time_[subarea],Tot_Time_[subarea])
+
+    usertcchange[subarea] = tt_[subarea][tt_[subarea].length - 1]
 }
 
 function xs_add(){
@@ -1772,10 +1782,15 @@ function stormcheck(){
 }
 
 function tcsubareachange(sub) {
-    document.getElementById("usertcvalue").value = tt_[Number(sub)-1][tt_[Number(sub)-1].length - 1]
+    document.getElementById("usertcvalue").value = usertcchange[Number(sub)-1]
+}
+
+function tcvaluechange(valuetc) {
+    usertcchange[Number(document.getElementById("usertcvalue").value)-1] = String(valuetc)
 }
 
 function tr20controlpanel() {
+    alert(usertcchange)
     map.spin(true);
     $('#createwintr20-button').attr('disabled','true');
 
@@ -1783,8 +1798,6 @@ function tr20controlpanel() {
     totalreach = totalreach.filter(Boolean);
     totaltype = totaltype.filter(Boolean);
     totalstage = totalstage.filter(Boolean);
-
-    var usertc = document.getElementById("usertcvalue").value
 
     var gpService = L.esri.GP.service({
         url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/TR20Control",
@@ -1805,7 +1818,7 @@ function tr20controlpanel() {
     gpTask.setParam("minstage", JSON.stringify(totalstage))
     gpTask.setParam("reachno", JSON.stringify(totalreach))
     gpTask.setParam("rating", JSON.stringify(totalrating))
-    //gpTask.setParam("usertc", JSON.stringify(usertc))
+    //gpTask.setParam("usertc", JSON.stringify(usertcchange))
     gpTask.setParam("upper90", document.getElementById("upper90check").checked)
 
     gpTask.run(tr20controlpanelCallback);
