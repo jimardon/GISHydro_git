@@ -503,7 +503,7 @@ function basin_properties(){
         basin_modal +=             btable2_html;
         basin_modal +=         '</div>';
         basin_modal +=         '<div class="modal-footer">';
-        basin_modal +=             '<button type="button" class="btn btn-secundary">Download</button>'
+        basin_modal +=             '<button type="button" class="btn btn-secundary" style="float:left;">Download</button>'
         basin_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
         basin_modal +=         '</div>';
         basin_modal +=     '</div>';
