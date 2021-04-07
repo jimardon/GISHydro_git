@@ -759,7 +759,7 @@
                                 <input size ="10" maxlength="10" type="number" style="width:100px;text-align:left;padding-left: 10px;" class="complete-input" id="usertcvalue" onchange=tcvaluechange(event)>
                             </div>
                         </div>
-                        <button class="generic-grey-button" style="width:100%;" onclick="restoretcvalues()">Reset Value</button>
+                        <button class="generic-grey-button" style="width:100%;" onclick="restoretcvalues()">Reset Value (Subwatershed)</button>
                         <p></p>
                         <!-- Create Input Button -->
                         <div class="hr-text-bar">
@@ -1176,36 +1176,41 @@
                         <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="10" min="0" step="0.001" class="complete-input" id="xsright_manning" value="1.000">
                     </div>
                 </div>
-                <div class="hr-text-bar">
-                    <span class="hr-text">Reach Characteristics (optional)</span>
-                </div>
                 <p></p>
-                <div class="inline">
-                    <strong>Reach Slope [ft/ft]:</strong>
-                    <div class="complete-form">
-                        <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="100" min="0" step="0.00001" class="complete-input" id="reach_slope">
-                    </div>
-                </div>
-                <div class="inline">
-                    <strong>Bankfull Elevation [ft]:</strong>
-                    <div class="complete-form">
-                        <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="5000" min="0" step="0.01" class="complete-input" id="bf_elev">
-                    </div>
-                </div>
-                <div class="hr-text-bar">
-                    <span class="hr-text">Channel Geometry (optional)</span>
-                </div>
+                <button id="advancedreachopt-button" class="generic-grey-button" style="width:50%;height:50px;">Show Advanced Settings (optional)</button>
                 <p></p>
-                <div class="inline">
-                    <strong>Bankfull Channel Width [ft]:</strong>
-                    <div class="complete-form">
-                        <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="10000" min="0" step="0.001" class="complete-input" id="bf_width">
+                <div id="advancedreachopt" style="display:none;">
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Reach Characteristics</span>
                     </div>
-                </div>
-                <div class="inline">
-                    <strong>Bankfull Channel Depth [ft]:</strong>
-                    <div class="complete-form">
-                        <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="5000" min="0" step="0.01" class="complete-input" id="bf_depth">
+                    <p></p>
+                    <div class="inline">
+                        <strong>Reach Slope [ft/ft]:</strong>
+                        <div class="complete-form">
+                            <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="100" min="0" step="0.00001" class="complete-input" id="reach_slope">
+                        </div>
+                    </div>
+                    <div class="inline">
+                        <strong>Bankfull Elevation [ft]:</strong>
+                        <div class="complete-form">
+                            <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="5000" min="0" step="0.01" class="complete-input" id="bf_elev">
+                        </div>
+                    </div>
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Channel Geometry</span>
+                    </div>
+                    <p></p>
+                    <div class="inline">
+                        <strong>Bankfull Channel Width [ft]:</strong>
+                        <div class="complete-form">
+                            <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="10000" min="0" step="0.001" class="complete-input" id="bf_width">
+                        </div>
+                    </div>
+                    <div class="inline">
+                        <strong>Bankfull Channel Depth [ft]:</strong>
+                        <div class="complete-form">
+                            <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="5000" min="0" step="0.01" class="complete-input" id="bf_depth">
+                        </div>
                     </div>
                 </div>
             </div>

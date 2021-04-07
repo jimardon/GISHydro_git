@@ -1790,10 +1790,7 @@ function tcsubareachange(sub){
 
 function tcvaluechange(uservalue) {
     const subidtc = document.getElementById("tcsubarea").value-1
-    alert(subidtc)
     usertcchange[subidtc] = Number(uservalue.target.value)
-    alert(usertcchange[subidtc])
-    alert(usertcchange)
 }
 
 function restoretcvalues(){

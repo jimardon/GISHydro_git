@@ -286,3 +286,7 @@ velmethcheckboxcheckBoxlayer.change(function () {
     $('#recalculate-button').prop('disabled', velmethcheckboxcheckBoxlayer.filter(':checked').length < 1);
 });
 $('.velmethcheckbox').change();
+
+$('buttadvancedreachopt-buttonon').click( function (){
+    $('advancedreachopt').css('display', 'block');
+})
