@@ -682,7 +682,7 @@
                         <p></p>
                         <div class="inline">
                             <strong>Hydrograph:</strong>
-                            <select class="generic-dropdown" id="peakrate" >
+                            <select class="generic-dropdown" id="peakrate" style="width:50%;">
                                 <option value="Standard PRF 484 " id="standard484" selected>Standard PRF 484</option>
                                 <option value="DelMarVa PRF 484" id="delmarva484">DelMarVa PRF 484</option>
                             </select>
@@ -724,19 +724,19 @@
                         </div>
                         <p></p>
                         <div class="inline">
-                            <strong>ARC:</strong>
-                            <div class="complete-form">
-                                <select class="generic-dropdown" id="arc" >
-                                    <option value="1" id="arc1">1</option>
-                                    <option value="2" id="arc2" selected>2</option>
-                                    <option value="3" id="arc3">1</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="inline">
                             <div class="checkbox-form">
                                 <strong>Perform Areal Reduction:</strong>
                                 <input type="checkbox" class="checkbox-box" id="arealreduction" checked>
+                            </div>
+                        </div>
+                        <div class="inline" id="arealoption" style="display:block;">
+                            <strong>Antecedent Runoff Condition (ARC):</strong>
+                            <div class="complete-form">
+                                <select class="generic-dropdown" id="arc" style="width:60%">
+                                    <option value="1" id="arc1">I</option>
+                                    <option value="2" id="arc2" selected>II</option>
+                                    <option value="3" id="arc3">III</option>
+                                </select>
                             </div>
                         </div>
                         <p></p>
@@ -755,7 +755,7 @@
                         <div class="inline">
                             <strong>Time of Concentration (hr):</strong>
                             <div class="complete-form" style="width:20%;">
-                                <input size ="10" maxlength="10" type="number" class="complete-input" id="usertcvalue" onchange="tcvaluechange(event)">
+                                <input size ="10" maxlength="10" type="number" style = "width:60%;" class="complete-input" id="usertcvalue" onchange="tcvaluechange(event)">
                             </div>
                         </div>
                         <p></p>

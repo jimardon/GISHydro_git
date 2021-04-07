@@ -215,6 +215,6 @@ function recalculatetc(){
     
     t_[subarea] = t_temp[subarea].slice(0);
     tt_[subarea] = tt_temp[subarea].slice(0);
-    document.getElementById("usertcvalue").value = tt_[Number(sub)-1][tt_[Number(sub)-1].length - 1]
+    document.getElementById("usertcvalue").value = tt_[subarea][tt_[subarea].length - 1]
 
 }
