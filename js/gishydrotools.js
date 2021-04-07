@@ -92,7 +92,7 @@ var subid = '';
 var singleshed = false;
 var upper90 = false;
 var tasker_modal = [];
-var usertcchange = '';
+var usertcchange = [];
 
 function alertmodal(title, message,size){
     document.getElementById("alert-body").style.height = size;
