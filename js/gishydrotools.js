@@ -1786,7 +1786,13 @@ function tcsubareachange(sub) {
 }
 
 function tcvaluechange(valuetc) {
-    usertcchange[Number(document.getElementById("tcsubarea").value)-1] = String(valuetc)
+    const subidtc = Number(document.getElementById("tcsubarea").value)-1
+    usertcchange[subidtc] = String(valuetc)
+}
+
+function restoretcvalues(){
+    const subidtc = Number(document.getElementById("tcsubarea").value)-1
+    document.getElementById("usertcvalue").value = tt_[subidtc][tt_[subidtc].length - 1]
 }
 
 function tr20controlpanel() {
