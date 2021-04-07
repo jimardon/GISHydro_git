@@ -1782,13 +1782,16 @@ function stormcheck(){
 }
 
 function tcsubareachange(sub){
-    document.getElementById("usertcvalue").value = usertcchange[sub.value-1]
+    document.getElementById("usertcvalue").value = usertcchange[sub.target.value-1]
+    alert(sub.target.value)
 }
 
 function tcvaluechange(uservalue) {
-    const subidtc = Number(document.getElementById("tcsubarea").value)-1
-    usertcchange[subidtc] = Number(uservalue.value)
+    const subidtc = document.getElementById("tcsubarea").value-1
+    alert(subidtc)
+    usertcchange[subidtc] = Number(uservalue.target.value)
     alert(usertcchange[subidtc])
+    alert(usertcchange)
 }
 
 function restoretcvalues(){
