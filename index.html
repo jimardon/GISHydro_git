@@ -750,13 +750,13 @@
                         <p></p>
                         <div id="tc_subarea" style="display:block;" class="inline">
                             <strong>Subwatershed:</strong>
-                            <select class="generic-dropdown" style="width:100px;text-align:left;padding-left: 10px;" id="tcsubarea" onchange="tcsubareachange(this)"></select>
+                            <select class="generic-dropdown" style="width:100px;text-align:left;padding-left: 10px;" id="tcsubarea" onchange=tcsubareachange()></select>
                         </div>
                         <p></p>
                         <div class="inline">
                             <strong>Time of Concentration (hr):</strong>
                             <div class="complete-form">
-                                <input size ="10" maxlength="10" type="number" style="width:100px;text-align:left;padding-left: 10px;" class="complete-input" id="usertcvalue" onchange="tcvaluechange(event)">
+                                <input size ="10" maxlength="10" type="number" style="width:100px;text-align:left;padding-left: 10px;" class="complete-input" id="usertcvalue" onchange=tcvaluechange()>
                             </div>
                         </div>
                         <button class="generic-grey-button" style="width:100%;" onclick="restoretcvalues()">Reset Value</button>
