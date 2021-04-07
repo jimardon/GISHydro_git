@@ -87,7 +87,7 @@ sidebar.disablePanel('basin_properties');
 sidebar.disablePanel('subshed');
 sidebar.disablePanel('toc');
 sidebar.disablePanel('reachselect');
-//sidebar.disablePanel('wintr20');
+sidebar.disablePanel('wintr20');
 
 sidebar.disablePanel('download');
 
