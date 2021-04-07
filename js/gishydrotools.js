@@ -1147,6 +1147,11 @@ function settoc(){
                 opt2.value = i+1;
                 document.getElementById('lpsubarea').appendChild(opt2);
 
+                var opt3 = document.createElement('option');
+                opt3.innerHTML = i+1;
+                opt3.value = i+1;
+                document.getElementById('tcsubarea').appendChild(opt2);
+
                 var element = document.createElement("div");
                 element.setAttribute("class", "modal fade");
                 element.setAttribute("id", "tc_modal" + String(i+1));
@@ -1175,6 +1180,7 @@ function settoc(){
             if(reaches>1){
                 document.getElementById("velmeth_tc").style.display = "block";
                 document.getElementById("lp_subarea").style.display = "block";
+                document.getElementById("tc_subarea").style.display = "block";
             };
             document.getElementById("longestpath-button").style.display = "block";
 
@@ -1359,7 +1365,6 @@ function resettc(){
     changetcmodal(t_[subarea],tt_[subarea])
     createtctable(subarea,Pixel_[subarea],Type_[subarea],Elev_[subarea],Slope_[subarea],AvgArea_[subarea],Width_[subarea],Depth_[subarea],Xarea_[subarea],Tot_Length_[subarea],Vel_[subarea],I_Time_[subarea],Tot_Time_[subarea])
 }
-
 
 function xs_add(){
     drawLayers.clearLayers();
@@ -1751,6 +1756,10 @@ function precipitationdepth() {
         document.getElementById("downloadwintr20error-button").style.display = "none";
         document.getElementById("downloadwintr20input-button").style.display = "none";
         document.getElementById("downloadwintr20output-button").style.display = "none";
+
+        //Assign Tc Value:
+        document.getElementById("usertcvalue").value = tt_[0][tt_[0].length - 1]
+
         map.spin(false);
     }
 }
@@ -1760,6 +1769,10 @@ function stormcheck(){
     for(var i=0, n=preciplist.length;i<n;i++) {
         thecritavg[i] = checkboxes[preciplist[i]].value
     };
+}
+
+function tcsubareachange(sub) {
+    document.getElementById("usertcvalue").value = tt_[Number(sub)-1][tt_[Number(sub)-1].length - 1]
 }
 
 function tr20controlpanel() {
@@ -1792,7 +1805,7 @@ function tr20controlpanel() {
     gpTask.setParam("minstage", JSON.stringify(totalstage))
     gpTask.setParam("reachno", JSON.stringify(totalreach))
     gpTask.setParam("rating", JSON.stringify(totalrating))
-    if(isNaN(usertc)===false && usertc){gpTask.setParam("usertc", usertc)}
+    //gpTask.setParam("usertc", JSON.stringify(usertc))
     gpTask.setParam("upper90", document.getElementById("upper90check").checked)
 
     gpTask.run(tr20controlpanelCallback);
