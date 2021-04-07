@@ -502,7 +502,7 @@ function basin_properties(){
         basin_modal +=             '<p align="center"><b>Distribution of Land Use by Curve Number</b></p>';
         basin_modal +=             btable2_html;
         basin_modal +=         '</div>';
-        basin_modal +=         '<div class="modal-footer">';
+        basin_modal +=         '<div class="modal-footer" style="justify-content: space-between;">';
         basin_modal +=             '<button type="button" class="btn btn-default" onclick=modaltotxt()>Download</button>'
         basin_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
         basin_modal +=         '</div>';
@@ -614,7 +614,8 @@ function basin_properties(){
         basin2_modal +=             btable7_html
         basin2_modal +=             '<div align="center"><p style="color:red;width: 400px;text-align: center;" ><b>' + html_warning + '</b></p></div>'
         basin2_modal +=         '</div>';
-        basin2_modal +=         '<div class="modal-footer">';
+        basin2_modal +=         '<div class="modal-footer" style="justify-content: space-between;">';
+        basin2_modal +=             '<button type="button" class="btn btn-default" onclick=modaltotxt()>Download</button>'
         basin2_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
         basin2_modal +=         '</div>';
         basin2_modal +=     '</div>';
@@ -777,7 +778,8 @@ function basin_properties(){
             }
             basin3_modal +=             '</p>'
             basin3_modal +=         '</div>';
-            basin3_modal +=         '<div class="modal-footer">';
+            basin3_modal +=         '<div class="modal-footer" style="justify-content: space-between;">';
+            basin3_modal +=             '<button type="button" class="btn btn-default" onclick=modaltotxt()>Download</button>'
             basin3_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
             basin3_modal +=         '</div>';
             basin3_modal +=     '</div>';
@@ -1218,7 +1220,8 @@ function settoc(){
             tc_modal +=         '<div class="modal-body" style="height:250px;">';
             tc_modal +=             tctable_html
             tc_modal +=         '</div>';
-            tc_modal +=         '<div class="modal-footer">';
+            tc_modal +=         '<div class="modal-footer" style="justify-content: space-between;">';
+            tc_modal +=             '<button type="button" class="btn btn-default" onclick=modaltotxt()>Download</button>'
             tc_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
             tc_modal +=         '</div>';
             tc_modal +=     '</div>';
@@ -1303,8 +1306,8 @@ function createtctable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,T
     tc_modal +=         '<div class="modal-body">';
     tc_modal +=             tctable_html
     tc_modal +=         '</div>';
-    tc_modal +=         '<div class="modal-footer">';
-    tc_modal +=             '<button type="button" class="btn btn-secundary">Download</button>'
+    tc_modal +=         '<div class="modal-footer" style="justify-content: space-between;">';
+    tc_modal +=             '<button type="button" class="btn btn-default" onclick=modaltotxt()>Download</button>'
     tc_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal" onclick=goback()>Go Back</button>';
     tc_modal +=         '</div>';
     tc_modal +=     '</div>';
@@ -1710,7 +1713,8 @@ function ratingtable(){
     rating_modal +=         '<div class="modal-body">';
     rating_modal +=             rating_html
     rating_modal +=         '</div>';
-    rating_modal +=         '<div class="modal-footer">';
+    rating_modal +=         '<div class="modal-footer style="justify-content: space-between;"">';
+    rating_modal +=             '<button type="button" class="btn btn-default" onclick=modaltotxt()>Download</button>'
     rating_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
     rating_modal +=         '</div>';
     rating_modal +=     '</div>';
