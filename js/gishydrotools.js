@@ -503,6 +503,7 @@ function basin_properties(){
         basin_modal +=             btable2_html;
         basin_modal +=         '</div>';
         basin_modal +=         '<div class="modal-footer">';
+        basin_modal +=             '<button type="button" class="btn btn-secundary">Download</button>'
         basin_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
         basin_modal +=         '</div>';
         basin_modal +=     '</div>';
@@ -1303,6 +1304,7 @@ function createtctable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,T
     tc_modal +=             tctable_html
     tc_modal +=         '</div>';
     tc_modal +=         '<div class="modal-footer">';
+    tc_modal +=             '<button type="button" class="btn btn-secundary">Download</button>'
     tc_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal" onclick=goback()>Go Back</button>';
     tc_modal +=         '</div>';
     tc_modal +=     '</div>';
