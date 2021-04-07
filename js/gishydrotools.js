@@ -1203,7 +1203,7 @@ function settoc(){
                 tctable_html += '<td align="center">' + Tot_Time_[i] + '</td>';
                 tctable_html += '</tr>';
 
-                usertcchange.push(Tot_Time_[i][Tot_Time_[i].length - 1])
+                usertcchange.push(Tot_Time[i][Tot_Time_[i].length - 1])
             }
             tctable_html += '</table><p></p>';
     
@@ -1781,9 +1781,9 @@ function stormcheck(){
 }
 
 function tcsubareachange(sub) {
-    alert(usertcchange[Number(sub)-1])
-    document.getElementById("usertcvalue").value = usertcchange[Number(sub)-1]
+    alert(Number(sub))
     alert(usertcchange)
+    document.getElementById("usertcvalue").value = usertcchange[Number(sub)-1]
 }
 
 function tcvaluechange(valuetc) {
