@@ -644,7 +644,7 @@ function basin_properties(){
         btable10_html += '<col width="70">';
         btable10_html += '<col width="70">';
         btable10_html += '<tr align="center"><th>Return</th>';
-        btable10_html += '<th align="right">50</th><th align="left">%</th>';
+        btable10_html += '<th style="text-align:right;">50</th><th style="text-align:left;">%</th>';
         btable10_html += '<th>67%</th><th>C.L.</th>';
         btable10_html += '<th>90%</th><th>C.L.</th>';
         btable10_html += '<th>95%</th><th>C.L.</th></tr>';
