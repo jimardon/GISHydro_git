@@ -1279,6 +1279,18 @@ function createtctable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,T
     tctable_html += '<th>V<br>(ft/s)</br></th>';
     tctable_html += '<th>dt<br>(hr)</br></th>';
     tctable_html += '<th>Tc<br>(hr)</br></th></tr>';
+    tctable_html += '<tr align="center"><th></th>';
+    tctable_html += '<th></th>';
+    tctable_html += '<th>[ft]</th>';
+    tctable_html += '<th>[ft/ft]</th>';
+    tctable_html += '<th>[mi<sup>2</sup>]</th>';
+    tctable_html += '<th>[ft]</th>';
+    tctable_html += '<th>[ft]</th>';
+    tctable_html += '<th>[ft<sup>2</sup>]</th>';
+    tctable_html += '<th>[ft]</th>';
+    tctable_html += '<th>[ft/s]</th>';
+    tctable_html += '<th>[hr]</th>';
+    tctable_html += '<th>[hr]</th></tr>';
     for(var j=0; j < Pixel.length; j++){
         tctable_html += '<tr>';
         tctable_html += '<td align="center">' + Pixel[j] + '</td>';
