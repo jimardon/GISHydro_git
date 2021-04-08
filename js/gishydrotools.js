@@ -1699,9 +1699,9 @@ function ratingtable(){
     rating_html += '<col width="100">';
     rating_html += '<col width="100">';
     rating_html += '<col width="100">';
-    rating_html += '<tr align="center"><th>Stage<br/>[ft]</th>';
-    rating_html += '<th>Discharge</br>[cfs]</th>';
-    rating_html += '<th>Area<br/>[ft<sup>2</sup>]</th></tr>';
+    rating_html += '<tr align="center"><th>Stage</th>';
+    rating_html += '<th>Discharge</th>';
+    rating_html += '<th>Area</th></tr>';
     rating_html += '<tr align="center"><th>[ft]</th>';
     rating_html += '<th>[cfs]</th>';
     rating_html += '<th>[ft<sup>2</sup>]</th></tr>';
