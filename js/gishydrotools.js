@@ -645,9 +645,9 @@ function basin_properties(){
         btable10_html += '<col width="70">';
         btable10_html += '<tr align="center"><th>Return</th>';
         btable10_html += '<th style="text-align:right;">50</th><th style="text-align:left;">%</th>';
-        btable10_html += '<th>67%</th><th>C.L.</th>';
-        btable10_html += '<th>90%</th><th>C.L.</th>';
-        btable10_html += '<th>95%</th><th>C.L.</th></tr>';
+        btable10_html += '<th style="text-align:right;">67</th><th style="text-align:left;">%</th>';
+        btable10_html += '<th style="text-align:right;">90</th><th style="text-align:left;">%</th>';
+        btable10_html += '<th style="text-align:right;">95</th><th style="text-align:left;">%</th></tr>';
         btable10_html += '<tr align="center"><th>Period</th>';
         btable10_html += '<th>lower</th><th>upper</th>';
         btable10_html += '<th>lower</th><th>upper</th>';
@@ -728,10 +728,10 @@ function basin_properties(){
             btable13_html += '<col width="70">';
             btable13_html += '<col width="70">';
             btable13_html += '<tr align="center"><th>Return</th>';
-            btable13_html += '<th>50%</th><th>C.L.</th>';
-            btable13_html += '<th>67%</th><th>C.L.</th>';
-            btable13_html += '<th>90%</th><th>C.L.</th>';
-            btable13_html += '<th>95%</th><th>C.L.</th></tr>';
+            btable10_html += '<th style="text-align:right;">50</th><th style="text-align:left;">%</th>';
+            btable10_html += '<th style="text-align:right;">67</th><th style="text-align:left;">%</th>';
+            btable10_html += '<th style="text-align:right;">90</th><th style="text-align:left;">%</th>';
+            btable10_html += '<th style="text-align:right;">95</th><th style="text-align:left;">%</th></tr>';
             btable13_html += '<tr align="center"><th>Period</th>';
             btable13_html += '<th>lower</th><th>upper</th>';
             btable13_html += '<th>lower</th><th>upper</th>';
