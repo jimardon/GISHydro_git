@@ -447,8 +447,8 @@ function basin_properties(){
         btable1_html += '<col width="150">';
         btable1_html += '<col width="150">';
         btable1_html += '<col width="150">';
-        btable1_html += '<tr align="center"><th rowspan="2">Land Use</th><th colspan="4" scope="colgroup">Acres on Indicated Soil Group</th></tr>';
-        btable1_html += '<tr align="center"><th scope="col">A-Soil</th><th scope="col">B-Soil</th><th scope="col">C-Soil</th><th scope="col">D-Soil</th></tr>';
+        btable1_html += '<tr align="center"><th>Land Use</th><th colspan="4" scope="colgroup">Acres on Indicated Soil Group</th></tr>';
+        btable1_html += '<tr align="center"><th">(Class Name)</th><th">A-Soil</th><th">B-Soil</th><th">C-Soil</th><th">D-Soil</th></tr>';
         for(var i=0; i < lu_desc.length; i++){
             btable1_html += '<tr>';
             btable1_html += '<td>' + lu_desc[i] + '</td>';
@@ -643,15 +643,16 @@ function basin_properties(){
         btable10_html += '<col width="70">';
         btable10_html += '<col width="70">';
         btable10_html += '<col width="70">';
-        btable10_html += '<tr align="center"><th rowspan="2">Return Period</th>';
-        btable10_html += '<th colspan="2" scope="colgroup">50%</th>';
-        btable10_html += '<th colspan="2" scope="colgroup">67%</th>';
-        btable10_html += '<th colspan="2" scope="colgroup">90%</th>';
-        btable10_html += '<th colspan="2" scope="colgroup">95%</th></tr>';
-        btable10_html += '<tr align="center"><th scope="col">lower</th><th scope="col">upper</th>';
-        btable10_html += '<th scope="col">lower</th><th scope="col">upper</th>';
-        btable10_html += '<th scope="col">lower</th><th scope="col">upper</th>';
-        btable10_html += '<th scope="col">lower</th><th scope="col">upper</th></tr>';
+        btable10_html += '<tr align="center"><th>Return</th>';
+        btable10_html += '<th>50%</th><th>C.L.</th>';
+        btable10_html += '<th>67%</th><th>C.L.</th>';
+        btable10_html += '<th>90%</th><th>C.L.</th>';
+        btable10_html += '<th>95%</th><th>C.L.</th></tr>';
+        btable10_html += '<tr align="center"><th>Period</th>';
+        btable10_html += '<th>lower</th><th>upper</th>';
+        btable10_html += '<th>lower</th><th>upper</th>';
+        btable10_html += '<th>lower</th><th>upper</th>';
+        btable10_html += '<th>lower</th><th>upper</th></tr>';
         for(var i=0; i < it_values.length; i++){
             btable10_html += '<tr>';
             btable10_html += '<td align="center">' + it_values[i] + '</td>';
@@ -690,16 +691,16 @@ function basin_properties(){
             btable11_html += '</table><p></p>';
 
             var btable12_html = '<table border="0" align="center">';
-            btable12_html += '<col width="100">';
-            btable12_html += '<col width="100">';
-            btable12_html += '<col width="100">';
-            btable12_html += '<col width="100">';
-            btable12_html += '<col width="100">';
-            btable12_html += '<tr align="center"><th>Return<br />Period</th>';
-            btable12_html += '<th>Discharge<br />(cfs)</th>';
-            btable12_html += '<th>Standard Error<br />of Prediction<br />(percent)</th>';
-            btable12_html += '<th>Equivalent Years<br />of Record</th>';
-            btable12_html += '<th>Standard Error<br />of Prediction<br />(logs)</th></tr>';
+            btable12_html += '<col width="150">';
+            btable12_html += '<col width="150">';
+            btable12_html += '<col width="150">';
+            btable12_html += '<col width="150">';
+            btable12_html += '<col width="150">';
+            btable12_html += '<tr align="center"><th>ReturnPeriod</th>';
+            btable12_html += '<th>Discharge (cfs)</th>';
+            btable12_html += '<th>Standard Error of Prediction (percent)</th>';
+            btable12_html += '<th>Equivalent Years of Record</th>';
+            btable12_html += '<th>Standard Error of Prediction (logs)</th></tr>';
             for(var i=0; i < it_values.length; i++){
                 btable12_html += '<tr>';
                 btable12_html += '<td align="center">' + it_values[i] + '</td>';
@@ -721,15 +722,16 @@ function basin_properties(){
             btable13_html += '<col width="70">';
             btable13_html += '<col width="70">';
             btable13_html += '<col width="70">';
-            btable13_html += '<tr align="center"><th rowspan="2">Return Period</th>';
-            btable13_html += '<th colspan="2" scope="colgroup">50%</th>';
-            btable13_html += '<th colspan="2" scope="colgroup">67%</th>';
-            btable13_html += '<th colspan="2" scope="colgroup">90%</th>';
-            btable13_html += '<th colspan="2" scope="colgroup">95%</th></tr>';
-            btable13_html += '<tr align="center"><th scope="col">lower</th><th scope="col">upper</th>';
-            btable13_html += '<th scope="col">lower</th><th scope="col">upper</th>';
-            btable13_html += '<th scope="col">lower</th><th scope="col">upper</th>';
-            btable13_html += '<th scope="col">lower</th><th scope="col">upper</th></tr>';
+            btable13_html += '<tr align="center"><th>Return</th>';
+            btable13_html += '<th>50%</th><th>C.L.</th>';
+            btable13_html += '<th>67%</th><th>C.L.</th>';
+            btable13_html += '<th>90%</th><th>C.L.</th>';
+            btable13_html += '<th>95%</th><th>C.L.</th></tr>';
+            btable13_html += '<tr align="center"><th>Period</th>';
+            btable13_html += '<th>lower</th><th>upper</th>';
+            btable13_html += '<th>lower</th><th>upper</th>';
+            btable13_html += '<th>lower</th><th>upper</th>';
+            btable13_html += '<th>lower</th><th>upper</th></tr>';
             for(var i=0; i < it_values.length; i++){
                 btable13_html += '<tr>';
                 btable13_html += '<td align="center">' + it_values[i] + '</td>';
