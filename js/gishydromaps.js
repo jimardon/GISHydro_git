@@ -287,6 +287,6 @@ velmethcheckboxcheckBoxlayer.change(function () {
 });
 $('.velmethcheckbox').change();
 
-$('buttadvancedreachopt-buttonon').click( function (){
+$('advancedreachopt-button').click( function (){
     $('advancedreachopt').css('display', 'block');
 })
