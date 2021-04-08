@@ -702,10 +702,10 @@ function basin_properties(){
             btable12_html += '<th>Equivalent Years of Record</th>';
             btable12_html += '<th>Standard Error of Prediction</th></tr>';
             btable12_html += '<tr align="center"><th></th>';
-            btable12_html += '<th>(cfs)</th>';
-            btable12_html += '<th>(percent)</th>';
-            btable12_html += '<th>(yrs)</th>';
-            btable12_html += '<th>(logs)</th></tr>';
+            btable12_html += '<th>[cfs]</th>';
+            btable12_html += '<th>[percent]</th>';
+            btable12_html += '<th></th>';
+            btable12_html += '<th>[logs]</th></tr>';
             for(var i=0; i < it_values.length; i++){
                 btable12_html += '<tr>';
                 btable12_html += '<td align="center">' + it_values[i] + '</td>';
