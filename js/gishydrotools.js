@@ -969,8 +969,9 @@ function outlets_marker(){
                 var marker = L.marker([mark_lat, mark_lon]);
                 addasoutlets.addLayer(marker);
                 $('#clearoutlet-button').removeAttr('disabled');
+                alertmodal("Valid",'The outlet point selected is <span style="color:green;">valid</span>.',"10vh")
             }else{
-                alertmodal("Invalid","Select a valid outlet.","10vh")
+                alertmodal("Invalid", 'The outlet point selected is <span style="color:red;">invalid</span>.',"10vh")
             }
         }
         drawLayers.clearLayers();
@@ -1214,7 +1215,7 @@ function settoc(){
                 tctable_html += '<td align="center">' + Tot_Time_[i] + '</td>';
                 tctable_html += '</tr>';
 
-                usertcchange.push(Tot_Time[i][Tot_Time_[i].length - 1])
+                usertcchange.push(Tot_Time_[i][Tot_Time_[i].length - 1])
             }
             tctable_html += '</table><p></p>';
     
