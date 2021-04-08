@@ -27,7 +27,6 @@ var areami2 = '';
 var basin_lu = '';
 var mark_lat = '';
 var mark_lon = '';
-var btable0_html = '';
 var delcheck = true;
 var fpcheck = false;
 var olcheck = false;
@@ -434,7 +433,7 @@ function basin_properties(){
         var regioncount = response.regioncount;
         var taskeroutput = response.tasker;
 
-        btable0_html = '<table border="0">';
+        var btable0_html = '<table border="0">';
         btable0_html += '<col width="300">';
         btable0_html += '<col width="300">';
         btable0_html += '<tr><td align="left">GISHydro Release Version Date:</td><td align="left">' + version + '</td></tr>';
@@ -503,7 +502,7 @@ function basin_properties(){
         basin_modal +=             btable2_html;
         basin_modal +=         '</div>';
         basin_modal +=         '<div class="modal-footer" style="justify-content: space-between;">';
-        basin_modal +=             '<button type="button" class="btn btn-default" disabled="disabled" onclick=modaltotxt()>Download</button>'
+        basin_modal +=             '<button type="button" class="btn btn-default" disabled="disabled" onclick=modaltotxt(basin_comp,"' + full_project_name + '_basincomp.csv")>Download</button>'
         basin_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
         basin_modal +=         '</div>';
         basin_modal +=     '</div>';
@@ -615,7 +614,7 @@ function basin_properties(){
         basin2_modal +=             '<div align="center"><p style="color:red;width: 400px;text-align: center;" ><b>' + html_warning + '</b></p></div>'
         basin2_modal +=         '</div>';
         basin2_modal +=         '<div class="modal-footer" style="justify-content: space-between;">';
-        basin2_modal +=             '<button type="button" class="btn btn-default" disabled="disabled" onclick=modaltotxt()>Download</button>'
+        basin2_modal +=             '<button type="button" class="btn btn-default" disabled="disabled" onclick=modaltotxt(basin_stat,"' + full_project_name + '_basinstats.csv")>Download</button>'
         basin2_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
         basin2_modal +=         '</div>';
         basin2_modal +=     '</div>';
@@ -779,7 +778,7 @@ function basin_properties(){
             basin3_modal +=             '</p>'
             basin3_modal +=         '</div>';
             basin3_modal +=         '<div class="modal-footer" style="justify-content: space-between;">';
-            basin3_modal +=             '<button type="button" class="btn btn-default" disabled="disabled" onclick=modaltotxt()>Download</button>'
+            basin3_modal +=             '<button type="button" class="btn btn-default" disabled="disabled" onclick=modaltotxt(tasker_mod,"' + full_project_name + '_' + provstring[j][0].replace(' ','') + '_frre.csv")>Download</button>'
             basin3_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
             basin3_modal +=         '</div>';
             basin3_modal +=     '</div>';
@@ -1221,7 +1220,7 @@ function settoc(){
             tc_modal +=             tctable_html
             tc_modal +=         '</div>';
             tc_modal +=         '<div class="modal-footer" style="justify-content: space-between;">';
-            tc_modal +=             '<button type="button" class="btn btn-default" disabled="disabled" onclick=modaltotxt()>Download</button>'
+            tc_modal +=             '<button type="button" class="btn btn-default" disabled="disabled" onclick=modaltotxt(toc_mod,"' + full_project_name + '_tc.csv")>Download</button>'
             tc_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
             tc_modal +=         '</div>';
             tc_modal +=     '</div>';
@@ -1307,7 +1306,7 @@ function createtctable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,T
     tc_modal +=             tctable_html
     tc_modal +=         '</div>';
     tc_modal +=         '<div class="modal-footer" style="justify-content: space-between;">';
-    tc_modal +=             '<button type="button" class="btn btn-default" disabled="disabled" onclick=modaltotxt()>Download</button>'
+    tc_modal +=             '<button type="button" class="btn btn-default" disabled="disabled" onclick=modaltotxt(tc_modal,"' + full_project_name + '_velmeth_' + String(subarea+1) + '.csv")>Download</button>'
     tc_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal" onclick=goback()>Go Back</button>';
     tc_modal +=         '</div>';
     tc_modal +=     '</div>';
@@ -1714,7 +1713,7 @@ function ratingtable(){
     rating_modal +=             rating_html
     rating_modal +=         '</div>';
     rating_modal +=         '<div class="modal-footer style="justify-content: space-between;"">';
-    rating_modal +=             '<button type="button" class="btn btn-default" disabled="disabled" onclick=modaltotxt()>Download</button>'
+    rating_modal +=             '<button type="button" class="btn btn-default" disabled="disabled" onclick=modaltotxt(rating_mod,"' + full_project_name + '_ratingtable_' + reachno + '.csv")>Download</button>'
     rating_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
     rating_modal +=         '</div>';
     rating_modal +=     '</div>';
@@ -2060,4 +2059,39 @@ function forEachFeature(feature, layer) {
         subwshed2.setStyle(style);
         layer.setStyle(highlight);
     }); 
+}
+
+ 
+function downloadCSV(csv, filename) {
+    var csvFile;
+    var downloadLink;
+
+    csvFile = new Blob([csv], {type: "text/csv"});
+    downloadLink = document.createElement("a");
+    downloadLink.download = filename;
+    downloadLink.href = window.URL.createObjectURL(csvFile);
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+}
+
+function modaltotxt(element, filename) {
+    var csv = [];
+    var rows = element.querySelectorAll("h4, p, table tr");
+    
+    for (var i = 0; i < rows.length; i++) {
+
+        var row = [], cols = rows[i].querySelectorAll("td, th");
+
+        if(cols[0] === undefined){
+            row.push(rows[i].innerText)
+        }
+        else {
+            for (var j = 0; j < cols.length; j++) 
+                row.push(cols[j].innerText);
+            }
+        csv.push(row.join(","));
+    }
+
+    downloadCSV(csv.join("\n"), filename);
 }
