@@ -728,10 +728,10 @@ function basin_properties(){
             btable13_html += '<col width="70">';
             btable13_html += '<col width="70">';
             btable13_html += '<tr align="center"><th>Return Period</th>';
-            btable10_html += '<th style="text-align:right;">50</th><th style="text-align:left;">%</th>';
-            btable10_html += '<th style="text-align:right;">67</th><th style="text-align:left;">%</th>';
-            btable10_html += '<th style="text-align:right;">90</th><th style="text-align:left;">%</th>';
-            btable10_html += '<th style="text-align:right;">95</th><th style="text-align:left;">%</th></tr>';
+            btable13_html += '<th style="text-align:right;">50</th><th style="text-align:left;">%</th>';
+            btable13_html += '<th style="text-align:right;">67</th><th style="text-align:left;">%</th>';
+            btable13_html += '<th style="text-align:right;">90</th><th style="text-align:left;">%</th>';
+            btable13_html += '<th style="text-align:right;">95</th><th style="text-align:left;">%</th></tr>';
             btable13_html += '<tr align="center"><th></th>';
             btable13_html += '<th>lower</th><th>upper</th>';
             btable13_html += '<th>lower</th><th>upper</th>';
