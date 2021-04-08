@@ -448,7 +448,7 @@ function basin_properties(){
         btable1_html += '<col width="150">';
         btable1_html += '<col width="150">';
         btable1_html += '<tr align="center"><th>Land Use</th><th colspan="4" scope="colgroup">Acres on Indicated Soil Group</th></tr>';
-        btable1_html += '<tr align="center"><th>(Class Name)</th><th>A-Soil</th><th>B-Soil</th><th>C-Soil</th><th>D-Soil</th></tr>';
+        btable1_html += '<tr align="center"><th></th><th>A-Soil</th><th>B-Soil</th><th>C-Soil</th><th>D-Soil</th></tr>';
         for(var i=0; i < lu_desc.length; i++){
             btable1_html += '<tr>';
             btable1_html += '<td>' + lu_desc[i] + '</td>';
@@ -691,7 +691,7 @@ function basin_properties(){
             btable11_html += '</table><p></p>';
 
             var btable12_html = '<table border="0" align="center">';
-            btable12_html += '<col width="100">';
+            btable12_html += '<col width="70">';
             btable12_html += '<col width="100">';
             btable12_html += '<col width="150">';
             btable12_html += '<col width="150">';
