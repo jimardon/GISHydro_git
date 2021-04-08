@@ -1714,7 +1714,7 @@ function ratingtable(){
     }
     rating_html += '</table><p></p>';
 
-    var rating_modal = '<div class="modal-dialog modal-lg" style="width:100%">';
+    var rating_modal = '<div class="modal-dialog" style="width:100%">';
     rating_modal +=     '<div class="modal-content">';
     rating_modal +=         '<div class="modal-header">';
     rating_modal +=             '<h4 class="modal-title">Rating Table ID: ' + reachno + '</h4>';
@@ -1722,7 +1722,7 @@ function ratingtable(){
     rating_modal +=         '<div class="modal-body">';
     rating_modal +=             rating_html
     rating_modal +=         '</div>';
-    rating_modal +=         '<div class="modal-footer style="justify-content: space-between;"">';
+    rating_modal +=         '<div class="modal-footer style="justify-content: space-between;">';
     rating_modal +=             '<button type="button" class="btn btn-default" onclick=modaltotxt(rating_mod,"' + full_project_name + '_ratingtable_' + reachno + '.csv")>Download</button>'
     rating_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
     rating_modal +=         '</div>';
