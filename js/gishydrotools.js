@@ -969,9 +969,9 @@ function outlets_marker(){
                 var marker = L.marker([mark_lat, mark_lon]);
                 addasoutlets.addLayer(marker);
                 $('#clearoutlet-button').removeAttr('disabled');
-                alertmodal("Valid",'The outlet point selected is <span style="color:green;">valid</span>.',"10vh")
+                alertmodal("Valid",'The outlet point selected is <span style="color:green;"><b>valid</b></span>.',"10vh")
             }else{
-                alertmodal("Invalid", 'The outlet point selected is <span style="color:red;">invalid</span>.',"10vh")
+                alertmodal("Invalid", 'The outlet point selected is <span style="color:red;"><b>invalid</b></span>.',"10vh")
             }
         }
         drawLayers.clearLayers();
@@ -1206,8 +1206,11 @@ function settoc(){
             tctable_html += '<col width="100">';
             tctable_html += '<col width="100">';
             tctable_html += '<tr align="center"><th>Subwatershed</th>';
-            tctable_html += '<th>Area<br/>(mi<sup>2</sup>)</th>';
-            tctable_html += '<th>Time of Concentration<br/>(h)</th></tr>';
+            tctable_html += '<th>Drainage Area</th>';
+            tctable_html += '<th>Time of Concentration</th></tr>';
+            tctable_html += '<tr align="center"><th></th>';
+            tctable_html += '<th>[mi<sup>2</sup>]</th>';
+            tctable_html += '<th>[hr]</th></tr>';
             for(var i=0; i < Tot_Time_.length; i++){
                 tctable_html += '<tr>';
                 tctable_html += '<td align="center">' + String(i+1) + '</td>';
