@@ -2,7 +2,7 @@
 
 //variables start
 var date = new Date();
-var today = date.toLocaleString('default', { month: 'long' }) + ' ' + date.getDate() + ', ' + date.getFullYear();
+var today = date.toLocaleString('default', { month: 'long' }) + ' ' + date.getDate() + ' ' + date.getFullYear();
 var version = 'v0.2 (Beta-Testing)';
 var thomas = '2020 Maryland Fixed Region Equations';
 var errormsg = "The application has encountered an unknown error, please try again. If you think it's a bug, please report it :)";
@@ -538,8 +538,8 @@ function basin_properties(){
         btable3_html += '<tr><td align="left">Land Use Coverage:</td><td align="left">' + basin_lu + '</td></tr>';
         btable3_html += '<tr><td align="left">Soil Coverage:</td><td align="left">' + basin_soil + '</td></tr>';
         btable3_html += '<tr><td align="left">Hydrologic Condition:</td><td align="left">' + hyd_cond + '</td></tr>';
-        btable3_html += '<tr><td align="left">Outlet Easting:</td><td align="left">' + x + ' m (MD Stateplane, NAD 1983)' + '</td></tr>';
-        btable3_html += '<tr><td align="left">Outlet Northing:</td><td align="left">' + y + ' m (MD Stateplane, NAD 1983)' + '</td></tr>';
+        btable3_html += '<tr><td align="left">Outlet Easting:</td><td align="left">' + x + ' m (MD Stateplane NAD 1983)' + '</td></tr>';
+        btable3_html += '<tr><td align="left">Outlet Northing:</td><td align="left">' + y + ' m (MD Stateplane NAD 1983)' + '</td></tr>';
         btable3_html += '</table><p></p>';
 
         var btable4_html = '<table border="0" align="center">';
@@ -555,7 +555,7 @@ function basin_properties(){
         var btable5_html = '<table border="0" align="center">';
         btable5_html += '<col width="300">';
         btable5_html += '<col width="300">';
-        btable5_html += '<tr><td align="left">Time of Concentration:</td><td align="left">' + tc + ' hours [W.O. Thomas, Jr. Equation]' + '</td></tr>';
+        btable5_html += '<tr><td align="left">Time of Concentration:</td><td align="left">' + tc + ' hours [W.O. Thomas Jr. Equation]' + '</td></tr>';
         btable5_html += '<tr><td align="left">Time of Concentration:</td><td align="left">' + lagtime + ' hours  [From SCS Lag Equation * 1.67]' + '</td></tr>';
         btable5_html += '<tr><td align="left">Longest Flow Path:</td><td align="left">' + maxlength + ' mi</td></tr>';
         btable5_html += '<tr><td align="left">Basin Relief:</td><td align="left">' + basinrelief + ' ft</td></tr>';
@@ -563,7 +563,7 @@ function basin_properties(){
         btable5_html += '<tr><td align="left">Forest Cover:</td><td align="left">' + FC + '%</td></tr>';
         btable5_html += '<tr><td align="left">Storage:</td><td align="left">' + ST + '%</td></tr>';
         btable5_html += '<tr><td align="left">Limestone:</td><td align="left">' + LI + '%</td></tr>';
-        btable5_html += '<tr><td align="left">2-Year,24-hour Precipitation:</td><td align="left">' + p2yr + ' in</td></tr>';
+        btable5_html += '<tr><td align="left">2-Year 24-hour Precipitation:</td><td align="left">' + p2yr + ' in</td></tr>';
         btable5_html += '<tr><td align="left">Mean Annual Precipitation:</td><td align="left">' + maprec + ' in</td></tr>';
         btable5_html += '</table><p></p>';
 
@@ -644,7 +644,7 @@ function basin_properties(){
         btable10_html += '<col width="70">';
         btable10_html += '<col width="70">';
         btable10_html += '<tr align="center"><th>Return</th>';
-        btable10_html += '<th>50%</th><th>C.L.</th>';
+        btable10_html += '<th align="right">50</th><th align="left">%</th>';
         btable10_html += '<th>67%</th><th>C.L.</th>';
         btable10_html += '<th>90%</th><th>C.L.</th>';
         btable10_html += '<th>95%</th><th>C.L.</th></tr>';
@@ -696,11 +696,16 @@ function basin_properties(){
             btable12_html += '<col width="150">';
             btable12_html += '<col width="150">';
             btable12_html += '<col width="150">';
-            btable12_html += '<tr align="center"><th>ReturnPeriod</th>';
-            btable12_html += '<th>Discharge (cfs)</th>';
-            btable12_html += '<th>Standard Error of Prediction (percent)</th>';
+            btable12_html += '<tr align="center"><th>Return</th>';
+            btable12_html += '<th>Discharge</th>';
+            btable12_html += '<th>Standard Error of Prediction</th>';
             btable12_html += '<th>Equivalent Years of Record</th>';
-            btable12_html += '<th>Standard Error of Prediction (logs)</th></tr>';
+            btable12_html += '<th>Standard Error of Prediction</th></tr>';
+            btable12_html += '<tr align="center"><th>Period</th>';
+            btable12_html += '<th>(cfs)</th>';
+            btable12_html += '<th>(percent)</th>';
+            btable12_html += '<th>(yrs)</th>';
+            btable12_html += '<th>(logs)</th></tr>';
             for(var i=0; i < it_values.length; i++){
                 btable12_html += '<tr>';
                 btable12_html += '<td align="center">' + it_values[i] + '</td>';
