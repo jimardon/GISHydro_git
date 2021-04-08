@@ -969,9 +969,9 @@ function outlets_marker(){
                 var marker = L.marker([mark_lat, mark_lon]);
                 addasoutlets.addLayer(marker);
                 $('#clearoutlet-button').removeAttr('disabled');
-                alertmodal("Valid",'The outlet point selected is <span style="color:green;"><b>valid</b></span>.',"10vh")
+                alertmodal("Valid",'The outlet point selected is <span style="color:green;"><b>VALID</b></span>.',"10vh")
             }else{
-                alertmodal("Invalid", 'The outlet point selected is <span style="color:red;"><b>invalid</b></span>.',"10vh")
+                alertmodal("Invalid", 'The outlet point selected is <span style="color:red;"><b>INVALID</b></span>. Please place the outlet point on a valid stream.',"15vh")
             }
         }
         drawLayers.clearLayers();
