@@ -760,12 +760,12 @@ function basin_properties(){
             basin3_modal +=         '<div class="modal-body">';
             basin3_modal +=             btable0_html
 
-            basin3_modal += '<table border="0">';
-            basin3_modal += '<col width="300">';
-            basin3_modal += '<col width="300">';
-            basin3_modal += '<tr><td align="left">Hydrologic Region:</td><td align="left">' + provstring[j][0] + '</td></tr>';
-            basin3_modal += '<tr><td align="left">Weight of Total Area:</td><td align="left">' + provstring[j][1] + '%</td></tr>';
-            basin3_modal += '</table><p></p>';
+            basin3_modal +=             '<table border="0">';
+            basin3_modal +=                 '<col width="300">';
+            basin3_modal +=                 '<col width="300">';
+            basin3_modal +=                 '<tr><td align="left">Hydrologic Region:</td><td align="left">' + provstring[j][0] + '</td></tr>';
+            basin3_modal +=                 '<tr><td align="left">Weight of Total Area:</td><td align="left">' + provstring[j][1] + '%</td></tr>';
+            basin3_modal +=             '</table><p></p>';
 
             basin3_modal +=             '<p align="center" style="font-size:16px;"><b>' + thomas + '</b></p>';
             basin3_modal +=             '<p align="center"><b>Peak Flow (Total Area Weighted)</b></p>';
@@ -1702,6 +1702,9 @@ function ratingtable(){
     rating_html += '<tr align="center"><th>Stage<br/>[ft]</th>';
     rating_html += '<th>Discharge</br>[cfs]</th>';
     rating_html += '<th>Area<br/>[ft<sup>2</sup>]</th></tr>';
+    rating_html += '<tr align="center"><th>[ft]</th>';
+    rating_html += '<th>[cfs]</th>';
+    rating_html += '<th>[ft<sup>2</sup>]</th></tr>';
     for(var i=0; i < ratingdata.length; i++){
         rating_html += '<tr>';
         rating_html += '<td align="center">' + ratingdata[i][0] + '</td>';
@@ -1711,7 +1714,7 @@ function ratingtable(){
     }
     rating_html += '</table><p></p>';
 
-    var rating_modal = '<div class="modal-dialog" style="width:100%">';
+    var rating_modal = '<div class="modal-dialog modal-lg" style="width:100%">';
     rating_modal +=     '<div class="modal-content">';
     rating_modal +=         '<div class="modal-header">';
     rating_modal +=             '<h4 class="modal-title">Rating Table ID: ' + reachno + '</h4>';
