@@ -1313,7 +1313,7 @@ function createtctable(subarea,Pixel,Type,Elev,Slope,AvgArea,Width,Depth,Xarea,T
     tc_modal +=             tctable_html
     tc_modal +=         '</div>';
     tc_modal +=         '<div class="modal-footer" style="justify-content: space-between;">';
-    tc_modal +=             '<button type="button" class="btn btn-default" onclick=modaltotxt("tc_modal"' + String(subarea+1) + ',' + full_project_name + '_velmeth_' + String(subarea+1) + '.csv")>Download</button>'
+    tc_modal +=             '<button type="button" class="btn btn-default" onclick=modaltotxt("tc_modal' + String(subarea+1) + '",' + full_project_name + '_velmeth_' + String(subarea+1) + '.csv")>Download</button>'
     tc_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal" onclick=goback()>Go Back</button>';
     tc_modal +=         '</div>';
     tc_modal +=     '</div>';
