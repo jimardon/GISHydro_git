@@ -785,8 +785,7 @@ function basin_properties(){
             basin3_modal +=             '</p>'
             basin3_modal +=         '</div>';
             basin3_modal +=         '<div class="modal-footer" style="justify-content: space-between;">';
-            basin3_modal +=             '<button type="button" class="btn btn-default" onclick=modaltotxt(tasker_mod,"' + full_project_name + '_frre.csv")>Download</button>'
-            alert(provstring[j][0])
+            basin3_modal +=             '<button type="button" class="btn btn-default" onclick=modaltotxt(tasker_mod,"' + full_project_name.replaceAll(' ','') + '_frre.csv")>Download</button>'
             basin3_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
             basin3_modal +=         '</div>';
             basin3_modal +=     '</div>';
