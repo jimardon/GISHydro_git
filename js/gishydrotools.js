@@ -93,13 +93,17 @@ var upper90 = false;
 var tasker_modal = [];
 var usertcchange = [];
 
-var configURL = "https://jimardon.github.io/GISHydroWEB/json/site-config.json";
-var xhReq = new XMLHttpRequest();
-xhReq.open("GET", configURL, false);
-xhReq.send(null);
-var jsonObject = JSON.parse(xhReq.responseText);
-alert(jsonObject.appConfig.dataSelectionURL)
-
+var arr = null;
+$.ajax({
+    'async': false,
+    'global': false,
+    'url': "https://jimardon.github.io/GISHydroWEB/json/site-config.json",
+    'dataType': "json",
+    'success': function (data) {
+        arr = data;
+        alert(data)
+    }
+});
 
 function alertmodal(title, message,size){
     document.getElementById("alert-body").style.height = size;
