@@ -98,7 +98,7 @@ var xhReq = new XMLHttpRequest();
 xhReq.open("GET", configURL, false);
 xhReq.send(null);
 var jsonObject = JSON.parse(xhReq.responseText);
-alert(jsonObject.appConfig)
+alert(jsonObject.appConfig.dataSelectionURL)
 
 
 function alertmodal(title, message,size){
