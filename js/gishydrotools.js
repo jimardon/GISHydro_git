@@ -101,7 +101,7 @@ $.ajax({
     'dataType': "json",
     'success': function (data) {
         arr = data;
-        alert(data.DataSelectionURL)
+        alert(data.appConfig.DataSelectionURL)
     }
 });
 
