@@ -101,7 +101,6 @@ $.ajax({
     'dataType': "json",
     'success': function (data) {
         arr = data;
-        alert(data.appConfig.DataSelectionURL)
     }
 });
 
@@ -173,7 +172,7 @@ call (410) 767-4500.)","20vh")
     LC.removeLayer(roadsf);
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/DataSelection",
+        url: data.appConfig.DataSelectionURL,
         useCors:false,
     });
     var gpTask = gpService.createTask();
