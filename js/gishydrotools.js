@@ -93,6 +93,14 @@ var upper90 = false;
 var tasker_modal = [];
 var usertcchange = [];
 
+var configURL = "https://jimardon.github.io/GISHydroWEB/json/site-config.json";
+var xhReq = new XMLHttpRequest();
+xhReq.open("GET", configURL, false);
+xhReq.send(null);
+var jsonObject = JSON.parse(xhReq.responseText);
+alert(jsonObject)
+
+
 function alertmodal(title, message,size){
     document.getElementById("alert-body").style.height = size;
     $("#alertmodaltitle").html(title);
