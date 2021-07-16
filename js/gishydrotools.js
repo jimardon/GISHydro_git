@@ -93,14 +93,14 @@ var upper90 = false;
 var tasker_modal = [];
 var usertcchange = [];
 
-var arr = null;
+var siteconfig = null;
 $.ajax({
     'async': false,
     'global': false,
     'url': "json/site-config.json",
     'dataType': "json",
-    'success': function (data) {
-        arr = data;
+    'success': function (jsondata) {
+        siteconfig = jsondata;
     }
 });
 
@@ -172,7 +172,7 @@ call (410) 767-4500.)","20vh")
     LC.removeLayer(roadsf);
 
     var gpService = L.esri.GP.service({
-        url: data.appServer.serverURL + data.appConfig.DataSelectionURL,
+        url: siteconfig.appServer.serverURL + siteconfig.appConfig.DataSelectionURL,
         useCors:false,
     });
     var gpTask = gpService.createTask();
