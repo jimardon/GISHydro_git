@@ -3,7 +3,7 @@
 //variables start
 var date = new Date();
 var today = date.toLocaleString('default', { month: 'long' }) + ' ' + date.getDate() + ' ' + date.getFullYear();
-var version = 'v0.2 (Beta-Testing)';
+var version = 'v0.1 (Beta-Testing)';
 var thomas = '2020 Maryland Fixed Region Equations';
 var errormsg = "The application has encountered an unknown error, please try again. If you think it's a bug, please report it :)";
 var type = '';
