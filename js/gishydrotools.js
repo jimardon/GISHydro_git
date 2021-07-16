@@ -97,7 +97,7 @@ var arr = null;
 $.ajax({
     'async': false,
     'global': false,
-    'url': "json/site-config.json",//"https://jimardon.github.io/GISHydroWEB/json/site-config.json",
+    'url': "json/site-config.json",
     'dataType': "json",
     'success': function (data) {
         arr = data;
