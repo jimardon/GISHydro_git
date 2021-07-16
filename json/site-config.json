@@ -1,19 +1,22 @@
 {
+    "appServer": {
+        "serverURL": "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/"
+    },
     "appConfig": {
-        "DataSelectionURL":  "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/DataSelection",
-        "DelineationURL": "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Delineation",
-        "BasinOutputsURL": "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Delineation",
-        "FlowpathsURL": "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Delineation",
-        "OutletsURL": "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Delineation",
-        "SubshedsURL": "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Delineation",
-        "SetTOCURL": "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Delineation",
-        "TransectURL": "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Delineation",
-        "ReservoirURL": "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Delineation",
-        "PrecipitationDepthURL": "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Delineation",
-        "TR20ControlURL": "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Delineation",
-        "DesignStormURL": "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Delineation",
-        "LoadLayerURL": "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Delineation",
-        "TaskerURL": "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Delineation"
+        "DataSelectionURL": "DataSelection",
+        "DelineationURL": "Delineation",
+        "BasinOutputsURL": "BasinOutputs",
+        "FlowpathsURL": "Flowpaths",
+        "OutletsURL": "Outlets",
+        "SubshedsURL": "Subsheds",
+        "SetTOCURL": "SetTOC",
+        "TransectURL": "Transect",
+        "ReservoirURL": "Reservoir",
+        "PrecipitationDepthURL": "PrecipitationDepths",
+        "TR20ControlURL": "TR20Control",
+        "DesignStormURL": "DesignStorm",
+        "LoadLayerURL": "LoadLayer",
+        "TaskerURL": "Tasker"
     }
 }
 

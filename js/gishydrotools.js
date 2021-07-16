@@ -172,7 +172,7 @@ call (410) 767-4500.)","20vh")
     LC.removeLayer(roadsf);
 
     var gpService = L.esri.GP.service({
-        url: data.appConfig.DataSelectionURL,
+        url: data.appServer.serverURL + data.appConfig.DataSelectionURL,
         useCors:false,
     });
     var gpTask = gpService.createTask();
