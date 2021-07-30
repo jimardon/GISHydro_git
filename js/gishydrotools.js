@@ -1999,6 +1999,16 @@ function landuseload(){
     map.spin(true);
     $('#landuse-button').attr('disabled','true');
 
+    $.ajax({
+        'async': false,
+        'global': false,
+        'url': "json/landuse-style.json",
+        'dataType': "json",
+        'success': function (jsondata) {
+            lustyle = jsondata;
+        }
+    });
+
     var gpService = L.esri.GP.service({
         url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.LoadLayerURL,
         useCors:false
@@ -2016,17 +2026,6 @@ function landuseload(){
             alertmodal("Error",errormsg,"10vh")
             map.spin(false);
         }
-
-        $.ajax({
-            'async': false,
-            'global': false,
-            'url': "json/landuse-style.json",
-            'dataType': "json",
-            'success': function (jsondata) {
-                lustyle = jsondata;
-            }
-        });
-
 
         var landuse_layer = response.outputlayer
         lugeojson = L.geoJson(landuse_layer, {
