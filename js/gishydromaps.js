@@ -337,7 +337,7 @@ function style(feature) {
 }
 
 function resetHighlight(e) {
-    geojson.resetStyle(e.target);
+    landuselyr.resetStyle(e.target);
     info.update();
 }
 
