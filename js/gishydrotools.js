@@ -1933,8 +1933,9 @@ function contours(){
     var gpTask = gpService.createTask();
 
     gpTask.setParam("projectname",  full_project_name)
-    gpTask.setParam("interval", document.getElementById("contourint").value)
-    gpTask.setParam("base", document.getElementById("contourbase").value)
+    gpTask.setParam("inputlayer", "Contours")
+    gpTask.setParam("contourinterval", document.getElementById("contourint").value)
+    gpTask.setParam("basecontour", document.getElementById("contourbase").value)
     
     gpTask.run(contourCallback);
 
@@ -1945,7 +1946,7 @@ function contours(){
             $('#contours-button').removeAttr('disabled');
             map.spin(false);
         }
-        var contours = response.contours
+        var contours = response.outputlayer
         contourlines.addLayer(L.geoJson(contours,{
             color: '#606060',
             weight: 0.5,
@@ -1967,7 +1968,8 @@ function infstreamload(){
     var gpTask = gpService.createTask();
 
     gpTask.setParam("projectname",  full_project_name)
-    
+    gpTask.setParam("inputlayer", "Inferred Streams")
+
     gpTask.run(infstreamloadCallback);
 
     function infstreamloadCallback(error, response, raw){
@@ -1978,7 +1980,7 @@ function infstreamload(){
             map.spin(false);
         }
 
-        var infstreams_layer = response.infstr
+        var infstreams_layer = response.outputlayer
         infstreams.addLayer(L.geoJson(infstreams_layer,{
             crossOrigin: null,
             fillColor: '#6666FF',
@@ -2002,6 +2004,7 @@ function landuseload(){
     var gpTask = gpService.createTask();
 
     gpTask.setParam("projectname",  full_project_name)
+    gpTask.setParam("inputlayer", "Land Use")
     
     gpTask.run(landuseloadCallback);
 
@@ -2009,18 +2012,32 @@ function landuseload(){
 
         if (error){
             alertmodal("Error",errormsg,"10vh")
-            //$('#landuse-button').removeAttr('disabled');
             map.spin(false);
         }
 
-        var landuse_layer = response.infstr
-        landuselyr.addLayer(L.geoJson(landuse_layer,{
-            crossOrigin: null,
-            fillColor: '#6666FF',
-            fillOpacity: 0.5,
-            weight: 0,
+        var landuse_layer = response.outputlayer
+        landuselyr.addLayer(L.geoJson(landuse_layer, {
+            style: style,
+            onEachFeature: onEachFeature
         }));
         LC.addOverlay(landuselyr, "Land Use: " + basin_lu);
+
+        var info = L.control();
+
+        info.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'info');
+            this.update();
+            return this._div;
+        };
+        
+        info.update = function (props) {
+            this._div.innerHTML = '<h4>US Population Density</h4>' +  (landuselyr ?
+                '<b>' + landuselyr.class_name + '</b><br />' + landuselyr.value + ' people / mi<sup>2</sup>'
+                : 'Hover over a state');
+        };
+        
+        info.addTo(map);
+
 
         map.spin(false);
     }
@@ -2037,6 +2054,7 @@ function longestpathload(){
     var gpTask = gpService.createTask();
 
     gpTask.setParam("projectname",  full_project_name)
+    gpTask.setParam("inputlayer", "Longest Path")
     gpTask.setParam("subarea", document.getElementById("lpsubarea").value)
     
     gpTask.run(infprojCallback);
@@ -2049,7 +2067,7 @@ function longestpathload(){
             map.spin(false);
         }
 
-        var longestpath_layer = response.longestpath
+        var longestpath_layer = response.outputlayer
         longestpathlyr.addLayer(L.geoJson(longestpath_layer,{
             crossOrigin: null,
             fillColor: '#6666FF',

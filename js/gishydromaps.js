@@ -266,6 +266,12 @@ map.addLayer(contourlines);
 var infstreams = L.featureGroup();
 map.addLayer(infstreams);
 
+var landuselyr = L.featureGroup();
+map.addLayer(landuselyr);
+
+var longestpathlyr = L.featureGroup();
+map.addLayer(longestpathlyr);
+
 var checkBoxlayer = $('.LayerCheck');
 checkBoxlayer.change(function () {
     $('#email-input').prop('disabled', checkBoxlayer.filter(':checked').length < 1);
@@ -295,3 +301,43 @@ $('#advancedreachopt-button').click( function (){
         x.style.display = "none";
     }
 })
+
+function highlightFeature(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 5,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+        layer.bringToFront();
+    }
+
+    info.update(layer.feature.properties);
+}
+
+function onEachFeature(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+    });
+}
+
+function style(feature) {
+    return {
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+}
+
+function resetHighlight(e) {
+    geojson.resetStyle(e.target);
+    info.update();
+}
+
