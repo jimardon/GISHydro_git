@@ -104,6 +104,7 @@ $.ajax({
     }
 });
 
+
 function alertmodal(title, message,size){
     document.getElementById("alert-body").style.height = size;
     $("#alertmodaltitle").html(title);
@@ -1993,6 +1994,7 @@ function infstreamload(){
     }
 };
 
+var lustyle = null;
 function landuseload(){
     map.spin(true);
     $('#landuse-button').attr('disabled','true');
@@ -2014,6 +2016,17 @@ function landuseload(){
             alertmodal("Error",errormsg,"10vh")
             map.spin(false);
         }
+
+        $.ajax({
+            'async': false,
+            'global': false,
+            'url': "json/landuse-style.json",
+            'dataType': "json",
+            'success': function (jsondata) {
+                lustyle = jsondata;
+            }
+        });
+
 
         var landuse_layer = response.outputlayer
         lugeojson = L.geoJson(landuse_layer, {

@@ -327,7 +327,9 @@ function onEachFeature(feature, layer) {
 }
 
 function style(feature) {
+    luhex = feature.CLASS_NAME
     return {
+        fillColor: lustyle.CLASS_NAME[luhex],
         weight: 1,
         opacity: 1,
         color: 'white',
