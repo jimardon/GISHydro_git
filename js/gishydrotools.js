@@ -1826,7 +1826,6 @@ function stormcheck(){
 
 function tcsubareachange(sub){
     document.getElementById("usertcvalue").value = usertcchange[sub.target.value-1]
-    alert(sub.target.value)
 }
 
 function tcvaluechange(uservalue) {
