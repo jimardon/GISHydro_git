@@ -2016,10 +2016,11 @@ function landuseload(){
         }
 
         var landuse_layer = response.outputlayer
-        landuselyr.addLayer(L.geoJson(landuse_layer, {
+        lugeojson = L.geoJson(landuse_layer, {
             style: style,
             onEachFeature: onEachFeature
-        }));
+        });
+        landuselyr.addLayer(lugeojson);
         LC.addOverlay(landuselyr, "Land Use: " + basin_lu);
 
         info.onAdd = function (map) {

@@ -328,7 +328,7 @@ function onEachFeature(feature, layer) {
 
 function style(feature) {
     return {
-        weight: 2,
+        weight: 1,
         opacity: 1,
         color: 'white',
         dashArray: '3',
@@ -336,8 +336,9 @@ function style(feature) {
     };
 }
 
+var lugeojson;
 function resetHighlight(e) {
-    landuselyr.resetStyle(e.target);
+    lugeojson.resetStyle(e.target);
     info.update();
 }
 
