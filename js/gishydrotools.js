@@ -2031,7 +2031,7 @@ function landuseload(){
         
         info.update = function (props) {
             this._div.innerHTML = '<h4>US Population Density</h4>' +  (landuselyr ?
-                '<b>' + landuselyr.class_name + '</b><br />' + landuselyr.value + ' people / mi<sup>2</sup>'
+                '<b>' + lugeojson.CLASS_NAME + '</b><br />' + lugeojson.Shape_Area + ' people / mi<sup>2</sup>'
                 : 'Hover over a state');
         };
         
