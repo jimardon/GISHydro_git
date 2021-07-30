@@ -2030,8 +2030,8 @@ function landuseload(){
         };
         
         info.update = function (props) {
-            this._div.innerHTML = '<h4>US Population Density</h4>' +  (landuselyr ?
-                '<b>' + lugeojson.CLASS_NAME + '</b><br />' + lugeojson.Shape_Area + ' people / mi<sup>2</sup>'
+            this._div.innerHTML = '<h4>US Population Density</h4>' +  (props ?
+                '<b>' + props.CLASS_NAME + '</b><br />' + props.Shape_Area + ' people / mi<sup>2</sup>'
                 : 'Hover over a state');
         };
         
