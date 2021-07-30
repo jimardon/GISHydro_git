@@ -1884,12 +1884,15 @@ function tr20controlpanel() {
         errorstring = response.errorstring
 
         document.getElementById("createwintr20-button").style.display = "none";
-        document.getElementById("downloadwintr20error-button").style.display = "block";
         document.getElementById("downloadwintr20input-button").style.display = "block";
         document.getElementById("downloadwintr20output-button").style.display = "block";
 
         if (errorstring != 'NA') {
             alertmodal("Warning","Please check error file for possible errors.","10vh")
+            document.getElementById("downloadwintr20error-button").style.display = "block";
+        } else {
+            alertmodal("WinTR-20","No errors found, please download the Output file to see the model results.","10vh")
+            document.getElementById("downloadwintr20error-button").style.display = "none";
         }
 
         map.spin(false);
