@@ -172,7 +172,7 @@ call (410) 767-4500.)","20vh")
     LC.removeLayer(roadsf);
 
     var gpService = L.esri.GP.service({
-        url: siteconfig.appServer.serverURL + siteconfig.appConfig.DataSelectionURL,
+        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.DataSelectionURL,
         useCors:false,
     });
     var gpTask = gpService.createTask();
@@ -292,7 +292,7 @@ function delineate(){
     $('#cleardel-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Delineation",
+        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.DelineationURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -385,7 +385,7 @@ function basin_properties(){
     tasker_modal = [];
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/BasinOutputs",
+        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.BasinOutputsURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -878,7 +878,7 @@ function flowpaths_polyline(){
     $('#subdivideno-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Flowpaths",
+        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.FlowpathsURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -952,7 +952,7 @@ function outlets_marker(){
     }
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Outlets",
+        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.OutletsURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -1015,7 +1015,7 @@ function subsheds(){
     $('#subsheds-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Subsheds",
+        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.SubshedsURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -1085,7 +1085,7 @@ function settoc(){
     $('#tcapply-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/SetTOC",
+        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.SetTOCURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -1449,7 +1449,7 @@ function transect() {
     $('#addreservoir-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Transect",
+        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.TransectURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -1589,7 +1589,7 @@ function reservoir(){
     $('#addreservoir-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Reservoir",
+        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.ReservoirURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -1776,7 +1776,7 @@ function precipitationdepth() {
     upper90 = document.getElementById("upper90check").checked
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/PrecipitationDepths",
+        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.PrecipitationDepthURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -1849,7 +1849,7 @@ function tr20controlpanel() {
     totalstage = totalstage.filter(Boolean);
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/TR20Control",
+        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.TR20ControlURL,
         useCors:true,
       });
     var gpTask = gpService.createTask();
@@ -1925,7 +1925,7 @@ function contours(){
     $('#contours-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/Contours",
+        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.LoadLayerURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -1959,7 +1959,7 @@ function infstreamload(){
     $('#infstr-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/ShowStreams",
+        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.LoadLayerURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -1994,7 +1994,7 @@ function landuseload(){
     $('#landuse-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/ShowStreams",
+        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.LoadLayerURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -2029,7 +2029,7 @@ function longestpathload(){
     $('#longestpath-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/ShowStreams",
+        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.LoadLayerURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
