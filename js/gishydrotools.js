@@ -2022,8 +2022,6 @@ function landuseload(){
         }));
         LC.addOverlay(landuselyr, "Land Use: " + basin_lu);
 
-        var info = L.control();
-
         info.onAdd = function (map) {
             this._div = L.DomUtil.create('div', 'info');
             this.update();

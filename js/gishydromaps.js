@@ -341,3 +341,4 @@ function resetHighlight(e) {
     info.update();
 }
 
+var info = L.control();
