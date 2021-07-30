@@ -111,6 +111,12 @@ button:focus{
     height: 50px;
 }
 
+#soils-button{
+    width: 100%;
+    float: center;
+    height: 50px;
+}
+
 #longestpath-button{
     width: 100%;
     float: center;

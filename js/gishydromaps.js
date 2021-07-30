@@ -185,7 +185,7 @@ map.on(L.Draw.Event.CREATED, function (e) {
         AOIArea = AOIArea/(10**9)
 
         if(AOIArea > 1.5){
-            alert("Error: Area of Interest if too big")
+            alert("Error: Area of Interest is too big")
         }else{
             drawLayers.addLayer(layer);
             map.fitBounds(layer.getBounds());
@@ -269,6 +269,9 @@ map.addLayer(infstreams);
 var landuselyr = L.featureGroup();
 map.addLayer(landuselyr);
 
+var soilslyr = L.featureGroup();
+map.addLayer(soilslyr);
+
 var longestpathlyr = L.featureGroup();
 map.addLayer(longestpathlyr);
 
@@ -302,11 +305,11 @@ $('#advancedreachopt-button').click( function (){
     }
 })
 
-function highlightFeature(e) {
+function highlightFeaturelu(e) {
     var layer = e.target;
 
     layer.setStyle({
-        weight: 5,
+        weight: 2,
         color: '#666',
         dashArray: '',
         fillOpacity: 0.7
@@ -319,17 +322,60 @@ function highlightFeature(e) {
     info.update(layer.feature.properties);
 }
 
-function onEachFeature(feature, layer) {
+function highlightFeaturesoils(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 2,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+        layer.bringToFront();
+    }
+
+    info2.update(layer.feature.properties);
+}
+
+function onEachFeaturelu(feature, layer) {
     layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight,
+        mouseover: highlightFeaturelu,
+        mouseout: resetHighlightlu,
+    });
+}
+
+function onEachFeaturesoils(feature, layer) {
+    layer.on({
+        mouseover: highlightFeaturesoils,
+        mouseout: resetHighlightsoils,
     });
 }
 
 function style(feature) {
-    luhex = feature.CLASS_NAME
+    luhex = feature.properties.CLASS_NAME
     return {
-        fillColor: lustyle.CLASS_NAME[luhex],
+        fillColor: lustyle.CLASS_NAME[luhex.toLowerCase()],
+        weight: 1,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+}
+
+function getsoilColor(d) {
+    if (d == 1) {return '#CD6155'}
+    else if(d == 2){return '#2980B9'}
+    else if(d == 3){return '#27AE60'}
+    else if(d == 4){return '#F4D03F'}
+    else{return "#85929E"}
+}
+
+function style2(feature) {
+    return {
+        fillColor: getsoilColor(feature.properties.gridcode),
         weight: 1,
         opacity: 1,
         color: 'white',
@@ -339,9 +385,33 @@ function style(feature) {
 }
 
 var lugeojson;
-function resetHighlight(e) {
+function resetHighlightlu(e) {
     lugeojson.resetStyle(e.target);
     info.update();
 }
 
-var info = L.control();
+var soilsgeojson;
+function resetHighlightsoils(e) {
+    soilsgeojson.resetStyle(e.target);
+    info2.update();
+}
+
+var info = L.control({position: "bottomright"});
+var info2 = L.control({position: "bottomright"});
+
+map.on('overlayadd', function(eo) {
+    if (eo.name === basin_lu){
+        info.addTo(map);
+    }
+    if (eo.name === basin_soil){
+        info2.addTo(map);
+    }
+});
+map.on('overlayremove', function(eo) {
+    if (eo.name === basin_lu){
+        info.remove();
+    }
+    if (eo.name === basin_soil){
+        info2.remove();
+    }
+});

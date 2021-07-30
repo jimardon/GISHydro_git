@@ -908,14 +908,21 @@
                     <div class="hr-text-bar">
                         <span class="hr-text">Load Land Use Layer</span>
                     </div>
-                    <p align="justify" style="font-size:14px;">If the AOI size is too big then the land use layer will not show up on the map. Try reducing the AOI as much as possible. Not working, testing stage...</p>
+                    <p align="justify" style="font-size:14px;">If the AOI size is too big then the land use layer will not show up on the map. Try reducing the AOI as much as possible.</p>
                     <button id="landuse-button" class="generic-grey-button" disabled="disabled" onclick=landuseload()>Load Land Use</button>
+                    <p></p>
+                    <!-- Load Soils Layer -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Load Hydorlogic Soils Layer</span>
+                    </div>
+                    <p align="justify" style="font-size:14px;">If the AOI size is too big then the Soils layer will not show up on the map. Try reducing the AOI as much as possible.</p>
+                    <button id="soils-button" class="generic-grey-button" disabled="disabled" onclick=soilsload()>Load Soils</button>
                     <p></p>
                     <!-- Load Longest Path Layer -->
                     <div class="hr-text-bar">
                         <span class="hr-text">Load Longest Path Layer</span>
                     </div>
-                    <p align="justify" style="font-size:14px;">This option becomes available after selecting the "Velocity Method" option for the Time of Concentration calculations. Not working, testing stage...</p>
+                    <p align="justify" style="font-size:14px;">This option becomes available after selecting the "Velocity Method" option for the Time of Concentration calculations.</p>
                     <div id="lp_subarea" class="inline">
                         <strong>Subwatershed:</strong>
                         <select class="generic-dropdown" id="lpsubarea" ></select>

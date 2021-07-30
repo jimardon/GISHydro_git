@@ -25,6 +25,7 @@ var IA = '';
 var LI = '';
 var areami2 = '';
 var basin_lu = '';
+var basin_soil = '';
 var mark_lat = '';
 var mark_lon = '';
 var delcheck = true;
@@ -103,7 +104,6 @@ $.ajax({
         siteconfig = jsondata;
     }
 });
-
 
 function alertmodal(title, message,size){
     document.getElementById("alert-body").style.height = size;
@@ -232,6 +232,23 @@ call (410) 767-4500.)","20vh")
 
         full_project_name = response.full_name
 
+        basin_lu = 'Unknown';
+        basin_soil = 'Unknown';
+        if(land_layer == "nlcd2011"){basin_lu = "NLCD (2011)"}
+        if(land_layer == "nlcd2006"){basin_lu = "NLCD (2006)"}
+        if(land_layer == "nlcd2001"){basin_lu = "NLCD (2001)"}
+        if(land_layer == "mrlc"){basin_lu = "MRLC"}
+        if(land_layer == "lu2010"){basin_lu = "MOP (2010)"}
+        if(land_layer == "mdplu2002"){basin_lu = "MOP (2002)"}
+        if(land_layer == "lu97m"){basin_lu = "MOP (1997)"}
+        if(land_layer == "luult"){basin_lu = "ULTIMATE"}
+        if(land_layer == "mdde2002"){basin_lu = "MD/DE (2002)"}
+        if(land_layer == "lu70"){basin_lu = "USGS (1970's)"}
+
+        if(soil_layer == "ssurgo_2018"){basin_soil = "SSURGO (May 2018)"}
+        if(soil_layer == "ssurgo_old"){basin_soil = "SSURGO (2010's)"}
+        if(soil_layer == "ragan"){basin_soil = "Ragan"}
+
         map.removeLayer(nhdf);
         map.removeLayer(roadsf);
         LC.addOverlay(nhd_layer, "NHD Streams");
@@ -241,6 +258,7 @@ call (410) 767-4500.)","20vh")
         drawLayers.clearLayers();
         $('#infstr-button').removeAttr('disabled');
         $('#landuse-button').removeAttr('disabled');
+        $('#soils-button').removeAttr('disabled');
         map.spin(false);
     }
 }
@@ -523,25 +541,8 @@ function basin_properties(){
         $("#basin_comp").html(basin_modal);
 
         var basin_dem = 'Unknown';
-        basin_lu = 'Unknown';
-        var basin_soil = 'Unknown';
 
         if(dem_layer == "neddem"){basin_dem = "NED DEM (May 2018)"}
-
-        if(land_layer == "nlcd2011"){basin_lu = "NLCD (2011)"}
-        if(land_layer == "nlcd2006"){basin_lu = "NLCD (2006)"}
-        if(land_layer == "nlcd2001"){basin_lu = "NLCD (2001)"}
-        if(land_layer == "mrlc"){basin_lu = "MRLC"}
-        if(land_layer == "lu2010"){basin_lu = "MOP (2010)"}
-        if(land_layer == "mdplu2002"){basin_lu = "MOP (2002)"}
-        if(land_layer == "lu97m"){basin_lu = "MOP (1997)"}
-        if(land_layer == "luult"){basin_lu = "ULTIMATE"}
-        if(land_layer == "mdde2002"){basin_lu = "MD/DE (2002)"}
-        if(land_layer == "lu70"){basin_lu = "USGS (1970's)"}
-
-        if(soil_layer == "ssurgo_2018"){basin_soil = "SSURGO (May 2018)"}
-        if(soil_layer == "ssurgo_old"){basin_soil = "SSURGO (2010's)"}
-        if(soil_layer == "ragan"){basin_soil = "Ragan"}
 
         var btable3_html = '<table border="0" align="center">';
         btable3_html += '<col width="300">';
@@ -1144,7 +1145,7 @@ function settoc(){
 
         map.removeLayer(subwshed);
         subshed_export = response.subshed_edit
-        subwshed2.addLayer(L.geoJson(subshed_export, {onEachFeature: forEachFeature, style: style}));
+        subwshed2.addLayer(L.geoJson(subshed_export, {onEachFeature: forEachFeature, style: stylefeature}));
 
         if(tc_method == "Velocity Method"){
             Pixel_ = response.pixel
@@ -2030,10 +2031,10 @@ function landuseload(){
         var landuse_layer = response.outputlayer
         lugeojson = L.geoJson(landuse_layer, {
             style: style,
-            onEachFeature: onEachFeature
+            onEachFeature: onEachFeaturelu
         });
         landuselyr.addLayer(lugeojson);
-        LC.addOverlay(landuselyr, "Land Use: " + basin_lu);
+        LC.addOverlay(landuselyr, basin_lu);
 
         info.onAdd = function (map) {
             this._div = L.DomUtil.create('div', 'info');
@@ -2042,13 +2043,62 @@ function landuseload(){
         };
         
         info.update = function (props) {
-            this._div.innerHTML = '<h4>US Population Density</h4>' +  (props ?
-                '<b>' + props.CLASS_NAME + '</b><br />' + props.Shape_Area + ' people / mi<sup>2</sup>'
-                : 'Hover over a state');
+            this._div.innerHTML = '<h4>Land Use Class:</h4>' +  (props ?
+                '<b>' + props.CLASS_NAME + '</b><br />' + (parseFloat(props.Shape_Area)*2325220).toFixed(0) + ' acres'
+                : 'Hover over a land use');
         };
         
         info.addTo(map);
 
+        map.spin(false);
+    }
+};
+
+function soilsload(){
+    map.spin(true);
+    $('#soils-button').attr('disabled','true');
+
+    var gpService = L.esri.GP.service({
+        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.LoadLayerURL,
+        useCors:false
+      });
+    var gpTask = gpService.createTask();
+
+    gpTask.setParam("projectname",  full_project_name)
+    gpTask.setParam("inputlayer", "Soils")
+    
+    gpTask.run(soilsloadCallback);
+
+    function soilsloadCallback(error, response, raw){
+
+        if (error){
+            alertmodal("Error",errormsg,"10vh")
+            map.spin(false);
+        }
+
+        var soils_layer = response.outputlayer
+        soilsgeojson = L.geoJson(soils_layer, {
+            style: style2,
+            onEachFeature: onEachFeaturesoils
+        });
+        soilslyr.addLayer(soilsgeojson);
+        LC.addOverlay(soilslyr, basin_soil);
+
+        info2.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'info');
+            this.update();
+            return this._div;
+        };
+        
+        var soiltypeletter = ["A","B","C","D"]
+        soiltypeletter[-2] = "N/A"
+        info2.update = function (props) {
+            this._div.innerHTML = '<h4>Hydrologic Soil Group:</h4>' +  (props ?
+                '<b>Soil Type: ' + soiltypeletter[parseInt(props.gridcode)-1] + '</b><br />' + (parseFloat(props.Shape_Area)*2325220).toFixed(0) + ' acres'
+                : 'Hover over a soil class');
+        };
+        
+        info2.addTo(map);
 
         map.spin(false);
     }
@@ -2099,7 +2149,7 @@ function saveToFile(data, filename, element) {
     document.getElementById(element).setAttribute('download', filename + '.geojson');
 }
 
-function style(feature) {
+function stylefeature(feature) {
     return {
         crossOrigin: null,
         fillColor: '#FA6FFA',
@@ -2109,7 +2159,7 @@ function style(feature) {
     };
 }
 
-var highlight = {
+var highlightfeature = {
     'fillColor': '#3AE5E5',
     'weight': 2,
     'color': 'black',
@@ -2123,8 +2173,8 @@ function forEachFeature(feature, layer) {
     layer.bindPopup(popupContent);
 
     layer.on("click", function (e) { 
-        subwshed2.setStyle(style);
-        layer.setStyle(highlight);
+        subwshed2.setStyle(stylefeature);
+        layer.setStyle(highlightfeature);
     }); 
 }
 
