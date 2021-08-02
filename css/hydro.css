@@ -102,25 +102,21 @@ button:focus{
 #infstr-button{
     width: 100%;
     float: center;
-    height: 50px;
 }
 
 #landuse-button{
     width: 100%;
     float: center;
-    height: 50px;
 }
 
 #soils-button{
     width: 100%;
     float: center;
-    height: 50px;
 }
 
 #longestpath-button{
     width: 100%;
     float: center;
-    height: 50px;
 }
 
 #cleardel-button{
@@ -267,41 +263,35 @@ button:focus{
 #contours-button{
     width: 100%;
     float: center;
-    height: 50px;
 }
 
 #longpathdownload-button{
     width: 100%;
     float: center;
-    height: 50px;
     display: none;
 }
 
 #soilsdownload-button{
     width: 100%;
     float: center;
-    height: 50px;
     display: none;
 }
 
 #ludownload-button{
     width: 100%;
     float: center;
-    height: 50px;
     display: none;
 }
 
 #infstreamsdownload-button{
     width: 100%;
     float: center;
-    height: 50px;
     display: none;
 }
 
 #contoursdownload-button{
     width: 100%;
     float: center;
-    height: 50px;
     display: none;
 }
 

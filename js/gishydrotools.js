@@ -34,7 +34,7 @@ var olcheck = false;
 var rscheck = false;
 var delcheckin = true;
 var wshed_export = '';
-var contours = '';
+var contourslayer = '';
 var longestpath_layer = '';
 var soils_layer = '';
 var infstreams_layer = '';
@@ -98,7 +98,7 @@ var singleshed = false;
 var upper90 = false;
 var tasker_modal = [];
 var usertcchange = [];
-var lpfilter = [];
+
 
 var siteconfig = null;
 $.ajax({
@@ -265,6 +265,7 @@ call (410) 767-4500.)","20vh")
         $('#infstr-button').removeAttr('disabled');
         $('#landuse-button').removeAttr('disabled');
         $('#soils-button').removeAttr('disabled');
+
         map.spin(false);
     }
 }
@@ -306,7 +307,7 @@ function clearpoint(){
     $('#pourpoint2-button').removeAttr('disabled');
 };
 
-function exportwshed(){saveToFile(wshed_export, 'watershed','sheddownload-button');}
+function exportwshed(){saveToFile(wshed_export, 'watershed');}
 
 function delineate(){
     map.spin(true);
@@ -837,9 +838,11 @@ function basin_properties(){
         sidebar.enablePanel('subshed');
         drawLayers.clearLayers();
         alertmodal("Done","Basin Properties Calculations Finished","10vh")
+
         $('#contours-button').removeAttr('disabled');
         $('#contourbase').removeAttr('disabled');
         $('#contourint').removeAttr('disabled');
+
         map.spin(false);
 
         if(parseFloat(IA) > 10){
@@ -1011,7 +1014,7 @@ function subdivide_no(){
     flowpaths_polyline()
 }
 
-function exportsubwshed(){saveToFile(subshed_export, 'subwatershed','subsheddownload-button');}
+function exportsubwshed(){saveToFile(subshed_export, 'subwatershed');}
 
 function subsheds(){
     map.spin(true);
@@ -1177,11 +1180,6 @@ function settoc(){
                 opt.value = i+1;
                 document.getElementById('subtc').appendChild(opt);
                 
-                var opt2 = document.createElement('option');
-                opt2.innerHTML = i+1;
-                opt2.value = i+1;
-                document.getElementById('lpsubarea').appendChild(opt2);
-
                 var opt3 = document.createElement('option');
                 opt3.innerHTML = i+1;
                 opt3.value = i+1;
@@ -1216,9 +1214,8 @@ function settoc(){
             }
             if(reaches>1){
                 document.getElementById("velmeth_tc").style.display = "block";
-                document.getElementById("lp_subarea").style.display = "block";
                 document.getElementById("tc_subarea").style.display = "block";
-            };            
+            };
 
         }else{
 
@@ -1959,19 +1956,20 @@ function contours(){
             $('#contours-button').removeAttr('disabled');
             map.spin(false);
         }
-        contours = response.outputlayer
-        contourlines.addLayer(L.geoJson(contours,{
+        contourslayer = response.outputlayer
+        contourlines.addLayer(L.geoJson(contourslayer,{
             color: '#606060',
             weight: 0.5,
         }));
         LC.addOverlay(contourlines, "Contours " + document.getElementById("contourint").value + "ft");
         $('#contours-button').removeAttr('disabled');
+        document.getElementById("contours-button").style.display = "block";
         document.getElementById("contoursdownload-button").style.display = "block";
         map.spin(false);
     }
 }
 
-function exportcontours(){saveToFile(contours, 'contours_' + document.getElementById("contourint").value,'contoursdownload-button');}
+function exportcontours(){saveToFile(contourslayer, 'contours_' + document.getElementById("contourint").value);}
 
 function infstreamload(){
     map.spin(true);
@@ -2004,13 +2002,14 @@ function infstreamload(){
             weight: 0,
         }));
         LC.addOverlay(infstreams, "Inferred Streams");
+        $('#infstr-button').removeAttr('disabled');
         document.getElementById("infstr-button").style.display = "none";
         document.getElementById("infstreamsdownload-button").style.display = "block";
         map.spin(false);
     }
 };
 
-function exportstreams(){saveToFile(infstreams_layer, 'infstreams','infstreamsdownload-button');}
+function exportstreams(){saveToFile(infstreams_layer, 'infstreams');}
 
 var lustyle = null;
 function landuseload(){
@@ -2062,12 +2061,13 @@ function landuseload(){
         
         info.update = function (props) {
             this._div.innerHTML = '<h4>Land Use Class:</h4>' +  (props ?
-                '<b>' + props.CLASS_NAME + '</b><br />' + (parseFloat(props.Shape_Area)*2325220).toFixed(0) + ' acres'
+                '<b>' + props.CLASS_NAME + '</b><br />'
                 : 'Hover over a land use');
         };
         
         info.addTo(map);
 
+        $('#landuse-button').removeAttr('disabled');
         document.getElementById("landuse-button").style.display = "none";
         document.getElementById("ludownload-button").style.display = "block";
 
@@ -2075,7 +2075,7 @@ function landuseload(){
     }
 };
 
-function exportlanduse(){saveToFile(landuse_layer, 'landuse','ludownload-button');}
+function exportlanduse(){saveToFile(landuse_layer, 'landuse');}
 
 function soilsload(){
     map.spin(true);
@@ -2118,12 +2118,13 @@ function soilsload(){
         soiltypeletter[-2] = "N/A"
         info2.update = function (props) {
             this._div.innerHTML = '<h4>Hydrologic Soil Group:</h4>' +  (props ?
-                '<b>Soil Type: ' + soiltypeletter[parseInt(props.gridcode)-1] + '</b><br />' + (parseFloat(props.Shape_Area)*2325220).toFixed(0) + ' acres'
+                '<b>Soil Type: ' + soiltypeletter[parseInt(props.gridcode)-1] + '</b><br />'
                 : 'Hover over a soil class');
         };
         
         info2.addTo(map);
 
+        $('#soils-button').removeAttr('disabled');
         document.getElementById("soils-button").style.display = "none";
         document.getElementById("soilsdownload-button").style.display = "block";
 
@@ -2131,71 +2132,62 @@ function soilsload(){
     }
 };
 
-function exportsoils(){saveToFile(soils_layer, 'soils','soilsdownload-button');}
+function exportsoils(){saveToFile(soils_layer, 'soils');}
 
 function longestpathload(){
     map.spin(true);
     $('#longestpath-button').attr('disabled','true');
 
-    if(lpfilter.includes(document.getElementById("lpsubarea").value)){
-        alertmodal("Error",'Longest Path layer already in map!',"10vh")
-        $('#longestpath-button').removeAttr('disabled');
-        map.spin(false);
-        return
-    }
+    for(var i = 1; i <= reaches; i++) {
 
-    var gpService = L.esri.GP.service({
-        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.LoadLayerURL,
-        useCors:false
-      });
-    var gpTask = gpService.createTask();
+        var gpService = L.esri.GP.service({
+            url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.LoadLayerURL,
+            useCors:false
+        });
+        var gpTask = gpService.createTask();
 
-    gpTask.setParam("projectname",  full_project_name)
-    gpTask.setParam("inputlayer", "Longest Path")
-    gpTask.setParam("subarea", document.getElementById("lpsubarea").value)
-    
-    gpTask.run(infprojCallback);
-
-    function infprojCallback(error, response, raw){
-
-        if (error){
-            alertmodal("Error",errormsg,"10vh")
-            map.spin(false);
-            $('#longestpath-button').removeAttr('disabled');
-        }
-
-        longestpath_layer = response.outputlayer
-        longestpathlyr.addLayer(L.geoJson(longestpath_layer,{
-            color: '#E74C3C',
-            weight: 3,
-        }));
-
-        LC.addOverlay(longestpathlyr, "Longest Path: Subarea " + document.getElementById("lpsubarea").value);
-        lpfilter.push(document.getElementById("lpsubarea").value)
+        gpTask.setParam("projectname",  full_project_name)
+        gpTask.setParam("inputlayer", "Longest Path")
+        gpTask.setParam("subarea", i)
         
-        $('#longestpath-button').removeAttr('disabled');
-        map.spin(false);
-    }
+        gpTask.run(infprojCallback);
+
+        function infprojCallback(error, response, raw){
+
+            if (error){
+                alertmodal("Error",errormsg,"10vh")
+                map.spin(false);
+                $('#longestpath-button').removeAttr('disabled');
+                return
+            }
+
+            longestpathlyr.addLayer(L.geoJson(longestpath_layer,{
+                color: '#E74C3C',
+                weight: 3,
+            }));
+        };
+
+        if(i == reaches){
+            LC.addOverlay(longestpathlyr, "Longest Paths");
+            $('#longestpath-button').removeAttr('disabled');
+            document.getElementById("longestpath-button").style.display = "none";
+            document.getElementById("longpathdownload-button").style.display = "block";
+            map.spin(false);
+        };
+
+    };
 };
 
-$("lpsubarea").on('change',function(){
-    if(lpfilter.includes(document.getElementById("lpsubarea").value)){
-        document.getElementById("longestpath-button").style.display = "none";
-        document.getElementById("longpathdownload-button").style.display = "block";
-    }else{
-        document.getElementById("longestpath-button").style.display = "block";
-        document.getElementById("longpathdownload-button").style.display = "none";
-    }
- });
+function exportlongpath(){saveToFile(longestpath_layer, 'longestpaths');}
 
-function exportlongpath(){saveToFile(longestpath_layer, 'longestpath_id' + document.getElementById("lpsubarea").value,'longpathdownload-button');}
+function saveToFile(data, filename) {
 
-function saveToFile(data, filename, element) {
+    var fileToSave = new Blob([JSON.stringify(data,undefined,2)], {
+        type: 'application/json',
+        name: filename
+    });
 
-    var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
-
-    document.getElementById(element).setAttribute('href', 'data:' + convertedData);
-    document.getElementById(element).setAttribute('download', filename + '.geojson');
+    saveAs(fileToSave, filename);
 }
 
 function stylefeature(feature) {

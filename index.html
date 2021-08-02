@@ -27,6 +27,7 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handsontable/0.35.1/handsontable.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 
     <script type="text/javascript" src="js/gishydrotools.js"></script>
     <script type="text/javascript" src="js/combineseg.js"></script>
@@ -134,7 +135,6 @@
                             <input size ="30" maxlength="30" type="text" class="complete-input" id="proj_name" value="My Project">
                         </div>
                     </div>
-                    <p></p>
                     <!--Data Selection -->
                     <div class="hr-text-bar">
                         <span class="hr-text">Data Selection</span>
@@ -146,7 +146,6 @@
                             <option value="neddem" id="ned_2018">NED 201805</option>
                         </select>
                     </div>
-                    <p></p>
                     <div class="inline">
                         <strong>Soil Data:</strong>
                         <select class="generic-dropdown" id="soilselect" >
@@ -155,7 +154,6 @@
                             <option value="ragan" id="ragan">Ragan</option>
                         </select>
                     </div>
-                    <p></p>
                     <div class="inline">
                         <strong>Land Use Data:</strong>
                         <select class="generic-dropdown" id="landselect">
@@ -179,7 +177,6 @@
                             </optgroup>
                         </select>
                     </div>
-                    <p></p>
                     <div class="inline">
                         <strong>Hydrologic Condition:</strong>
                         <select class="generic-dropdown" id="hyddata" >
@@ -188,7 +185,6 @@
                             <option value="Poor" id="hydpoor">Poor</option>
                         </select>
                     </div>
-                    <p></p>
                     <!-- Flow Properties -->
                     <div class="hr-text-bar">
                         <span class="hr-text">Flow Properties</span>
@@ -197,17 +193,15 @@
                     <div class="inline">
                         <strong>Accumulation Threshold (ac.):</strong>
                         <div class="complete-form">
-                            <input type="number" style="width:60%;" min="50" step="1" class="complete-input" id="acc_thres" value="60">
+                            <input type="number" style="width:40%;" min="5" max="500" step="1" class="complete-input" id="acc_thres" value="60">
                         </div>
                     </div>
-                    <p></p>
                     <div class="inline">
                         <div class="checkbox-form">
                             <strong>Burn NHD Streams:</strong>
                             <input type="checkbox" class="checkbox-box" id="burn" checked>
                         </div>
                     </div>
-                    <p></p>
                     <!-- Draw Area of Interest -->
                     <div class="hr-text-bar">
                         <span class="hr-text">Select Area of Interest</span>
@@ -277,7 +271,7 @@
                     <div style="display:none" id="sheddownload-div"> 
                         <!-- Export Watershed Button -->
                         <div class="hr-text-bar">
-                            <span class="hr-text">Export Watershed (.geojson)</span>
+                            <span class="hr-text">Export Watershed (.json)</span>
                         </div>
                         <p></p>
                         <a id="sheddownload-button" href='#' class="generic-grey-button" onclick=exportwshed()>Download</a>
@@ -293,7 +287,7 @@
                 <div style="width:95%;">
                     <p></p>
                     <p align="justify" style="font-size:14px;">If available, select a stream gauge for calibration. Then click on Compute Properties, this could take some time depending on the watershed size. 
-                        After the process has finished some basin properties will become available. You can also download the current watershed in GeoJSON format from the previous tab (<a href="javascript:sidebar.open('shed_del');">Delineation</a>).</p>
+                        After the process has finished some basin properties will become available. You can also download the current watershed in JSON format from the previous tab (<a href="javascript:sidebar.open('shed_del');">Delineation</a>).</p>
                     <p></p>
                     <!-- Gage List -->
                     <div class="hr-text-bar">
@@ -365,7 +359,7 @@
 
                         <p></p>
                         <p align="justify" style="font-size:14px;">Flow paths and outlets will divide the watershed in subwatersheds. At least one flow path must be selected. Outlets must be placed on valid streams. 
-                            After this process has finished you can download the subwatersheds in GeoJSON format or proceed to the <a href="javascript:sidebar.open('download');">Download</a> tab to e-mail it as a package (not working in beta test!!!!).</p>
+                            After this process has finished you can download the subwatersheds in JSON format or proceed to the <a href="javascript:sidebar.open('download');">Download</a> tab to e-mail it as a package (not working in beta test!!!!).</p>
                         <p></p>
                         <!-- Select Pour Point -->
                         <div class="hr-text-bar">
@@ -398,7 +392,7 @@
                         <div id="subsheddownload" style="display:none;">
                             <!-- Download Button -->
                             <div class="hr-text-bar">
-                                <span class="hr-text">Export Subwatersheds (.geojson)</span>
+                                <span class="hr-text">Export Subwatersheds (.json)</span>
                             </div>
                             <p></p>
                             <a id="subsheddownload-button" href='#' class="generic-grey-button" onclick=exportsubwshed()>Donwload Subwatersheds</a>
@@ -896,7 +890,8 @@
                     </div>
                     <p></p>
                     <button id="contours-button" class="generic-grey-button" disabled='disabled' onclick=contours()>Display Contours</button>
-                    <button id="contoursdownload-button" class="generic-grey-button" onclick=exportcontours()>Download Streams</button>
+                    <p></p>
+                    <button id="contoursdownload-button" class="generic-grey-button" onclick=exportcontours()>Download Contours (json)</button>
                     <p></p>
                     <!-- Load Derived Streams Layer-->
                     <div class="hr-text-bar">
@@ -904,7 +899,7 @@
                     </div>
                     <p align="justify" style="font-size:14px;">If the AOI size is too big then the inferred streams will not show up on the map. Try reducing the AOI as much as possible.</p>
                     <button id="infstr-button" class="generic-grey-button" disabled="disabled" onclick=infstreamload()>Load Streams</button>
-                    <button id="infstreamsdownload-button" class="generic-grey-button" onclick=exportstreams()>Download Streams</button>
+                    <button id="infstreamsdownload-button" class="generic-grey-button" onclick=exportstreams()>Download Streams (json)</button>
                     <p></p>
                     <!-- Load Land Use Layer -->
                     <div class="hr-text-bar">
@@ -912,7 +907,7 @@
                     </div>
                     <p align="justify" style="font-size:14px;">If the AOI size is too big then the land use layer will not show up on the map. Try reducing the AOI as much as possible.</p>
                     <button id="landuse-button" class="generic-grey-button" disabled="disabled" onclick=landuseload()>Load Land Use</button>
-                    <button id="ludownload-button" class="generic-grey-button" onclick=exportlanduse()>Download Land Use</button>
+                    <button id="ludownload-button" class="generic-grey-button" onclick=exportlanduse()>Download Land Use (json)</button>
                     <p></p>
                     <!-- Load Soils Layer -->
                     <div class="hr-text-bar">
@@ -920,19 +915,15 @@
                     </div>
                     <p align="justify" style="font-size:14px;">If the AOI size is too big then the Soils layer will not show up on the map. Try reducing the AOI as much as possible.</p>
                     <button id="soils-button" class="generic-grey-button" disabled="disabled" onclick=soilsload()>Load Soils</button>
-                    <button id="soilsdownload-button" class="generic-grey-button" onclick=exportsoils()>Download Soils</button>
+                    <button id="soilsdownload-button" class="generic-grey-button" onclick=exportsoils()>Download Soils (json)</button>
                     <p></p>
                     <!-- Load Longest Path Layer -->
                     <div class="hr-text-bar">
                         <span class="hr-text">Load Longest Path Layer</span>
                     </div>
                     <p align="justify" style="font-size:14px;">This option becomes available after selecting the "Velocity Method" option for the Time of Concentration calculations.</p>
-                    <div id="lp_subarea" class="inline">
-                        <strong>Subwatershed:</strong>
-                        <select class="generic-dropdown" id="lpsubarea" ></select>
-                    </div>
                     <button id="longestpath-button" class="generic-grey-button" disabled="disabled" onclick=longestpathload()>Load Longest Path</button>
-                    <button id="longpathdownload-button" class="generic-grey-button" onclick=exportlongpath()>Download Longest Path</button>
+                    <button id="longpathdownload-button" class="generic-grey-button" onclick=exportlongpath()>Download Longest Path (json)</button>
                     <p></p>
                 </div>
             </div>
