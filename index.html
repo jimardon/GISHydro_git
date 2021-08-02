@@ -753,7 +753,7 @@
                         </div>
                         <p></p>
                         <div class="inline">
-                            <strong>Time of Concentration (hr):</strong>
+                            <strong>Time of Concentration (hrs):</strong>
                             <div class="complete-form">
                                 <input size ="10" maxlength="10" type="number" style="width:100px;text-align:left;padding-left: 10px;" class="complete-input" id="usertcvalue" onchange=tcvaluechange(event)>
                             </div>
@@ -896,6 +896,7 @@
                     </div>
                     <p></p>
                     <button id="contours-button" class="generic-grey-button" disabled='disabled' onclick=contours()>Display Contours</button>
+                    <button id="contoursdownload-button" class="generic-grey-button" onclick=exportcontours()>Download Streams</button>
                     <p></p>
                     <!-- Load Derived Streams Layer-->
                     <div class="hr-text-bar">
@@ -903,6 +904,7 @@
                     </div>
                     <p align="justify" style="font-size:14px;">If the AOI size is too big then the inferred streams will not show up on the map. Try reducing the AOI as much as possible.</p>
                     <button id="infstr-button" class="generic-grey-button" disabled="disabled" onclick=infstreamload()>Load Streams</button>
+                    <button id="infstreamsdownload-button" class="generic-grey-button" onclick=exportstreams()>Download Streams</button>
                     <p></p>
                     <!-- Load Land Use Layer -->
                     <div class="hr-text-bar">
@@ -910,6 +912,7 @@
                     </div>
                     <p align="justify" style="font-size:14px;">If the AOI size is too big then the land use layer will not show up on the map. Try reducing the AOI as much as possible.</p>
                     <button id="landuse-button" class="generic-grey-button" disabled="disabled" onclick=landuseload()>Load Land Use</button>
+                    <button id="ludownload-button" class="generic-grey-button" onclick=exportlanduse()>Download Land Use</button>
                     <p></p>
                     <!-- Load Soils Layer -->
                     <div class="hr-text-bar">
@@ -917,6 +920,7 @@
                     </div>
                     <p align="justify" style="font-size:14px;">If the AOI size is too big then the Soils layer will not show up on the map. Try reducing the AOI as much as possible.</p>
                     <button id="soils-button" class="generic-grey-button" disabled="disabled" onclick=soilsload()>Load Soils</button>
+                    <button id="soilsdownload-button" class="generic-grey-button" onclick=exportsoils()>Download Soils</button>
                     <p></p>
                     <!-- Load Longest Path Layer -->
                     <div class="hr-text-bar">
@@ -928,6 +932,7 @@
                         <select class="generic-dropdown" id="lpsubarea" ></select>
                     </div>
                     <button id="longestpath-button" class="generic-grey-button" disabled="disabled" onclick=longestpathload()>Load Longest Path</button>
+                    <button id="longpathdownload-button" class="generic-grey-button" onclick=exportlongpath()>Download Longest Path</button>
                     <p></p>
                 </div>
             </div>
@@ -1296,7 +1301,7 @@
     <div class="modal-dialog modal-lg" style="width:100%">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Velocity Method Calculator</h4>
+                <h4 class="modal-title">Velocity Method Calculator ID: <span id="subreachno">0</span></h4>
             </div>
             <div class="modal-body" >
                 <div class="row">

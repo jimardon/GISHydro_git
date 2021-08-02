@@ -34,6 +34,11 @@ var olcheck = false;
 var rscheck = false;
 var delcheckin = true;
 var wshed_export = '';
+var contours = '';
+var longestpath_layer = '';
+var soils_layer = '';
+var infstreams_layer = '';
+var landuse_layer = '';
 var addpointvar = false;
 var clear_outlets = false;
 var clear_flowpaths = false;
@@ -93,6 +98,7 @@ var singleshed = false;
 var upper90 = false;
 var tasker_modal = [];
 var usertcchange = [];
+var lpfilter = [];
 
 var siteconfig = null;
 $.ajax({
@@ -1148,6 +1154,9 @@ function settoc(){
         subwshed2.addLayer(L.geoJson(subshed_export, {onEachFeature: forEachFeature, style: stylefeature}));
 
         if(tc_method == "Velocity Method"){
+
+            $('#longestpath-button').removeAttr('disabled');
+
             Pixel_ = response.pixel
             Type_ = response.type
             Mixed_ = response.mixed
@@ -1176,7 +1185,7 @@ function settoc(){
                 var opt3 = document.createElement('option');
                 opt3.innerHTML = i+1;
                 opt3.value = i+1;
-                document.getElementById('tcsubarea').appendChild(opt2);
+                document.getElementById('tcsubarea').appendChild(opt3);
 
                 var element = document.createElement("div");
                 element.setAttribute("class", "modal fade");
@@ -1209,8 +1218,7 @@ function settoc(){
                 document.getElementById("velmeth_tc").style.display = "block";
                 document.getElementById("lp_subarea").style.display = "block";
                 document.getElementById("tc_subarea").style.display = "block";
-            };
-            document.getElementById("longestpath-button").style.display = "block";
+            };            
 
         }else{
 
@@ -1368,6 +1376,9 @@ function changetcmodal(typetc,tottimetc){
 
 function showtc(){
     var tc_method = document.getElementById("tc_method").value;
+
+    $("#subreachno").html(String(document.getElementById("subtc").value));
+
     if(tc_method == 'Velocity Method'){
 
         subid = String(document.getElementById("subtc").value);
@@ -1890,7 +1901,7 @@ function tr20controlpanel() {
         document.getElementById("downloadwintr20output-button").style.display = "block";
 
         if (errorstring != 'NA') {
-            alertmodal("Warning","Please check error file for possible errors.","10vh")
+            alertmodal("WinTR-20","Please check error file for possible errors.","10vh")
             document.getElementById("downloadwintr20error-button").style.display = "block";
         } else {
             alertmodal("WinTR-20","No errors found, please download the Output file to see the model results.","10vh")
@@ -1948,16 +1959,19 @@ function contours(){
             $('#contours-button').removeAttr('disabled');
             map.spin(false);
         }
-        var contours = response.outputlayer
+        contours = response.outputlayer
         contourlines.addLayer(L.geoJson(contours,{
             color: '#606060',
             weight: 0.5,
         }));
-        LC.addOverlay(contourlines, "Contours");
+        LC.addOverlay(contourlines, "Contours " + document.getElementById("contourint").value + "ft");
         $('#contours-button').removeAttr('disabled');
+        document.getElementById("contoursdownload-button").style.display = "block";
         map.spin(false);
     }
 }
+
+function exportcontours(){saveToFile(contours, 'contours_' + document.getElementById("contourint").value,'contoursdownload-button');}
 
 function infstreamload(){
     map.spin(true);
@@ -1982,7 +1996,7 @@ function infstreamload(){
             map.spin(false);
         }
 
-        var infstreams_layer = response.outputlayer
+        infstreams_layer = response.outputlayer
         infstreams.addLayer(L.geoJson(infstreams_layer,{
             crossOrigin: null,
             fillColor: '#6666FF',
@@ -1990,10 +2004,13 @@ function infstreamload(){
             weight: 0,
         }));
         LC.addOverlay(infstreams, "Inferred Streams");
-
+        document.getElementById("infstr-button").style.display = "none";
+        document.getElementById("infstreamsdownload-button").style.display = "block";
         map.spin(false);
     }
 };
+
+function exportstreams(){saveToFile(infstreams_layer, 'infstreams','infstreamsdownload-button');}
 
 var lustyle = null;
 function landuseload(){
@@ -2025,10 +2042,11 @@ function landuseload(){
 
         if (error){
             alertmodal("Error",errormsg,"10vh")
+            $('#landuse-button').removeAttr('disabled');
             map.spin(false);
         }
 
-        var landuse_layer = response.outputlayer
+        landuse_layer = response.outputlayer
         lugeojson = L.geoJson(landuse_layer, {
             style: style,
             onEachFeature: onEachFeaturelu
@@ -2050,9 +2068,14 @@ function landuseload(){
         
         info.addTo(map);
 
+        document.getElementById("landuse-button").style.display = "none";
+        document.getElementById("ludownload-button").style.display = "block";
+
         map.spin(false);
     }
 };
+
+function exportlanduse(){saveToFile(landuse_layer, 'landuse','ludownload-button');}
 
 function soilsload(){
     map.spin(true);
@@ -2074,9 +2097,10 @@ function soilsload(){
         if (error){
             alertmodal("Error",errormsg,"10vh")
             map.spin(false);
+            $('#soils-button').removeAttr('disabled');
         }
 
-        var soils_layer = response.outputlayer
+        soils_layer = response.outputlayer
         soilsgeojson = L.geoJson(soils_layer, {
             style: style2,
             onEachFeature: onEachFeaturesoils
@@ -2100,13 +2124,25 @@ function soilsload(){
         
         info2.addTo(map);
 
+        document.getElementById("soils-button").style.display = "none";
+        document.getElementById("soilsdownload-button").style.display = "block";
+
         map.spin(false);
     }
 };
 
+function exportsoils(){saveToFile(soils_layer, 'soils','soilsdownload-button');}
+
 function longestpathload(){
     map.spin(true);
     $('#longestpath-button').attr('disabled','true');
+
+    if(lpfilter.includes(document.getElementById("lpsubarea").value)){
+        alertmodal("Error",'Longest Path layer already in map!',"10vh")
+        $('#longestpath-button').removeAttr('disabled');
+        map.spin(false);
+        return
+    }
 
     var gpService = L.esri.GP.service({
         url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.LoadLayerURL,
@@ -2124,22 +2160,35 @@ function longestpathload(){
 
         if (error){
             alertmodal("Error",errormsg,"10vh")
-            $('#longestpath-button').removeAttr('disabled');
             map.spin(false);
+            $('#longestpath-button').removeAttr('disabled');
         }
 
-        var longestpath_layer = response.outputlayer
+        longestpath_layer = response.outputlayer
         longestpathlyr.addLayer(L.geoJson(longestpath_layer,{
-            crossOrigin: null,
-            fillColor: '#6666FF',
-            fillOpacity: 0.5,
-            weight: 0,
+            color: '#E74C3C',
+            weight: 3,
         }));
-        LC.addOverlay(longestpathlyr, "Longest Path: Subarea " + document.getElementById("lpsubarea").value);
 
+        LC.addOverlay(longestpathlyr, "Longest Path: Subarea " + document.getElementById("lpsubarea").value);
+        lpfilter.push(document.getElementById("lpsubarea").value)
+        
+        $('#longestpath-button').removeAttr('disabled');
         map.spin(false);
     }
 };
+
+$("lpsubarea").on('change',function(){
+    if(lpfilter.includes(document.getElementById("lpsubarea").value)){
+        document.getElementById("longestpath-button").style.display = "none";
+        document.getElementById("longpathdownload-button").style.display = "block";
+    }else{
+        document.getElementById("longestpath-button").style.display = "block";
+        document.getElementById("longpathdownload-button").style.display = "none";
+    }
+ });
+
+function exportlongpath(){saveToFile(longestpath_layer, 'longestpath_id' + document.getElementById("lpsubarea").value,'longpathdownload-button');}
 
 function saveToFile(data, filename, element) {
 
@@ -2175,7 +2224,7 @@ function forEachFeature(feature, layer) {
     layer.on("click", function (e) { 
         subwshed2.setStyle(stylefeature);
         layer.setStyle(highlightfeature);
-    }); 
+    });
 }
 
  

@@ -270,6 +270,41 @@ button:focus{
     height: 50px;
 }
 
+#longpathdownload-button{
+    width: 100%;
+    float: center;
+    height: 50px;
+    display: none;
+}
+
+#soilsdownload-button{
+    width: 100%;
+    float: center;
+    height: 50px;
+    display: none;
+}
+
+#ludownload-button{
+    width: 100%;
+    float: center;
+    height: 50px;
+    display: none;
+}
+
+#infstreamsdownload-button{
+    width: 100%;
+    float: center;
+    height: 50px;
+    display: none;
+}
+
+#contoursdownload-button{
+    width: 100%;
+    float: center;
+    height: 50px;
+    display: none;
+}
+
 #showpixels-button{
     width: 100%;
     float: center;
