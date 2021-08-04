@@ -37,7 +37,6 @@ var wshed_export = '';
 var contourslayer = '';
 var longestpath_layer = '';
 var soils_layer = '';
-var infstreams_layer = '';
 var landuse_layer = '';
 var addpointvar = false;
 var clear_outlets = false;
@@ -262,7 +261,6 @@ call (410) 767-4500.)","20vh")
         sidebar.enablePanel('shed_del');
         sidebar.open('shed_del');
         drawLayers.clearLayers();
-        $('#infstr-button').removeAttr('disabled');
         $('#landuse-button').removeAttr('disabled');
         $('#soils-button').removeAttr('disabled');
 
@@ -1970,46 +1968,6 @@ function contours(){
 }
 
 function exportcontours(){saveToFile(contourslayer, 'contours_' + document.getElementById("contourint").value);}
-
-function infstreamload(){
-    map.spin(true);
-    $('#infstr-button').attr('disabled','true');
-
-    var gpService = L.esri.GP.service({
-        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.LoadLayerURL,
-        useCors:false
-      });
-    var gpTask = gpService.createTask();
-
-    gpTask.setParam("projectname",  full_project_name)
-    gpTask.setParam("inputlayer", "Inferred Streams")
-
-    gpTask.run(infstreamloadCallback);
-
-    function infstreamloadCallback(error, response, raw){
-
-        if (error){
-            alertmodal("Error",errormsg,"10vh")
-            $('#infstr-button').removeAttr('disabled');
-            map.spin(false);
-        }
-
-        infstreams_layer = response.outputlayer
-        infstreams.addLayer(L.geoJson(infstreams_layer,{
-            crossOrigin: null,
-            fillColor: '#6666FF',
-            fillOpacity: 0.5,
-            weight: 0,
-        }));
-        LC.addOverlay(infstreams, "Inferred Streams");
-        $('#infstr-button').removeAttr('disabled');
-        document.getElementById("infstr-button").style.display = "none";
-        document.getElementById("infstreamsdownload-button").style.display = "block";
-        map.spin(false);
-    }
-};
-
-function exportstreams(){saveToFile(infstreams_layer, 'infstreams');}
 
 var lustyle = null;
 function landuseload(){

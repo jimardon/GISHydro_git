@@ -37,6 +37,7 @@ var nhd_url = 'https://services9.arcgis.com/RfT19DrflTYZhTI5/arcgis/rest/service
 var gages_url = 'https://services9.arcgis.com/RfT19DrflTYZhTI5/arcgis/rest/services/md_gauges/FeatureServer/0/';
 var roads_url = 'https://services9.arcgis.com/RfT19DrflTYZhTI5/arcgis/rest/services/md_road/FeatureServer/0/';
 var quads_url = 'https://services9.arcgis.com/RfT19DrflTYZhTI5/arcgis/rest/services/Map_Extent/FeatureServer/0';
+var infstr_url = 'https://services9.arcgis.com/RfT19DrflTYZhTI5/ArcGIS/rest/services/infstreams/FeatureServer/0';
 
 var searchControl = L.esri.Geocoding.geosearch({
     zoomToResult: false,
@@ -144,21 +145,38 @@ var quadsf = L.esri.featureLayer({
     }
 }).addTo(map);
 
+var infstrf = L.esri.featureLayer({
+    url: infstr_url,
+    style: function (feature) {
+      return {
+        crossOrigin: null,
+        fillColor: '#6666FF',
+        fillOpacity: 0.5,
+        weight: 0
+      };
+    }
+});
+
 map.on('zoom', function(){
     if (map.getZoom() > 11 && aoi_zoom) {
         nhdf.addTo(map);
         roadsf.addTo(map);
-    }
-    else {
+    } else {
         nhdf.removeFrom(map);
         roadsf.removeFrom(map);
+    }
+    if (map.getZoom() > 14 && aoi_zoom) {
+        infstrf.addTo(map);
+    } else {
+        infstrf.removeFrom(map);
     }
 });
 
 let layerControl = {
     "NHD Streams": nhdf,
     "USGS Gages": gagesf,
-    "Roads": roadsf,
+    "Roads Layer": roadsf,
+    "Inferred Streams": infstrf,
 }
 
 var LC = L.control.layers(baseLayers, layerControl);
@@ -262,9 +280,6 @@ map.addLayer(subwshed2);
 
 var contourlines = L.featureGroup();
 map.addLayer(contourlines);
-
-var infstreams = L.featureGroup();
-map.addLayer(infstreams);
 
 var landuselyr = L.featureGroup();
 map.addLayer(landuselyr);
