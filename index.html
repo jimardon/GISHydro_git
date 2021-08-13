@@ -9,7 +9,6 @@
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"></link>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/handsontable/0.35.1/handsontable.min.css"></link>
 
-    <link rel="stylesheet" type="text/css" href="css/L.Control.MousePosition.css"></link>
     <link rel="stylesheet" type="text/css" href="css/hydro.css"></link>
     <link rel="stylesheet" type="text/css" href="css/leaflet-sidebar.css"></link>
     
@@ -31,7 +30,6 @@
 
     <script type="text/javascript" src="js/gishydrotools.js"></script>
     <script type="text/javascript" src="js/combineseg.js"></script>
-    <script type="text/javascript" src="js/L.Control.MousePosition.js"></script>
 
     <link rel="apple-touch-icon" sizes="180x180" href="image/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="image/favicon-32x32.png">
@@ -75,7 +73,6 @@
 
             <!-- bottom aligned tabs -->
             <ul role="tablist">
-                <li><a href="#download" role="tab"><i class="fa fa-download"></i></a></li>
                 <li><a href="#tools" role="tab"><i class="fa fa-wrench"></i></a></li>
                 <li><a href="#help" role="tab"><i class="fa fa-question"></i></a></li>
             </ul>
@@ -120,9 +117,8 @@
                 </h1>
                 <div style="width:95%;">
                     <p></p>
-                    <p align="justify" style="font-size:14px;">To start the application draw the extent of the area of interest containing the potential watershed.
-                        Select the available options and then click Apply. It could take a couple of minutes to process depending on the size of the AOI. 
-                        Zoom in to enable stream and road layers.</p>
+                    <p align="justify" style="font-size:14px;">Select available options and then proceed to the Watershed <a href="javascript:sidebar.open('shed_del');">Delineation</a> Tab. 
+                        Zoom in to enable the NHD streams and local road layers. Zoom even more to show the inferred streams.</p>
                     <p></p>
                     <!-- Project Properties -->
                     <div class="hr-text-bar">
@@ -196,22 +192,9 @@
                             <input type="number" style="width:40%;" min="5" max="500" step="1" class="complete-input" id="acc_thres" value="60">
                         </div>
                     </div>
-                    <div class="inline">
-                        <div class="checkbox-form">
-                            <strong>Burn NHD Streams:</strong>
-                            <input type="checkbox" class="checkbox-box" id="burn" checked>
-                        </div>
-                    </div>
-                    <!-- Draw Area of Interest -->
-                    <div class="hr-text-bar">
-                        <span class="hr-text">Select Area of Interest</span>
-                    </div>
+                    <!-- Proceed to Delineation -->
                     <p></p>
-                    <button id="aoi-button" class="generic-grey-button" onclick=aoi_selec()>Draw Extent Box</button>
-                    <!-- Re-do Area of Interest -->
-                    <button id="clearaoi-button" class="generic-grey-button" onclick=clear_aoi()>Clear</button>
-                    <p></p>
-                    <button id="apply-button" class="generic-grey-button" disabled="disabled" onclick=apply()>Apply</button>
+                    <button id="apply-button" class="generic-grey-button" onclick=apply()><b>Go to Delineation</b></button>
                 </div>
             </div>
 
@@ -222,10 +205,8 @@
                 </h1>
                 <div style="width:95%;">
                     <p></p>
-                    <p align="justify" style="font-size:14px;">Tap on a watershed outlet (pour point) for delineation. It must be placed on a valid stream. 
-                        Before using this tool, it is helpful to add the Inferred Streams layer; this step reveals the natural drainage network of the watershed.
-                        Check on the <a href="javascript:sidebar.open('tools');">Tools</a> tab for showing Inferred Streams. After the watershed has been delineated 
-                        the option to download the layer becomes available.</p>
+                    <p align="justify" style="font-size:14px;">Tap on a watershed outlet (pour point) for delineation. It must be placed on a valid stream cell (zoom in to enable the Inferred Streams layer, or turn it on in the layer control). 
+                        It could take a couple of minutes to process depending on the watershed size. After the watershed has been delineated the option to download the layer becomes available.</p>
                     <p></p>
                     <!-- Select Pour Point -->
                     <div class="hr-text-bar">
@@ -768,98 +749,6 @@
                         <button id="downloadwintr20output-button" class="generic-grey-button" onclick="saveFile(outputstring, 'TR20.out')">WinTR-20 OUTPUT</button>
                         <p></p>
                     </div>
-                </div>
-            </div>
-
-            <div class="leaflet-sidebar-pane" id="download">
-                <h1 class="leaflet-sidebar-header">
-                    Download Layers
-                    <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
-                </h1>
-                <div style="width:95%;">
-                    <p></p>
-                    <p align="justify" style="font-size:14px;">The Download tool allow you to download some or all of the layers (shapefiles and rasters) in your project. 
-                        The layers will be packaged (.zip) and sent to the below e-mail. Rasters will be in GeoTIFF format.</p>
-                    <p></p>
-                    <p align="justify" style="font-size:14px;">Layers will become available as you proceed through the GISHydroWEB analysis.</p>
-                    <p></p>
-                    <!-- Gage List -->
-                    <div class="hr-text-bar">
-                        <span class="hr-text">Select Layers</span>
-                    </div>
-                    <p></p>
-                    <div class="inline">
-                        <div class="checkbox-form" id="Checkcontours" style="display:block;">
-                            <strong>Contours:</strong>
-                            <input type="checkbox" style="float:right;" class="LayerCheck" value="contours.shp">
-                        </div>
-                        <div class="checkbox-form" id="CheckCurvenumber" style="display:block;">
-                            <strong>Curve Number:</strong>
-                            <input type="checkbox" style="float:right;" class="LayerCheck" value="curvenumber.tif">
-                        </div>
-                        <div class="checkbox-form" id="Checkdem_clip" style="display:block;">
-                            <strong>DEM:</strong>
-                            <input type="checkbox" style="float:right;" class="LayerCheck" value="dem_clip.tif">
-                        </div>
-                        <div class="checkbox-form" id="Checkflowacc" style="display:block;">
-                            <strong>Flow Accumulation:</strong>
-                            <input type="checkbox" style="float:right;" class="LayerCheck" value="flowacc.tif">
-                        </div>
-                        <div class="checkbox-form" id="Checkflowdir" style="display:block;">
-                            <strong>Flow Direction:</strong>
-                            <input type="checkbox" style="float:right;" class="LayerCheck" value="flowdir.tif">
-                        </div>
-                        <div class="checkbox-form" id="Checklandslope" style="display:block;">
-                            <strong>Land Slope:</strong>
-                            <input type="checkbox" style="float:right;" class="LayerCheck" value="landslope.tif">
-                        </div>
-                        <div class="checkbox-form" id="Checklanduse" style="display:block;">
-                            <strong>Land Use:</strong>
-                            <input type="checkbox" style="float:right;" class="LayerCheck" value="landuse.tif">
-                        </div>
-                        <div class="checkbox-form" id="CheckLongest_Path_Sub" style="display:block;">
-                            <strong>Longest Path(s):</strong>
-                            <input type="checkbox" style="float:right;" class="LayerCheck" value="paths">
-                        </div>
-                        <div class="checkbox-form" id="Checknhd" style="display:block;">
-                            <strong>NHD Streams:</strong>
-                            <input type="checkbox" style="float:right;" class="LayerCheck" value="nhd_clip.shp">
-                        </div>
-                        <div class="checkbox-form" id="Checkpour_point" style="display:block;">
-                            <strong>Outlet Point:</strong>
-                            <input type="checkbox" style="float:right;" class="LayerCheck" value="pour_point.shp">
-                        </div>
-                        <div class="checkbox-form" id="Checksoils" style="display:block;">
-                            <strong>Soils:</strong>
-                            <input type="checkbox" style="float:right;" class="LayerCheck" value="soils.tif">
-                        </div>
-                        <div class="checkbox-form" id="Checksubrivers" style="display:block;">
-                            <strong>Subrivers:</strong>
-                            <input type="checkbox" style="float:right;" class="LayerCheck" value="subrivers.shp">
-                        </div>
-                        <div class="checkbox-form" id="Checksubshed" style="display:block;">
-                            <strong>Subwatersheds:</strong>
-                            <input type="checkbox" style="float:right;" class="LayerCheck" value="subshed.shp">
-                        </div>
-                        <div class="checkbox-form" id="Checkwshed" style="display:block;">
-                            <strong>Watershed:</strong>
-                            <input type="checkbox" style="float:right;" class="LayerCheck" value="wshed.shp">
-                        </div>
-                    </div>
-                    <p></p>
-                    <div class="hr-text-bar">
-                        <span class="hr-text">Export Layers</span>
-                    </div>
-                    <p></p>
-                    <div class="inline">
-                        <strong>E-mail:</strong>
-                        <div class="complete-form" style="width:70%;">
-                            <input size ="50" maxlength="50" type="text" style="text-align:center;" class="complete-input" id="email-input" placeholder="your_email@here.com">
-                        </div>
-                    </div>
-                    <p></p>
-                    <button id="email-button" class="generic-grey-button" onclick=SendLayers()>E-mail Layers</button>
-                    <p></p>
                 </div>
             </div>
 

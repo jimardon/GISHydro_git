@@ -16,7 +16,6 @@ var soil_layer = '';
 var land_layer = '';
 var hyd_cond = '';
 var acc_thr = '';
-var burnopt = '';
 var new_extents = '';
 var aoi_zoom = true;
 var gagelist = '';
@@ -34,6 +33,7 @@ var olcheck = false;
 var rscheck = false;
 var delcheckin = true;
 var wshed_export = '';
+var infstr_export = '';
 var contourslayer = '';
 var longestpath_layer = '';
 var soils_layer = '';
@@ -117,33 +117,120 @@ function alertmodal(title, message,size){
     $("#alertmodal").modal()
 }
 
-function aoi_selec(){
-    new L.Draw.Rectangle(map, drawControl.options.rectangle).enable();
-};
-
-function clear_aoi(){
-    document.getElementById("aoi-button").style.display = "block";
-    document.getElementById("clearaoi-button").style.display = "none";
-    drawLayers.clearLayers();
-    $('#apply-button').attr('disabled','true');
-    $('#aoi-button').removeAttr('disabled');
-};
-
 function apply(){
+    sidebar.open('shed_del');
+};
+
+function validdelcheck(){
+    map.spin(true);
+
+    $('#delineate-button').attr('disabled','true');
+    $('#pourpoint-button').attr('disabled','true');
+    $('#pourpoint2-button').attr('disabled','true');
+    $('#cleardel-button').attr('disabled','true');
+
+    if(addpointvar){
+        mark_lat = document.getElementById('pp_lat').value
+        mark_lon = document.getElementById('pp_lng').value
+    }else{
+        mark_lat = layer.getLatLng().lat;
+        mark_lon = layer.getLatLng().lng;
+        document.getElementById('pp_lng').value = parseFloat(mark_lon).toFixed(6)
+        document.getElementById('pp_lat').value = parseFloat(mark_lat).toFixed(6)
+    }
+
+    var gpService = L.esri.GP.service({
+        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.DelCheckURL,
+        useCors:false,
+    });
+    var gpTask = gpService.createTask();
+
+    gpTask.setParam("longitude", mark_lon);
+    gpTask.setParam("latitude", mark_lat);
+
+    gpTask.run(validdelcheckCallback);
+
+    function validdelcheckCallback(error, response, raw){
+
+        if (error){
+            alertmodal("Error",errormsg,"10vh")
+            map.spin(false);
+            return
+        }
+
+        if(response.valid_point){
+            document.getElementById("novalidpp").style.display = "none";
+            document.getElementById("validpp").style.display = "block";
+            document.getElementById("selecpp").style.display = "none";
+            $('#delineate-button').removeAttr('disabled');
+            $('#cleardel-button').removeAttr('disabled');
+        }else{
+            document.getElementById("novalidpp").style.display = "block";
+            document.getElementById("validpp").style.display = "none";
+            document.getElementById("selecpp").style.display = "none";
+            $('#cleardel-button').removeAttr('disabled');
+        }
+
+        if(map.getZoom()<15){map.setZoom(15);}
+        map.panTo(new L.LatLng(mark_lat, mark_lon));
+
+        //layer.setLatLng([response.pp_coords[1], response.pp_coords[0]]).update();
+        map.spin(false);
+    }
+}
+
+function change_delcheck(){
+    delcheckin = false;
+    data_select();
+}
+
+function drawpoint(){
+    L.drawLocal.draw.handlers.marker.tooltip.start="Click map to place pour point"
+    drawLayers.clearLayers();
+    new L.Draw.Marker(map, drawControl.options.marker).enable();
+    delcheckin = true;
+    addpointvar = false
+}
+
+function addpoint(){
+    var longitude = document.getElementById('pp_lng').value;
+    var latitude =  document.getElementById('pp_lat').value;
+    if (longitude > -75.01 || longitude < -79.62 || latitude > 40.26 || latitude > 37.87){
+        alertmodal("Error","Longitude and/or latitude values are out of bounds.","10vh")
+    } else {
+        addpointvar = true
+        var marker = L.marker([latitude, longitude]);
+        drawLayers.addLayer(marker);
+        delcheckin = true;
+        validdelcheckCallback()
+    }
+};
+
+function clearpoint(){
+    document.getElementById("validpp").style.display = "none";
+    document.getElementById("novalidpp").style.display = "none";
+    document.getElementById("selecpp").style.display = "block";
+    drawLayers.clearLayers();
+    $('#cleardel-button').attr('disabled','true');
+    $('#delineate-button').attr('disabled','true');
+    $('#pourpoint-button').removeAttr('disabled');
+    $('#pourpoint2-button').removeAttr('disabled');
+};
+
+function data_select(){
+    map.spin(true);
+
     $('#proj_name').attr('disabled','true');
     $('#demselect').attr('disabled','true');
     $('#soilselect').attr('disabled','true');
     $('#landselect').attr('disabled','true');
     $('#hyddata').attr('disabled','true');
     $('#acc_thres').attr('disabled','true');
-    $('#burn').attr('disabled','true');
-    $('#clearaoi-button').attr('disabled','true');
-    $('#apply-button').attr('disabled','true');
-    data_select();
-};
+    $('#delineate-button').attr('disabled','true');
+    $('#pourpoint-button').attr('disabled','true');
+    $('#pourpoint2-button').attr('disabled','true');
+    $('#cleardel-button').attr('disabled','true');
 
-function data_select(){
-    map.spin(true);
     proj_name = document.getElementById("proj_name").value
     proj_folder = proj_name.replace(/[^a-zA-Z0-9]/g,'_');
     dem_layer = document.getElementById("demselect").value
@@ -151,31 +238,6 @@ function data_select(){
     land_layer = document.getElementById("landselect").value
     hyd_cond = document.getElementById("hyddata").value
     acc_thr = document.getElementById("acc_thres").value
-    burnopt = document.getElementById("burn").checked
-
-    if (land_layer == "lu2010" || land_layer == "mdplu2002" || land_layer == "lu97m" ){
-        alertmodal("Disclaimer","The LandUse/Land Cover data set you have selected has been provided courtesy of the Maryland Department of Planning. \
-Any use of that data set outside of this application without \
-the permission of the Department of Planning is prohibited. \
-The 2010 data are based on superior imagery and a refined \
-classification system. The 2002 and earlier Land Use/Land \
-Cover datasets are not reconciled with these improvements. \
-For more information on Department of Planning data, please \
-visit the MDP web site http://www.mdp.state.md.us or \
-call (410) 767-4500.)","20vh")
-    }
-
-    new_extents = layer.getBounds()
-    setTimeout(function(){
-        map.fitBounds(new_extents); }, 200);
-    map.once("moveend zoomend", setnewextent)
-
-    function setnewextent(){
-        map.setMinZoom(map.getZoom()-0.5);
-    }
-
-    LC.removeLayer(nhdf);
-    LC.removeLayer(roadsf);
 
     var gpService = L.esri.GP.service({
         url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.DataSelectionURL,
@@ -183,17 +245,14 @@ call (410) 767-4500.)","20vh")
     });
     var gpTask = gpService.createTask();
 
-    gpTask.setParam("Coord_X1", new_extents.getWest());
-    gpTask.setParam("Coord_Y1", new_extents.getSouth());
-    gpTask.setParam("Coord_X2", new_extents.getEast());
-    gpTask.setParam("Coord_Y2", new_extents.getNorth());
     gpTask.setParam("Project_Name", proj_folder);
+    gpTask.setParam("Coord_X", mark_lon);
+    gpTask.setParam("Coord_Y", mark_lat);
     gpTask.setParam("DEM_Layer", dem_layer);
     gpTask.setParam("Soil_Layer", soil_layer);
     gpTask.setParam("Land_Layer", land_layer);
     gpTask.setParam("Hydrologic_Condition", hyd_cond);
     gpTask.setParam("Accumulation_Threshold", acc_thr);
-    gpTask.setParam("Burn", burnopt);
 
     gpTask.run(dataselectionCallback);
 
@@ -207,33 +266,68 @@ call (410) 767-4500.)","20vh")
             $('#landselect').removeAttr('disabled');
             $('#hyddata').removeAttr('disabled');
             $('#acc_thres').removeAttr('disabled');
-            $('#burn').removeAttr('disabled');
-            $('#clearaoi-button').removeAttr('disabled');
-            $('#apply-button').removeAttr('disabled');
+            $('#delineate-button').removeAttr('disabled');
+            $('#pourpoint-button').removeAttr('disabled');
+            $('#pourpoint2-button').removeAttr('disabled');
+            $('#cleardel-button').removeAttr('disabled');
             map.spin(false);
+            return
         }
 
+        if (land_layer == "lu2010" || land_layer == "mdplu2002" || land_layer == "lu97m" ){
+            alertmodal("Disclaimer","The LandUse/Land Cover data set you have selected has been provided courtesy of the Maryland Department of Planning. \
+        Any use of that data set outside of this application without \
+        the permission of the Department of Planning is prohibited. \
+        The 2010 data are based on superior imagery and a refined \
+        classification system. The 2002 and earlier Land Use/Land \
+        Cover datasets are not reconciled with these improvements. \
+        For more information on Department of Planning data, please \
+        visit the MDP web site http://www.mdp.state.md.us or \
+        call (410) 767-4500.)","20vh")
+            }
+
+        wshed_export = response.wshed_proj
+        wshed_layer.addLayer(L.geoJson(wshed_export,{
+            crossOrigin: null,
+            fillColor: '#FA6FFA',
+            fillOpacity: 0.5,
+            color: 'black',
+            weight: 2,
+        }));
+        LC.addOverlay(wshed_layer, "Watershed");
+
+        infstr_export = response.infstr_proj
+        infstr_layer.addLayer(L.geoJson(infstr_export,{
+            crossOrigin: null,
+            fillColor: '#6666FF',
+            fillOpacity: 0.5,
+            weight: 0
+        }));
+        LC.addOverlay(infstr_layer, "Inferred Streams");
+
+        LC.removeLayer(infstrf);
+        map.removeLayer(infstrf);
+
+        gagelist = response.gagelist;
+        for(var i = 0; i < gagelist.length; i++) {
+            var opt = document.createElement('option');
+            opt.innerHTML = gagelist[i];
+            opt.value = gagelist[i];
+            document.getElementById('gagelist').appendChild(opt);
+        }
+        
+        setTimeout(function(){
+            map.fitBounds(wshed_layer.getBounds());
+            map.spin(false);
+            map.once("moveend zoomend", setwshedextent)
+        }, 200);
+
+        function setwshedextent(){
+            map.setMinZoom(map.getZoom()-0.5);
+        };
+
+        delcheck = false
         aoi_zoom = false
-
-        if(response.aoicheck){
-            alertmodal("Warning","Land use does not cover all of the AOI extent.","10vh")
-        }
-
-        mask_layer.addLayer(L.geoJson(response.areaofinterest,{
-            fillColor: 'red',
-            fillOpacity: 0.1,
-            color: 'red',
-            weight: 1,
-            opacity: 0.4,
-        }));
-        road_layer.addLayer(L.geoJson(response.road_clip,{
-            color: '#AC1717',
-            weight: 1,
-        }));
-        nhd_layer.addLayer(L.geoJson(response.nhd_clip,{
-            color: 'blue',
-            weight: 1,
-        }));
 
         full_project_name = response.full_name
 
@@ -254,152 +348,33 @@ call (410) 767-4500.)","20vh")
         if(soil_layer == "ssurgo_old"){basin_soil = "SSURGO (2010's)"}
         if(soil_layer == "ragan"){basin_soil = "Ragan"}
 
-        map.removeLayer(nhdf);
-        map.removeLayer(roadsf);
-        LC.addOverlay(nhd_layer, "NHD Streams");
-        LC.addOverlay(road_layer, "Roads");
-        sidebar.enablePanel('shed_del');
-        sidebar.open('shed_del');
         drawLayers.clearLayers();
-        $('#landuse-button').removeAttr('disabled');
-        $('#soils-button').removeAttr('disabled');
 
-        map.spin(false);
-    }
-}
-
-function change_delcheck(){
-    delcheckin = false;
-    delineate();
-}
-
-function drawpoint(){
-    drawLayers.clearLayers();
-    new L.Draw.Marker(map, drawControl.options.marker).enable();
-    delcheckin = true;
-    addpointvar = false
-}
-
-function addpoint(){
-    var longitude = document.getElementById('pp_lng').value;
-    var latitude =  document.getElementById('pp_lat').value;
-    if (longitude > new_extents.getEast() || longitude < new_extents.getWest() || latitude > new_extents.getNorth() || latitude > new_extents.getSouth()){
-        alertmodal("Error","Longitude and/or latitude values are out of bounds.","10vh")
-    } else {
-        addpointvar = true
-        var marker = L.marker([latitude, longitude]);
-        drawLayers.addLayer(marker);
-        delcheckin = true;
-        delineate()
-    }
-};
-
-function clearpoint(){
-    document.getElementById("validpp").style.display = "none";
-    document.getElementById("novalidpp").style.display = "none";
-    document.getElementById("selecpp").style.display = "block";
-    drawLayers.clearLayers();
-    $('#cleardel-button').attr('disabled','true');
-    $('#delineate-button').attr('disabled','true');
-    $('#pourpoint-button').removeAttr('disabled');
-    $('#pourpoint2-button').removeAttr('disabled');
-};
-
-function exportwshed(){saveToFile(wshed_export, 'watershed');}
-
-function delineate(){
-    map.spin(true);
-
-    $('#delineate-button').attr('disabled','true');
-    $('#pourpoint-button').attr('disabled','true');
-    $('#pourpoint2-button').attr('disabled','true');
-    $('#cleardel-button').attr('disabled','true');
-
-    var gpService = L.esri.GP.service({
-        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.DelineationURL,
-        useCors:false
-      });
-    var gpTask = gpService.createTask();
-
-    if(addpointvar){
-        mark_lat = document.getElementById('pp_lat').value
-        mark_lon = document.getElementById('pp_lng').value
-    }else{
-        mark_lat = layer.getLatLng().lat;
-        mark_lon = layer.getLatLng().lng;
-        document.getElementById('pp_lng').value = parseFloat(mark_lon).toFixed(6)
-        document.getElementById('pp_lat').value = parseFloat(mark_lat).toFixed(6)
-    }
-    map.panTo(new L.LatLng(mark_lat, mark_lon));
-
-    gpTask.setParam("projectname", full_project_name);
-    gpTask.setParam("mouse_lat_proj", mark_lat);
-    gpTask.setParam("mouse_lon_proj", mark_lon);
-    gpTask.setParam("validate_outlet", delcheckin);
-
-    gpTask.run(delineationCallback);
-
-    function delineationCallback(error, response, raw){
-
-        if (error){
-            alertmodal("Error",errormsg,"10vh")
+        if (!response.aoicheck){
+            alertmodal("Error","Land use (" + basin_lu + ") does not cover more than 5% of the watershed extent, please change land use cover or pour point.","10vh")
+            $('#proj_name').removeAttr('disabled');
+            $('#demselect').removeAttr('disabled');
+            $('#soilselect').removeAttr('disabled');
+            $('#landselect').removeAttr('disabled');
+            $('#hyddata').removeAttr('disabled');
+            $('#acc_thres').removeAttr('disabled');
             $('#delineate-button').removeAttr('disabled');
             $('#pourpoint-button').removeAttr('disabled');
             $('#pourpoint2-button').removeAttr('disabled');
             $('#cleardel-button').removeAttr('disabled');
-            map.spin(false);
+        } else {
+            $('#landuse-button').removeAttr('disabled');
+            $('#soils-button').removeAttr('disabled');
+            document.getElementById("sheddownload-div").style.display = "block";
+            sidebar.enablePanel('basin_properties');
+            sidebar.open('basin_properties');
         }
-
-        if (delcheckin){
-            if(response.valid_outlet){
-                document.getElementById("novalidpp").style.display = "none";
-                document.getElementById("validpp").style.display = "block";
-                document.getElementById("selecpp").style.display = "none";
-                $('#delineate-button').removeAttr('disabled');
-            }else{
-                map.setZoom(15);
-                document.getElementById("novalidpp").style.display = "block";
-                document.getElementById("validpp").style.display = "none";
-                document.getElementById("selecpp").style.display = "none";
-            }
-            $('#cleardel-button').removeAttr('disabled');
-            map.spin(false);
-
-        }else{
-
-            wshed_export = response.watershed
-            gagelist = response.gagelist;
-            wshed.addLayer(L.geoJson(wshed_export,{
-                crossOrigin: null,
-                fillColor: '#FA6FFA',
-                fillOpacity: 0.5,
-                color: 'black',
-                weight: 2,
-            }));
-
-            for(var i = 0; i < gagelist.length; i++) {
-                var opt = document.createElement('option');
-                opt.innerHTML = gagelist[i];
-                opt.value = gagelist[i];
-                document.getElementById('gagelist').appendChild(opt);
-            }
-            
-            setTimeout(function(){
-                map.fitBounds(wshed.getBounds());
-                document.getElementById("sheddownload-div").style.display = "block";
-                map.spin(false);
-            }, 200);
-
-            map.once("moveend zoomend", setwshedextent)
-            function setwshedextent(){
-                map.setMinZoom(map.getZoom()-0.5);
-                sidebar.enablePanel('basin_properties');
-                sidebar.open('basin_properties');
-            };
-            delcheck = false
-        }
+        map.spin(false);
     }
 }
+
+function exportwshed(){saveToFile(wshed_export, 'watershed');}
+function exportwshed(){saveToFile(infstr_export, 'inferredstreams');}
 
 function basin_properties(){
     map.spin(true);
@@ -428,6 +403,7 @@ function basin_properties(){
             $('#gagelist').removeAttr('disabled');
             $('#basin_properties-button').removeAttr('disabled');
             map.spin(false);
+            return
         }
         
         var lu_desc = response.lu_desc;
@@ -859,6 +835,7 @@ function flowpaths(){
     fpcheck = true;
     olcheck = false;
     rscheck = false;
+    L.drawLocal.draw.handlers.marker.tooltip.start="Click map to place flow path"
     new L.Draw.Marker(map, drawControl.options.marker).enable();
     clear_flowpaths = false
 };
@@ -905,6 +882,7 @@ function flowpaths_polyline(){
             alertmodal("Error",errormsg,"10vh")
             $('#flowpath-button').removeAttr('disabled');
             map.spin(false);
+            return
         }
 
         if(clear_flowpaths){
@@ -939,6 +917,7 @@ function outlets(){
     fpcheck = false;
     olcheck = true;
     rscheck = false;
+    L.drawLocal.draw.handlers.marker.tooltip.start="Click map to place an outlet point"
     new L.Draw.Marker(map, drawControl.options.marker).enable();
     clear_outlets = false
 }
@@ -979,6 +958,7 @@ function outlets_marker(){
             alertmodal("Error",errormsg,"10vh")
             $('#outlet-button').removeAttr('disabled');
             map.spin(false);
+            return
         }
         
         if(clear_outlets){
@@ -1012,7 +992,7 @@ function subdivide_no(){
     flowpaths_polyline()
 }
 
-function exportsubwshed(){saveToFile(subshed_export, 'subwatershed');}
+function exportsubshed(){saveToFile(subshed_export, 'subwatershed');}
 
 function subsheds(){
     map.spin(true);
@@ -1043,10 +1023,11 @@ function subsheds(){
             $('#clearoutlet-button').removeAttr('disabled');
             $('#subsheds-button').removeAttr('disabled');
             map.spin(false);
+            return
         }
 
         subshed_export = response.subsheds
-        subwshed.addLayer(L.geoJson(subshed_export,{
+        subshed_layer.addLayer(L.geoJson(subshed_export,{
             crossOrigin: null,
             fillColor: '#FA6FFA',
             fillOpacity: 0.5,
@@ -1054,8 +1035,11 @@ function subsheds(){
             weight: 2,
         }));
 
+        LC.removeLayer(wshed_layer);
+        map.removeLayer(wshed_layer);
+
         setTimeout(function(){
-            map.fitBounds(subwshed.getBounds());
+            map.fitBounds(subshed_layer.getBounds());
             map.spin(false);
         }, 200);
         map.once("moveend zoomend", setwshedextent)
@@ -1065,7 +1049,6 @@ function subsheds(){
 
         addasoutlets.clearLayers();
         document.getElementById("subsheddownload").style.display = "block";
-        map.removeLayer(wshed);
         sidebar.enablePanel('toc');
         sidebar.open('toc');
         map.spin(false);
@@ -1144,15 +1127,18 @@ function settoc(){
             $('#channel_area_exp').removeAttr('disabled');
             $('#tcapply-button').removeAttr('disabled');
             map.spin(false);
+            return
         }
 
         AvgArea_ = response.avgarea
         Tot_Time_ = response.tot_time
         reachcount = response.reach_check
 
-        map.removeLayer(subwshed);
+        map.removeLayer(subshed_layer);
+        LC.removeLayer(subshed_layer)
         subshed_export = response.subshed_edit
-        subwshed2.addLayer(L.geoJson(subshed_export, {onEachFeature: forEachFeature, style: stylefeature}));
+        subshed2_layer.addLayer(L.geoJson(subshed_export, {onEachFeature: forEachFeature, style: stylefeature}));
+        LC.addOverlay(subshed2_layer,"Watershed")
 
         if(tc_method == "Velocity Method"){
 
@@ -1425,6 +1411,7 @@ function resettc(){
 
 function xs_add(){
     drawLayers.clearLayers();
+    L.drawLocal.draw.handlers.polyline.tooltip.start="Draw a cross section"
     new L.Draw.Polyline(map, drawControl.options.polyline).enable();
 }
 
@@ -1487,6 +1474,7 @@ function transect() {
             $('#addxs-button').removeAttr('disabled');
             $('#addreservoir-button').removeAttr('disabled');
             map.spin(false);
+            return
         }
 
         if(response.xs_validation === false){
@@ -1585,6 +1573,7 @@ function reservoir_add(){
     fpcheck = false;
     olcheck = false;
     rscheck = true;
+    L.drawLocal.draw.handlers.polyline.tooltip.start="Click map to place a reservoir"
     new L.Draw.Marker(map, drawControl.options.marker).enable();
 }
 
@@ -1615,6 +1604,7 @@ function reservoir(){
             $('#addxs-button').removeAttr('disabled');
             $('#addreservoir-button').removeAttr('disabled');
             map.spin(false);
+            return
         }
 
         ratingtype = response.ratingtype
@@ -1801,6 +1791,7 @@ function precipitationdepth() {
             alertmodal("Error",errormsg,"10vh")
             $('#precipitation-button').removeAttr('disabled');
             map.spin(false);
+            return
         }
 
         thecritavg = response.thecritavg
@@ -1885,6 +1876,7 @@ function tr20controlpanel() {
             alertmodal("Error",errormsg,"10vh")
             $('#createwintr20-button').removeAttr('disabled');
             map.spin(false);
+            return
         }
 
         inputstring = response.inputstring
@@ -1953,6 +1945,7 @@ function contours(){
             alertmodal("Error",errormsg,"10vh")
             $('#contours-button').removeAttr('disabled');
             map.spin(false);
+            return
         }
         contourslayer = response.outputlayer
         contourlines.addLayer(L.geoJson(contourslayer,{
@@ -2001,6 +1994,7 @@ function landuseload(){
             alertmodal("Error",errormsg,"10vh")
             $('#landuse-button').removeAttr('disabled');
             map.spin(false);
+            return
         }
 
         landuse_layer = response.outputlayer
@@ -2056,6 +2050,7 @@ function soilsload(){
             alertmodal("Error",errormsg,"10vh")
             map.spin(false);
             $('#soils-button').removeAttr('disabled');
+            return
         }
 
         soils_layer = response.outputlayer
@@ -2096,44 +2091,39 @@ function longestpathload(){
     map.spin(true);
     $('#longestpath-button').attr('disabled','true');
 
-    for(var i = 1; i <= reaches; i++) {
+    var gpService = L.esri.GP.service({
+        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.LoadLayerURL,
+        useCors:false
+    });
+    var gpTask = gpService.createTask();
 
-        var gpService = L.esri.GP.service({
-            url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.LoadLayerURL,
-            useCors:false
-        });
-        var gpTask = gpService.createTask();
+    gpTask.setParam("projectname",  full_project_name)
+    gpTask.setParam("inputlayer", "Longest Path")
+    gpTask.setParam("reaches", reaches)
+    
+    gpTask.run(infprojCallback);
 
-        gpTask.setParam("projectname",  full_project_name)
-        gpTask.setParam("inputlayer", "Longest Path")
-        gpTask.setParam("subarea", i)
-        
-        gpTask.run(infprojCallback);
+    function infprojCallback(error, response, raw){
 
-        function infprojCallback(error, response, raw){
-
-            if (error){
-                alertmodal("Error",errormsg,"10vh")
-                map.spin(false);
-                $('#longestpath-button').removeAttr('disabled');
-                return
-            }
-
-            longestpathlyr.addLayer(L.geoJson(longestpath_layer,{
-                color: '#E74C3C',
-                weight: 3,
-            }));
-        };
-
-        if(i == reaches){
-            LC.addOverlay(longestpathlyr, "Longest Paths");
-            $('#longestpath-button').removeAttr('disabled');
-            document.getElementById("longestpath-button").style.display = "none";
-            document.getElementById("longpathdownload-button").style.display = "block";
+        if (error){
+            alertmodal("Error",errormsg,"10vh")
             map.spin(false);
-        };
+            $('#longestpath-button').removeAttr('disabled');
+            return
+        }
 
+        longestpathlyr.addLayer(L.geoJson(longestpath_layer,{
+            color: '#E74C3C',
+            weight: 3,
+        }));
     };
+
+    LC.addOverlay(longestpathlyr, "Longest Paths");
+    $('#longestpath-button').removeAttr('disabled');
+    document.getElementById("longestpath-button").style.display = "none";
+    document.getElementById("longpathdownload-button").style.display = "block";
+    map.spin(false);
+
 };
 
 function exportlongpath(){saveToFile(longestpath_layer, 'longestpaths');}
@@ -2172,7 +2162,7 @@ function forEachFeature(feature, layer) {
     layer.bindPopup(popupContent);
 
     layer.on("click", function (e) { 
-        subwshed2.setStyle(stylefeature);
+        subshed2_layer.setStyle(stylefeature);
         layer.setStyle(highlightfeature);
     });
 }

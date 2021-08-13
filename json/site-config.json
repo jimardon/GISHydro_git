@@ -5,7 +5,7 @@
     },
     "appConfig": {
         "DataSelectionURL": "DataSelection",
-        "DelineationURL": "Delineation",
+        "DelCheckURL": "DelCheck",
         "BasinOutputsURL": "BasinOutputs",
         "FlowpathsURL": "Flowpaths",
         "OutletsURL": "Outlets",
@@ -17,7 +17,8 @@
         "TR20ControlURL": "TR20Control",
         "DesignStormURL": "DesignStorm",
         "LoadLayerURL": "LoadLayer",
-        "TaskerURL": "Tasker"
+        "TaskerComputationURL": "TaskerComputation",
+        "TaskerBasinURL": "TaskerBasin"
     }
 }
 

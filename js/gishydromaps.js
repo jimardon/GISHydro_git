@@ -70,6 +70,52 @@ var searchControl = L.esri.Geocoding.geosearch({
     ],
 }).addTo(map);
 
+L.Control.MousePosition = L.Control.extend({
+    options: {
+        position: 'bottomleft',
+        separator: ' : ',
+        emptyString: 'Unavailable',
+        lngFirst: false,
+        numDigits: 5,
+        lngFormatter: undefined,
+        latFormatter: undefined,
+        prefix: ""
+    },
+  
+    onAdd: function (map) {
+        this._container = L.DomUtil.create('div', 'leaflet-control-mouseposition');
+        L.DomEvent.disableClickPropagation(this._container);
+        map.on('mousemove', this._onMouseMove, this);
+        this._container.innerHTML=this.options.emptyString;
+        return this._container;
+    },
+  
+    onRemove: function (map) {
+        map.off('mousemove', this._onMouseMove)
+    },
+  
+    _onMouseMove: function (e) {
+        var lng = this.options.lngFormatter ? this.options.lngFormatter(e.latlng.lng) : L.Util.formatNum(e.latlng.lng, this.options.numDigits);
+        var lat = this.options.latFormatter ? this.options.latFormatter(e.latlng.lat) : L.Util.formatNum(e.latlng.lat, this.options.numDigits);
+        var value = this.options.lngFirst ? lng + this.options.separator + lat : lat + this.options.separator + lng;
+        var prefixAndValue = this.options.prefix + ' ' + value;
+        this._container.innerHTML = prefixAndValue;
+    }
+  
+});
+  
+L.Map.mergeOptions({positionControl: false});
+  
+L.Map.addInitHook(function () {
+    if (this.options.positionControl) {
+        this.positionControl = new L.Control.MousePosition();
+        this.addControl(this.positionControl);
+    }
+});
+  
+L.control.mousePosition = function (options) {return new L.Control.MousePosition(options);};
+
+
 var results = L.layerGroup().addTo(map);
 searchControl.on("results", function(data) {
     results.clearLayers();
@@ -83,13 +129,11 @@ var sidebar = L.control.sidebar({
     container: 'sidebar',
     autopan: true,
 }).addTo(map).open('home');
-sidebar.disablePanel('shed_del');
 sidebar.disablePanel('basin_properties');
 sidebar.disablePanel('subshed');
 sidebar.disablePanel('toc');
 sidebar.disablePanel('reachselect');
 sidebar.disablePanel('wintr20');
-
 sidebar.disablePanel('download');
 
 //Base layers definition and addition
@@ -197,23 +241,8 @@ map.addLayer(drawLayers);
 map.on(L.Draw.Event.CREATED, function (e) {
     type = e.layerType;
     layer = e.layer;
-    if(type == "rectangle"){
 
-        var AOIArea = L.GeometryUtil.geodesicArea(layer.getLatLngs()[0]);
-        AOIArea = AOIArea/(10**9)
-
-        if(AOIArea > 1.5){
-            alert("Error: Area of Interest is too big")
-        }else{
-            drawLayers.addLayer(layer);
-            map.fitBounds(layer.getBounds());
-            $('#apply-button').removeAttr('disabled');
-            $('#aoi-button').attr('disabled','true');
-            document.getElementById('clearaoi-button').style.display = "block";
-            document.getElementById('aoi-button').style.display = "none";
-        }
-    }
-    else if(type == "polyline"){
+    if(type == "polyline"){
         drawLayers.addLayer(layer)
 
         // Calculating the distance of the polyline
@@ -237,7 +266,7 @@ map.on(L.Draw.Event.CREATED, function (e) {
     }
     else if(type == "marker" && delcheck){
         drawLayers.addLayer(layer);
-        delineate();
+        validdelcheck();
     }
     else if(type == "marker" && fpcheck){
         drawLayers.addLayer(layer);
@@ -269,14 +298,17 @@ map.addLayer(nhd_layer);
 var road_layer = L.featureGroup();
 map.addLayer(road_layer);
 
-var wshed = L.featureGroup();
-map.addLayer(wshed);
+var wshed_layer = L.featureGroup();
+map.addLayer(wshed_layer);
 
-var subwshed = L.featureGroup();
-map.addLayer(subwshed);
+var infstr_layer = L.featureGroup();
+map.addLayer(infstr_layer);
 
-var subwshed2 = L.featureGroup();
-map.addLayer(subwshed2);
+var subshed_layer = L.featureGroup();
+map.addLayer(subshed_layer);
+
+var subshed2_layer = L.featureGroup();
+map.addLayer(subshed2_layer);
 
 var contourlines = L.featureGroup();
 map.addLayer(contourlines);
