@@ -134,7 +134,6 @@ sidebar.disablePanel('subshed');
 sidebar.disablePanel('toc');
 sidebar.disablePanel('reachselect');
 sidebar.disablePanel('wintr20');
-sidebar.disablePanel('download');
 
 //Base layers definition and addition
 var baseLayers = {

@@ -19,7 +19,9 @@ var acc_thr = '';
 var new_extents = '';
 var aoi_zoom = true;
 var gagelist = '';
+var provstring = '';
 var landslope = '';
+var asoil = '';
 var IA = '';
 var LI = '';
 var areami2 = '';
@@ -174,7 +176,7 @@ function validdelcheck(){
         if(map.getZoom()<15){map.setZoom(15);}
         map.panTo(new L.LatLng(mark_lat, mark_lon));
 
-        //layer.setLatLng([response.pp_coords[1], response.pp_coords[0]]).update();
+        layer.setLatLng([response.pp_coords[1], response.pp_coords[0]]).update();
         map.spin(false);
     }
 }
@@ -379,7 +381,6 @@ function exportwshed(){saveToFile(infstr_export, 'inferredstreams');}
 function basin_properties(){
     map.spin(true);
 
-    $('#gagelist').attr('disabled','true');
     $('#basin_properties-button').attr('disabled','true');
     tasker_modal = [];
 
@@ -392,7 +393,6 @@ function basin_properties(){
     gpTask.setParam("projectname", full_project_name);
     gpTask.setParam("landuse", land_layer);
     gpTask.setParam("hyd", hyd_cond);
-    gpTask.setParam("gageid", document.getElementById("gagelist").value);
 
     gpTask.run(basinpropsCallback);
 
@@ -400,7 +400,6 @@ function basin_properties(){
 
         if (error){
             alertmodal("Error",errormsg,"10vh")
-            $('#gagelist').removeAttr('disabled');
             $('#basin_properties-button').removeAttr('disabled');
             map.spin(false);
             return
@@ -416,7 +415,7 @@ function basin_properties(){
         var html_warning = response.html_warning;
         var x = response.x;
         var y = response.y;
-        var provstring = response.provstring;
+        provstring = response.provstring;
         areami2 = response.areami2;
         var theslope = response.theslope;
         var theslope_feet = response.theslope_feet;
@@ -438,11 +437,7 @@ function basin_properties(){
         var coef_list = response.coef_list;
         var exp_list = response.exp_list;
 
-        var it_values = response.it_values;
-        var q_list_all = response.q_list_all;
-        var Qcfs = response.qcfs;
-        var regioncount = response.regioncount;
-        var taskeroutput = response.tasker;
+        asoil = pctsoil[0]
 
         var btable0_html = '<table border="0">';
         btable0_html += '<col width="300">';
@@ -615,6 +610,86 @@ function basin_properties(){
         basin2_modal += '</div>';
 
         $("#basin_stat").html(basin2_modal);
+
+        $('#basincomp-button').removeAttr('aria-hidden');
+        $('#basincomp-button').removeAttr('disabled');
+
+        $('#basincomp-button').removeAttr('disabled');
+        $('#basinstats-button').removeAttr('disabled');
+        $('#tasker-button').removeAttr('disabled');
+
+        document.getElementById("sheet_precipitation").value = p2yr;
+        document.getElementById("channel_width_coef").value = coef_list[0];
+        document.getElementById("channel_depth_coef").value = coef_list[1];
+        document.getElementById("channel_area_coef").value = coef_list[2];
+        document.getElementById("channel_width_exp").value = exp_list[0];
+        document.getElementById("channel_depth_exp").value = exp_list[1];
+        document.getElementById("channel_area_exp").value = exp_list[2];
+
+        sidebar.enablePanel('subshed');
+        drawLayers.clearLayers();
+        alertmodal("Done","Basin Properties Calculations Finished","10vh")
+
+        $('#gagelist').removeAttr('disabled');
+        $('#contours-button').removeAttr('disabled');
+        $('#contourbase').removeAttr('disabled');
+        $('#contourint').removeAttr('disabled');
+
+        map.spin(false);
+
+        if(parseFloat(IA) > 10){
+            alertmodal("Warning","<b>Impervious area in watershed exceeds 10%!</b><br></br><br>Calculated discharges from USGS Regression Equations may not be appropriate.</br>","18vh")
+        }
+    }
+};
+
+function tasker_basin(){
+    map.spin(true);
+
+    $('#gagelist').attr('disabled','true');
+    $('#tasker-button').attr('disabled','true');
+    tasker_modal = [];
+
+    var gpService = L.esri.GP.service({
+        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.TaskerBasinURL,
+        useCors:false
+      });
+    var gpTask = gpService.createTask();
+
+    gpTask.setParam("projectname", full_project_name);
+    gpTask.setParam("gageid", document.getElementById("gagelist").value);
+    gpTask.setParam("parameter1", LI);
+    gpTask.setParam("parameter2", landslope);
+    //gpTask.setParam("landslope", landslope);
+    //gpTask.setParam("imp", IA);
+    //gpTask.setParam("asoil", asoil);
+    //gpTask.setParam("lime", LI);
+
+    gpTask.run(tasker_basinCallback);
+
+    function tasker_basinCallback(error, response, raw){
+
+        if (error){
+            alertmodal("Error",errormsg,"10vh")
+            $('#tasker-button').removeAttr('disabled');
+            $('#gagelist').removeAttr('disabled');
+            map.spin(false);
+            return
+        }
+
+        var it_values = response.it_values;
+        var q_list_all = response.q_list_all;
+        var Qcfs = response.qcfs;
+        var regioncount = response.regioncount;
+        var taskeroutput = response.tasker_all;
+
+        var btable0_html = '<table border="0">';
+        btable0_html += '<col width="300">';
+        btable0_html += '<col width="300">';
+        btable0_html += '<tr><td align="left">GISHydro Release Version Date:</td><td align="left">' + version + '</td></tr>';
+        btable0_html += '<tr><td align="left">Project Name:</td><td align="left">' + proj_name + '</td></tr>';
+        btable0_html += '<tr><td align="left">Analysis Date:</td><td align="left">' + today + '</td></tr>';
+        btable0_html += '</table>';
 
         var btable9_html = '<table border="0" align="center">';
         btable9_html += '<col width="100">';
@@ -794,36 +869,14 @@ function basin_properties(){
             document.getElementById("regiondisplay").style.display = "block";
         }
 
-        $('#basincomp-button').removeAttr('aria-hidden');
-        $('#basincomp-button').removeAttr('disabled');
-
-        $('#basincomp-button').removeAttr('disabled');
-        $('#basinstats-button').removeAttr('disabled');
         $('#tasker-button').removeAttr('disabled');
-
-        document.getElementById("sheet_precipitation").value = p2yr;
-        document.getElementById("channel_width_coef").value = coef_list[0];
-        document.getElementById("channel_depth_coef").value = coef_list[1];
-        document.getElementById("channel_area_coef").value = coef_list[2];
-        document.getElementById("channel_width_exp").value = exp_list[0];
-        document.getElementById("channel_depth_exp").value = exp_list[1];
-        document.getElementById("channel_area_exp").value = exp_list[2];
-
-        sidebar.enablePanel('subshed');
-        drawLayers.clearLayers();
-        alertmodal("Done","Basin Properties Calculations Finished","10vh")
-
-        $('#contours-button').removeAttr('disabled');
-        $('#contourbase').removeAttr('disabled');
-        $('#contourint').removeAttr('disabled');
-
+        $('#gagelist').removeAttr('disabled');
         map.spin(false);
-
-        if(parseFloat(IA) > 10){
-            alertmodal("Warning","<b>Impervious area in watershed exceeds 10%!</b><br></br><br>Calculated discharges from USGS Regression Equations may not be appropriate.</br>","18vh")
-        }
+        taskerregion()
+        sidebar.enablePanel('subshed');
     }
 };
+
 
 function taskerregion(){
     $("#tasker_mod").html(tasker_modal[document.getElementById("regionselect").value]);
@@ -849,7 +902,7 @@ function flowpaths_polyline(){
     map.spin(true);
     $('#flowpath-button').attr('disabled','true');
     if(singleshed == true){
-        var centerwshed = wshed.getBounds().getCenter();
+        var centerwshed = wshed_layer.getBounds().getCenter();
         mark_lat = centerwshed.lat;
         mark_lon = centerwshed.lng;
     }else if(clear_flowpaths === false){
@@ -2112,7 +2165,7 @@ function longestpathload(){
             return
         }
 
-        longestpathlyr.addLayer(L.geoJson(longestpath_layer,{
+        longestpathlyr.addLayer(L.geoJson(response.outputlayer,{
             color: '#E74C3C',
             weight: 3,
         }));

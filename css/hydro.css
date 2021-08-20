@@ -161,6 +161,7 @@ button:focus{
 #basincomp-button{
     width: 100%;
     float: center;
+    height: 50px;
 }
 
 #tcapply-button{
@@ -180,6 +181,7 @@ button:focus{
 #basinstats-button{
     width: 100%;
     float: center;
+    height: 50px;
 }
 
 #basinchar-button{
@@ -191,6 +193,7 @@ button:focus{
 #tasker-button{
     width: 100%;
     float: center;
+    height: 50px;
 }
 
 #basin_properties-button{

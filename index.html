@@ -270,18 +270,6 @@
                     <p align="justify" style="font-size:14px;">If available, select a stream gauge for calibration. Then click on Compute Properties, this could take some time depending on the watershed size. 
                         After the process has finished some basin properties will become available. You can also download the current watershed in JSON format from the previous tab (<a href="javascript:sidebar.open('shed_del');">Delineation</a>).</p>
                     <p></p>
-                    <!-- Gage List -->
-                    <div class="hr-text-bar">
-                        <span class="hr-text">Select Gauge for Calibration</span>
-                    </div>
-                    <p></p>
-                    <div class="inline">
-                        <strong>Gauge List:</strong>
-                        <select class="generic-dropdown" id="gagelist" >
-                            <option value="False" >No Adjustment</option>
-                        </select>
-                    </div>
-                    <p></p>
                     <!-- Basin Properties Button -->
                     <div class="hr-text-bar">
                         <span class="hr-text">Basin Properties</span>
@@ -298,12 +286,24 @@
                     <p></p>
                     <button id="basinstats-button" class="generic-grey-button" disabled="disabled" data-toggle="modal" data-target="#basin_stat">Basin Statistics</button>
                     <p></p>
+                    <!-- Gage List -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Select Gauge for Calibration</span>
+                    </div>
+                    <p></p>
+                    <div class="inline">
+                        <strong>Gauge List:</strong>
+                        <select class="generic-dropdown" id="gagelist" disabled="disabled">
+                            <option value="False" >No Adjustment</option>
+                        </select>
+                    </div>
+                    <p></p>
                     <div class="inline" style="display:none;" id="regiondisplay">
                         <strong>Hydrologic Region (FRRE):</strong>
                         <select class="generic-dropdown" style="width: 50%;" id="regionselect"></select>
                     </div>
                     <p></p>
-                    <button id="tasker-button" class="generic-grey-button" disabled="disabled" data-toggle="modal" onclick=taskerregion()>FRRE Discharges</button>
+                    <button id="tasker-button" class="generic-grey-button" disabled="disabled" data-toggle="modal" onclick=tasker_basin()>FRRE Discharges</button>
                     <p></p>
                 </div>
             </div>
