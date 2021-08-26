@@ -1,7 +1,6 @@
 {
     "appServer": {
         "SHAserverURL": "https://maps.roads.maryland.gov/arcgis/rest/services/GISHydro/GISHydro/GPServer/",
-        "UMDserverURL": "https://fittcoopgis.mbakerintl.com/arcgis/rest/services/UMD/UMDGISHydro/GPServer/"
     },
     "appConfig": {
         "DataSelectionURL": "DataSelection",
