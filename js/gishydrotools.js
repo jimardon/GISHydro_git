@@ -141,7 +141,6 @@ function validdelcheck(){
         document.getElementById('pp_lat').value = parseFloat(mark_lat).toFixed(6)
     }
 
-    alert(siteconfig)
     var gpService = L.esri.GP.service({
         url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.DelCheckURL,
         useCors:false,
