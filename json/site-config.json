@@ -1,6 +1,6 @@
 {
     "appServer": {
-        "SHAserverURL": "https://maps.roads.maryland.gov/arcgis/rest/services/GISHydro/GISHydro/GPServer/",
+        "SHAserverURL": "https://maps.roads.maryland.gov/arcgis/rest/services/GISHydro/GISHydro/GPServer/"
     },
     "appConfig": {
         "DataSelectionURL": "DataSelection",
