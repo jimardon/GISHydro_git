@@ -268,11 +268,23 @@ button:focus{
     float: center;
 }
 
+#curvenumber-button{
+    width: 100%;
+    float: center;
+}
+
 #longpathdownload-button{
     width: 100%;
     float: center;
     display: none;
 }
+
+#curvenumberdownload-button{
+    width: 100%;
+    float: center;
+    display: none;
+}
+
 
 #soilsdownload-button{
     width: 100%;

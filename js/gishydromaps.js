@@ -321,6 +321,9 @@ map.addLayer(soilslyr);
 var longestpathlyr = L.featureGroup();
 map.addLayer(longestpathlyr);
 
+var curvenumberlyr = L.featureGroup();
+map.addLayer(curvenumberlyr);
+
 var checkBoxlayer = $('.LayerCheck');
 checkBoxlayer.change(function () {
     $('#email-input').prop('disabled', checkBoxlayer.filter(':checked').length < 1);
@@ -385,6 +388,23 @@ function highlightFeaturesoils(e) {
     info2.update(layer.feature.properties);
 }
 
+function highlightFeaturecn(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 2,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+        layer.bringToFront();
+    }
+
+    info3.update(layer.feature.properties);
+}
+
 function onEachFeaturelu(feature, layer) {
     layer.on({
         mouseover: highlightFeaturelu,
@@ -396,6 +416,13 @@ function onEachFeaturesoils(feature, layer) {
     layer.on({
         mouseover: highlightFeaturesoils,
         mouseout: resetHighlightsoils,
+    });
+}
+
+function onEachFeaturecurvenumber(feature, layer) {
+    layer.on({
+        mouseover: highlightFeaturecn,
+        mouseout: resetHighlightcn,
     });
 }
 
@@ -430,6 +457,28 @@ function style2(feature) {
     };
 }
 
+function getcurvenumberColor(d) {
+    return d > 90 ? '#800026' :
+           d > 80 ? '#BD0026' :
+           d > 70 ? '#E31A1C' :
+           d > 60 ? '#FC4E2A' :
+           d > 50 ? '#FD8D3C' :
+           d > 30 ? '#FEB24C' :
+           d > 20 ? '#FED976' :
+                    '#FFEDA0';
+}
+
+function style3(feature) {
+    return {
+        fillColor: getcurvenumberColor(feature.properties.gridcode),
+        weight: 1,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+}
+
 var lugeojson;
 function resetHighlightlu(e) {
     lugeojson.resetStyle(e.target);
@@ -442,8 +491,15 @@ function resetHighlightsoils(e) {
     info2.update();
 }
 
+var curvenumbergeojson;
+function resetHighlightcn(e) {
+    curvenumbergeojson.resetStyle(e.target);
+    info3.update();
+}
+
 var info = L.control({position: "bottomright"});
 var info2 = L.control({position: "bottomright"});
+var info3 = L.control({position: "bottomright"});
 
 map.on('overlayadd', function(eo) {
     if (eo.name === basin_lu){
@@ -452,6 +508,9 @@ map.on('overlayadd', function(eo) {
     if (eo.name === basin_soil){
         info2.addTo(map);
     }
+    if (eo.name === "Cuve Number"){
+        info3.remove();
+    }
 });
 map.on('overlayremove', function(eo) {
     if (eo.name === basin_lu){
@@ -459,5 +518,8 @@ map.on('overlayremove', function(eo) {
     }
     if (eo.name === basin_soil){
         info2.remove();
+    }
+    if (eo.name === "Cuve Number"){
+        info3.remove();
     }
 });

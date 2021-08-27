@@ -40,6 +40,7 @@ var contourslayer = '';
 var longestpath_layer = '';
 var soils_layer = '';
 var landuse_layer = '';
+var curvenumber_layer = '';
 var addpointvar = false;
 var clear_outlets = false;
 var clear_flowpaths = false;
@@ -367,6 +368,7 @@ function data_select(){
         } else {
             $('#landuse-button').removeAttr('disabled');
             $('#soils-button').removeAttr('disabled');
+            $('#curvenumber-button').removeAttr('disabled');
             document.getElementById("sheddownload-div").style.display = "block";
             sidebar.enablePanel('basin_properties');
             sidebar.open('basin_properties');
@@ -2140,6 +2142,63 @@ function soilsload(){
 
 function exportsoils(){saveToFile(soils_layer, 'soils');}
 
+function curvenumberload(){
+    map.spin(true);
+    $('#curvenumber-button').attr('disabled','true');
+
+    var gpService = L.esri.GP.service({
+        url: siteconfig.appServer.serverURL + siteconfig.appConfig.LoadLayerURL,
+        useCors:false
+    });
+    var gpTask = gpService.createTask();
+
+    gpTask.setParam("projectname",  full_project_name)
+    gpTask.setParam("inputlayer", "Curve Number")
+    
+    gpTask.run(curvenumberCallback);
+
+    function curvenumberCallback(error, response, raw){
+
+        if (error){
+            alertmodal("Error",errormsg,"10vh")
+            map.spin(false);
+            $('#curvenumber-button').removeAttr('disabled');
+            return
+        }
+
+        curvenumber_layer = response.outputlayer
+        curvenumbergeojson = L.geoJson(curvenumber_layer, {
+            style: style3,
+            onEachFeature: onEachFeaturecurvenumber
+        });
+        curvenumberlyr.addLayer(curvenumbergeojson);
+        LC.addOverlay(curvenumberlyr, "Curve Number");
+
+        info3.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'info');
+            this.update();
+            return this._div;
+        };
+        
+        info3.update = function (props) {
+            this._div.innerHTML = (props ?
+                '<b>Curve Number: ' + parseInt(props.gridcode) + '</b><br />'
+                : 'Hover over a land use');
+        };
+        
+        info3.addTo(map);
+
+        $('#curvenumber-button').removeAttr('disabled');
+        document.getElementById("curvenumber-button").style.display = "none";
+        document.getElementById("curvenumberdownload-button").style.display = "block";
+
+        map.spin(false);
+
+    };
+};
+
+function exportcurvenumber(){saveToFile(curvenumber_layer, 'curvenumber');}
+
 function longestpathload(){
     map.spin(true);
     $('#longestpath-button').attr('disabled','true');
@@ -2154,9 +2213,9 @@ function longestpathload(){
     gpTask.setParam("inputlayer", "Longest Path")
     gpTask.setParam("reaches", reaches)
     
-    gpTask.run(infprojCallback);
+    gpTask.run(longpathCallback);
 
-    function infprojCallback(error, response, raw){
+    function longpathCallback(error, response, raw){
 
         if (error){
             alertmodal("Error",errormsg,"10vh")
@@ -2165,18 +2224,18 @@ function longestpathload(){
             return
         }
 
-        longestpathlyr.addLayer(L.geoJson(response.outputlayer,{
+        longestpath_layer = response.outputlayer
+        longestpathlyr.addLayer(L.geoJson(longestpath_layer,{
             color: '#E74C3C',
             weight: 3,
         }));
+
+        LC.addOverlay(longestpathlyr, "Longest Paths");
+        $('#longestpath-button').removeAttr('disabled');
+        document.getElementById("longestpath-button").style.display = "none";
+        document.getElementById("longpathdownload-button").style.display = "block";
+        map.spin(false);
     };
-
-    LC.addOverlay(longestpathlyr, "Longest Paths");
-    $('#longestpath-button').removeAttr('disabled');
-    document.getElementById("longestpath-button").style.display = "none";
-    document.getElementById("longpathdownload-button").style.display = "block";
-    map.spin(false);
-
 };
 
 function exportlongpath(){saveToFile(longestpath_layer, 'longestpaths');}

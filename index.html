@@ -88,7 +88,7 @@
                 <div style="width:95%;">
                     <p></p>
                     <p align="justify" style="font-size:16px;"><b>GISHydroWEB</b> is a GIS-based web application for performing hydrologic analysis developed by 
-                        The University of Maryland in conjunction with Maryland State Highway Administration.
+                        The University of Maryland in conjunction with MDOT State Highway Administration (SHA).
                         It consists of a database of hydrologic layers and customized modeling tools.</p>
                     <p align="justify" style="font-size:16px;"><b>Some Features Include:</b></p>
                     <ul align="justify" style="font-size:16px;">
@@ -98,7 +98,7 @@
                         <li>Peak discharge estimates from USGS regional regression equations (with confidence intervals and gauge calibration).</li>
                         <li>Built-in WinTR-20 model.</li>
                     </ul>
-                    <p align="center" style="color:red;font-size:16px;"><b>Tha application is in a testing phase, things may not work as expected. Use Google Chrome browser for the best experience. Please report any bug you encounter.</b></p>
+                    <p align="center" style="color:red;font-size:16px;"><b>Tha application is in a "Beta" testing phase, things may not work as expected. Use Google Chrome browser for the best experience. Please report any bug you encounter.</b></p>
                     <p align="center" style="font-size:16px;"><b>To start go to the "Area of Interest" tab</b></p>
                     <p align="justify" style="font-size:16px;">GISHydroWEB is under continuous revision. Although we are not a web application development company and do not charge for the use of our website,
                         we do try to support it to the best of our ability. The application has a <a href="javascript:void(sidebar.open('help'));">Help</a> tab that contains some useful documentation.</p>
@@ -200,7 +200,7 @@
 
             <div class="leaflet-sidebar-pane" id="shed_del">
                 <h1 class="leaflet-sidebar-header">
-                    Delineate
+                    Delineation
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
                 <div style="width:95%;">
@@ -759,12 +759,12 @@
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
                 <div style="width:95%;">
-                    <p></p>
+                    <p align="justify" style="font-size:14px;">If the watershed size is too big then some of the layers will not show up on the map. Try reducing the AOI as much as possible.</p>
                     <!-- Create Contours Button -->
                     <div class="hr-text-bar">
                         <span class="hr-text">Create Contours</span>
                     </div>
-                    <p align="justify" style="font-size:14px;">If the watershed size is too big then the contours will not show up on the map. Trying a higher contour interval can help.</p>
+                    <p align="justify" style="font-size:14px;">If the contours do not show up on the map try a higher contour interval.</p>
                     <div class="inline">
                         <strong>Contour Interval [ft]:</strong>
                         <div class="complete-form">
@@ -786,7 +786,6 @@
                     <div class="hr-text-bar">
                         <span class="hr-text">Load Land Use Layer</span>
                     </div>
-                    <p align="justify" style="font-size:14px;">If the AOI size is too big then the land use layer will not show up on the map. Try reducing the AOI as much as possible.</p>
                     <button id="landuse-button" class="generic-grey-button" disabled="disabled" onclick=landuseload()>Load Land Use</button>
                     <button id="ludownload-button" class="generic-grey-button" onclick=exportlanduse()>Download Land Use (json)</button>
                     <p></p>
@@ -794,15 +793,20 @@
                     <div class="hr-text-bar">
                         <span class="hr-text">Load Hydorlogic Soils Layer</span>
                     </div>
-                    <p align="justify" style="font-size:14px;">If the AOI size is too big then the Soils layer will not show up on the map. Try reducing the AOI as much as possible.</p>
                     <button id="soils-button" class="generic-grey-button" disabled="disabled" onclick=soilsload()>Load Soils</button>
                     <button id="soilsdownload-button" class="generic-grey-button" onclick=exportsoils()>Download Soils (json)</button>
+                    <p></p>
+                    <!-- Load Curve Number Layer -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Load Curve Number Layer</span>
+                    </div>
+                    <button id="curvenumber-button" class="generic-grey-button" disabled="disabled" onclick=curvenumberload()>Load Curve Number</button>
+                    <button id="curvenumberdownload-button" class="generic-grey-button" onclick=exportcurvenumber()>Download Curve Number (json)</button>
                     <p></p>
                     <!-- Load Longest Path Layer -->
                     <div class="hr-text-bar">
                         <span class="hr-text">Load Longest Path Layer</span>
                     </div>
-                    <p align="justify" style="font-size:14px;">This option becomes available after selecting the "Velocity Method" option for the Time of Concentration calculations.</p>
                     <button id="longestpath-button" class="generic-grey-button" disabled="disabled" onclick=longestpathload()>Load Longest Path</button>
                     <button id="longpathdownload-button" class="generic-grey-button" onclick=exportlongpath()>Download Longest Path (json)</button>
                     <p></p>
