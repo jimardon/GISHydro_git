@@ -142,7 +142,7 @@ function validdelcheck(){
     }
 
     var gpService = L.esri.GP.service({
-        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.DelCheckURL,
+        url: siteconfig.appServer.serverURL + siteconfig.appConfig.DelCheckURL,
         useCors:false,
     });
     var gpTask = gpService.createTask();
@@ -242,7 +242,7 @@ function data_select(){
     acc_thr = document.getElementById("acc_thres").value
 
     var gpService = L.esri.GP.service({
-        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.DataSelectionURL,
+        url: siteconfig.appServer.serverURL + siteconfig.appConfig.DataSelectionURL,
         useCors:false,
     });
     var gpTask = gpService.createTask();
@@ -385,7 +385,7 @@ function basin_properties(){
     tasker_modal = [];
 
     var gpService = L.esri.GP.service({
-        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.BasinOutputsURL,
+        url: siteconfig.appServer.serverURL + siteconfig.appConfig.BasinOutputsURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -651,7 +651,7 @@ function tasker_basin(){
     tasker_modal = [];
 
     var gpService = L.esri.GP.service({
-        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.TaskerBasinURL,
+        url: siteconfig.appServer.serverURL + siteconfig.appConfig.TaskerBasinURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -917,7 +917,7 @@ function flowpaths_polyline(){
     $('#subdivideno-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.FlowpathsURL,
+        url: siteconfig.appServer.serverURL + siteconfig.appConfig.FlowpathsURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -993,7 +993,7 @@ function outlets_marker(){
     }
 
     var gpService = L.esri.GP.service({
-        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.OutletsURL,
+        url: siteconfig.appServer.serverURL + siteconfig.appConfig.OutletsURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -1057,7 +1057,7 @@ function subsheds(){
     $('#subsheds-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.SubshedsURL,
+        url: siteconfig.appServer.serverURL + siteconfig.appConfig.SubshedsURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -1130,7 +1130,7 @@ function settoc(){
     $('#tcapply-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.SetTOCURL,
+        url: siteconfig.appServer.serverURL + siteconfig.appConfig.SetTOCURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -1497,7 +1497,7 @@ function transect() {
     $('#addreservoir-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.TransectURL,
+        url: siteconfig.appServer.serverURL + siteconfig.appConfig.TransectURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -1639,7 +1639,7 @@ function reservoir(){
     $('#addreservoir-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.ReservoirURL,
+        url: siteconfig.appServer.serverURL + siteconfig.appConfig.ReservoirURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -1827,7 +1827,7 @@ function precipitationdepth() {
     upper90 = document.getElementById("upper90check").checked
 
     var gpService = L.esri.GP.service({
-        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.PrecipitationDepthURL,
+        url: siteconfig.appServer.serverURL + siteconfig.appConfig.PrecipitationDepthURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -1900,7 +1900,7 @@ function tr20controlpanel() {
     totalstage = totalstage.filter(Boolean);
 
     var gpService = L.esri.GP.service({
-        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.TR20ControlURL,
+        url: siteconfig.appServer.serverURL + siteconfig.appConfig.TR20ControlURL,
         useCors:true,
       });
     var gpTask = gpService.createTask();
@@ -1980,7 +1980,7 @@ function contours(){
     $('#contours-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.LoadLayerURL,
+        url: siteconfig.appServer.serverURL + siteconfig.appConfig.LoadLayerURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -2031,7 +2031,7 @@ function landuseload(){
     });
 
     var gpService = L.esri.GP.service({
-        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.LoadLayerURL,
+        url: siteconfig.appServer.serverURL + siteconfig.appConfig.LoadLayerURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -2087,7 +2087,7 @@ function soilsload(){
     $('#soils-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.LoadLayerURL,
+        url: siteconfig.appServer.serverURL + siteconfig.appConfig.LoadLayerURL,
         useCors:false
       });
     var gpTask = gpService.createTask();
@@ -2145,7 +2145,7 @@ function longestpathload(){
     $('#longestpath-button').attr('disabled','true');
 
     var gpService = L.esri.GP.service({
-        url: siteconfig.appServer.SHAserverURL + siteconfig.appConfig.LoadLayerURL,
+        url: siteconfig.appServer.serverURL + siteconfig.appConfig.LoadLayerURL,
         useCors:false
     });
     var gpTask = gpService.createTask();

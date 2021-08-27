@@ -101,7 +101,7 @@
                     <p align="center" style="color:red;font-size:16px;"><b>Tha application is in a testing phase, things may not work as expected. Use Google Chrome browser for the best experience. Please report any bug you encounter.</b></p>
                     <p align="center" style="font-size:16px;"><b>To start go to the "Area of Interest" tab</b></p>
                     <p align="justify" style="font-size:16px;">GISHydroWEB is under continuous revision. Although we are not a web application development company and do not charge for the use of our website,
-                        we do try to support it to the best of our ability. The application has a <a href="javascript:sidebar.open('help');">Help</a> tab that contains some useful documentation.</p>
+                        we do try to support it to the best of our ability. The application has a <a href="javascript:void(sidebar.open('help'));">Help</a> tab that contains some useful documentation.</p>
                     <p align="center" style="font-size:16px;"><b>Check more on the <a href="http://www.gishydro.eng.umd.edu/" rel="noopener noreferrer" target="_blank">GISHydro</a> website.</b></p>
                     <div class="inline">
                         <img src='image/UMD.png' alt="UMD" width="100" height="100" style="float:left">
@@ -117,7 +117,7 @@
                 </h1>
                 <div style="width:95%;">
                     <p></p>
-                    <p align="justify" style="font-size:14px;">Select available options and then proceed to the Watershed <a href="javascript:sidebar.open('shed_del');">Delineation</a> Tab. 
+                    <p align="justify" style="font-size:14px;">Select available options and then proceed to the Watershed <a href="javascript:void(sidebar.open('shed_del'));">Delineation</a> Tab. 
                         Zoom in to enable the NHD streams and local road layers. Zoom even more to show the inferred streams.</p>
                     <p></p>
                     <!-- Project Properties -->
@@ -268,7 +268,7 @@
                 <div style="width:95%;">
                     <p></p>
                     <p align="justify" style="font-size:14px;">If available, select a stream gauge for calibration. Then click on Compute Properties, this could take some time depending on the watershed size. 
-                        After the process has finished some basin properties will become available. You can also download the current watershed in JSON format from the previous tab (<a href="javascript:sidebar.open('shed_del');">Delineation</a>).</p>
+                        After the process has finished some basin properties will become available. You can also download the current watershed in JSON format from the previous tab (<a href="javascript:void(sidebar.open('shed_del'));">Delineation</a>).</p>
                     <p></p>
                     <!-- Basin Properties Button -->
                     <div class="hr-text-bar">
@@ -340,7 +340,7 @@
 
                         <p></p>
                         <p align="justify" style="font-size:14px;">Flow paths and outlets will divide the watershed in subwatersheds. At least one flow path must be selected. Outlets must be placed on valid streams. 
-                            After this process has finished you can download the subwatersheds in JSON format or proceed to the <a href="javascript:sidebar.open('download');">Download</a> tab to e-mail it as a package (not working in beta test!!!!).</p>
+                            After this process has finished you can download the subwatersheds in JSON format or proceed to the <a href="javascript:void(sidebar.open('download'));">Download</a> tab to e-mail it as a package (not working in beta test!!!!).</p>
                         <p></p>
                         <!-- Select Pour Point -->
                         <div class="hr-text-bar">
@@ -531,7 +531,7 @@
                 <div style="width:95%;">
                     <p></p>
                     <p align="justify" style="font-size:14px;">If this option becomes available then a reach control (rating table/curve) must be applied to the routing reach(es). 
-                        To help draw cross section profiles, a tool to show contour lines is available in the <a href="javascript:sidebar.open('tools');">Tools</a> tab.</p>
+                        To help draw cross section profiles, a tool to show contour lines is available in the <a href="javascript:void(sidebar.open('tools'));">Tools</a> tab.</p>
                     <p></p>
                     <div style="display:block;" id="rating_method">
                         <div class="hr-text-bar">
@@ -824,31 +824,33 @@
                     <div class="hr-text-bar">
                         <span class="hr-text">GISHydro Documentation</span>
                     </div>
-                    <p></p>
-                    <p align="center" style="color:red">Last update: April, 2021</p>
-                    <p></p>
-                    <button id="help-button" class="generic-grey-button" onclick="window.open('http://www.gishydro.eng.umd.edu/gishydronxtdocs/GISHydroNXT_TechnicalReference.pdf', '_blank' );">Technical Reference</button>
-                    <p></p>
-                    <button id="help-button" class="generic-grey-button" onclick="window.open('http://www.gishydro.eng.umd.edu/gishydronxtdocs/TrainingManual_Aug2018.pdf', '_blank' );">Training Manual</button>
-                    <p></p>
-                    <button id="help-button" class="generic-grey-button" onclick="window.open('http://www.gishydro.eng.umd.edu/gishydronxtdocs/Users_Manual_Tool_Guide.pdf', '_blank' );">Manual Tool Guide</button>
-                    <p></p>
-                    <button id="help-button" class="generic-grey-button" onclick="window.open('http://www.gishydro.eng.umd.edu/gishydronxtdocs/CodeDocumentation_July2018/index.html', '_blank' );">System Documentation</button>
-                    <p></p>
+                    <p align="center" style="font-size:14px;">The below links have not been updated with the latest GISHydroWEB documentation. As fo now, these will redirect the user to GISHydroNXT documentation.</p>
+                    <p align="center" style="color:red">Last update: August, 2021</p>
+                    <p align="center">
+                        <a href="http://www.gishydro.eng.umd.edu/" target="_blank" style="font-size:16px;"><b>GISHydro Website</b></a>
+                    </p>
+                    <p align="center">
+                        <a href="http://www.gishydro.eng.umd.edu/gishydronxtdocs/GISHydroNXT_TechnicalReference.pdf" target="_blank" style="font-size:16px;"><b>Technical Reference</b></a>
+                    </p>
+                    <p align="center">
+                        <a href="http://www.gishydro.eng.umd.edu/gishydronxtdocs/TrainingManual_Aug2018.pdf" target="_blank" style="font-size:16px;"><b>Training Manual</b></a>
+                    </p>
+                    <p align="center">
+                        <a href="http://www.gishydro.eng.umd.edu/gishydronxtdocs/Users_Manual_Tool_Guide.pdf" target="_blank" style="font-size:16px;"><b>Manual Tool Guide</b></a>
+                    </p>
+                    <p align="center">
+                        <a href="http://www.gishydro.eng.umd.edu/gishydronxtdocs/CodeDocumentation_July2018/index.html" target="_blank" style="font-size:16px;"><b>System Documentation</b></a>
+                    </p>
                     <div class="hr-text-bar">
                         <span class="hr-text">Useful Links</span>
                     </div>
-                    <p></p>
-                    <button id="help-button" class="generic-grey-button" onclick="window.open('https://hdsc.nws.noaa.gov/hdsc/pfds/docs/NA14Vol1.pdf', '_blank' );">NOAA Atlas 14</button>
-                    <p></p>
-                    <button id="help-button" class="generic-grey-button" onclick="window.open('https://www.wcc.nrcs.usda.gov/ftpref/wntsc/H&H/WinTR20/WinTR20UserGuideVer310Mar2015.pdf', '_blank' );">WinTR-20 User Guide (v3.10)</button>
-                    <p></p>
-                    <p align="center" style="font-size:14px;">Glitches and bugs can occasionally happen. If you encounter one of these bugs, please report it to us.</p>
-                    <p></p>
                     <p align="center">
-                    <a href="http://www.gishydro.eng.umd.edu/" target="_blank" style="font-size:18px;"><b>GISHydro Website</b></a>
+                        <a href="https://hdsc.nws.noaa.gov/hdsc/pfds/docs/NA14Vol1.pdf" target="_blank" style="font-size:16px;"><b>NOAA Atlas 14</b></a>
                     </p>
-                    <p></p>
+                    <p align="center">
+                        <a href="https://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/null/?cid=stelprdb1042793" target="_blank" style="font-size:16px;"><b>WinTR-20 Project (v3.20)</b></a>
+                    </p>
+                    <p align="center" style="font-size:14px;">Glitches and bugs can occasionally happen. If you encounter one of these bugs, please report it to us.</p>
                 </div>
             </div>
         </div>

@@ -1,0 +1,41 @@
+# Basic pipeline
+# https://aka.ms/yaml
+# Pull from repo and make folder available for download
+
+trigger:
+- master
+
+variables:
+  appsettingsfile: site-config.json
+  appServer.serverURL: 'https://maps.roads.maryland.gov/arcgis/rest/services/GISHydro/GISHydro/GPServer/'
+
+stages:
+  - stage: web_deploy
+    displayName: Deploy Hydro Web App 
+    dependsOn: []
+    pool:
+      vmImage: "ubuntu-latest"
+    jobs:
+      - job:
+        displayName: Ready code for deployment
+        steps:
+          # Persist repository state across builds.
+          - checkout: self
+            clean: false
+
+          # Transform application config before build
+          - task: FileTransform@2
+            displayName: 'Transform Config Json'
+            inputs:
+              folderPath: '$(System.DefaultWorkingDirectory)/**/'
+              xmlTransformationRules: ''
+              jsonTargetFiles: '**/$(appsettingsfile)'
+
+          # Publish build artifacts
+          - task: PublishPipelineArtifact@1
+            displayName: "Copy application artifacts"
+            inputs:
+              targetPath: "$(Build.SourcesDirectory)"
+              artifactName: "gis_hydro_web_app"
+
+
