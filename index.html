@@ -1308,6 +1308,17 @@
 
 <script type="text/javascript" src="js/gishydromaps.js"></script>
 
+<script type='text/javascript'>
+	function isItIE() {
+	  user_agent = navigator.userAgent;
+	  var is_it_ie = user_agent.indexOf("MSIE ") > -1 || user_agent.indexOf("Trident/") > -1;
+	  return is_it_ie; 
+	}
+	if (isItIE()){
+	    alert('WARNING: GISHydroWEB does not support Internet Explorer. Please use Chrome, Firefox, or Edge. Refer to GISHydro documentation for supported browsers and devices.');
+	}
+</script>
+
 </body>
 
 </html>
