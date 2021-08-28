@@ -51,8 +51,6 @@
 
 <body>
 
-<div class="container"></div>
-
     <div id="map"></div>
 
     <div id="sidebar" class="leaflet-sidebar collapsed">
@@ -73,6 +71,7 @@
 
             <!-- bottom aligned tabs -->
             <ul role="tablist">
+                <li><a href="#frrecalc" role="tab"><i class="fa fa-calculator"></i></a></li>
                 <li><a href="#tools" role="tab"><i class="fa fa-wrench"></i></a></li>
                 <li><a href="#help" role="tab"><i class="fa fa-question"></i></a></li>
             </ul>
@@ -189,7 +188,7 @@
                     <div class="inline">
                         <strong>Accumulation Threshold (ac.):</strong>
                         <div class="complete-form">
-                            <input type="number" style="width:40%;" min="5" max="500" step="1" class="complete-input" id="acc_thres" value="60">
+                            <input type="number" style="width:50%;padding-left: 10px;" min="5" max="500" step="1" class="complete-input" id="acc_thres" value="60">
                         </div>
                     </div>
                     <!-- Proceed to Delineation -->
@@ -752,6 +751,102 @@
                 </div>
             </div>
 
+            <div class="leaflet-sidebar-pane" id="frrecalc">
+                <h1 class="leaflet-sidebar-header">
+                    FRRE Calculator
+                    <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+                </h1>
+                <div style="width:95%;">
+                    <p></p>
+                    <p align="justify" style="font-size:14px;">This tool allows you to compute the Fixed Region Regression Equations v2020 developed by the Maryland
+                        Hydrology Panel for GISHydroWEB. For more information go to the panel website <a href='http://www.gishydro.eng.umd.edu/panel.htm' target="_blank">here</a>.</p>
+                    <!--Region Selection -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Region Selection</span>
+                    </div>
+                    <p align="justify" style="font-size:14px;">Turn on the Hydrologic Region layer in the layer control option to view the area covered by each province.</p>
+                    <div class="inline">
+                        <strong>Hydrologic Region:</strong>
+                        <select style="width:50%;" class="generic-dropdown" id="tasker_region">
+                            <option value="A">Appalachian Plateau</option>
+                            <option value="P">Piedmont</option>
+                            <option value="B">Blue Ridge</option>
+                            <option value="WC">Western Coastal Plain</option>
+                            <option value="EC">Easter Coastal Plain</option>
+                        </select>
+                    </div>
+                    <!--Parameters -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Parameters</span>
+                    </div>
+                    <p></p>
+                    <div class="inline">
+                        <strong>Drainage Area (sq mi.):</strong>
+                        <div class="complete-form">
+                            <input type="number" style="width:60%;padding-left:10px;" min="0" max="1000" step="0.01" class="complete-input" id="tasker_area" value="21.20">
+                        </div>
+                    </div>
+                    <div style='display: block;' id="landslopeline">
+                        <div class="inline">
+                            <strong>Land Slope (ft/ft):</strong>
+                            <div class="complete-form">
+                                <input type="number" style="width:60%;padding-left:10px;" min="0" max="10" step="0.001" class="complete-input" id="tasker_landslope" value="0.051">
+                            </div>
+                        </div>
+                    </div>
+                    <div style='display: none;' id="limeline">
+                        <div class="inline">
+                            <strong>Limestone (%):</strong>
+                            <div class="complete-form">
+                                <input type="number" style="width:60%;padding-left:10px;" min="0" max="100" step="0.01" class="complete-input" id="tasker_limestone" value="0.00">
+                            </div>
+                        </div>
+                    </div>
+                    <div style='display: none;' id="impline">
+                        <div class="inline">
+                            <strong>Impervious Area (%):</strong>
+                            <div class="complete-form">
+                                <input type="number" style="width:60%;padding-left:10px;" min="0" max="100" step="0.01" class="complete-input" id="tasker_imp" value="27.91">
+                            </div>
+                        </div>
+                    </div>
+                    <div style='display: none;' id="asoilline">
+                        <div class="inline" >
+                            <strong>"A" Soil Area (%):</strong>
+                            <div class="complete-form">
+                                <input type="number" style="width:60%;padding-left:10px;" min="0" max="100" step="0.01" class="complete-input" id="tasker_asoil" value="13.45">
+                            </div>
+                        </div>
+                    </div>
+                    <p></p>
+                    <!--Gage ID -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Gage Adjustment</span>
+                    </div>
+                    <p align="justify" style="font-size:14px;">Turn on the USGS Gages layer in the layer control option to view the available gages for calibration.
+                        Click on a gage to automatically fill the Gage ID text box. Unselect the Gage Adjustment box for unadjusted results.</p>
+                    <div class="inline">
+                        <div class="checkbox-form">
+                            <strong>Gage Adjustment:</strong>
+                            <input type="checkbox" class="checkbox-box" id="tasker_adjust" checked>
+                        </div>
+                    </div>
+                    <div class="inline">
+                        <strong>Gage ID:</strong>
+                        <div class="complete-form">
+                            <input type="text" style="width:60%;text-align:center;" class="complete-input" id="tasker_gage" value="1650500">
+                        </div>
+                    </div>
+                    <!-- Proceed to Calculate -->
+                    <div class="hr-text-bar">
+                        <span class="hr-text">Run Equations</span>
+                    </div>
+                    <p></p>
+                    <button id="taskercalc-button" class="generic-grey-button" onclick=tasker_calculator()><b>Compute FRRE</b></button>
+                </div>
+            </div>
+
+
             <!-- Tools -->
             <div class="leaflet-sidebar-pane" id="tools">
                 <h1 class="leaflet-sidebar-header">
@@ -859,465 +954,466 @@
             </div>
         </div>
     </div>
-</div>
 
-<div class="modal fade" id="basin_comp" role="dialog"></div>
-<div class="modal fade" id="basin_stat" role="dialog"></div>
-<div class="modal fade" id="tasker_mod" role="dialog"></div>
-<div class="modal fade" id="rating_mod" role="dialog"></div>
 
-<div class="modal fade" id="toc_mod" role="dialog"></div>
-<span id="tocmodal">&nbsp;</span>
+    <div class="modal fade" id="basin_comp" role="dialog"></div>
+    <div class="modal fade" id="basin_stat" role="dialog"></div>
+    <div class="modal fade" id="tasker_mod" role="dialog"></div>
+    <div class="modal fade" id="rating_mod" role="dialog"></div>
+    <div class="modal fade" id="taskercalc_mod" role="dialog"></div>
 
-<div class="modal fade" id="precipitation_modal" role="dialog">
-    <div class="modal-dialog modal-lg" style="width:100%">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Precipitation Selection</h4>
-            </div>
-            <div class="modal-body">
-                <p align="center"><b>Select Storm Events</b></p>
-                <table border="0" align="center">
-                    <col width="80">
-                    <col width="80">
-                    <col width="80">
-                    <col width="80">
-                    <col width="80">
-                    <tr><td></td>
-                        <td class="center">6-hour</td>
-                        <td class="center">12-hour</td>
-                        <td class="center">24-hour</td>
-                        <td class="center">48-hour</td>
-                    </tr>
-                    <tr style="height: 40px;"><td>1.1-year</td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p1-6"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p1-12"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p1-24"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p1-48"></td>
-                    </tr>
-                    <tr style="height: 40px;"><td>2-year</td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p2-6"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p2-12"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p2-24"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p2-48"></td>
-                    </tr>
-                    <tr style="height: 40px;"><td>5-year</td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p5-6"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p5-12"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p5-24"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p5-48"></td>
-                    </tr>
-                    <tr style="height: 40px;"><td>10-year</td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p10-6"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p10-12"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p10-24"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p10-48"></td>
-                    </tr>
-                    <tr style="height: 40px;"><td>25-year</td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p25-6"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p25-12"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p25-24"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p25-48"></td>
-                    </tr>
-                    <tr style="height: 40px;"><td>50-year</td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p50-6"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p50-12"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p50-24"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p50-48"></td>
-                    </tr>
-                    <tr style="height: 40px;"><td>100-year</td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p100-6"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p100-12"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p100-24" checked></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p100-48"></td>
-                    </tr>
-                    <tr style="height: 40px;"><td>200-year</td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p200-6"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p200-12"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p200-24"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p200-48"></td>
-                    </tr>
-                    <tr style="height: 40px;"><td>500-year</td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p500-6"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p500-12"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p500-24"></td>
-                        <td class="center"><input type="checkbox" name="precepcheck" value="p500-48"></td>
-                    </tr>
-                </table>
-                <p></p>
-                <div style="margin: 0 auto;width:40%;">
-                    <strong>Use Upper 90% Confidence Limit:</strong>
-                    <input type="checkbox" class="checkbox-box" id="upper90check">
+    <div class="modal fade" id="toc_mod" role="dialog"></div>
+    <span id="tocmodal">&nbsp;</span>
+
+    <div class="modal fade" id="precipitation_modal" role="dialog">
+        <div class="modal-dialog modal-lg" style="width:100%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Precipitation Selection</h4>
                 </div>
-            </div>
-            <div class="modal-footer" style="justify-content: space-between;">
-                <button type="button" class="btn btn-default" onclick=selectallprecip()>Select/Unselect All</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclick=precipitationdepth()>Apply</button>
+                <div class="modal-body">
+                    <p align="center"><b>Select Storm Events</b></p>
+                    <table border="0" align="center">
+                        <col width="80">
+                        <col width="80">
+                        <col width="80">
+                        <col width="80">
+                        <col width="80">
+                        <tr><td></td>
+                            <td class="center">6-hour</td>
+                            <td class="center">12-hour</td>
+                            <td class="center">24-hour</td>
+                            <td class="center">48-hour</td>
+                        </tr>
+                        <tr style="height: 40px;"><td>1.1-year</td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p1-6"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p1-12"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p1-24"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p1-48"></td>
+                        </tr>
+                        <tr style="height: 40px;"><td>2-year</td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p2-6"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p2-12"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p2-24"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p2-48"></td>
+                        </tr>
+                        <tr style="height: 40px;"><td>5-year</td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p5-6"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p5-12"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p5-24"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p5-48"></td>
+                        </tr>
+                        <tr style="height: 40px;"><td>10-year</td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p10-6"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p10-12"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p10-24"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p10-48"></td>
+                        </tr>
+                        <tr style="height: 40px;"><td>25-year</td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p25-6"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p25-12"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p25-24"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p25-48"></td>
+                        </tr>
+                        <tr style="height: 40px;"><td>50-year</td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p50-6"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p50-12"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p50-24"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p50-48"></td>
+                        </tr>
+                        <tr style="height: 40px;"><td>100-year</td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p100-6"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p100-12"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p100-24" checked></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p100-48"></td>
+                        </tr>
+                        <tr style="height: 40px;"><td>200-year</td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p200-6"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p200-12"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p200-24"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p200-48"></td>
+                        </tr>
+                        <tr style="height: 40px;"><td>500-year</td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p500-6"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p500-12"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p500-24"></td>
+                            <td class="center"><input type="checkbox" name="precepcheck" value="p500-48"></td>
+                        </tr>
+                    </table>
+                    <p></p>
+                    <div style="margin: 0 auto;width:40%;">
+                        <strong>Use Upper 90% Confidence Limit:</strong>
+                        <input type="checkbox" class="checkbox-box" id="upper90check">
+                    </div>
+                </div>
+                <div class="modal-footer" style="justify-content: space-between;">
+                    <button type="button" class="btn btn-default" onclick=selectallprecip()>Select/Unselect All</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick=precipitationdepth()>Apply</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="modal fade" id="storm_modal" role="dialog">
-    <div class="modal-dialog modal-lg" style="width:100%">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">IDF Precipitation Values</h4>
-            </div>
-            <div class="modal-body">
-                <p align="center"><b>Select Storm Depths [in]</b></p>
-                <table border="0" align="center">
-                    <col width="80">
-                    <col width="100">
-                    <col width="100">
-                    <col width="100">
-                    <col width="100">
-                    <tr><td></td>
-                        <td class="center">6-hour</td>
-                        <td class="center">12-hour</td>
-                        <td class="center">24-hour</td>
-                        <td class="center">48-hour</td>
-                    </tr>
-                    <tr style="height: 40px;"><td>1-year</td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p1-6t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p1-12t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p1-24t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p1-48t" value="-"></td>
-                    </tr>
-                    <tr style="height: 40px;"><td>2-year</td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p2-6t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p2-12t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p2-24t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p2-48t" value="-"></td>
-                    </tr>
-                    <tr style="height: 40px;"><td>5-year</td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p5-6t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p5-12t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p5-24t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p5-48t" value="-"></td>
-                    </tr>
-                    <tr style="height: 40px;"><td>10-year</td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p10-6t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p10-12t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p10-24t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p10-48t" value="-"></td>
-                    </tr>
-                    <tr style="height: 40px;"><td>25-year</td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p25-6t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p25-12t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p25-24t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p25-48t" value="-"></td>
-                    </tr>
-                    <tr style="height: 40px;"><td>50-year</td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p50-6t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p50-12t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p50-24t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p50-48t" value="-"></td>
-                    </tr>
-                    <tr style="height: 40px;"><td>100-year</td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p100-6t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p100-12t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p100-24t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p100-48t" value="-"></td>
-                    </tr>
-                    <tr style="height: 40px;"><td>200-year</td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p200-6t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p200-12t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p200-24t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p200-48t" value="-"></td>
-                    </tr>
-                    <tr style="height: 40px;"><td>500-year</td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p500-6t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p500-12t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p500-24t" value="-"></td>
-                        <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p500-48t" value="-"></td>
-                    </tr>
-                </table><p></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclick=stormcheck()>Apply</button>
+    <div class="modal fade" id="storm_modal" role="dialog">
+        <div class="modal-dialog modal-lg" style="width:100%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">IDF Precipitation Values</h4>
+                </div>
+                <div class="modal-body">
+                    <p align="center"><b>Select Storm Depths [in]</b></p>
+                    <table border="0" align="center">
+                        <col width="80">
+                        <col width="100">
+                        <col width="100">
+                        <col width="100">
+                        <col width="100">
+                        <tr><td></td>
+                            <td class="center">6-hour</td>
+                            <td class="center">12-hour</td>
+                            <td class="center">24-hour</td>
+                            <td class="center">48-hour</td>
+                        </tr>
+                        <tr style="height: 40px;"><td>1-year</td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p1-6t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p1-12t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p1-24t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p1-48t" value="-"></td>
+                        </tr>
+                        <tr style="height: 40px;"><td>2-year</td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p2-6t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p2-12t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p2-24t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p2-48t" value="-"></td>
+                        </tr>
+                        <tr style="height: 40px;"><td>5-year</td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p5-6t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p5-12t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p5-24t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p5-48t" value="-"></td>
+                        </tr>
+                        <tr style="height: 40px;"><td>10-year</td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p10-6t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p10-12t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p10-24t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p10-48t" value="-"></td>
+                        </tr>
+                        <tr style="height: 40px;"><td>25-year</td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p25-6t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p25-12t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p25-24t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p25-48t" value="-"></td>
+                        </tr>
+                        <tr style="height: 40px;"><td>50-year</td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p50-6t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p50-12t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p50-24t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p50-48t" value="-"></td>
+                        </tr>
+                        <tr style="height: 40px;"><td>100-year</td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p100-6t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p100-12t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p100-24t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p100-48t" value="-"></td>
+                        </tr>
+                        <tr style="height: 40px;"><td>200-year</td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p200-6t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p200-12t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p200-24t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p200-48t" value="-"></td>
+                        </tr>
+                        <tr style="height: 40px;"><td>500-year</td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p500-6t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p500-12t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p500-24t" value="-"></td>
+                            <td class="center"><input style="width:50%;text-align:center;" disabled="disabled" name="stormcheck" type="text" id="p500-48t" value="-"></td>
+                        </tr>
+                    </table><p></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick=stormcheck()>Apply</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="modal fade" id="xs_modal" role="dialog">
-    <div class="modal-dialog" style="width:100%">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">XS Transect Settings</h4>
-            </div>
-            <div class="modal-body" >
-                <div class="hr-text-bar">
-                    <span class="hr-text">Roughness Characteristics (DS)</span>
+    <div class="modal fade" id="xs_modal" role="dialog">
+        <div class="modal-dialog" style="width:100%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">XS Transect Settings</h4>
                 </div>
-                <p></p>
-                <div class="inline">
-                    <strong>Left Overbank n Value:</strong>
-                    <div class="complete-form">
-                        <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="10" min="0" step="0.001" class="complete-input" id="xsleft_manning" value="1.000">
-                    </div>
-                </div>
-                <div class="inline">
-                    <strong>Main Channel n Value:</strong>
-                    <div class="complete-form">
-                        <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="10" min="0" step="0.001" class="complete-input" id="xsmain_manning" value="0.050">
-                    </div>
-                </div>
-                <div class="inline">
-                    <strong>Right Overbank n Value:</strong>
-                    <div class="complete-form">
-                        <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="10" min="0" step="0.001" class="complete-input" id="xsright_manning" value="1.000">
-                    </div>
-                </div>
-                <p></p>
-                <div style="float:center;text-align:center;">
-                    <button id="advancedreachopt-button" class="generic-grey-button" style="width:50%;height:40px;">Toggle Optional Settings</button>
-                </div>
-                <p></p>
-                <div id="advancedreachopt" style="display:none;">
+                <div class="modal-body" >
                     <div class="hr-text-bar">
-                        <span class="hr-text">Reach Characteristics</span>
+                        <span class="hr-text">Roughness Characteristics (DS)</span>
                     </div>
                     <p></p>
                     <div class="inline">
-                        <strong>Reach Slope [ft/ft]:</strong>
+                        <strong>Left Overbank n Value:</strong>
                         <div class="complete-form">
-                            <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="100" min="0" step="0.00001" class="complete-input" id="reach_slope">
+                            <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="10" min="0" step="0.001" class="complete-input" id="xsleft_manning" value="1.000">
                         </div>
                     </div>
                     <div class="inline">
-                        <strong>Bankfull Elevation [ft]:</strong>
+                        <strong>Main Channel n Value:</strong>
                         <div class="complete-form">
-                            <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="5000" min="0" step="0.01" class="complete-input" id="bf_elev">
+                            <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="10" min="0" step="0.001" class="complete-input" id="xsmain_manning" value="0.050">
                         </div>
                     </div>
-                    <div class="hr-text-bar">
-                        <span class="hr-text">Channel Geometry</span>
+                    <div class="inline">
+                        <strong>Right Overbank n Value:</strong>
+                        <div class="complete-form">
+                            <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="10" min="0" step="0.001" class="complete-input" id="xsright_manning" value="1.000">
+                        </div>
                     </div>
                     <p></p>
-                    <div class="inline">
-                        <strong>Bankfull Channel Width [ft]:</strong>
-                        <div class="complete-form">
-                            <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="10000" min="0" step="0.001" class="complete-input" id="bf_width">
-                        </div>
+                    <div style="float:center;text-align:center;">
+                        <button id="advancedreachopt-button" class="generic-grey-button" style="width:50%;height:40px;">Toggle Optional Settings</button>
                     </div>
-                    <div class="inline">
-                        <strong>Bankfull Channel Depth [ft]:</strong>
-                        <div class="complete-form">
-                            <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="5000" min="0" step="0.01" class="complete-input" id="bf_depth">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclick=transect()>Apply</button>
-            </div>
-        </div>
-    
-    </div>
-</div>
-<div class="modal fade" id="reservoir_modal" role="dialog">
-    <div class="modal-dialog modal-lg" style="width:100%">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Structure Rating</h4>
-            </div>
-            <div class="modal-body">
-                <p align="center"><strong>Structure Identifier: Struct <span id="structreachno">0</span></strong></p>
-                <p align="center">Reference Elevation: <span id="structelev">0</span> FASL</p>
-
-                <div class="center-container">
-                    <div class="scroll-container" id="reservoirtable">
-                        <div id="reservoirtable" class="hot"></div>
-                    </div>
-                </div>
-
-                <p></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclick=resmodaladd()>Apply</button>
-            </div>
-        </div>
-    
-    </div>
-</div>
-<div class="modal fade" id="xsplot_modal" role="dialog">
-    <div class="modal-dialog modal-lg" style="width:100%">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Elevation plot (US) ID: <span id="xsplotreachno">0</span></h4>
-            </div>
-            <div class="modal-body" >
-                <div id="chart_div_xs"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    
-    </div>
-</div>
-<div class="modal fade" id="resplot_modal" role="dialog">
-    <div class="modal-dialog modal-lg" style="width:100%">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Rating Curves (US) ID: <span id="resplotreachno">0</span></h4>
-            </div>
-            <div class="modal-body" >
-                <div id="chart_div_res"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    
-    </div>
-</div>
-<div class="modal fade" id="vm_modal" role="dialog">
-    <div class="modal-dialog modal-lg" style="width:100%">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Velocity Method Calculator ID: <span id="subreachno">0</span></h4>
-            </div>
-            <div class="modal-body" >
-                <div class="row">
-                    <div class="column">
+                    <p></p>
+                    <div id="advancedreachopt" style="display:none;">
                         <div class="hr-text-bar">
-                            <span class="hr-text">Merge Flow Segments</span>
+                            <span class="hr-text">Reach Characteristics</span>
                         </div>
                         <p></p>
                         <div class="inline">
-                            <strong>Single Overland</strong>
+                            <strong>Reach Slope [ft/ft]:</strong>
                             <div class="complete-form">
-                                <input style="width:60%" type="checkbox" class="velmethcheckbox-box" id="singleoverland" checked>
+                                <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="100" min="0" step="0.00001" class="complete-input" id="reach_slope">
                             </div>
                         </div>
-                        <p></p>
                         <div class="inline">
-                            <strong>Single Swale</strong>
+                            <strong>Bankfull Elevation [ft]:</strong>
                             <div class="complete-form">
-                                <input style="width:60%" type="checkbox" class="velmethcheckbox-box" id="singleswale" checked>
+                                <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="5000" min="0" step="0.01" class="complete-input" id="bf_elev">
                             </div>
                         </div>
-                        <p></p>
-                        <div class="inline">
-                            <strong>Single Channel</strong>
-                            <div class="complete-form">
-                                <input style="width:60%" type="checkbox" class="velmethcheckbox-box" id="singlechannel" checked>
-                            </div>
-                        </div>
-                        <p></p>
                         <div class="hr-text-bar">
-                            <span class="hr-text">Merge and Recompute Tc</span>
+                            <span class="hr-text">Channel Geometry</span>
                         </div>
                         <p></p>
                         <div class="inline">
-                            <button id="resettc-button" class="generic-grey-button" onclick=resettc()>Restore Values</button>
-                            <button id="recalculate-button" class="generic-grey-button" onclick=recalculatetc()>Merge Segment</button>
-                        </div>
-                        <p></p>
-                        <div class="hr-text-bar">
-                            <span class="hr-text">Segment Table</span>
-                        </div>
-                        <p></p>
-                        <div class="inline">
-                            <button id="showpixels-button" class="generic-grey-button" onclick=showpx()>Show Tc Attributes</button>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="hr-text-bar">
-                            <span class="hr-text">Results</span>
-                        </div>
-                        <div class="inline">
-                            <strong>Sub-Area #:</strong>
+                            <strong>Bankfull Channel Width [ft]:</strong>
                             <div class="complete-form">
-                                <input style="width:60%;background-color:#F2F4F4;" class="complete-input" id="vmsubarea" readonly>
+                                <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="10000" min="0" step="0.001" class="complete-input" id="bf_width">
                             </div>
                         </div>
                         <div class="inline">
-                            <strong>Overall Travel Time [hrs]:</strong>
+                            <strong>Bankfull Channel Depth [ft]:</strong>
                             <div class="complete-form">
-                                <input style="width:60%;background-color:#F2F4F4;" class="complete-input" id="vmtotaltime" readonly>
-                            </div>
-                        </div>
-                        <div class="inline">
-                            <strong>Overland Travel Time [hrs]:</strong>
-                            <div class="complete-form">
-                                <input style="width:60%;background-color:#F2F4F4;" class="complete-input" id="vmoltt" readonly>
-                            </div>
-                        </div>
-                        <div class="inline">
-                            <strong>Swale Travel Time [hrs]:</strong>
-                            <div class="complete-form">
-                                <input style="width:60%;background-color:#F2F4F4;" class="complete-input" id="vmswtt" readonly>
-                            </div>
-                        </div>
-                        <div class="inline">
-                            <strong>Channel Travel Time [hrs]:</strong>
-                            <div class="complete-form">
-                                <input style="width:60%;background-color:#F2F4F4;" class="complete-input" id="vmchtt" readonly>
-                            </div>
-                        </div>
-                        <div class="inline">
-                            <strong># Overland Segments:</strong>
-                            <div class="complete-form">
-                                <input style="width:60%;background-color:#F2F4F4;" class="complete-input" id="vmolseg" readonly>
-                            </div>
-                        </div>
-                        <div class="inline">
-                            <strong># Swale Segments:</strong>
-                            <div class="complete-form">
-                                <input style="width:60%;background-color:#F2F4F4;" class="complete-input" id="vmswseg" readonly>
-                            </div>
-                        </div>
-                        <div class="inline">
-                            <strong># Channel Segments:</strong>
-                            <div class="complete-form">
-                                <input style="width:60%;background-color:#F2F4F4;" class="complete-input" id="vmchseg" readonly>
+                                <input type="number" style="width:60%;text-align:left;padding-left: 10px;" max="5000" min="0" step="0.01" class="complete-input" id="bf_depth">
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick=transect()>Apply</button>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+    <div class="modal fade" id="reservoir_modal" role="dialog">
+        <div class="modal-dialog modal-lg" style="width:100%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Structure Rating</h4>
+                </div>
+                <div class="modal-body">
+                    <p align="center"><strong>Structure Identifier: Struct <span id="structreachno">0</span></strong></p>
+                    <p align="center">Reference Elevation: <span id="structelev">0</span> FASL</p>
+
+                    <div class="center-container">
+                        <div class="scroll-container" id="reservoirtable">
+                            <div id="reservoirtable" class="hot"></div>
+                        </div>
+                    </div>
+
+                    <p></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick=resmodaladd()>Apply</button>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+    <div class="modal fade" id="xsplot_modal" role="dialog">
+        <div class="modal-dialog modal-lg" style="width:100%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Elevation plot (US) ID: <span id="xsplotreachno">0</span></h4>
+                </div>
+                <div class="modal-body" >
+                    <div id="chart_div_xs"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+    <div class="modal fade" id="resplot_modal" role="dialog">
+        <div class="modal-dialog modal-lg" style="width:100%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Rating Curves (US) ID: <span id="resplotreachno">0</span></h4>
+                </div>
+                <div class="modal-body" >
+                    <div id="chart_div_res"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+    <div class="modal fade" id="vm_modal" role="dialog">
+        <div class="modal-dialog modal-lg" style="width:100%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Velocity Method Calculator ID: <span id="subreachno">0</span></h4>
+                </div>
+                <div class="modal-body" >
+                    <div class="row">
+                        <div class="column">
+                            <div class="hr-text-bar">
+                                <span class="hr-text">Merge Flow Segments</span>
+                            </div>
+                            <p></p>
+                            <div class="inline">
+                                <strong>Single Overland</strong>
+                                <div class="complete-form">
+                                    <input style="width:60%" type="checkbox" class="velmethcheckbox-box" id="singleoverland" checked>
+                                </div>
+                            </div>
+                            <p></p>
+                            <div class="inline">
+                                <strong>Single Swale</strong>
+                                <div class="complete-form">
+                                    <input style="width:60%" type="checkbox" class="velmethcheckbox-box" id="singleswale" checked>
+                                </div>
+                            </div>
+                            <p></p>
+                            <div class="inline">
+                                <strong>Single Channel</strong>
+                                <div class="complete-form">
+                                    <input style="width:60%" type="checkbox" class="velmethcheckbox-box" id="singlechannel" checked>
+                                </div>
+                            </div>
+                            <p></p>
+                            <div class="hr-text-bar">
+                                <span class="hr-text">Merge and Recompute Tc</span>
+                            </div>
+                            <p></p>
+                            <div class="inline">
+                                <button id="resettc-button" class="generic-grey-button" onclick=resettc()>Restore Values</button>
+                                <button id="recalculate-button" class="generic-grey-button" onclick=recalculatetc()>Merge Segment</button>
+                            </div>
+                            <p></p>
+                            <div class="hr-text-bar">
+                                <span class="hr-text">Segment Table</span>
+                            </div>
+                            <p></p>
+                            <div class="inline">
+                                <button id="showpixels-button" class="generic-grey-button" onclick=showpx()>Show Tc Attributes</button>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="hr-text-bar">
+                                <span class="hr-text">Results</span>
+                            </div>
+                            <div class="inline">
+                                <strong>Sub-Area #:</strong>
+                                <div class="complete-form">
+                                    <input style="width:60%;background-color:#F2F4F4;" class="complete-input" id="vmsubarea" readonly>
+                                </div>
+                            </div>
+                            <div class="inline">
+                                <strong>Overall Travel Time [hrs]:</strong>
+                                <div class="complete-form">
+                                    <input style="width:60%;background-color:#F2F4F4;" class="complete-input" id="vmtotaltime" readonly>
+                                </div>
+                            </div>
+                            <div class="inline">
+                                <strong>Overland Travel Time [hrs]:</strong>
+                                <div class="complete-form">
+                                    <input style="width:60%;background-color:#F2F4F4;" class="complete-input" id="vmoltt" readonly>
+                                </div>
+                            </div>
+                            <div class="inline">
+                                <strong>Swale Travel Time [hrs]:</strong>
+                                <div class="complete-form">
+                                    <input style="width:60%;background-color:#F2F4F4;" class="complete-input" id="vmswtt" readonly>
+                                </div>
+                            </div>
+                            <div class="inline">
+                                <strong>Channel Travel Time [hrs]:</strong>
+                                <div class="complete-form">
+                                    <input style="width:60%;background-color:#F2F4F4;" class="complete-input" id="vmchtt" readonly>
+                                </div>
+                            </div>
+                            <div class="inline">
+                                <strong># Overland Segments:</strong>
+                                <div class="complete-form">
+                                    <input style="width:60%;background-color:#F2F4F4;" class="complete-input" id="vmolseg" readonly>
+                                </div>
+                            </div>
+                            <div class="inline">
+                                <strong># Swale Segments:</strong>
+                                <div class="complete-form">
+                                    <input style="width:60%;background-color:#F2F4F4;" class="complete-input" id="vmswseg" readonly>
+                                </div>
+                            </div>
+                            <div class="inline">
+                                <strong># Channel Segments:</strong>
+                                <div class="complete-form">
+                                    <input style="width:60%;background-color:#F2F4F4;" class="complete-input" id="vmchseg" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id=alertmodal tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title"><span id="alertmodaltitle">Title</span></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body" id="alert-body">
+            <p align="center" style="font-size:16px;"><span id="alertmodalmessage">Message</span></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
+        </div>
     </div>
-</div>
-<div class="modal" id=alertmodal tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title"><span id="alertmodaltitle">Title</span></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" id="alert-body">
-          <p align="center" style="font-size:16px;"><span id="alertmodalmessage">Message</span></p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
-<script type="text/javascript" src="js/gishydromaps.js"></script>
+    <script type="text/javascript" src="js/gishydromaps.js"></script>
 
-<script type='text/javascript'>
-	function isItIE() {
-	  user_agent = navigator.userAgent;
-	  var is_it_ie = user_agent.indexOf("MSIE ") > -1 || user_agent.indexOf("Trident/") > -1;
-	  return is_it_ie; 
-	}
-	if (isItIE()){
-	    alert('WARNING: GISHydroWEB does not support Internet Explorer. Please use Chrome, Firefox, or Edge. Refer to GISHydro documentation for supported browsers and devices.');
-	}
-</script>
+    <script type='text/javascript'>
+        function isItIE() {
+        user_agent = navigator.userAgent;
+        var is_it_ie = user_agent.indexOf("MSIE ") > -1 || user_agent.indexOf("Trident/") > -1;
+        return is_it_ie; 
+        }
+        if (isItIE()){
+            alert('WARNING: GISHydroWEB does not support Internet Explorer. Please use Chrome, Firefox, or Edge. Refer to GISHydro documentation for supported browsers and devices.');
+        }
+    </script>
 
 </body>
 

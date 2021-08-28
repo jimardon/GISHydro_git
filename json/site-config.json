@@ -16,7 +16,7 @@
         "TR20ControlURL": "TR20Control",
         "DesignStormURL": "DesignStorm",
         "LoadLayerURL": "LoadLayer",
-        "TaskerComputationURL": "TaskerComputation",
+        "TaskerCalculatorURL": "TaskerCalculator",
         "TaskerBasinURL": "TaskerBasin"
     }
 }

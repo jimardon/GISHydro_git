@@ -76,6 +76,12 @@ button:focus{
     display: none;
 }
 
+#taskercalc-button{
+    width: 100%;
+    float: center;
+    height: 50px;
+}
+
 #velmeth_tc{
     display: none;
 }

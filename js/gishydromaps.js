@@ -37,7 +37,8 @@ var nhd_url = 'https://services9.arcgis.com/RfT19DrflTYZhTI5/arcgis/rest/service
 var gages_url = 'https://services9.arcgis.com/RfT19DrflTYZhTI5/arcgis/rest/services/md_gauges/FeatureServer/0/';
 var roads_url = 'https://services9.arcgis.com/RfT19DrflTYZhTI5/arcgis/rest/services/md_road/FeatureServer/0/';
 var quads_url = 'https://services9.arcgis.com/RfT19DrflTYZhTI5/arcgis/rest/services/Map_Extent/FeatureServer/0';
-var infstr_url = 'https://services9.arcgis.com/RfT19DrflTYZhTI5/ArcGIS/rest/services/infstreams/FeatureServer/0';
+var infstr_url = 'https://services9.arcgis.com/RfT19DrflTYZhTI5/arcgis/rest/services/infstreams/FeatureServer/0';
+var prov_url = 'https://services9.arcgis.com/RfT19DrflTYZhTI5/arcgis/rest/services/Maryland%20Hydrologic%20Regions/FeatureServer/0';
 
 var searchControl = L.esri.Geocoding.geosearch({
     zoomToResult: false,
@@ -171,6 +172,12 @@ var gagesf = L.esri.featureLayer({
     },
     pointToLayer: function(feature, latlng) {
         return new L.CircleMarker(latlng, {radius: 3, fillColor: "#ff7800"});
+    },
+    onEachFeature: function (feature, layer) {
+
+        layer.on('click', function (e) {
+            document.getElementById('tasker_gage').value = e.target.feature.properties.GAGE_ID;
+        });
     }
 });
 
@@ -200,6 +207,41 @@ var infstrf = L.esri.featureLayer({
     }
 });
 
+function getprovColor(d) {
+    if (d == 'A') {return '#CD6155'}
+    else if(d == 'P'){return '#2980B9'}
+    else if(d == 'B'){return '#27AE60'}
+    else if(d == 'E'){return '#F4D03F'}
+    else{return "#85929E"}
+}
+
+function style4(feature) {
+    return {
+        fillColor: getprovColor(feature.properties.PROVINCE),
+        weight: 1,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+}
+
+var provf = L.esri.featureLayer({
+    url: prov_url,
+    style: style4,
+    onEachFeature:function popUp(f,l){
+        var out = [];
+        if (f.properties){
+                for(var key in f.properties){
+                    if (key == "REGION"){
+                            out.push(key+": "+f.properties[key]);
+                }   }
+        l.bindPopup(out.join("<br />"));
+        }
+    }
+});
+
+
 map.on('zoom', function(){
     if (map.getZoom() > 11 && aoi_zoom) {
         nhdf.addTo(map);
@@ -220,6 +262,7 @@ let layerControl = {
     "USGS Gages": gagesf,
     "Roads Layer": roadsf,
     "Inferred Streams": infstrf,
+    "Regions": provf,
 }
 
 var LC = L.control.layers(baseLayers, layerControl);
@@ -287,15 +330,6 @@ var addasoutlets = new L.layerGroup();
 addasoutlets.addTo(map);
 var addasreservoirs = new L.layerGroup();
 addasreservoirs.addTo(map);
-
-var mask_layer = L.featureGroup();
-map.addLayer(mask_layer);
-
-var nhd_layer = L.featureGroup();
-map.addLayer(nhd_layer);
-
-var road_layer = L.featureGroup();
-map.addLayer(road_layer);
 
 var wshed_layer = L.featureGroup();
 map.addLayer(wshed_layer);
@@ -523,3 +557,4 @@ map.on('overlayremove', function(eo) {
         info3.remove();
     }
 });
+

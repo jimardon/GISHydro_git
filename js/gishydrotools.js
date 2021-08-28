@@ -1954,6 +1954,254 @@ function tr20controlpanel() {
     }
 }
 
+function tasker_calculator(){
+    map.spin(true);
+
+    $('#tasker_region').attr('disabled','true');
+    $('#tasker_area').attr('disabled','true');
+    $('#tasker_landslope').attr('disabled','true');
+    $('#tasker_limestone').attr('disabled','true');
+    $('#tasker_imp').attr('disabled','true');
+    $('#tasker_asoil').attr('disabled','true');
+    $('#tasker_adjust').attr('disabled','true');
+    $('#tasker_gage').attr('disabled','true');
+
+    var gpService = L.esri.GP.service({
+        url: siteconfig.appServer.serverURL + siteconfig.appConfig.TaskerCalculatorURL,
+        useCors:false
+      });
+    var gpTask = gpService.createTask();
+
+    var taskeregion = document.getElementById("tasker_region").value;
+    gpTask.setParam("region", taskeregion);
+    gpTask.setParam("area", document.getElementById("tasker_area").value);
+
+    if(taskeregion === 'A') {
+        gpTask.setParam("parameter1", document.getElementById("tasker_landslope").value);
+    } else if(taskeregion === 'P') {
+        gpTask.setParam("parameter1", document.getElementById("tasker_limestone").value);
+        gpTask.setParam("parameter2", document.getElementById("tasker_imp").value);
+    } else if(taskeregion === 'B') {
+        gpTask.setParam("parameter1", document.getElementById("tasker_limestone").value);
+        gpTask.setParam("parameter2", document.getElementById("tasker_imp").value);
+    } else if(taskeregion === 'WC') {
+        gpTask.setParam("parameter1", document.getElementById("tasker_imp").value);
+        gpTask.setParam("parameter2", document.getElementById("tasker_asoil").value);
+    } else if(taskeregion === 'EC') {
+        gpTask.setParam("parameter1", document.getElementById("tasker_landslope").value);
+        gpTask.setParam("parameter2", document.getElementById("tasker_asoil").value);
+    }
+
+    if(document.getElementById("tasker_adjust").checked){
+        gpTask.setParam("gageid", document.getElementById("tasker_gage").value);
+    }
+
+    gpTask.run(tasker_calculatorCallback);
+
+    function tasker_calculatorCallback(error, response, raw){
+
+        if (error){
+            alertmodal("Error",errormsg,"10vh")
+            map.spin(false);
+            $('#tasker_region').removeAttr('disabled');
+            $('#tasker_area').removeAttr('disabled');
+            $('#tasker_landslope').removeAttr('disabled');
+            $('#tasker_limestone').removeAttr('disabled');
+            $('#tasker_imp').removeAttr('disabled');
+            $('#tasker_asoil').removeAttr('disabled');
+            $('#tasker_adjust').removeAttr('disabled');
+            $('#tasker_gage').removeAttr('disabled');
+            return
+        }
+
+        var estim_par = response.estim_par;
+        var warning_message = response.warning_message;
+        var cl = response.cl;
+        var cu = response.cu;
+        var yhat = response.yhat;
+        var sepc = response.sepc;
+        var eqyrs = response.eqyrs;
+        var sepred = response.sepred;
+
+        const it_tasker = ['1.25', '1.50', '2', '5', '10', '25', '50', '100', '200', '500'];
+
+        var tasker1_html = '<table border="0" align="center">';
+        tasker1_html += '<col width="100">';
+        tasker1_html += '<col width="100">';
+        for(var i=0; i < it_tasker.length; i++){
+            tasker1_html += '<tr>';
+            tasker1_html += '<td align="left">Q(' + it_tasker[i] + '):</td>';
+            tasker1_html += '<td align="right">' + yhat[i] + ' cfs</td>';
+            tasker1_html += '</tr>';
+        }
+        tasker1_html += '</table><p></p>';
+
+        var tasker3_html = '<table border="0" align="center">';
+        tasker3_html += '<col width="100">';
+        tasker3_html += '<col width="300">';
+        for(var i=0; i < estim_par[0].length; i++){
+            tasker3_html += '<tr>';
+            tasker3_html += '<td align="left">' + estim_par[0][i] + ':</td>';
+            tasker3_html += '<td align="right">' + estim_par[1][i] + '</td>';
+            tasker3_html += '</tr>';
+        }
+        tasker3_html += '</table><p></p>';
+
+        var tasker4_html = '<table border="0" align="center">';
+        tasker4_html += '<col width="70">';
+        tasker4_html += '<col width="100">';
+        tasker4_html += '<col width="150">';
+        tasker4_html += '<col width="150">';
+        tasker4_html += '<col width="150">';
+        tasker4_html += '<tr align="center"><th>Return Period</th>';
+        tasker4_html += '<th>Peak Flow Rate</th>';
+        tasker4_html += '<th>Standard Error of Prediction</th>';
+        tasker4_html += '<th>Equivalent Years of Record</th>';
+        tasker4_html += '<th>Standard Error of Prediction</th></tr>';
+        tasker4_html += '<tr align="center"><th></th>';
+        tasker4_html += '<th>[cfs]</th>';
+        tasker4_html += '<th>[percent]</th>';
+        tasker4_html += '<th></th>';
+        tasker4_html += '<th>[logs]</th></tr>';
+        for(var i=0; i < it_tasker.length; i++){
+            tasker4_html += '<tr>';
+            tasker4_html += '<td align="center">' + it_tasker[i] + '</td>';
+            tasker4_html += '<td align="center">' + yhat[i] + '</td>';
+            tasker4_html += '<td align="center">' + sepc[i] + '</td>';
+            tasker4_html += '<td align="center">' + eqyrs[i] + '</td>';
+            tasker4_html += '<td align="center">' + sepred[i] + '</td>';
+            tasker4_html += '</tr>';
+        }
+        tasker4_html += '</table><p></p>';
+
+        var tasker5_html = '<table border="0" align="center">';
+        tasker5_html += '<col width="70">';
+        tasker5_html += '<col width="70">';
+        tasker5_html += '<col width="70">';
+        tasker5_html += '<col width="70">';
+        tasker5_html += '<col width="70">';
+        tasker5_html += '<col width="70">';
+        tasker5_html += '<col width="70">';
+        tasker5_html += '<col width="70">';
+        tasker5_html += '<col width="70">';
+        tasker5_html += '<tr align="center"><th>Return Period</th>';
+        tasker5_html += '<th style="text-align:right;">50</th><th style="text-align:left;">%</th>';
+        tasker5_html += '<th style="text-align:right;">67</th><th style="text-align:left;">%</th>';
+        tasker5_html += '<th style="text-align:right;">90</th><th style="text-align:left;">%</th>';
+        tasker5_html += '<th style="text-align:right;">95</th><th style="text-align:left;">%</th></tr>';
+        tasker5_html += '<tr align="center"><th></th>';
+        tasker5_html += '<th>lower</th><th>upper</th>';
+        tasker5_html += '<th>lower</th><th>upper</th>';
+        tasker5_html += '<th>lower</th><th>upper</th>';
+        tasker5_html += '<th>lower</th><th>upper</th></tr>';
+        for(var i=0; i < it_tasker.length; i++){
+            tasker5_html += '<tr>';
+            tasker5_html += '<td align="center">' + it_tasker[i] + '</td>';
+            tasker5_html += '<td align="center">' + cl[i][0] + '</td>';
+            tasker5_html += '<td align="center">' + cu[i][0] + '</td>';
+            tasker5_html += '<td align="center">' + cl[i][1] + '</td>';
+            tasker5_html += '<td align="center">' + cu[i][1] + '</td>';
+            tasker5_html += '<td align="center">' + cl[i][2] + '</td>';
+            tasker5_html += '<td align="center">' + cu[i][2] + '</td>';
+            tasker5_html += '<td align="center">' + cl[i][3] + '</td>';
+            tasker5_html += '<td align="center">' + cu[i][3] + '</td>';
+            tasker5_html += '</tr>';
+        }
+        tasker5_html += '</table><p></p>';
+
+        var taskercalc_modal = '<div class="modal-dialog modal-lg" style="width:100%;">';
+        taskercalc_modal +=     '<div class="modal-content">';
+        taskercalc_modal +=         '<div class="modal-header">';
+        taskercalc_modal +=             '<h4 class="modal-title">Tasker Discharge</h4>';
+        taskercalc_modal +=         '</div>'
+        taskercalc_modal +=         '<div class="modal-body">';
+
+        taskercalc_modal +=             '<table border="0">';
+        taskercalc_modal +=                 '<col width="150">';
+        taskercalc_modal +=                 '<col width="150">';
+        taskercalc_modal +=                 '<tr><td align="left">Analysis Date:</td><td align="left">' + today + '</td></tr>';
+        taskercalc_modal +=             '</table><p></p>';
+
+        taskercalc_modal +=             '<p align="center" style="font-size:16px;"><b>' + thomas + '</b></p>';
+        taskercalc_modal +=             '<p align="center"><b>Peak Flow (Total Area Weighted)</b></p>';
+        taskercalc_modal +=             tasker1_html
+        taskercalc_modal +=             '<p align="center"><b>Parameters</b></p>';
+        taskercalc_modal +=             tasker3_html
+        taskercalc_modal +=             '<p align="center"><b>Flood Frequency Estimates</b></p>';
+        taskercalc_modal +=             tasker4_html
+        taskercalc_modal +=             '<p align="center"><b>Prediction Intervals</b></p>';
+        taskercalc_modal +=             tasker5_html
+        taskercalc_modal +=             '<p align="center" style="color:red;">'
+        for(var i=0; i < warning_message.length; i++){
+            taskercalc_modal += '<b>' + warning_message[i] + '</b><br/>';
+        }
+        taskercalc_modal +=             '</p>'
+        taskercalc_modal +=         '</div>';
+        taskercalc_modal +=         '<div class="modal-footer" style="justify-content: space-between;">';
+        taskercalc_modal +=             '<button type="button" class="btn btn-default" onclick=modaltotxt(taskercalc_mod,"FRRE.csv")>Download</button>'
+        taskercalc_modal +=             '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+        taskercalc_modal +=         '</div>';
+        taskercalc_modal +=     '</div>';
+        taskercalc_modal += '</div>';
+
+        $('#tasker_region').removeAttr('disabled');
+        $('#tasker_area').removeAttr('disabled');
+        $('#tasker_landslope').removeAttr('disabled');
+        $('#tasker_limestone').removeAttr('disabled');
+        $('#tasker_imp').removeAttr('disabled');
+        $('#tasker_asoil').removeAttr('disabled');
+        $('#tasker_adjust').removeAttr('disabled');
+        $('#tasker_gage').removeAttr('disabled');
+
+        map.spin(false);
+        $("#taskercalc_mod").html(taskercalc_modal);
+        $("#taskercalc_mod").modal()
+    }
+};
+
+$(document).ready(function() {
+    var gagebox = $("#tasker_adjust");
+
+    gagebox.click(function() {
+        if ($(this).is(":checked")) {
+            $("#tasker_gage").removeAttr("disabled");
+        } else {
+            $("#tasker_gage").attr("disabled", "disabled");
+        }
+    });
+});
+
+window.onload=function(){
+    document.getElementById('tasker_region').addEventListener('change', function () {
+        if($(this).val() === 'A') {
+            document.getElementById("landslopeline").style.display = "block";
+            document.getElementById("limeline").style.display = "none";
+            document.getElementById("impline").style.display = "none";
+            document.getElementById("asoilline").style.display = "none";
+        } else if($(this).val() === 'P') {
+            document.getElementById("landslopeline").style.display = "none";
+            document.getElementById("limeline").style.display = "block";
+            document.getElementById("impline").style.display = "block";
+            document.getElementById("asoilline").style.display = "none";
+        } else if($(this).val() === 'B') {
+            document.getElementById("landslopeline").style.display = "none";
+            document.getElementById("limeline").style.display = "block";
+            document.getElementById("impline").style.display = "block";
+            document.getElementById("asoilline").style.display = "none";
+        } else if($(this).val() === 'WC') {
+            document.getElementById("landslopeline").style.display = "none";
+            document.getElementById("limeline").style.display = "none";
+            document.getElementById("impline").style.display = "block";
+            document.getElementById("asoilline").style.display = "block";
+        } else if($(this).val() === 'EC') {
+            document.getElementById("landslopeline").style.display = "block";
+            document.getElementById("limeline").style.display = "none";
+            document.getElementById("impline").style.display = "none";
+            document.getElementById("asoilline").style.display = "block";
+        }
+    });
+}
+
 let saveFile = (strtofile, filename) => {
 
     let data = strtofile.replace(/\n/g,"\r\n")
